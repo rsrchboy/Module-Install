@@ -1,0 +1,1095 @@
+____________________________________________________________________________
+[  1401] By: autrijus                              on 2003/03/27  08:11:53
+        Log: * the 19_95 development snapshot.
+	   ! Makefile.PL README lib/Module/Install.pm
+____________________________________________________________________________
+[  1398] By: autrijus                              on 2003/03/26  08:45:50
+        Log: * Peter Sergeant reported a possible 5.005 glitch.
+	   ! lib/Module/Install/Makefile.pm
+____________________________________________________________________________
+[  1397] By: autrijus                              on 2003/03/23  21:44:22
+        Log: * rcs header.
+	   ! lib/Module/Install/Admin/Makefile.pm
+	   ! lib/Module/Install/Scripts.pm
+____________________________________________________________________________
+[  1396] By: autrijus                              on 2003/03/23  21:44:16
+        Log: * backing out dysfunctional magic.
+	   ! lib/Module/Install/Admin.pm
+____________________________________________________________________________
+[  1395] By: ingy                                  on 2003/03/23  15:09:08
+        Log: This module makes it easy to install scripts in
+	     distributions.
+	   + lib/Module/Install/Scripts.pm
+____________________________________________________________________________
+[  1394] By: ingy                                  on 2003/03/23  09:19:43
+        Log: extra cleaning
+	   ! lib/Module/Install/Admin/Makefile.pm
+____________________________________________________________________________
+[  1393] By: ingy                                  on 2003/03/23  09:19:28
+        Log: Backing out until Autrijus fixes Admin-to-Admin calling
+	   ! lib/Module/Install/Admin/Manifest.pm
+____________________________________________________________________________
+[  1392] By: ingy                                  on 2003/03/23  09:12:23
+        Log: .
+	   ! MANIFEST.SKIP
+____________________________________________________________________________
+[  1391] By: autrijus                              on 2003/03/22  23:25:16
+        Log: * some preliminary fix.
+	   ! lib/Module/Install/Admin.pm
+	   ! lib/Module/Install/Admin/Manifest.pm
+____________________________________________________________________________
+[  1390] By: ingy                                  on 2003/03/22  22:04:23
+        Log: This patch works, but needs refactoring. 
+             I had to duplicate code because I could not figure out how
+	     to call
+             methods across Admin modules. HELP!
+	   ! MANIFEST lib/Module/Install/Admin/Makefile.pm
+	   ! lib/Module/Install/Admin/Manifest.pm
+	   ! lib/Module/Install/Build.pm
+	   ! lib/Module/Install/Makefile.pm
+____________________________________________________________________________
+[  1389] By: ingy                                  on 2003/03/22  18:20:49
+        Log: adding admin module
+	   + lib/Module/Install/Admin/Makefile.pm
+____________________________________________________________________________
+[  1388] By: ingy                                  on 2003/03/22  17:54:28
+        Log: Added support for checking the MANIFEST on 'make dist'.
+             Refactored the fix_up_makefile()
+	   ! lib/Module/Install/Makefile.pm
+____________________________________________________________________________
+[  1387] By: autrijus                              on 2003/03/22  15:50:18
+        Log: * sudo installation support.
+	   ! lib/Module/Install/AutoInstall.pm
+____________________________________________________________________________
+[  1386] By: autrijus                              on 2003/03/22  15:09:03
+        Log: * fix cleaninstall.
+	   ! MANIFEST Makefile.PL
+____________________________________________________________________________
+[  1385] By: autrijus                              on 2003/03/22  14:53:57
+        Log: * adjustments.
+	   + SIGNATURE
+	   ! MANIFEST
+____________________________________________________________________________
+[  1384] By: ingy                                  on 2003/03/22  14:03:27
+        Log: Setting +w
+	   ! MANIFEST
+____________________________________________________________________________
+[  1383] By: ingy                                  on 2003/03/22  14:00:19
+        Log: Oops. I busted 'make reset' on last fix. Fixed.
+	   ! lib/Module/Install/Admin.pm
+____________________________________________________________________________
+[  1382] By: ingy                                  on 2003/03/22  13:55:14
+        Log: A fix for the segfaults I was getting. This fix demands:
+             
+             use inc::Module::Install;
+             
+             over:
+             
+             use lib 'inc';
+             use Module::Install;
+             
+             But the latter was busted on first run anyway (segfault).
+	   ! MANIFEST lib/Module/Install.pm
+____________________________________________________________________________
+[  1381] By: autrijus                              on 2003/03/22  10:51:21
+        Log: * adding manifest back in.
+	   + MANIFEST
+____________________________________________________________________________
+[  1380] By: autrijus                              on 2003/03/22  07:16:08
+        Log: * beginning of a cookbook
+	   ! lib/Module/Install-Cookbook.pod
+____________________________________________________________________________
+[  1379] By: autrijus                              on 2003/03/22  07:15:33
+        Log: * better stripping to be more perl-like but less
+	       podspec-like
+	   ! lib/Module/Install/Admin.pm
+____________________________________________________________________________
+[  1376] By: autrijus                              on 2003/03/19  04:49:04
+        Log: * attach / for ftp urls, too.
+	   ! lib/Module/Install/PAR.pm
+____________________________________________________________________________
+[  1375] By: autrijus                              on 2003/03/18  12:29:32
+        Log: * switching to @INC instead of use base because it's broken
+	       on 5.6.0.
+             * sad but true.
+	   ! lib/Module/Install/Admin/Find.pm
+	   ! lib/Module/Install/Admin/Manifest.pm
+	   ! lib/Module/Install/Admin/Metadata.pm
+	   ! lib/Module/Install/Admin/ScanDeps.pm
+	   ! lib/Module/Install/AutoInstall.pm
+	   ! lib/Module/Install/Base.pm
+	   ! lib/Module/Install/Build.pm
+	   ! lib/Module/Install/Bundle.pm
+	   ! lib/Module/Install/Include.pm
+	   ! lib/Module/Install/Inline.pm
+	   ! lib/Module/Install/MakeMaker.pm
+	   ! lib/Module/Install/Makefile.pm
+	   ! lib/Module/Install/Makefile/Name.pm
+	   ! lib/Module/Install/Makefile/Version.pm
+	   ! lib/Module/Install/Metadata.pm
+	   ! lib/Module/Install/Run.pm
+____________________________________________________________________________
+[  1374] By: autrijus                              on 2003/03/18  11:50:15
+        Log: * new ftp_url args to specify non-http alternatives.
+             * find out the http location to nmake15.exe.
+	   ! lib/Module/Install/Fetch.pm
+	   ! lib/Module/Install/PAR.pm
+	   ! lib/Module/Install/Win32.pm
+____________________________________________________________________________
+[  1373] By: autrijus                              on 2003/03/18  11:33:41
+        Log: * preliminary http support in Fetch.
+             * use that for CPAN.
+	   ! lib/Module/Install/Fetch.pm
+	   ! lib/Module/Install/PAR.pm
+____________________________________________________________________________
+[  1372] By: autrijus                              on 2003/03/18  11:18:27
+        Log: * fix incorrect $cmd overwriting
+	   ! lib/Module/Install/Can.pm
+____________________________________________________________________________
+[  1371] By: autrijus                              on 2003/03/18  04:22:04
+        Log: * they are private extensions, therefore private >
+	       PERSONAL.
+             (it's not an acronym, it's a local config, like
+	     only::config,
+             hence the lowercase).
+	   ! lib/Module/Install.pm
+____________________________________________________________________________
+[  1364] By: ingy                                  on 2003/03/11  22:44:50
+        Log: I assume this is a bug...
+	   ! lib/Module/Install/Can.pm
+____________________________________________________________________________
+[  1363] By: autrijus                              on 2003/03/11  22:38:28
+        Log: * don't delete just overlay, so we don't' trigger 5.8 bugs.
+	   ! lib/Module/Install/Admin.pm
+____________________________________________________________________________
+[  1362] By: autrijus                              on 2003/03/11  06:39:24
+        Log: * make fetch non-fatal, thanks to Markus.
+	   ! lib/Module/Install/Can.pm
+	   ! lib/Module/Install/Fetch.pm
+____________________________________________________________________________
+[  1361] By: autrijus                              on 2003/03/11  02:13:18
+        Log: * docs adjustment.
+	   ! lib/Module/Install/Base.pm
+____________________________________________________________________________
+[  1360] By: autrijus                              on 2003/03/11  01:53:52
+        Log: * empty run.pm.
+	   ! lib/Module/Install/Run.pm
+____________________________________________________________________________
+[  1359] By: autrijus                              on 2003/03/11  01:49:03
+        Log: * docs.
+	   ! lib/Module/Install.pm
+	   ! lib/Module/Install/Admin.pm
+	   ! lib/inc/Module/Install.pm
+____________________________________________________________________________
+[  1358] By: autrijus                              on 2003/03/11  01:35:15
+        Log: * move capacities into Can.
+	  +> lib/Module/Install/Can.pm
+____________________________________________________________________________
+[  1347] By: autrijus                              on 2003/03/10  00:25:34
+        Log: * make fetch_par use the correct name.
+	   ! lib/Module/Install/PAR.pm
+____________________________________________________________________________
+[  1345] By: autrijus                              on 2003/03/10  00:10:13
+        Log: * we don't _really_ want to bundle M::B.
+	   ! Makefile.PL
+____________________________________________________________________________
+[  1344] By: autrijus                              on 2003/03/10  00:10:02
+        Log: * beginning of bundle support.
+	   + lib/Module/Install/Bundle.pm
+	   ! lib/Module/Install.pm
+	   ! lib/Module/Install/Makefile.pm
+	   ! lib/Module/Install/Metadata.pm
+____________________________________________________________________________
+[  1343] By: autrijus                              on 2003/03/09  23:46:12
+        Log: * according to ingy, Inline is required, not
+	       build_required.
+	   ! lib/Module/Install/Inline.pm
+____________________________________________________________________________
+[  1342] By: autrijus                              on 2003/03/09  23:41:34
+        Log: * make include_dep('Inline') work.
+	   ! lib/Module/Install/Inline.pm
+____________________________________________________________________________
+[  1341] By: autrijus                              on 2003/03/09  23:28:03
+        Log: * add section markers to makefiles.
+             * beginning of Inline support.
+             * mention Inline and PAR in M::I manpage.
+             * WriteMakefile() now does argument translation so it
+             can work with other ::Metadata-related mechanisms.
+	   + lib/Module/Install/Inline.pm
+	   ! ToDo lib/Module/Install.pm
+	   ! lib/Module/Install/AutoInstall.pm
+	   ! lib/Module/Install/MakeMaker.pm
+	   ! lib/Module/Install/Makefile.pm
+	   ! lib/Module/Install/PAR.pm
+____________________________________________________________________________
+[  1340] By: autrijus                              on 2003/03/09  23:26:56
+        Log: * redid find_in_inc as glob_in_inc.
+	   ! Makefile.PL lib/Module/Install/Admin/Find.pm
+	   ! lib/Module/Install/Admin/Manifest.pm
+	   ! lib/Module/Install/Admin/ScanDeps.pm
+	   ! lib/Module/Install/Include.pm
+____________________________________________________________________________
+[  1337] By: autrijus                              on 2003/03/09  06:07:19
+        Log: * oops, no need for $suffix anymore.
+	   ! lib/Module/Install/PAR.pm
+____________________________________________________________________________
+[  1336] By: autrijus                              on 2003/03/09  06:00:16
+        Log: * ditch DISTVNAME for the more consistent $file.
+	   ! lib/Module/Install/PAR.pm
+____________________________________________________________________________
+[  1335] By: autrijus                              on 2003/03/09  04:36:05
+        Log: * don't feature anything by default.
+	   ! Makefile.PL
+____________________________________________________________________________
+[  1334] By: autrijus                              on 2003/03/09  04:34:44
+        Log: * adds PAR and Build prereqs.
+	   ! lib/Module/Install/PAR.pm
+____________________________________________________________________________
+[  1333] By: autrijus                              on 2003/03/09  04:34:29
+        Log: * 5.6.1 doesn't have PERLRUN ;)
+	   ! Makefile.PL lib/Module/Install/Makefile.pm
+____________________________________________________________________________
+[  1332] By: autrijus                              on 2003/03/09  04:18:29
+        Log: * various 5.6.1-building tweaks
+	   ! Makefile.PL
+	   ! lib/Module/Install/Admin/Manifest.pm
+	   ! lib/Module/Install/Admin/ScanDeps.pm
+____________________________________________________________________________
+[  1331] By: autrijus                              on 2003/03/09  03:25:51
+        Log: * nmake doesn't do PERLRUN lookahead. bummer.
+	   ! lib/Module/Install/PAR.pm
+____________________________________________________________________________
+[  1330] By: autrijus                              on 2003/03/09  03:20:48
+        Log: * turns out $0 doesn't guarantee casing.
+	   ! Makefile.PL
+____________________________________________________________________________
+[  1329] By: autrijus                              on 2003/03/09  03:19:04
+        Log: * prefer more orthodox quoting for nmake.
+	   ! lib/Module/Install/Makefile.pm
+	   ! lib/Module/Install/PAR.pm
+____________________________________________________________________________
+[  1328] By: autrijus                              on 2003/03/08  13:42:14
+        Log: * implments auto_install_now() to solve bootstrap issues.
+             * M::I::B now delays requiring Module::Build till it's
+	       actual needed.
+	   ! Makefile.PL lib/Module/Install/AutoInstall.pm
+	   ! lib/Module/Install/Build.pm
+____________________________________________________________________________
+[  1326] By: autrijus                              on 2003/03/08  09:16:07
+        Log: * spelling corrections.
+	   ! lib/Module/Install/AutoInstall.pm
+	   ! lib/Module/Install/PAR.pm
+____________________________________________________________________________
+[  1325] By: autrijus                              on 2003/03/08  08:56:10
+        Log: * i don't like correcting myself.
+	   ! lib/Module/Install/Admin/Manifest.pm
+____________________________________________________________________________
+[  1324] By: autrijus                              on 2003/03/08  08:53:29
+        Log: * this too.
+	   ! lib/Module/Install/Makefile.pm
+____________________________________________________________________________
+[  1323] By: autrijus                              on 2003/03/08  08:52:50
+        Log: * correct perlrun line.
+	   ! lib/Module/Install/PAR.pm
+____________________________________________________________________________
+[  1322] By: autrijus                              on 2003/03/08  08:11:40
+        Log: * returns the fetched file.
+	   ! lib/Module/Install/PAR.pm
+____________________________________________________________________________
+[  1321] By: autrijus                              on 2003/03/08  07:33:19
+        Log: * failed reference lesson 101.
+	   ! lib/Module/Install/Makefile.pm
+____________________________________________________________________________
+[  1320] By: autrijus                              on 2003/03/08  07:27:42
+        Log: * ok, i lied.
+	   ! lib/Module/Install/PAR.pm
+____________________________________________________________________________
+[  1319] By: autrijus                              on 2003/03/08  07:25:14
+        Log: * final tweak.
+	   ! lib/Module/Install/PAR.pm
+____________________________________________________________________________
+[  1318] By: autrijus                              on 2003/03/08  07:20:24
+        Log: * fix messages for compactness.
+	   ! lib/Module/Install/PAR.pm
+____________________________________________________________________________
+[  1317] By: autrijus                              on 2003/03/08  06:25:04
+        Log: * shorter can_run().
+	   ! lib/Module/Install/Run.pm
+____________________________________________________________________________
+[  1316] By: autrijus                              on 2003/03/08  06:09:48
+        Log: * refactor out par_fetch.
+	   ! lib/Module/Install/PAR.pm
+____________________________________________________________________________
+[  1315] By: autrijus                              on 2003/03/08  02:43:21
+        Log: * oops.
+	   ! lib/Module/Install/Metadata.pm
+____________________________________________________________________________
+[  1314] By: autrijus                              on 2003/03/08  02:41:17
+        Log: * $@ warning is now restored.
+             * cleaners Metadata dump.
+	   ! lib/Module/Install.pm
+	   ! lib/Module/Install/Metadata.pm
+____________________________________________________________________________
+[  1313] By: autrijus                              on 2003/03/08  02:30:22
+        Log: * don't test for signature if we don't have it yet.
+	   ! t/0-signature.t
+____________________________________________________________________________
+[  1312] By: autrijus                              on 2003/03/08  02:29:26
+        Log: * oops, PAR files starts at lib/, arch/ not blib/.
+	   ! lib/Module/Install/PAR.pm
+____________________________________________________________________________
+[  1311] By: autrijus                              on 2003/03/08  01:32:42
+        Log: * -w runs clean now.
+             * fix Manifest.pm to look all of inc/. it was always the
+             case but only because a bug ($DIR was always undef).
+             * more robust detection for ScanDeps.
+             * AutoInstall is also -w clean now.
+	   ! lib/Module/Install/Admin/Manifest.pm
+	   ! lib/Module/Install/Admin/ScanDeps.pm
+	   ! lib/Module/Install/AutoInstall.pm
+____________________________________________________________________________
+[  1310] By: autrijus                              on 2003/03/08  01:29:15
+        Log: * continue razoring. $extension->initialized is gone.
+	       yagni.
+             (->initialized is always false iff ->admin is true.)
+             * nix the only place we use initialized().
+	   ! lib/Module/Install/Admin.pm
+	   ! lib/Module/Install/Base.pm
+	   ! lib/Module/Install/Metadata.pm
+____________________________________________________________________________
+[  1309] By: autrijus                              on 2003/03/08  01:27:31
+        Log: * beginning of -w saftety patches.
+             * M::I->admin is gone. yagni at all.
+             * simplify load_extensions so we do not load a file twice.
+             * don't attempt finding in paths that does not exist.
+	   ! lib/Module/Install.pm
+____________________________________________________________________________
+[  1308] By: autrijus                              on 2003/03/07  22:46:17
+        Log: * massive documentation rework, phase #1.
+	   ! ToDo lib/Module/Install.pm
+	   ! lib/Module/Install/Admin.pm
+	   ! lib/Module/Install/Base.pm
+____________________________________________________________________________
+[  1307] By: autrijus                              on 2003/03/07  22:45:42
+        Log: * nix signature till we really needs it.
+	   - SIGNATURE
+____________________________________________________________________________
+[  1299] By: autrijus                              on 2003/03/07  18:04:41
+        Log: * local @INC *not* needed if inc/ is the first @INC
+	       element.
+             * also check for duplicate @INC insertion in admin.
+	   ! lib/Module/Install/Admin.pm
+____________________________________________________________________________
+[  1298] By: autrijus                              on 2003/03/07  17:58:06
+        Log: * look in all @INC not just the first.
+	   ! lib/Module/Install.pm
+____________________________________________________________________________
+[  1297] By: autrijus                              on 2003/03/07  17:55:15
+        Log: * still need to tweak @INC before loading extensions,
+             otherwise inc/ExtUtils/AutoInstall etc won't be loaded.
+	   ! lib/Module/Install.pm
+____________________________________________________________________________
+[  1296] By: autrijus                              on 2003/03/07  17:51:50
+        Log: * nomenclature fix. remove unneccessary unshift.
+             * readability fix from #perl.
+	   ! lib/Module/Install.pm
+____________________________________________________________________________
+[  1295] By: autrijus                              on 2003/03/07  09:51:59
+        Log: * better messages.
+             * 01:48 <kaneX> you just made napc using par?
+             * 01:48 <autrijus> an important piece of napc, yes.
+             * 01:49 <autrijus> will be a full napc with some kind of
+	       discovery network.
+             * 01:49 <autrijus> but the hardest bit is done!
+	   ! lib/Module/Install/PAR.pm
+____________________________________________________________________________
+[  1294] By: autrijus                              on 2003/03/07  09:20:43
+        Log: * all magics are broken with the new oo model till this
+	       fix.
+	   ! lib/Module/Install.pm
+	   ! lib/inc/Module/Install.pm
+____________________________________________________________________________
+[  1293] By: autrijus                              on 2003/03/07  09:11:39
+        Log: * up the stake to 0.45.
+	   ! lib/Module/Install/AutoInstall.pm
+____________________________________________________________________________
+[  1292] By: autrijus                              on 2003/03/07  08:56:21
+        Log: * don't download PAR distributions since we are, uhm, not
+	       binary.
+	   ! Makefile.PL
+____________________________________________________________________________
+[  1291] By: autrijus                              on 2003/03/07  08:56:07
+        Log: * generic support for EU::AI without recommends().
+	   ! lib/Module/Install/AutoInstall.pm
+	   ! lib/Module/Install/Metadata.pm
+____________________________________________________________________________
+[  1290] By: autrijus                              on 2003/03/07  08:55:15
+        Log: * lazybones documentation 101: delete all modules you
+	       didn't get to write docs for ;)
+             * seriously, clean_files is definitely Makefile domain, not
+	       'Directives'.
+	   - lib/Module/Install/Directives.pm
+	   ! lib/Module/Install.pm
+	   ! lib/Module/Install/Makefile.pm
+____________________________________________________________________________
+[  1289] By: autrijus                              on 2003/03/07  08:25:20
+        Log: * massive checkin to enable PAR building and downloading.
+	   + lib/Module/Install/PAR.pm
+	   ! Build.PL Makefile.PL SIGNATURE
+	   ! lib/Module/Install.pm
+	   ! lib/Module/Install/AutoInstall.pm
+	   ! lib/Module/Install/Fetch.pm
+	   ! lib/Module/Install/Makefile.pm
+	   ! lib/Module/Install/Run.pm
+____________________________________________________________________________
+[  1288] By: autrijus                              on 2003/03/06  21:32:32
+        Log: * doco and typo
+	   + lib/Module/Install-Cookbook.pod
+	   ! Makefile.PL lib/Module/Install-Philosophy.pod
+____________________________________________________________________________
+[  1287] By: autrijus                              on 2003/03/06  19:55:47
+        Log: * add build-friendly manifest.skip
+	   ! MANIFEST.SKIP
+____________________________________________________________________________
+[  1286] By: autrijus                              on 2003/03/06  19:54:38
+        Log: * kill todo so poor case-insensitive sods won't be
+	       confused.
+	   - TODO
+____________________________________________________________________________
+[  1285] By: autrijus                              on 2003/03/06  19:53:42
+        Log: * Build.PL is now merely an alias for Makefile.PL
+             * doc tweaks
+	   ! Build.PL Makefile.PL
+	   ! lib/Module/Install/Build.pm
+____________________________________________________________________________
+[  1284] By: autrijus                              on 2003/03/06  19:51:49
+        Log: * autoinstall lands!
+	   ! lib/Module/Install/AutoInstall.pm
+	   ! lib/Module/Install/Include.pm
+	   ! lib/Module/Install/Metadata.pm
+____________________________________________________________________________
+[  1282] By: ingy                                  on 2003/03/06  11:34:16
+        Log: *
+	   ! ToDo lib/Module/Install/Admin/Manifest.pm
+____________________________________________________________________________
+[  1281] By: autrijus                              on 2003/03/06  09:01:45
+        Log: * correct invocation.
+	   ! lib/Module/Install/Makefile.pm
+____________________________________________________________________________
+[  1280] By: autrijus                              on 2003/03/06  09:01:31
+        Log: * pick() now prefers more recently modified extensions.
+             * it can also take a default of first by pressing 'enter'.
+	   ! lib/Module/Install/Admin.pm
+____________________________________________________________________________
+[  1279] By: autrijus                              on 2003/03/06  09:00:51
+        Log: * add M::I::A::Metadata to docs.
+	   ! lib/Module/Install.pm
+____________________________________________________________________________
+[  1278] By: autrijus                              on 2003/03/06  08:50:03
+        Log: * nomenclature.
+	   ! lib/Module/Install/Admin/Metadata.pm
+____________________________________________________________________________
+[  1277] By: autrijus                              on 2003/03/06  08:49:40
+        Log: * Util is now gone. Metadata.pm now in.
+	  +> lib/Module/Install/Admin/Metadata.pm
+	   - lib/Module/Install/Admin/Util.pm
+____________________________________________________________________________
+[  1276] By: autrijus                              on 2003/03/06  08:48:13
+        Log: * introduces M::I::A::Find to contain all find-related
+	       stuff.
+	   + lib/Module/Install/Admin/Find.pm
+	   ! lib/Module/Install/Admin/Manifest.pm
+	   ! lib/Module/Install/Admin/ScanDeps.pm
+____________________________________________________________________________
+[  1275] By: autrijus                              on 2003/03/06  08:47:53
+        Log: * continue moving out Util.
+	   ! lib/Module/Install/Makefile.pm
+____________________________________________________________________________
+[  1274] By: autrijus                              on 2003/03/06  08:47:14
+        Log: * File::Find is shorter, why not?
+	   ! lib/Module/Install/Makefile/Name.pm
+	   ! lib/Module/Install/Makefile/Version.pm
+____________________________________________________________________________
+[  1273] By: autrijus                              on 2003/03/06  08:46:30
+        Log: * use M::I version instead of hard-coding Metadata.
+	   ! lib/Module/Install/Admin/Util.pm
+	   ! lib/Module/Install/Metadata.pm
+____________________________________________________________________________
+[  1272] By: autrijus                              on 2003/03/06  08:45:46
+        Log: * M::I::A can now export its own variant of AUTOLOAD into
+             the calling package when directly used, like from command
+	     line.
+	   ! lib/Module/Install/Admin.pm
+____________________________________________________________________________
+[  1271] By: autrijus                              on 2003/03/06  08:44:59
+        Log: * $main::VARNAME considered broken.  remove it completely.
+	   - lib/Module/Install/Makefile/CleanFiles.pm
+	   ! lib/Module/Install.pm
+____________________________________________________________________________
+[  1270] By: autrijus                              on 2003/03/06  08:02:36
+        Log: * i'm growing uneasy about the kitchen-sink name 'Util'.
+	   ! lib/Module/Install/Admin/Util.pm
+____________________________________________________________________________
+[  1269] By: autrijus                              on 2003/03/06  07:55:53
+        Log: * modernized Util.
+             * constant refactoring continues.
+	   ! lib/Module/Install/Admin.pm
+	   ! lib/Module/Install/Admin/ScanDeps.pm
+	   ! lib/Module/Install/Admin/Util.pm
+	   ! lib/Module/Install/Include.pm
+____________________________________________________________________________
+[  1268] By: autrijus                              on 2003/03/06  07:35:09
+        Log: * cutesy style indenting. ;)
+	   ! Makefile.PL
+____________________________________________________________________________
+[  1267] By: autrijus                              on 2003/03/06  07:34:59
+        Log: * fixed admin dispatching.
+             * adds build_requires.
+	   ! lib/Module/Install/Admin.pm
+	   ! lib/Module/Install/Metadata.pm
+____________________________________________________________________________
+[  1266] By: autrijus                              on 2003/03/06  02:45:58
+        Log: * pod-checked the manual.
+	   ! lib/Module/Install.pm
+____________________________________________________________________________
+[  1265] By: autrijus                              on 2003/03/06  02:44:27
+        Log: * spell-checked the docs.
+	   ! lib/Module/Install.pm
+____________________________________________________________________________
+[  1264] By: autrijus                              on 2003/03/06  02:43:23
+        Log: * split the Build.PL and Makefile.PL install path.
+	   + Build.PL
+	   ! Makefile.PL README
+____________________________________________________________________________
+[  1263] By: autrijus                              on 2003/03/06  02:37:29
+        Log: * vastly improved documentation.
+             * continue refactoring to must _find_files inside Admin/.
+             * we eventually wants to switch to Find::Files.
+	   ! README lib/Module/Install.pm
+	   ! lib/Module/Install/Admin/Manifest.pm
+	   ! lib/Module/Install/Base.pm
+	   ! lib/Module/Install/Include.pm
+	   ! lib/Module/Install/MakeMaker.pm
+	   ! lib/Module/Install/Makefile.pm
+____________________________________________________________________________
+[  1262] By: autrijus                              on 2003/03/05  21:43:15
+        Log: * amazing refactoring of M::I::A classes and class model.
+	   ! MANIFEST.SKIP lib/Module/Install.pm
+	   ! lib/Module/Install/Admin.pm
+	   ! lib/Module/Install/Base.pm
+	   ! lib/Module/Install/Build.pm
+	   ! lib/Module/Install/Include.pm
+	   ! lib/Module/Install/Makefile.pm
+____________________________________________________________________________
+[  1261] By: ingy                                  on 2003/03/05  20:17:46
+        Log: .
+	   ! ToDo
+____________________________________________________________________________
+[  1260] By: ingy                                  on 2003/03/05  18:55:52
+        Log: To Do list
+	   + ToDo
+____________________________________________________________________________
+[  1258] By: ingy                                  on 2003/03/05  16:24:33
+        Log: You can do BOTH!!!
+	   ! Makefile.PL
+____________________________________________________________________________
+[  1257] By: ingy                                  on 2003/03/05  16:11:32
+        Log: Works with Module::Build!!
+             
+             Need to ensure it uses included copy if Module::Build is
+	     included.
+             
+             Need to specify extra ACTIONs
+             
+             Probably lots of other stuff.
+	   + lib/Module/Install/Build.pm
+	   ! Makefile.PL
+____________________________________________________________________________
+[  1256] By: ingy                                  on 2003/03/05  14:08:36
+        Log: Refactor bundle->include
+             
+             I think that 'include' is the term we should be used for
+             non-installable files that go in the *inc* directory.
+             
+             Bundles will be complete distributions that will either go
+	     under
+             BUNDLE/ or inc/BUNDLE or something.
+	   + lib/Module/Install/Include.pm
+	   - lib/Module/Install/Bundle.pm
+	   ! Changes Makefile.PL lib/Module/Install.pm
+	   ! lib/Module/Install/Admin.pm
+	   ! lib/Module/Install/Admin/ScanDeps.pm
+____________________________________________________________________________
+[  1255] By: ingy                                  on 2003/03/05  13:23:32
+        Log: 'make reset' now gets rid of auto-generated META.yml and
+	     cleans out
+             the MANIFEST of inc/ files.
+	   + lib/Module/Install/Admin/Util.pm
+	   - MANIFEST
+	   ! lib/Module/Install/Admin/Manifest.pm
+	   ! lib/Module/Install/Makefile.pm
+____________________________________________________________________________
+[  1254] By: ingy                                  on 2003/03/05  12:30:51
+        Log: Honor the MANIFEST.SKIP
+             I don't think we want to ship ./inc/Module/Install files,
+	     but we do
+             want to ship ./inc/Test files etc.
+	   - Idea
+	   ! MANIFEST MANIFEST.SKIP
+	   ! lib/Module/Install/Admin/Manifest.pm
+____________________________________________________________________________
+[  1253] By: ingy                                  on 2003/03/05  11:38:56
+        Log: Temporary fix to bootstrapping issue with Module::ScanDeps
+	   ! Makefile.PL
+	   ! lib/Module/Install/Admin/ScanDeps.pm
+____________________________________________________________________________
+[  1252] By: autrijus                              on 2003/03/05  09:23:09
+        Log: * change package name.
+	   ! lib/Module/Install/Admin/Manifest.pm
+	   ! lib/Module/Install/Admin/ScanDeps.pm
+____________________________________________________________________________
+[  1251] By: autrijus                              on 2003/03/05  09:21:56
+        Log: * move administrative-only extensions to M::I::A.
+	  +> lib/Module/Install/Admin/Manifest.pm
+	  +> lib/Module/Install/Admin/ScanDeps.pm
+	   - lib/Module/Install/Manifest.pm
+	   - lib/Module/Install/ScanDeps.pm
+____________________________________________________________________________
+[  1250] By: autrijus                              on 2003/03/05  09:06:24
+        Log: * first cut at bundle() and bundle_deps().
+             * take the M::I::AI namespace.
+	   + lib/Module/Install/AutoInstall.pm
+	   + lib/Module/Install/Bundle.pm
+	   + lib/Module/Install/ScanDeps.pm
+	   ! Makefile.PL lib/Module/Install/Admin.pm
+	   ! lib/Module/Install/Base.pm
+____________________________________________________________________________
+[  1249] By: autrijus                              on 2003/03/05  05:16:25
+        Log: * please, please abide by the spec.
+	   ! lib/Module/Install/Admin.pm
+____________________________________________________________________________
+[  1246] By: ingy                                  on 2003/03/05  00:07:36
+        Log: Made pod strip a bit more vigilant
+	   ! MANIFEST lib/Module/Install/Admin.pm
+____________________________________________________________________________
+[  1245] By: ingy                                  on 2003/03/04  23:57:46
+        Log: I don't think 'mkdir' messages are that useful.
+	   ! MANIFEST lib/Module/Install/Admin.pm
+____________________________________________________________________________
+[  1244] By: ingy                                  on 2003/03/04  23:48:11
+        Log: Giving up on having 'make reset' clean the MANIFEST. Maybe
+	     I try again
+             later.
+	   ! MANIFEST lib/Module/Install/Makefile.pm
+	   ! lib/Module/Install/Manifest.pm
+____________________________________________________________________________
+[  1243] By: autrijus                              on 2003/03/04  23:16:31
+        Log: * correct invocation.
+	   ! lib/Module/Install/Makefile.pm
+	   ! lib/Module/Install/Manifest.pm
+____________________________________________________________________________
+[  1242] By: autrijus                              on 2003/03/04  23:11:57
+        Log: * fix ingy's thinko.
+	   ! lib/Module/Install/Manifest.pm
+____________________________________________________________________________
+[  1241] By: ingy                                  on 2003/03/04  23:09:11
+        Log: checkin
+	   ! MANIFEST lib/Module/Install/Makefile.pm
+	   ! lib/Module/Install/Manifest.pm
+____________________________________________________________________________
+[  1239] By: autrijus                              on 2003/03/04  22:56:00
+        Log: * oops.
+	   ! MANIFEST
+____________________________________________________________________________
+[  1238] By: autrijus                              on 2003/03/04  22:50:35
+        Log: * cosmetic styles.
+	   ! Makefile.PL README lib/Module/Install/Fetch.pm
+	   ! t/0-signature.t
+____________________________________________________________________________
+[  1237] By: autrijus                              on 2003/03/04  22:44:36
+        Log: * now that we have MIB, move everything to subclass it.
+             * also moves the vim hint line to top.
+	   + lib/Module/Install/MakeMaker.pm
+	   ! lib/Module/Install/Directives.pm
+	   ! lib/Module/Install/Fetch.pm
+	   ! lib/Module/Install/Makefile.pm
+	   ! lib/Module/Install/Makefile/CleanFiles.pm
+	   ! lib/Module/Install/Makefile/Name.pm
+	   ! lib/Module/Install/Makefile/Version.pm
+	   ! lib/Module/Install/Manifest.pm
+	   ! lib/Module/Install/Metadata.pm
+	   ! lib/Module/Install/Run.pm
+	   ! lib/Module/Install/Win32.pm
+	   ! lib/inc/Module/Install.pm
+____________________________________________________________________________
+[  1236] By: autrijus                              on 2003/03/04  22:43:47
+        Log: * use canonical POD stripping according to perlpodspec.
+             * copy_package is now used to copy the @ISA tree too.
+             * tweaked prompts in pick().
+	   ! lib/Module/Install/Admin.pm
+____________________________________________________________________________
+[  1235] By: autrijus                              on 2003/03/04  22:36:08
+        Log: * put documents into PODs to take advantage of stripping.
+             * rewrote find_extensions to use File::Find.
+             * M::I no longer sports an AUTOLOAD -- it's M::I::B's job
+	       now.
+             * load_extensions now take another $top arg instead of
+	       guessing.
+             * stop blind exporting into extension space.
+             * introduces MIB.
+	   + lib/Module/Install/Base.pm
+	   ! lib/Module/Install.pm
+____________________________________________________________________________
+[  1234] By: autrijus                              on 2003/03/04  22:33:36
+        Log: * bring our manifest uptodate.
+	   ! MANIFEST
+____________________________________________________________________________
+[  1233] By: ingy                                  on 2003/03/04  20:39:00
+        Log: Strip out POD when copying extensions.
+	   ! lib/Module/Install/Admin.pm
+____________________________________________________________________________
+[  1232] By: ingy                                  on 2003/03/04  19:36:13
+        Log: Moved rest of POD into modules.
+	   - lib/Module/Install.pod
+	   - lib/Module/Install/Admin.pod
+	   - lib/Module/Install/Win32.pod
+	   ! lib/Module/Install.pm
+	   ! lib/Module/Install/Admin.pm
+	   ! lib/Module/Install/Win32.pm
+____________________________________________________________________________
+[  1231] By: ingy                                  on 2003/03/04  19:25:42
+        Log: Refactored Manifest.pm
+             Now removes entries appropriately
+             Started inlining pod
+	   - lib/Module/Install/Makefile.pod
+	   - lib/Module/Install/Manifest.pod
+	   ! MANIFEST Makefile.PL
+	   ! lib/Module/Install/Admin.pm
+	   ! lib/Module/Install/Makefile.pm
+	   ! lib/Module/Install/Manifest.pm
+	   ! lib/Module/Install/Metadata.pm
+____________________________________________________________________________
+[  1229] By: autrijus                              on 2003/03/04  04:07:59
+        Log: * first cut at a workinc pick().
+	   ! lib/Module/Install/Admin.pm
+____________________________________________________________________________
+[  1228] By: autrijus                              on 2003/03/04  04:01:24
+        Log: * style changes, tabs, rcs.
+	   ! lib/Module/Install/Directives.pm
+	   ! lib/Module/Install/Makefile.pm
+	   ! lib/Module/Install/Metadata.pm
+____________________________________________________________________________
+[  1223] By: autrijus                              on 2003/03/04  01:22:48
+        Log: * use closures instead of the costly (and
+	       syntax-hilightning-nonfriendly) eval.
+	   ! lib/Module/Install/Metadata.pm
+____________________________________________________________________________
+[  1222] By: ingy                                  on 2003/03/04  00:54:06
+        Log: Needed to require MM_Unix
+	   ! lib/Module/Install/Metadata.pm
+____________________________________________________________________________
+[  1221] By: autrijus                              on 2003/03/04  00:50:51
+        Log: * oops, left debug code in.
+	   ! lib/Module/Install/Win32.pm
+____________________________________________________________________________
+[  1220] By: ingy                                  on 2003/03/04  00:49:28
+        Log: Tweks
+	   ! lib/Module/Install/Directives.pm
+	   ! lib/Module/Install/Makefile.pm
+	   ! lib/Module/Install/Manifest.pm
+____________________________________________________________________________
+[  1217] By: ingy                                  on 2003/03/04  00:12:24
+        Log: Got basics of metadata working.
+	   ! lib/Module/Install/Makefile.pm
+	   ! lib/Module/Install/Metadata.pm
+____________________________________________________________________________
+[  1216] By: autrijus                              on 2003/03/03  23:58:30
+        Log: * oops. now display failures.
+	   ! lib/Module/Install.pm
+____________________________________________________________________________
+[  1215] By: autrijus                              on 2003/03/03  23:56:31
+        Log: * correct typo.
+	   ! lib/Module/Install/Makefile.pm
+____________________________________________________________________________
+[  1214] By: ingy                                  on 2003/03/03  23:52:56
+        Log: Adding Metadata.pm extension - (in progress)
+	   + lib/Module/Install/Directives.pm
+	   + lib/Module/Install/Metadata.pm
+	   ! Makefile.PL lib/Module/Install/Admin.pm
+	   ! lib/Module/Install/Makefile.pm
+	   ! lib/Module/Install/Makefile/Name.pm
+	   ! lib/Module/Install/Makefile/Version.pm
+____________________________________________________________________________
+[  1213] By: autrijus                              on 2003/03/03  23:07:45
+        Log: * retab.
+	   ! Changes Makefile.PL README
+	   ! lib/Module/Install.pm
+	   ! lib/Module/Install/Admin.pm
+	   ! lib/Module/Install/Fetch.pm
+	   ! lib/Module/Install/Makefile.pm
+	   ! lib/Module/Install/Makefile/Name.pm
+	   ! lib/Module/Install/Makefile/Version.pm
+	   ! lib/Module/Install/Manifest.pm
+	   ! lib/Module/Install/Win32.pm t/0-signature.t
+____________________________________________________________________________
+[  1212] By: autrijus                              on 2003/03/03  21:52:58
+        Log: * oops, ->initialized is evaluating the incorrect object.
+	   ! lib/Module/Install.pm
+____________________________________________________________________________
+[  1211] By: autrijus                              on 2003/03/03  21:37:50
+        Log: * export initialized.
+	   ! lib/Module/Install.pm
+____________________________________________________________________________
+[  1210] By: autrijus                              on 2003/03/03  21:36:49
+        Log: * fix makefile arg() so that undef means read.
+	   ! lib/Module/Install/Makefile.pm
+	   ! lib/Module/Install/Makefile/Version.pm
+____________________________________________________________________________
+[  1209] By: autrijus                              on 2003/03/03  21:35:42
+        Log: * remove debug info.
+             * inheritance now really works.
+	   ! lib/Module/Install/Admin.pm
+____________________________________________________________________________
+[  1208] By: autrijus                              on 2003/03/03  21:34:39
+        Log: * implement (import => [...]) that can override autoload.
+             * provide ->initialized.
+	   ! lib/Module/Install.pm
+____________________________________________________________________________
+[  1207] By: autrijus                              on 2003/03/03  20:20:22
+        Log: * use stringified, not numeric, version.
+             * s/require/do/; to prevent @INC abuse.
+	   ! lib/Module/Install.pm
+____________________________________________________________________________
+[  1206] By: autrijus                              on 2003/03/03  20:19:42
+        Log: * do not load Admin twice.
+             * add new method, initialized, that returns false only
+	       during first run
+	   ! lib/Module/Install/Admin.pm
+____________________________________________________________________________
+[  1205] By: ingy                                  on 2003/03/03  13:36:30
+        Log: Added version_from support
+	   ! lib/Module/Install/Makefile.pm
+	   ! lib/Module/Install/Makefile/Version.pm
+____________________________________________________________________________
+[  1204] By: autrijus                              on 2003/03/02  21:32:55
+        Log: * refactored the object model to be fully subclassable.
+             * also ensures forward-compatibility by avoiding
+	       __PACKAGE__
+             * the use of global variables and _copy flags are
+	       eliminated.
+             * bootstrapping moved to ::Admin because never needed on
+	       user-side.
+	   ! lib/Module/Install.pm
+	   ! lib/Module/Install/Admin.pm
+	   ! lib/inc/Module/Install.pm
+____________________________________________________________________________
+[  1203] By: autrijus                              on 2003/03/01  21:36:25
+        Log: * remove possible '//' on weird search paths.
+	   ! lib/Module/Install/Manifest.pm
+____________________________________________________________________________
+[  1202] By: autrijus                              on 2003/03/01  21:35:53
+        Log: * clean up the Makefile OO model; ->makefile is now
+	       identity
+             function returning the makefile object; ->arg is now the
+             universal accessor to that object.
+	   ! lib/Module/Install/Makefile.pm
+	   ! lib/Module/Install/Makefile/CleanFiles.pm
+	   ! lib/Module/Install/Makefile/Name.pm
+	   ! lib/Module/Install/Makefile/Version.pm
+____________________________________________________________________________
+[  1201] By: autrijus                              on 2003/03/01  21:35:11
+        Log: * reintroduce copy() to tell user what we're doing.
+	   ! lib/Module/Install/Admin.pm
+____________________________________________________________________________
+[  1200] By: autrijus                              on 2003/03/01  21:34:21
+        Log: * do not fail silently on failed extensions.
+	   ! lib/Module/Install.pm
+____________________________________________________________________________
+[  1199] By: autrijus                              on 2003/03/01  21:33:33
+        Log: * spell checking + cleaning up
+	   ! TODO lib/Module/Install-Philosophy.pod
+____________________________________________________________________________
+[  1198] By: autrijus                              on 2003/03/01  18:55:39
+        Log: * move name() and version() to become accessor functions of
+	       Makefile object.
+	   ! lib/Module/Install/Makefile.pm
+	   ! lib/Module/Install/Makefile/Name.pm
+	   ! lib/Module/Install/Makefile/Version.pm
+____________________________________________________________________________
+[  1197] By: autrijus                              on 2003/03/01  18:49:43
+        Log: * unify varname 'object' to 'obj'.
+             * remove a debug line.
+             * decline from delegating all-uppercase like UNTIE, not
+	       only DESTROY
+             * now $default_obj is only instantialized once.
+	   ! lib/Module/Install.pm
+____________________________________________________________________________
+[  1196] By: autrijus                              on 2003/03/01  18:34:40
+        Log: * minimizing i::M::I to avoid screwing up pause.
+	   ! lib/inc/Module/Install.pm
+____________________________________________________________________________
+[  1195] By: autrijus                              on 2003/03/01  18:17:29
+        Log: * oops, was copying inc::M::I instead of M::I.
+             * use i::M::I ourselves for dogfooding.
+	   ! Makefile.PL lib/Module/Install/Admin.pm
+____________________________________________________________________________
+[  1194] By: autrijus                              on 2003/03/01  18:09:17
+        Log: * s/require/use/.
+	   ! lib/inc/Module/Install.pm
+____________________________________________________________________________
+[  1193] By: ingy                                  on 2003/03/01  17:44:27
+        Log: Added name and version functions to user API
+             Let's get this to the point where we don't accept any
+	     parameters
+             passed into WriteMakefile.
+             
+             Which should be:
+             
+             makefile()->write; 
+             
+             anyway :)
+	   ! lib/Module/Install/Makefile.pm
+	   ! lib/Module/Install/Makefile/Name.pm
+	   ! lib/Module/Install/Makefile/Version.pm
+____________________________________________________________________________
+[  1192] By: ingy                                  on 2003/03/01  16:47:50
+        Log: Turning the prompt() function into a method call needed to
+	     be
+             adjusted.
+	   ! lib/Module/Install/Makefile.pm
+____________________________________________________________________________
+[  1191] By: ingy                                  on 2003/03/01  16:34:47
+        Log: Rearranged i::M::I to be a bit more straightforward.
+	   ! lib/inc/Module/Install.pm
+____________________________________________________________________________
+[  1190] By: ingy                                  on 2003/03/01  16:07:42
+        Log: Did a little name-change refactoring whilst trying to
+	     figure out
+             autrijus code. We need more tests to make sure things
+	     aren't breaking.
+             I'm gonna start working on some tests soon.
+	   ! lib/Module/Install.pm
+	   ! lib/Module/Install/Admin.pm
+____________________________________________________________________________
+[  1189] By: ingy                                  on 2003/03/01  13:16:46
+        Log: Make reset needs to blow away ./inc
+             A purge routine seems yagni
+	   ! lib/Module/Install.pm
+	   ! lib/Module/Install/Makefile.pm
+____________________________________________________________________________
+[  1188] By: autrijus                              on 2003/03/01  08:01:16
+        Log: * change semantic: ->call now marks author-side calls;
+             it will silently fail if no ::Admin is found.
+             * ->load now marks client-side inclusion; it will guarantee
+             that the provider is copied to inc/.
+	   ! lib/Module/Install.pm
+____________________________________________________________________________
+[  1187] By: autrijus                              on 2003/03/01  04:31:52
+        Log: * remove MakeMaker from MANIFEST.
+             * it's now purge_extensions, not purge_self.
+	   ! MANIFEST lib/Module/Install/Makefile.pm
+____________________________________________________________________________
+[  1186] By: autrijus                              on 2003/03/01  04:29:41
+        Log: * it compiles. ship it!
+	   ! MANIFEST lib/Module/Install.pm
+	   ! lib/Module/Install/Admin.pm
+	   ! lib/Module/Install/Makefile.pm
+	   ! lib/Module/Install/Makefile/CleanFiles.pm
+	   ! lib/Module/Install/Makefile/Name.pm
+	   ! lib/Module/Install/Makefile/Version.pm
+	   ! lib/Module/Install/Manifest.pm
+____________________________________________________________________________
+[  1185] By: autrijus                              on 2003/03/01  03:47:14
+        Log: * The great OO refactoring, try #1.
+	   + lib/Module/Install/Fetch.pm
+	   + lib/Module/Install/Makefile/CleanFiles.pm
+	   + lib/Module/Install/Makefile/Name.pm
+	   + lib/Module/Install/Makefile/Version.pm
+	   + lib/Module/Install/Run.pm
+	   ! lib/Module/Install.pm
+	   ! lib/Module/Install/Admin.pm
+	   ! lib/Module/Install/Makefile.pm
+	   ! lib/Module/Install/Manifest.pm
+	   ! lib/Module/Install/Win32.pm
+	   ! lib/inc/Module/Install.pm
+____________________________________________________________________________
+[  1184] By: autrijus                              on 2003/03/01  03:06:52
+        Log: * s/MakeMaker/Makefile/ per ingy's ideas.
+	  +> lib/Module/Install/Makefile.pm
+	  +> lib/Module/Install/Makefile.pod
+	   - lib/Module/Install/MakeMaker.pm
+	   - lib/Module/Install/MakeMaker.pod
+____________________________________________________________________________
+[  1182] By: autrijus                              on 2003/02/28  22:45:34
+        Log: * oops, ingy pointed out that import wasn't working.
+	   ! lib/inc/Module/Install.pm
+____________________________________________________________________________
+[  1181] By: autrijus                              on 2003/02/28  22:43:07
+        Log: * strict 'refs' is not our concern.
+	   ! lib/Module/Install.pm
+____________________________________________________________________________
+[  1180] By: autrijus                              on 2003/02/28  22:23:28
+        Log: * wording fix.
+             * add Ideas to manifest.
+	   ! MANIFEST Makefile.PL
+____________________________________________________________________________
+[  1179] By: autrijus                              on 2003/02/28  22:23:07
+        Log: * use strict-clean.
+	   ! lib/Module/Install.pm
+____________________________________________________________________________
+[  1178] By: autrijus                              on 2003/02/28  19:12:54
+        Log: * nis any mention of 'Beer'.
+             * $DIR, $FILE, $PREFIX, $PACKAGE and &find_files are now
+	       always
+             exported to extensions.  This is subject to further
+	     OOization.
+	   ! TODO lib/Module/Install.pm
+	   ! lib/Module/Install/Manifest.pm
+	   ! lib/Module/Install/Win32.pod
+____________________________________________________________________________
+[  1177] By: autrijus                              on 2003/02/28  19:01:12
+        Log: * now search for extensions recursively.
+	   ! lib/Module/Install.pm
+	   ! lib/Module/Install/Admin.pm
+____________________________________________________________________________
+[  1176] By: autrijus                              on 2003/02/28  18:31:57
+        Log: * add Try(...) for an extension to call functions in
+             another extension _without_ copying it in inc/.
+	   ! lib/Module/Install.pm
+	   ! lib/Module/Install/Admin.pm
+	   ! lib/Module/Install/MakeMaker.pm
+	   ! lib/Module/Install/Manifest.pm
+	   ! lib/Module/Install/Win32.pm
+____________________________________________________________________________
+[  1174] By: autrijus                              on 2003/02/28  18:00:10
+        Log: * the AUTOLOAD handler is now exported to all extensions.
+             * everything now happens at import() time.
+	   ! lib/Module/Install.pm
+	   ! lib/Module/Install/Admin.pm
+	   ! lib/inc/Module/Install.pm
+____________________________________________________________________________
+[  1171] By: autrijus                              on 2003/02/28  12:20:30
+        Log: * slightly fixed, podchecked philosophy.pod
+	   + lib/Module/Install-Philosophy.pod
+	   ! MANIFEST
+____________________________________________________________________________
+[  1170] By: autrijus                              on 2003/02/28  11:52:01
+        Log: * swap docs between M::I and M::I::A. 
+	   ! lib/Module/Install.pod
+	   ! lib/Module/Install/Admin.pod
+____________________________________________________________________________
+[  1169] By: autrijus                              on 2003/02/28  11:39:23
+        Log: * initial check-in of Module::Install.
+	   + Changes MANIFEST MANIFEST.SKIP Makefile.PL
+	   + README SIGNATURE TODO lib/Module/Install.pm
+	   + lib/Module/Install.pod
+	   + lib/Module/Install/Admin.pm
+	   + lib/Module/Install/Admin.pod
+	   + lib/Module/Install/MakeMaker.pm
+	   + lib/Module/Install/MakeMaker.pod
+	   + lib/Module/Install/Manifest.pm
+	   + lib/Module/Install/Manifest.pod
+	   + lib/Module/Install/Win32.pm
+	   + lib/Module/Install/Win32.pod
+	   + lib/inc/Module/Install.pm t/0-signature.t
+	   + t/1-basic.t
