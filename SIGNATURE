@@ -15,15 +15,15 @@ not run its Makefile.PL or Build.PL.
 Hash: SHA1
 
 SHA1 7774ec896214d3049071548a2132813d8f150920 Build.PL
-SHA1 25402b06f185e2d7a38d687b590fcff143da2af1 Changes
+SHA1 0bd3c313a5c7aa57f8fe727e9a59bc64a9f8b3c8 Changes
 SHA1 5122f32e8b22c183b15fa306f87d6e2048126a1d MANIFEST
 SHA1 ea5c9850804f1b2a0f88a51fb347ecd18bea012b MANIFEST.SKIP
-SHA1 f96ed75fc83cf2c0255af4b9e6b672e2bbda319c META.yml
+SHA1 966707f84a3d280600cdbdb8d89bcd8763eb5b52 META.yml
 SHA1 15442442c5405598d9dc3d68da6f89612ad7204f Makefile.PL
 SHA1 f1fd56d20e84960581fc6d389a58d83dcf9ad682 README
 SHA1 e9cabad66944b665d36e0a7cda0dd7bf1f75cfd9 ToDo
 SHA1 eb6b49f98912f084e6449d8a81a2ea8da388c2f0 inc/ExtUtils/AutoInstall.pm
-SHA1 e5ef8b4fd0f8d6bdb70c184b7b3b46805dea0777 inc/Module/Install.pm
+SHA1 95137f431f1823499debe13e67aaa3a55719870f inc/Module/Install.pm
 SHA1 1a5f32d8464a909e43c47c13de92d4fcc545e271 inc/Module/Install/AutoInstall.pm
 SHA1 e9b70b4f639e629e28e0f1050fba5b0978e142dd inc/Module/Install/Base.pm
 SHA1 3765f244e4feb067f57c80906aa2a0412f510493 inc/Module/Install/Can.pm
@@ -38,13 +38,13 @@ SHA1 f9d3b9d1070d7b307cae3d55659562ef608a6d49 inc/Test/Builder.pm
 SHA1 b022748d3dfc1841a9c67f831fdc8e0774c8a155 inc/Test/More.pm
 SHA1 7455b1bbe791f0b95eb2b05c2c91f1a7dd18793c lib/Module/Install-Cookbook.pod
 SHA1 559a427e006e8b62c9627b8c8e39669066fb9b41 lib/Module/Install-Philosophy.pod
-SHA1 fdeb0a8ae727f6029ed2351580aaaa6ae8857e04 lib/Module/Install.pm
+SHA1 017f22442f5eaa8fbebc46231fa9ec763731fa46 lib/Module/Install.pm
 SHA1 5fb8f984e2afeeeea02fd1d2922a87bc48fb40f1 lib/Module/Install/Admin.pm
 SHA1 8307db51af9ab267acca6f7c15d21a15133b2fc6 lib/Module/Install/Admin/Find.pm
 SHA1 6d7f658e95b98a672a4482442783015d6e4f2d06 lib/Module/Install/Admin/Makefile.pm
 SHA1 17c36103a9ba60e2f48f50831d8f4640eb17d8e2 lib/Module/Install/Admin/Manifest.pm
 SHA1 5f01b59fc61a289daeaf68c0aa4a54ff995d045c lib/Module/Install/Admin/Metadata.pm
-SHA1 f46a6abc1f0fe03730f375b01229eb984e9460e8 lib/Module/Install/Admin/ScanDeps.pm
+SHA1 3629987a71c2d6d2dac9185c3189f51d8d466125 lib/Module/Install/Admin/ScanDeps.pm
 SHA1 89b2010b268b7d671886628019a664129d94a2d9 lib/Module/Install/AutoInstall.pm
 SHA1 f9b23de22afc7784a8c46647ada8896ed8bdf421 lib/Module/Install/Base.pm
 SHA1 ffa10911921357489f88d4494ed971067715ca63 lib/Module/Install/Build.pm
@@ -68,7 +68,7 @@ SHA1 78e3aa917538c11db7d8fc5dda38dd3405c483af t/1-basic.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.2.2 (FreeBSD)
 
-iD8DBQE+30eVtLPdNzw1AaARAnUSAKCOuZuxAjvoQMPWszp2dFxzWU3jyQCfbWqv
-sW6rE102jCCSTff0kY5CCRw=
-=5WYa
+iD8DBQE+7UfOtLPdNzw1AaARAqHyAJ0ZrawDhq01zVAfUVNOCTyAVKcI1ACfafId
+CnGUPiq0UccwC/FekrYQ2g0=
+=NoMu
 -----END PGP SIGNATURE-----

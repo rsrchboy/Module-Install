@@ -1,8 +1,8 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install.pm $ $Author: autrijus $
-# $Revision: #54 $ $Change: 1588 $ $DateTime: 2003/06/05 06:34:26 $ vim: expandtab shiftwidth=4
+# $Revision: #55 $ $Change: 1611 $ $DateTime: 2003/06/15 21:25:43 $ vim: expandtab shiftwidth=4
 
 package Module::Install;
-$VERSION = '0.20';
+$VERSION = '0.21';
 
 die <<END unless defined $INC{'inc/Module/Install.pm'};
 You must invoke Module::Install with:
@@ -27,8 +27,8 @@ Module::Install - Standalone, extensible Perl module installer
 
 =head1 VERSION
 
-This document describes version 0.20 of Module::Install, released
-June 5, 2003.
+This document describes version 0.21 of Module::Install, released
+June 16, 2003.
 
 =head1 SYNOPSIS
 
@@ -90,16 +90,17 @@ from F<Makefile.PL> with C<use inc::Module::Install;>, then run it once:
     include inc/Module/Install.pm
     include inc/Module/Install/MakeMaker.pm
     include inc/Module/Install/Base.pm
-    Updating your MANIFEST file:
-      Adding inc/Module/Install.pm
-      Adding inc/Module/Install/Base.pm
-      Adding inc/Module/Install/MakeMaker.pm
+    include inc/Module/Install/Makefile.pm
+    include inc/Module/Install/Metadata.pm
+    Writing Makefile for foo
+    Creating META.yml
 
 Now your distribution will have an extra F<inc/> directory, with the
-minimal loader code F<inc/Module/Install.pm> copied into it.  Also,
-since you made use of the C<WriteMakefile> function, the
-B<Module::Install::MakeMaker> extension is also copied into F<inc/>,
-along with the base extension class B<Module::Install::Base>.
+minimal loader code F<inc/Module/Install.pm> and base extension class
+B<Module::Install::Base> copied into it.  Also, since you made use of
+the C<WriteMakefile> function, the B<Module::Install::MakeMaker>
+extension is also copied into F<inc/>, along with two other extensions
+called from B<Module::Install::MakeMaker>.
 
 End-users of your distribution do not need to install anything extra;
 the distribution already includes all necessary extensions, with their
@@ -287,14 +288,15 @@ __END__
 =head1 EXTENSIONS
 
 All extensions belong to the B<Module::Install::*> namespace, and
-inherits from B<Module::Install::Base>.  There are three kinds of them:
+inherit from B<Module::Install::Base>.  There are three categories
+of extensions:
 
 =over 4
 
 =item Standard Extensions
 
 Methods defined by a standard extension may be called as plain functions
-inside F<Makefile.PL>; a corresponding object will be spawned
+inside F<Makefile.PL>; a corresponding singleton object will be spawned
 automatically.  Other extensions may also invoke its methods just like
 their own methods:
 
@@ -303,13 +305,15 @@ their own methods:
 
 At the first time an extension's method is invoked, a POD-stripped
 version of it will be included under the F<inc/Module/Install/>
-directory, and becomes I<fixed> -- i.e. even if the user installs a
+directory, and becomes I<fixed> -- i.e. even if the user had installed a
 different version of the same extension, the included one will still be
 used instead.
 
-If you wish to upgrade extensions in F<inc/> with installed ones, simply
-remove the F<inc/> directory and run C<perl Makefile.PL> again.
-Alternatively, typing C<make reset> will also do this for you.
+If the author wish to upgrade extensions in F<inc/> with installed ones,
+simply run C<perl Makefile.PL> again; B<Module::Install> determines
+whether you are an author by the existence of the F<inc/.author/>
+directory.  End-users can reinitialize everything and become the author
+by typing C<make realclean> and C<perl Makefile.PL>.
 
 =item Private Extensions
 
@@ -317,11 +321,11 @@ Those extensions take the form of B<Module::Install::PRIVATE> and
 B<Module::Install::PRIVATE::*>.
 
 Authors are encouraged to put all existing F<Makefile.PL> magics into
-such extensions (e.g.  F<Module::Install::PRIVATE> for common bits;
+such extensions (e.g. F<Module::Install::PRIVATE> for common bits;
 F<Module::Install::PRIVATE::DISTNAME> for functions specific to a
 distribution).
 
-Private extensions need not to be released on CPAN; simply put them
+Private extensions should not to be released on CPAN; simply put them
 somewhere in your C<@INC>, under the C<Module/Install/> directory, and
 start using their functions in F<Makefile.PL>.  Like standard
 extensions, they will never be installed on the end-user's machine,
@@ -339,11 +343,10 @@ like this:
 
 These methods only take effect during the I<initialization> run, when
 F<inc/> is being populated; they are ignored for end-users.  Again,
-to re-initialize everything, remove the F<inc/> directory via C<make
-reset> and run C<perl Makefile.PL>.
+to re-initialize everything, just run C<perl Makefile.PL> as the author.
 
-Scripts (usually one-liners stored as part of F<Makefile>) that wish to
-dispatch B<AUTOLOAD> functions into administrative extensions (instead of
+Scripts (usually one-liners in F<Makefile>) that wish to dispatch
+B<AUTOLOAD> functions into administrative extensions (instead of
 standard extensions) should use the B<Module::Install::Admin> module
 directly.  See L<Module::Install::Admin> for details.
 
@@ -481,7 +484,7 @@ Here is a brief overview of the reasons:
     Support for Inline-based modules.
     Support for precompiled PAR binaries.
 
-Besides, if you author more than one CPAN modules, chances are there
+Besides, if you maintain more than one CPAN modules, chances are there
 are duplications in their F<Makefile.PL>, and also with other CPAN module
 you copied the code from.  B<Module::Install> makes it really easy for you
 to abstract away such codes; see the next question.

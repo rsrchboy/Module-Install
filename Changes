@@ -1,4 +1,18 @@
 ____________________________________________________________________________
+[  1611] By: autrijus                              on 2003/06/15  21:25:43
+        Log: * POD cleanups.
+             * This be 0.21.
+	   ! lib/Module/Install.pm
+____________________________________________________________________________
+[  1610] By: autrijus                              on 2003/06/15  21:25:29
+        Log: * Lindsay Morris pointed out that include_deps()
+             does not work with non-core modules; fixed.
+	   ! lib/Module/Install/Admin/ScanDeps.pm
+____________________________________________________________________________
+[  1589] By: autrijus                              on 2003/06/05  06:37:13
+        Log: * changes.
+	   ! Changes
+____________________________________________________________________________
 [  1588] By: autrijus                              on 2003/06/05  06:34:26
         Log: * This be Module::Install 0.20.
              * add pointer to ingy's TPJ article.

@@ -1,5 +1,5 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install/Admin/ScanDeps.pm $ $Author: autrijus $
-# $Revision: #10 $ $Change: 1375 $ $DateTime: 2003/03/18 12:29:32 $ vim: expandtab shiftwidth=4
+# $Revision: #11 $ $Change: 1610 $ $DateTime: 2003/06/15 21:25:29 $ vim: expandtab shiftwidth=4
 
 package Module::Install::Admin::ScanDeps;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
@@ -14,7 +14,9 @@ sub scan_dependencies {
     die "Module::CoreList has no information on perl $perl_version"
         unless exists $Module::CoreList::version{$perl_version};
 
-    return if Module::CoreList->first_release($pkg) <= $perl_version;
+    if (my $min_version = Module::CoreList->first_release($pkg)) {
+        next if $min_version <= $perl_version;
+    }
 
     my @files = scalar $self->admin->find_in_inc($pkg)
         or die "Cannot find $pkg in \@INC";
