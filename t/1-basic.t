@@ -1,5 +1,5 @@
 # $File: //depot/cpan/Module-Install/t/1-basic.t $ $Author: autrijus $
-# $Revision: #1 $ $Change: 1169 $ $DateTime: 2003/02/28 11:39:23 $
+# $Revision: #2 $ $Change: 1815 $ $DateTime: 2003/12/14 20:41:23 $
 
 use Test;
 use File::Spec;
@@ -67,8 +67,7 @@ sub build_dist {
     return 0 unless -d $dist_path;
     my $home = cwd;
     chdir $dist_path or return 0;
-    my $perl = $Config::Config{perlpath};
-    system("$perl -Mblib Makefile.PL") == 0 or return 0;
+    system($^X, "-Mblib", "Makefile.PL") == 0 or return 0;
     chdir $home or return 0;
     return 1;
 }

@@ -1,4 +1,79 @@
 ____________________________________________________________________________
+[  1822] By: autrijus                              on 2003/12/14  21:10:21
+        Log: * This be 0.29, for real!
+	   ! lib/Module/Install/Admin.pm
+____________________________________________________________________________
+[  1821] By: autrijus                              on 2003/12/14  21:07:46
+        Log: * real Module::Build support in WriteAll and in this
+	       module.
+	   ! MANIFEST lib/Module/Install/Admin/WriteAll.pm
+____________________________________________________________________________
+[  1820] By: autrijus                              on 2003/12/14  21:01:57
+        Log: * transparent Build.PL, as promised in README, is back.
+	   + Build.PL
+____________________________________________________________________________
+[  1819] By: autrijus                              on 2003/12/14  20:58:51
+        Log: * ditto.
+	   ! lib/Module/Install/Admin/WriteAll.pm
+____________________________________________________________________________
+[  1818] By: autrijus                              on 2003/12/14  20:58:38
+        Log: * WriteAll now takes three non-metadata flags:
+             check_nmake (default 1), meta (default 1) and
+             sign (default 0).
+	   ! lib/Module/Install/WriteAll.pm
+____________________________________________________________________________
+[  1817] By: autrijus                              on 2003/12/14  20:57:39
+        Log: * "private" is officially obsoleted by "no_index".
+             * now warns if the user did not specify a license.
+	   ! lib/Module/Install/Metadata.pm
+____________________________________________________________________________
+[  1816] By: autrijus                              on 2003/12/14  20:55:49
+        Log: * changes and manifest.
+	   ! Changes MANIFEST
+____________________________________________________________________________
+[  1815] By: autrijus                              on 2003/12/14  20:41:23
+        Log: * cosmetic fixes.
+	   ! lib/Module/Install/Admin/ScanDeps.pm
+	   ! t/1-basic.t
+____________________________________________________________________________
+[  1812] By: autrijus                              on 2003/12/14  20:24:49
+        Log: * This be 0.29.
+	   ! lib/Module/Install.pm
+	   ! lib/Module/Install/Metadata.pm
+____________________________________________________________________________
+[  1811] By: autrijus                              on 2003/12/14  18:52:33
+        Log: * "requires( perl => $version )" is now supported.
+             * include_deps() now no longer takes its second argument;
+             it must be separately supplied with the syntax above.
+             * "&WriteAll" now officially replaces "&Build->write",
+             "&Makefile->write", "&Meta->write" and "check_nmake()".
+             * auto_include() is implemented.
+             * bundle_deps() is implemented.
+	   ! Makefile.PL lib/Module/Install.pm
+	   ! lib/Module/Install/Admin/ScanDeps.pm
+	   ! lib/Module/Install/Admin/WriteAll.pm
+	   ! lib/Module/Install/Bundle.pm
+	   ! lib/Module/Install/Include.pm
+	   ! lib/Module/Install/Makefile.pm
+	   ! lib/Module/Install/Metadata.pm
+____________________________________________________________________________
+[  1810] By: autrijus                              on 2003/12/14  10:42:42
+        Log: * add WriteAll to manifest.
+             * add #defaults to skip.
+	   ! MANIFEST MANIFEST.SKIP
+____________________________________________________________________________
+[  1808] By: autrijus                              on 2003/12/13  20:14:27
+        Log: * Introducing &WriteAll, a combination of &Meta->write,
+             &check_nmake, &Makefile->write, and if a Build.PL is
+             present (which should read "require 'Makefile.PL'"),
+             also supports transparent &Build->write.
+	   + lib/Module/Install/Admin/WriteAll.pm
+	   + lib/Module/Install/WriteAll.pm
+____________________________________________________________________________
+[  1806] By: autrijus                              on 2003/12/11  18:44:37
+        Log: * changes.
+	   ! Changes
+____________________________________________________________________________
 [  1805] By: autrijus                              on 2003/12/11  18:43:02
         Log: * Module::Install::Bundle now works, thanks to Adam Foxson!
 	   ! Makefile.PL lib/Module/Install.pm

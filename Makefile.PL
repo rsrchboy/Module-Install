@@ -1,5 +1,5 @@
 # $File: //depot/cpan/Module-Install/Makefile.PL $ $Author: autrijus $
-# $Revision: #34 $ $Change: 1805 $ $DateTime: 2003/12/11 18:43:02 $ vim: expandtab shiftwidth=4
+# $Revision: #35 $ $Change: 1811 $ $DateTime: 2003/12/14 18:52:33 $ vim: expandtab shiftwidth=4
 
 use lib 'lib'; # NOTE: Module::Install's Makefile.PL needs this statement
                # to bootstrap itself.  Other module distributions using
@@ -12,12 +12,12 @@ abstract        ('Standalone, extensible Perl module installer');
 author          ('Autrijus Tang (autrijus@autrijus.org)');
 version_from    ('lib/Module/Install.pm');
 license         ('perl');
-
-include         ('ExtUtils::AutoInstall');
-include_deps    ('Test::More', 5.004);
-build_requires  ('Test::More', 0);
+requires        ('perl' => 5.004);
 no_index        (directory => 'example');
 sign            (1);
+
+build_requires  ('Test::More');
+include         ('ExtUtils::AutoInstall');
 
 features(
     'Include packages with full dependencies' => [
@@ -37,18 +37,17 @@ features(
     ],
     'Module::Build support' => [
         -default            => 0,
-        recommends  ('Archive::Tar'     => 0.23),
-        recommends  ('ExtUtils::Install'=> 0.3),
-        recommends  ('ExtUtils::ParseXS'),
-        recommends  ('YAML'             => 0.35),
+        'Archive::Tar'      => 0.23,
+        'ExtUtils::Install' => 0.3,
+        'ExtUtils::ParseXS' => 0,
+        'YAML'              => 0.35,
         recommends  ('Module::Build'),
     ],
 );
 
+auto_include();
 auto_install_now( -config => { prerequisites_policy => 'follow' } );
 
 par_base();     # par_base('AUTRIJUS') to enable downloading
-check_nmake();
 
-&Meta->write;
-&Makefile->write;
+&WriteAll;

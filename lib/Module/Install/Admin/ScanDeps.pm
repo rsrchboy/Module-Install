@@ -1,12 +1,19 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install/Admin/ScanDeps.pm $ $Author: autrijus $
-# $Revision: #14 $ $Change: 1781 $ $DateTime: 2003/10/22 17:14:03 $ vim: expandtab shiftwidth=4
+# $Revision: #16 $ $Change: 1815 $ $DateTime: 2003/12/14 20:41:23 $ vim: expandtab shiftwidth=4
 
 package Module::Install::Admin::ScanDeps;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
 
 sub scan_dependencies {
     my ($self, $pkg, $perl_version) = @_;
-    $perl_version ||= $];
+
+    return if $pkg eq 'perl';
+
+    $perl_version ||= $self->perl_version or die << '.';
+Please first specify a required perl version, like this:
+    requires( perl => '5.004' );
+.
+    $perl_version =~ s{^(\d+)\.(\d+)\.(\d+)}{$1 + $2/1_000 + $3/1_000_000}e;
 
     require Module::ScanDeps;
     require Module::CoreList;

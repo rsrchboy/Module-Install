@@ -1,8 +1,8 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install/Admin.pm $ $Author: autrijus $
-# $Revision: #40 $ $Change: 1781 $ $DateTime: 2003/10/22 17:14:03 $ vim: expandtab shiftwidth=4
+# $Revision: #41 $ $Change: 1822 $ $DateTime: 2003/12/14 21:10:21 $ vim: expandtab shiftwidth=4
 
 package Module::Install::Admin;
-$VERSION = '0.20';
+$VERSION = '0.29';
 @ISA = 'Module::Install';
 
 use strict 'vars';

@@ -1,8 +1,10 @@
+Build.PL
 Changes
 inc/ExtUtils/AutoInstall.pm
 inc/Module/Install.pm
 inc/Module/Install/AutoInstall.pm
 inc/Module/Install/Base.pm
+inc/Module/Install/Build.pm
 inc/Module/Install/Can.pm
 inc/Module/Install/Fetch.pm
 inc/Module/Install/Include.pm
@@ -10,6 +12,7 @@ inc/Module/Install/Makefile.pm
 inc/Module/Install/Metadata.pm
 inc/Module/Install/PAR.pm
 inc/Module/Install/Win32.pm
+inc/Module/Install/WriteAll.pm
 inc/Test/Builder.pm
 inc/Test/More.pm
 lib/inc/Module/Install.pm
@@ -19,10 +22,12 @@ lib/Module/Install.pm
 lib/Module/Install/Admin.pm
 lib/Module/Install/Admin/Bundle.pm
 lib/Module/Install/Admin/Find.pm
+lib/Module/Install/Admin/Include.pm
 lib/Module/Install/Admin/Makefile.pm
 lib/Module/Install/Admin/Manifest.pm
 lib/Module/Install/Admin/Metadata.pm
 lib/Module/Install/Admin/ScanDeps.pm
+lib/Module/Install/Admin/WriteAll.pm
 lib/Module/Install/AutoInstall.pm
 lib/Module/Install/Base.pm
 lib/Module/Install/Build.pm
@@ -40,6 +45,7 @@ lib/Module/Install/PAR.pm
 lib/Module/Install/Run.pm
 lib/Module/Install/Scripts.pm
 lib/Module/Install/Win32.pm
+lib/Module/Install/WriteAll.pm
 Makefile.PL
 MANIFEST			This list of files
 MANIFEST.SKIP

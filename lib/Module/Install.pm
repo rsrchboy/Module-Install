@@ -1,8 +1,8 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install.pm $ $Author: autrijus $
-# $Revision: #62 $ $Change: 1805 $ $DateTime: 2003/12/11 18:43:02 $ vim: expandtab shiftwidth=4
+# $Revision: #64 $ $Change: 1812 $ $DateTime: 2003/12/14 20:24:49 $ vim: expandtab shiftwidth=4
 
 package Module::Install;
-$VERSION = '0.28';
+$VERSION = '0.29';
 
 die <<END unless defined $INC{'inc/Module/Install.pm'};
 Please invoke Module::Install with:
@@ -27,8 +27,8 @@ Module::Install - Standalone, extensible Perl module installer
 
 =head1 VERSION
 
-This document describes version 0.28 of Module::Install, released
-December 12, 2003.
+This document describes version 0.29 of Module::Install, released
+December 15, 2003.
 
 =head1 SYNOPSIS
 
@@ -36,36 +36,37 @@ In your F<Makefile.PL>:
 
     # drop-in replacement to ExtUtils::MakeMaker!
     use inc::Module::Install;
-    WriteMakefile();    # leave it empty to determine automatically
+    WriteMakefile( ... );
 
 Standard usage:
 
     use inc::Module::Install;
 
-    name        ('Your-Module');
-    abstract    ('Some Abstract here');
-    author      ('Your Name <email@example.com>');
-    license     ('perl');
+    name            ('Your-Module');
+    abstract        ('Some Abstract here');
+    author          ('Your Name <email@example.com>');
+    version_from    ('lib/Your/Module.pm');
+    license         ('perl');
 
-    include_deps('Test::More', 5.004);
-    requires    ('Test::More');
-    recommends  ('Acme::ComeFrom', 0.01);
+    requires        ('perl' => 5.005);
+    requires        ('Acme::Hello');
+    build_requires  ('Test::More');
+    recommends      ('Acme::ComeFrom' => 0.01);
 
-    check_nmake();      # check and download nmake.exe for Win32
-    &Makefile->write;
+    # auto_bundle();      # optional: bundle run-time dependencies
+    # auto_include();     # optional: include build-time dependencies
+    # auto_install();     # optional: auto-install all dependencies from CPAN
 
-Or rename it to F<Build.PL>; just change the last line to:
+    &WriteAll;
 
-    &Build->generate_makefile_pl;
-    &Build->write;
+If it is invoked as F<Makefile.PL>, it will write a standard F<Makefile>,
+and also download a F<nmake.exe> on Microsoft Windows if needed.  If invoked
+as F<Build.PL>, it writes a standard F<Build> script that works with the
+L<Module::Build> framework.
 
-You can also put all setting into F<META.yml>, and use this instead:
+You can even support both by having a dummy F<Build.PL> that reads:
 
-    use inc::Module::Install;
-    &Meta->read;        # parses META.yml
-    &AutoInstall->run;  # auto-install dependencies from CPAN (optional)
-    &Makefile->write;   # generates Makefile
-    # &Build->write;    # generates ./Build if desired
+    require 'Makefile.PL';
 
 =head1 DESCRIPTION
 
@@ -378,6 +379,14 @@ C<admin>, C<load> and the C<AUTOLOAD> dispatcher.
 Provides C<&Build-E<gt>write> to generate a B<Module::Build> compliant
 F<Build> file, as well as other B<Module::Build> support functions.
 
+=item Module::Install::Bundle
+
+Provides C<bundle>, C<bundle_deps> and C<bundle_all>, allowing you
+to bundle a CPAN distribution within your distribution.  When your
+end-users install your distribution, the bundled distribution will be
+installed along with yours, unless a newer version of the bundled
+distribution already exists on their local filesystem.
+
 =item Module::Install::Fetch
 
 Handles fetching files from remote servers via FTP.
@@ -385,11 +394,11 @@ Handles fetching files from remote servers via FTP.
 =item Module::Install::Include
 
 Provides the C<include($pkg)> function to include pod-stripped
-package(s) from C<@INC> to F<inc/>.
+package(s) from C<@INC> to F<inc/>, and the C<auto_include()>
+function to include all modules specified in C<build_requires>.
 
-Also provides the C<include_deps($pkg, $base_perl_version)> function to
-include every non-core modules needed by C<$pkg>, as of Perl version
-C<$base_perl_version>.
+Also provides the C<include_deps($pkg)> function to include
+every non-core modules needed by C<$pkg>.
 
 =item Module::Install::Inline
 
@@ -510,6 +519,7 @@ L<inc::Module::Install>
 
 L<Module::Install::AutoInstall>,
 L<Module::Install::Base>,
+L<Module::Install::Bundle>,
 L<Module::Install::Build>,
 L<Module::Install::Directives>,
 L<Module::Install::Fetch>,

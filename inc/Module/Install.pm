@@ -1,9 +1,9 @@
 #line 1 "inc/Module/Install.pm - lib/Module/Install.pm"
 # $File: //depot/cpan/Module-Install/lib/Module/Install.pm $ $Author: autrijus $
-# $Revision: #62 $ $Change: 1805 $ $DateTime: 2003/12/11 18:43:02 $ vim: expandtab shiftwidth=4
+# $Revision: #64 $ $Change: 1812 $ $DateTime: 2003/12/14 20:24:49 $ vim: expandtab shiftwidth=4
 
 package Module::Install;
-$VERSION = '0.28';
+$VERSION = '0.29';
 
 die <<END unless defined $INC{'inc/Module/Install.pm'};
 Please invoke Module::Install with:
@@ -22,7 +22,7 @@ use File::Path ();
 
 @inc::Module::Install::ISA = 'Module::Install';
 
-#line 127
+#line 128
 
 sub import {
     my $class = shift;
@@ -41,7 +41,7 @@ sub import {
     *{caller(0) . "::AUTOLOAD"} = $self->autoload;
 }
 
-#line 150
+#line 151
 
 sub autoload {
     my $self = shift;
@@ -53,7 +53,7 @@ sub autoload {
     };
 }
 
-#line 167
+#line 168
 
 sub new {
     my ($class, %args) = @_;
@@ -78,7 +78,7 @@ sub new {
     bless(\%args, $class);
 }
 
-#line 196
+#line 197
 
 sub call {
     my $self   = shift;
@@ -89,7 +89,7 @@ sub call {
     goto &{$obj->can($method)};
 }
 
-#line 211
+#line 212
 
 sub load {
     my ($self, $method) = @_;
@@ -113,7 +113,7 @@ END
     $obj;
 }
 
-#line 241
+#line 242
 
 sub load_extensions {
     my ($self, $path, $top_obj) = @_;
@@ -132,7 +132,7 @@ sub load_extensions {
     }
 }
 
-#line 265
+#line 266
 
 sub find_extensions {
     my ($self, $path) = @_;
@@ -155,4 +155,4 @@ sub find_extensions {
 
 __END__
 
-#line 557
+#line 567

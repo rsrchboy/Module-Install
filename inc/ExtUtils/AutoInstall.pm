@@ -1,16 +1,16 @@
-#line 1 "inc/ExtUtils/AutoInstall.pm - /usr/local/lib/perl5/site_perl/5.8.1/ExtUtils/AutoInstall.pm"
+#line 1 "inc/ExtUtils/AutoInstall.pm - /usr/local/lib/perl5/site_perl/5.8.2/ExtUtils/AutoInstall.pm"
 # $File: //member/autrijus/ExtUtils-AutoInstall/lib/ExtUtils/AutoInstall.pm $ 
-# $Revision: #6 $ $Change: 8105 $ $DateTime: 2003/09/13 20:57:40 $
+# $Revision: #7 $ $Change: 9082 $ $DateTime: 2003/11/29 19:45:05 $
 
 package ExtUtils::AutoInstall;
-$ExtUtils::AutoInstall::VERSION = '0.54';
+$ExtUtils::AutoInstall::VERSION = '0.55';
 
 use strict;
 
 use Cwd;
 use ExtUtils::MakeMaker ();
 
-#line 264
+#line 284
 
 # special map on pre-defined feature sets
 my %FeatureMap = (
@@ -142,7 +142,7 @@ sub import {
 		$DisabledTests{$_} = 1 for map { glob($_) } @skiptests;
 	    }
 	    else {
-		print "failed!" . ($arg ? " (needs $arg)" : '') . "\n";
+		print "missing." . ($arg ? " (would need $arg)" : '') . "\n";
 		push @required, $mod => $arg;
 	    }
 	}
@@ -629,4 +629,4 @@ installdeps ::
 
 __END__
 
-#line 910
+#line 930

@@ -1,5 +1,5 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install/Bundle.pm $ $Author: autrijus $
-# $Revision: #5 $ $Change: 1805 $ $DateTime: 2003/12/11 18:43:02 $ vim: expandtab shiftwidth=4
+# $Revision: #6 $ $Change: 1811 $ $DateTime: 2003/12/14 18:52:33 $ vim: expandtab shiftwidth=4
 
 package Module::Install::Bundle;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
@@ -14,8 +14,7 @@ sub auto_bundle {
     my $self = shift;
 
     # Flatten array of arrays into a single array
-    my @core = map @$_, map @$_, grep ref,
-               $self->build_requires, $self->requires;
+    my @core = map @$_, map @$_, grep ref, $self->requires;
 
     $self->bundle(@core);
 }
@@ -35,7 +34,7 @@ sub bundle {
         my $target = File::Basename::basename($source);
         mkdir $target or die $! unless -d $target;
 
-        # XXX - clean those directories upon "make clean"
+        # XXX - clean those directories upon "make clean"?
         File::Find::find({
             wanted => sub {
                 my $out = $_;
@@ -68,7 +67,12 @@ sub read_bundles {
 }
 
 sub bundle_deps {
-    warn "bundle_deps() not yet implemented, sorry.\n";
+    my ($self, $pkg, $version) = @_;
+    my $deps = $self->admin->scan_dependencies($pkg) or return;
+
+    foreach my $key (sort keys %$deps) {
+        $self->bundle($key, ($key eq $pkg) ? $version : 0);
+    }
 }
 
 1;
@@ -91,15 +95,12 @@ Have your Makefile.PL read as follows:
   author("Your Name <your@email.com>");
   license("gpl"); # or "perl", etc
   requires("Baz" => "1.60");
-  check_nmake();
 
   # one of either:
   auto_bundle(); # OR
   bundle("Baz" => "1.60");
 
-  &Meta->write;
-  &Build->write if lc($0) eq "build.pl";
-  &Makefile->write if lc($0) eq "makefile.pl";
+  &WriteAll;
 
 =head1 DESCRIPTION
 
@@ -124,49 +125,49 @@ to be installed will be acquired from CPAN and then installed.
 
 =over 4
 
-=item * L<auto_bundle>
+=item * auto_bundle()
 
-Takes no arguments, will bundle every distribution specified by a requires().
-When you, as a module author, do a perl Makefile.PL the latest versions of the
+Takes no arguments, will bundle every distribution specified by a C<requires()>.
+When you, as a module author, do a C<perl Makefile.PL> the latest versions of the
 distributions to be bundled will be acquired from CPAN and placed in
-inc/BUNDLES/.
+F<inc/BUNDLES/>.
 
-=item * L<bundle>
+=item * bundle($name, $version)
 
 Takes a list of key/value pairs specifying a distribution name and version
 number. When you, as a module author, do a perl Makefile.PL the distributions
-that you specified with bundle() will be acquired from CPAN and placed in
-inc/BUNDLES/.
+that you specified with C<bundle()> will be acquired from CPAN and placed in
+F<inc/BUNDLES/>.
+
+=item * bundle_deps($name, $version)
+
+Same as C<bundle>, except that all dependencies of the bundled modules are
+also detected and bundled.  To use this function, you need to declare the
+minimum supported perl version first, like this:
+
+    requires( perl => 5.005 );
 
 =back
 
 =head1 BUGS
 
-  Please report any bugs to (patches welcome):
-  http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Module-Install
+Please report any bugs to (patches welcome):
+
+    http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Module-Install
 
 =head1 COPYRIGHT
 
-  Copyright 2003 by Autrijus Tang <autrijus@autrijus.org>.
+Copyright 2003 by Autrijus Tang <autrijus@autrijus.org>.
 
 =head1 LICENSE
 
 This program is free software; you can redistribute it and/or modify it under
 the same terms as Perl itself.
 
-=head1 SEE ALSO
-
-=over 4
-
-=item * L<perl>
-
-=item * L<ExtUtils::AutoInstall>
-
-=back
-
 =head1 AUTHORS
 
-  Autrijus Tang <autrijus@autrijus.org>
-  Documentation by Adam Foxson <afoxson@pobox.com>
+Autrijus Tang <autrijus@autrijus.org>
+
+Documentation by Adam Foxson <afoxson@pobox.com>
 
 =cut

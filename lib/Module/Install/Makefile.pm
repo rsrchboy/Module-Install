@@ -1,5 +1,5 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install/Makefile.pm $ $Author: autrijus $
-# $Revision: #51 $ $Change: 1805 $ $DateTime: 2003/12/11 18:43:02 $ vim: expandtab shiftwidth=4
+# $Revision: #52 $ $Change: 1811 $ $DateTime: 2003/12/14 18:52:33 $ vim: expandtab shiftwidth=4
 
 package Module::Install::Makefile;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
@@ -78,6 +78,12 @@ sub write {
     if ($self->bundles) {
         push @$dir, map "$_->[1]", @{$self->bundles};
         delete $prereq->{$_->[0]} for @{$self->bundles};
+    }
+
+    if (my $perl_version = $self->perl_version) {
+        eval "use $perl_version; 1"
+            or die "ERROR: perl: Version $] is installed, ".
+                   "but we need version >= $perl_version";
     }
 
     my %args = map {($_ => $args->{$_})} grep {defined($args->{$_})} keys %$args;
