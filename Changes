@@ -1,4 +1,48 @@
 ____________________________________________________________________________
+[  1647] By: autrijus                              on 2003/07/16  01:07:55
+        Log: * This be 0.22.
+	   ! lib/Module/Install.pm
+____________________________________________________________________________
+[  1646] By: autrijus                              on 2003/07/16  01:05:17
+        Log: * extra space.
+	   ! lib/Module/Install/Admin/Makefile.pm
+____________________________________________________________________________
+[  1645] By: autrijus                              on 2003/07/16  01:05:06
+        Log: * Turns out that MakeMaker's NAME corresponds to
+             META.yml's module_name, and DISTNAME corresponds
+             to name.  Reflect this in the relevant files.
+             * Introduce a new module_name metadata key that may
+             be automatically generated from name.
+	   ! lib/Module/Install/MakeMaker.pm
+	   ! lib/Module/Install/Makefile.pm
+	   ! lib/Module/Install/Makefile/Name.pm
+	   ! lib/Module/Install/Metadata.pm
+____________________________________________________________________________
+[  1644] By: autrijus                              on 2003/07/16  01:03:35
+        Log: * /\.pm/i should be /\.pm$/i.
+	   ! lib/Module/Install/Makefile/Version.pm
+____________________________________________________________________________
+[  1643] By: autrijus                              on 2003/07/16  01:02:58
+        Log: * AZ_OK was never exported.
+	   ! lib/Module/Install/PAR.pm
+____________________________________________________________________________
+[  1642] By: autrijus                              on 2003/07/10  18:53:37
+        Log: * Iain Truskett wants us to not overwrite alien META.yml
+	       files.
+	   ! lib/Module/Install/Metadata.pm
+____________________________________________________________________________
+[  1640] By: autrijus                              on 2003/07/08  17:05:46
+        Log: * always write META.yml.  No reason not to.
+	   ! lib/Module/Install/Metadata.pm
+____________________________________________________________________________
+[  1618] By: iain                                  on 2003/06/22  17:27:18
+        Log: - PREREQ_PM wasn't being filled out.
+	   ! lib/Module/Install/Makefile.pm
+____________________________________________________________________________
+[  1617] By: iain                                  on 2003/06/22  17:26:18
+        Log: - Should be including YAML dependencies too.
+	   ! lib/Module/Install/Metadata.pm
+____________________________________________________________________________
 [  1611] By: autrijus                              on 2003/06/15  21:25:43
         Log: * POD cleanups.
              * This be 0.21.

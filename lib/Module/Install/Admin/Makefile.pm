@@ -1,5 +1,5 @@
-# $File: //depot/cpan/Module-Install/lib/Module/Install/Admin/Makefile.pm $ $Author: ingy $
-# $Revision: #8 $ $Change: 1529 $ $DateTime: 2003/05/19 21:06:26 $ vim: expandtab shiftwidth=4
+# $File: //depot/cpan/Module-Install/lib/Module/Install/Admin/Makefile.pm $ $Author: autrijus $
+# $Revision: #9 $ $Change: 1646 $ $DateTime: 2003/07/16 01:05:17 $ vim: expandtab shiftwidth=4
 
 package Module::Install::Admin::Makefile;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
@@ -25,7 +25,7 @@ realclean purge ::
 \t\$(RM_RF) inc MANIFEST.bak _build
 \t\$(PERL) -I. -M$admin_class -e \"remove_meta()\"
 
-reset  :: purge
+reset :: purge
 
 upload :: test dist
 \tcpan-upload -verbose \$(DISTVNAME).tar\$(SUFFIX)

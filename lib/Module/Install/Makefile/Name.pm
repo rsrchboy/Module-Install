@@ -1,5 +1,5 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install/Makefile/Name.pm $ $Author: autrijus $
-# $Revision: #10 $ $Change: 1375 $ $DateTime: 2003/03/18 12:29:32 $ vim: expandtab shiftwidth=4
+# $Revision: #11 $ $Change: 1645 $ $DateTime: 2003/07/16 01:05:06 $ vim: expandtab shiftwidth=4
 
 package Module::Install::Makefile::Name;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
@@ -20,17 +20,21 @@ sub determine_NAME {
         open MODULE, $modules[0] or die $!;
         while (<MODULE>) {
             next if /^\s*(?:#|$)/;
-            $self->name($1) if /^\s*package\s+(\w[\w:]*)\s*;\s*$/;
+            $self->module_name($1) if /^\s*package\s+(\w[\w:]*)\s*;\s*$/;
             last;
         }
     }
 
-    return if $self->name;
+    return if $self->module_name;
 
-    $self->name(MM->guess_name) or die <<"END";
+    my $name = MM->guess_name or die <<"END";
 Can't determine a NAME for this distribution.
 Please use the 'name' function in Makefile.PL.
 END
+
+    $name =~ s/-/::/g;
+    $self->module_name($name);
+    return $name;
 }
 
 1;

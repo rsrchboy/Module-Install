@@ -1,6 +1,6 @@
 #line 1 "inc/Module/Install/PAR.pm - lib/Module/Install/PAR.pm"
 # $File: //depot/cpan/Module-Install/lib/Module/Install/PAR.pm $ $Author: autrijus $
-# $Revision: #26 $ $Change: 1555 $ $DateTime: 2003/05/25 11:48:33 $ vim: expandtab shiftwidth=4
+# $Revision: #27 $ $Change: 1643 $ $DateTime: 2003/07/16 01:02:58 $ vim: expandtab shiftwidth=4
 
 package Module::Install::PAR;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
@@ -137,7 +137,7 @@ YAML
     if (eval { require Archive::Zip; 1 }) {
         my $zip = Archive::Zip->new;
         $zip->addTree( 'blib', '' );
-        $zip->writeToFileNamed( $file ) == AZ_OK or die $!;
+        $zip->writeToFileNamed( $file ) == Archive::Zip::AZ_OK() or die $!;
     }
     elsif ($self->can_run('zip')) {
         mkdir('blib', 0777);

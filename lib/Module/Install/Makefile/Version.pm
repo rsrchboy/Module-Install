@@ -1,5 +1,5 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install/Makefile/Version.pm $ $Author: autrijus $
-# $Revision: #12 $ $Change: 1375 $ $DateTime: 2003/03/18 12:29:32 $ vim: expandtab shiftwidth=4
+# $Revision: #14 $ $Change: 1648 $ $DateTime: 2003/07/16 01:09:42 $ vim: expandtab shiftwidth=4
 
 package Module::Install::Makefile::Version;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
@@ -13,7 +13,7 @@ sub determine_VERSION {
     my @modules = glob('*.pm');
 
     require File::Find;
-    File::Find::find(sub { push @modules, $File::Find::name if /\.pm/i }, 'lib');
+    File::Find::find(sub { push @modules, $File::Find::name =~ /\.pm\z/i }, 'lib');
 
     if (@modules == 1) {
         eval {
