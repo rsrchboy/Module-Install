@@ -1,4 +1,25 @@
 ____________________________________________________________________________
+[  1666] By: autrijus                              on 2003/08/18  08:00:18
+        Log: * This be 0.23.
+	   ! lib/Module/Install.pm
+____________________________________________________________________________
+[  1665] By: autrijus                              on 2003/08/18  07:52:47
+        Log: * implement $self->is_admin to properly test if it's
+	       running
+             on the admin side.
+             * Andreas Koenig reports that we are writing META.yml
+             even on the user side, because of this bug.
+	   ! lib/Module/Install/Base.pm
+	   ! lib/Module/Install/Metadata.pm
+____________________________________________________________________________
+[  1650] By: autrijus                              on 2003/07/29  06:03:27
+        Log: * switch to PAR::Dist to do make_par.
+	   ! Makefile.PL lib/Module/Install/PAR.pm
+____________________________________________________________________________
+[  1648] By: autrijus                              on 2003/07/16  01:09:42
+        Log: * oops. bad RCS expansion.
+	   ! lib/Module/Install/Makefile/Version.pm
+____________________________________________________________________________
 [  1647] By: autrijus                              on 2003/07/16  01:07:55
         Log: * This be 0.22.
 	   ! lib/Module/Install.pm
@@ -322,11 +343,6 @@ ____________________________________________________________________________
         Log: * fix cleaninstall.
 	   ! MANIFEST Makefile.PL
 ____________________________________________________________________________
-[  1385] By: autrijus                              on 2003/03/22  14:53:57
-        Log: * adjustments.
-	   + SIGNATURE
-	   ! MANIFEST
-____________________________________________________________________________
 [  1384] By: ingy                                  on 2003/03/22  14:03:27
         Log: Setting +w
 	   ! MANIFEST
@@ -627,10 +643,6 @@ ____________________________________________________________________________
 	   ! lib/Module/Install/Admin.pm
 	   ! lib/Module/Install/Base.pm
 ____________________________________________________________________________
-[  1307] By: autrijus                              on 2003/03/07  22:45:42
-        Log: * nix signature till we really needs it.
-	   - SIGNATURE
-____________________________________________________________________________
 [  1299] By: autrijus                              on 2003/03/07  18:04:41
         Log: * local @INC *not* needed if inc/ is the first @INC
 	       element.
@@ -688,16 +700,6 @@ ____________________________________________________________________________
 	   - lib/Module/Install/Directives.pm
 	   ! lib/Module/Install.pm
 	   ! lib/Module/Install/Makefile.pm
-____________________________________________________________________________
-[  1289] By: autrijus                              on 2003/03/07  08:25:20
-        Log: * massive checkin to enable PAR building and downloading.
-	   + lib/Module/Install/PAR.pm
-	   ! Build.PL Makefile.PL SIGNATURE
-	   ! lib/Module/Install.pm
-	   ! lib/Module/Install/AutoInstall.pm
-	   ! lib/Module/Install/Fetch.pm
-	   ! lib/Module/Install/Makefile.pm
-	   ! lib/Module/Install/Run.pm
 ____________________________________________________________________________
 [  1288] By: autrijus                              on 2003/03/06  21:32:32
         Log: * doco and typo
@@ -1334,19 +1336,3 @@ ____________________________________________________________________________
         Log: * swap docs between M::I and M::I::A. 
 	   ! lib/Module/Install.pod
 	   ! lib/Module/Install/Admin.pod
-____________________________________________________________________________
-[  1169] By: autrijus                              on 2003/02/28  11:39:23
-        Log: * initial check-in of Module::Install.
-	   + Changes MANIFEST MANIFEST.SKIP Makefile.PL
-	   + README SIGNATURE TODO lib/Module/Install.pm
-	   + lib/Module/Install.pod
-	   + lib/Module/Install/Admin.pm
-	   + lib/Module/Install/Admin.pod
-	   + lib/Module/Install/MakeMaker.pm
-	   + lib/Module/Install/MakeMaker.pod
-	   + lib/Module/Install/Manifest.pm
-	   + lib/Module/Install/Manifest.pod
-	   + lib/Module/Install/Win32.pm
-	   + lib/Module/Install/Win32.pod
-	   + lib/inc/Module/Install.pm t/0-signature.t
-	   + t/1-basic.t

@@ -1,12 +1,5 @@
 Build.PL
 Changes
-MANIFEST			This list of files
-MANIFEST.SKIP
-META.yml
-Makefile.PL
-README
-SIGNATURE
-ToDo
 inc/ExtUtils/AutoInstall.pm
 inc/Module/Install.pm
 inc/Module/Install/AutoInstall.pm
@@ -21,6 +14,7 @@ inc/Module/Install/Win32.pm
 inc/Test.pm
 inc/Test/Builder.pm
 inc/Test/More.pm
+lib/inc/Module/Install.pm
 lib/Module/Install-Cookbook.pod
 lib/Module/Install-Philosophy.pod
 lib/Module/Install.pm
@@ -38,15 +32,21 @@ lib/Module/Install/Can.pm
 lib/Module/Install/Fetch.pm
 lib/Module/Install/Include.pm
 lib/Module/Install/Inline.pm
-lib/Module/Install/MakeMaker.pm
 lib/Module/Install/Makefile.pm
 lib/Module/Install/Makefile/Name.pm
 lib/Module/Install/Makefile/Version.pm
+lib/Module/Install/MakeMaker.pm
 lib/Module/Install/Metadata.pm
 lib/Module/Install/PAR.pm
 lib/Module/Install/Run.pm
 lib/Module/Install/Scripts.pm
 lib/Module/Install/Win32.pm
-lib/inc/Module/Install.pm
+Makefile.PL
+MANIFEST			This list of files
+MANIFEST.SKIP
+META.yml
+README
+SIGNATURE
 t/0-signature.t
 t/1-basic.t
+ToDo

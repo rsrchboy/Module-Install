@@ -1,5 +1,5 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install/PAR.pm $ $Author: autrijus $
-# $Revision: #27 $ $Change: 1643 $ $DateTime: 2003/07/16 01:02:58 $ vim: expandtab shiftwidth=4
+# $Revision: #28 $ $Change: 1650 $ $DateTime: 2003/07/29 06:03:27 $ vim: expandtab shiftwidth=4
 
 package Module::Install::PAR;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
@@ -110,55 +110,12 @@ sub make_par {
     my ($self, $file) = @_;
     unlink $file if -f $file;
 
-    my @files;
-    open MANIFEST, ">blib/MANIFEST" or die $!;
-    open META, ">blib/META.yml" or die $!;
-    
-    require File::Find;
-    File::Find::find( sub {
-        (-r && !-d) and push ( @files, substr($File::Find::name, 5) );
-    } , 'blib' );
-
-    print MANIFEST join("\n", '    <!-- accessible as jar:file:///NAME.par!/MANIFEST in compliant browsers -->', (sort @files), q(    # <html><body onload="var X=document.body.innerHTML.split(/\n/);var Y='<iframe src=&quot;META.yml&quot; style=&quot;float:right;height:40%;width:40%&quot;></iframe><ul>';for(var x in X){if(!X[x].match(/^\s*#/)&&X[x].length)Y+='<li><a href=&quot;'+X[x]+'&quot;>'+X[x]+'</a>'}document.body.innerHTML=Y">));
-    close MANIFEST;
-
-    print META << "YAML";
-build_requires: {}
-conflicts: {}
-dist_name: $file
-distribution_type: par
-dynamic_config: 0
-generated_by: 'Module::Install version $Module::Install::VERSION'
-license: unknown
-YAML
-    close META;
-
-    if (eval { require Archive::Zip; 1 }) {
-        my $zip = Archive::Zip->new;
-        $zip->addTree( 'blib', '' );
-        $zip->writeToFileNamed( $file ) == Archive::Zip::AZ_OK() or die $!;
-    }
-    elsif ($self->can_run('zip')) {
-        mkdir('blib', 0777);
-        chdir('blib');
-        system(qw(zip -r), "../$file", '.') and die $!;
-        chdir('..');
+    unless ( eval { require PAR::Dist; PAR::Dist->VERSION >= 0.03 } ) {
+        warn "Please install PAR::Dist 0.03 or above first.";
+        return;
     }
 
-    unlink "blib/MANIFEST";
-    unlink "blib/META.yml";
-
-    require File::Spec;
-    my $pathname = File::Spec->rel2abs($file);
-    if ($^O eq 'MSWin32') {
-        $pathname =~ s!\\!/!g;
-        $pathname =~ s!:!|!g;
-    };
-    print << ".";
-Successfully created binary distribution '$file'.
-Its contents are accessible in compliant browsers as:
-    jar:file://$pathname!/MANIFEST
-.
+    return PAR::Dist::blib_to_par(dist => $file);
 }
 
 1;

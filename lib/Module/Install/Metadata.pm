@@ -1,5 +1,5 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install/Metadata.pm $ $Author: autrijus $
-# $Revision: #24 $ $Change: 1645 $ $DateTime: 2003/07/16 01:05:06 $ vim: expandtab shiftwidth=4
+# $Revision: #25 $ $Change: 1665 $ $DateTime: 2003/08/18 07:52:47 $ vim: expandtab shiftwidth=4
 
 package Module::Install::Metadata;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
@@ -97,7 +97,7 @@ sub read {
 
 sub write {
     my $self = shift;
-    return $self unless $self->admin;
+    return $self unless $self->is_admin;
 
     META_NOT_OURS: {
         local *FH;

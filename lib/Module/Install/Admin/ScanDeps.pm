@@ -48,7 +48,7 @@ sub scan_dependencies {
             if (my $min_version = Module::CoreList->first_release($dep_pkg)) {
                 next if $min_version <= $perl_version;
             }
-            next if $dep_pkg =~ /^(?:DB|(?:Auto|Dyna|XS)Loader)\b/i;
+            next if $dep_pkg =~ /^(?:DB|(?:Auto|Dyna|XS)Loader|threads|warnings)\b/i;
             next if exists $result{$dep_pkg};
 
             $result{$dep_pkg} = $deps->{$key}{file};

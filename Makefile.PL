@@ -1,5 +1,5 @@
 # $File: //depot/cpan/Module-Install/Makefile.PL $ $Author: autrijus $
-# $Revision: #28 $ $Change: 1557 $ $DateTime: 2003/05/26 02:19:12 $ vim: expandtab shiftwidth=4
+# $Revision: #29 $ $Change: 1650 $ $DateTime: 2003/07/29 06:03:27 $ vim: expandtab shiftwidth=4
 
 use lib 'lib'; # NOTE: Module::Install's Makefile.PL needs this statement
                # to bootstrap itself.  Other module distributions using
@@ -24,8 +24,7 @@ features(
     ],
     'PAR-based binary distributions' => [
         -default            => 0,
-        'Compress::Zlib'    => 0,
-        recommends  ('Archive::Zip'     => 1.00),
+        recommends  ('PAR::Dist' => 0.03),
     ],
     'Module::Build support' => [
         -default            => 0,

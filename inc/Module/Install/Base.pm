@@ -1,6 +1,6 @@
 #line 1 "inc/Module/Install/Base.pm - lib/Module/Install/Base.pm"
 # $File: //depot/cpan/Module-Install/lib/Module/Install/Base.pm $ $Author: autrijus $
-# $Revision: #8 $ $Change: 1375 $ $DateTime: 2003/03/18 12:29:32 $ vim: expandtab shiftwidth=4
+# $Revision: #9 $ $Change: 1665 $ $DateTime: 2003/08/18 07:52:47 $ vim: expandtab shiftwidth=4
 
 package Module::Install::Base;
 
@@ -36,6 +36,11 @@ sub admin {
     $self->_top->{admin} or Module::Install::Base::FakeAdmin->new;
 }
 
+sub is_admin {
+    my $self = shift;
+    $self->admin->VERSION;
+}
+
 sub DESTROY {}
 
 package Module::Install::Base::FakeAdmin;
@@ -49,4 +54,4 @@ sub DESTROY {}
 
 __END__
 
-#line 110
+#line 115
