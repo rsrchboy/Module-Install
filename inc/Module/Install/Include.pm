@@ -1,3 +1,4 @@
+#line 1 "inc/Module/Install/Include.pm - lib/Module/Install/Include.pm"
 # $File: //depot/cpan/Module-Install/lib/Module/Install/Include.pm $ $Author: autrijus $
 # $Revision: #7 $ $Change: 1375 $ $DateTime: 2003/03/18 12:29:32 $ vim: expandtab shiftwidth=4
 

@@ -1,5 +1,5 @@
-# $File: //depot/cpan/Module-Install/lib/Module/Install/Scripts.pm $ $Author: autrijus $
-# $Revision: #2 $ $Change: 1397 $ $DateTime: 2003/03/23 21:44:22 $ vim: expandtab shiftwidth=4
+# $File: //depot/cpan/Module-Install/lib/Module/Install/Scripts.pm $ $Author: ingy $
+# $Revision: #3 $ $Change: 1486 $ $DateTime: 2003/05/08 11:33:37 $ vim: expandtab shiftwidth=4
 
 package Module::Install::Scripts;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
@@ -52,7 +52,7 @@ sub install_script {
     }
 
     my $new_script = 'inc/SCRIPTS/' . basename($script_file);
-    open SCRIPT, '>', $new_script
+    open SCRIPT, "> $new_script"
       or die "Can't open '$new_script' for output\n";
     print SCRIPT $_ for @script_lines;
     close SCRIPT;

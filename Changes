@@ -1,4 +1,58 @@
 ____________________________________________________________________________
+[  1510] By: autrijus                              on 2003/05/14  14:19:04
+        Log: * 0.19_98.
+	   ! lib/Module/Install.pm
+____________________________________________________________________________
+[  1509] By: autrijus                              on 2003/05/14  13:54:36
+        Log: * adds #line directive to inc/ files and note their
+             origins -- this helps to debug stuff from original files.
+	   ! lib/Module/Install/Admin.pm
+____________________________________________________________________________
+[  1508] By: autrijus                              on 2003/05/14  13:21:23
+        Log: * the M::I::private is now encouraged to switch to
+             M::I::PRIVATE -- it's non-mandatory, but makes it stand
+	     out.
+	   ! lib/Module/Install.pm
+____________________________________________________________________________
+[  1502] By: iain                                  on 2003/05/13  01:28:08
+        Log: Latest EU::MM writes a META.yml file. So do we, so we stop
+	     EU::MM.
+	   ! lib/Module/Install/Makefile.pm
+____________________________________________________________________________
+[  1486] By: ingy                                  on 2003/05/08  11:33:37
+        Log: 5.005 bug
+	   ! lib/Module/Install/Scripts.pm
+____________________________________________________________________________
+[  1483] By: autrijus                              on 2003/05/08  01:26:46
+        Log: * This be 0.19_97.
+             * explains the new "nuke-inc/-for-authors" mechanics.
+	   ! lib/Module/Install.pm
+	   ! lib/inc/Module/Install.pm
+____________________________________________________________________________
+[  1481] By: autrijus                              on 2003/05/07  10:41:22
+        Log: * fix for 5.005 build.
+	   ! lib/Module/Install/AutoInstall.pm
+	   ! lib/Module/Install/Makefile.pm
+	   ! lib/Module/Install/PAR.pm
+____________________________________________________________________________
+[  1480] By: ingy                                  on 2003/05/07  10:39:42
+        Log: Since I nuke the inc/ in inc::Module::Include, this code
+	     was
+             unnecessary.
+	   ! lib/Module/Install.pm
+____________________________________________________________________________
+[  1479] By: autrijus                              on 2003/05/06  20:00:48
+        Log: * add scripts.pm to manifest.
+	   ! MANIFEST
+____________________________________________________________________________
+[  1478] By: autrijus                              on 2003/05/06  19:58:25
+        Log: * changes.
+	   ! Changes
+____________________________________________________________________________
+[  1477] By: autrijus                              on 2003/05/06  19:58:01
+        Log: * changes.
+	   ! lib/Module/Install/Metadata.pm
+____________________________________________________________________________
 [  1476] By: autrijus                              on 2003/05/06  19:50:52
         Log: * 19_96 snapshot.
 	   ! lib/Module/Install.pm

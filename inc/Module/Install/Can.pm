@@ -1,3 +1,4 @@
+#line 1 "inc/Module/Install/Can.pm - lib/Module/Install/Can.pm"
 # $File: //depot/cpan/Module-Install/lib/Module/Install/Can.pm $ $Author: ingy $
 # $Revision: #5 $ $Change: 1377 $ $DateTime: 2003/03/20 15:11:54 $ vim: expandtab shiftwidth=4
 

@@ -1,5 +1,5 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install/Admin.pm $ $Author: autrijus $
-# $Revision: #38 $ $Change: 1396 $ $DateTime: 2003/03/23 21:44:16 $ vim: expandtab shiftwidth=4
+# $Revision: #39 $ $Change: 1509 $ $DateTime: 2003/05/14 13:54:36 $ vim: expandtab shiftwidth=4
 
 package Module::Install::Admin;
 $VERSION = '0.20';
@@ -136,13 +136,25 @@ sub copy {
     my $content = <FROM>;
     close FROM;
 
-    $content =~ s/
-        ^=(?:head\d|pod|begin|item|over|for|back|end)\b.*?
-        ^=cut\b[^\n]*$
-        \n*
-    //smgx;
+    {
+        local $^W;
+        my $line = 1;
+        $content =~ s{(
+            (.*?)
+            ^=(?:head\d|pod|begin|item|over|for|back|end)\b.*?
+            ^=cut[\t ]*
+            (?:[\r\n])*?
+            (\r?\n)?
+        )}{
+            my ($pre, $post) = ($2, $3);
+            "$pre#line " . (
+                $line += ( () = ( $1 =~ /\n/g ) )
+            ) . $post;
+        }mgsex;
+    }
 
     open TO, "> $to" or die "Can't open $to for output:\n$!";
+    print TO "#line 1 \"$to - $from\"\n";
     print TO $content;
     close TO;
 

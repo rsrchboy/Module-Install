@@ -1,8 +1,8 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install.pm $ $Author: autrijus $
-# $Revision: #49 $ $Change: 1483 $ $DateTime: 2003/05/08 01:26:46 $ vim: expandtab shiftwidth=4
+# $Revision: #51 $ $Change: 1510 $ $DateTime: 2003/05/14 14:19:04 $ vim: expandtab shiftwidth=4
 
 package Module::Install;
-$VERSION = '0.19_97';
+$VERSION = '0.19_98';
 
 die <<END unless defined $INC{'inc/Module/Install.pm'};
 You must invoke Module::Install with:
@@ -27,8 +27,8 @@ Module::Install - Standalone, extensible Perl module installer
 
 =head1 VERSION
 
-This document describes version 0.19_97 of Module::Install, released
-May 8, 2003.
+This document describes version 0.19_98 of Module::Install, released
+May 15, 2003.
 
 THIS IS A PRE-ALPHA SNAPSHOT RELEASE.  THE INTERFACE IS SUBJECT TO
 CHANGE, AND IS LIKELY TO BE BUGGY.  USE IT AT YOUR OWN RISK.
@@ -311,12 +311,12 @@ Alternatively, typing C<make reset> will also do this for you.
 
 =item Private Extensions
 
-Those extensions take the form of B<Module::Install::private> and
-B<Module::Install::private::*>.
+Those extensions take the form of B<Module::Install::PRIVATE> and
+B<Module::Install::PRIVATE::*>.
 
 Authors are encouraged to put all existing F<Makefile.PL> magics into
-such extensions (e.g.  F<Module::Install::private> for common bits;
-F<Module::Install::private::PAR> for functions specific to a
+such extensions (e.g.  F<Module::Install::PRIVATE> for common bits;
+F<Module::Install::PRIVATE::DISTNAME> for functions specific to a
 distribution).
 
 Private extensions need not to be released on CPAN; simply put them
@@ -487,7 +487,7 @@ to abstract away such codes; see next question.
 =head2 How is this different from its predecessor, B<CPAN::MakeMaker>?
 
 According to Brian Ingerson, the author of B<CPAN::MakeMaker>,
-their difference is that C<Module::Install is sane>.
+their difference is that I<Module::Install is sane>.
 
 Also, this module is not self-modifying, and offers a clear separation
 between standard, private and administrative extensions.  Therefore

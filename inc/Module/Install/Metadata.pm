@@ -1,3 +1,4 @@
+#line 1 "inc/Module/Install/Metadata.pm - lib/Module/Install/Metadata.pm"
 # $File: //depot/cpan/Module-Install/lib/Module/Install/Metadata.pm $ $Author: autrijus $
 # $Revision: #17 $ $Change: 1477 $ $DateTime: 2003/05/06 19:58:01 $ vim: expandtab shiftwidth=4
 

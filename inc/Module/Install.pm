@@ -1,8 +1,9 @@
-# $File: //depot/cpan/Module-Install/lib/Module/Install.pm $ $Author: ingy $
-# $Revision: #48 $ $Change: 1480 $ $DateTime: 2003/05/07 10:39:42 $ vim: expandtab shiftwidth=4
+#line 1 "inc/Module/Install.pm - lib/Module/Install.pm"
+# $File: //depot/cpan/Module-Install/lib/Module/Install.pm $ $Author: autrijus $
+# $Revision: #51 $ $Change: 1510 $ $DateTime: 2003/05/14 14:19:04 $ vim: expandtab shiftwidth=4
 
 package Module::Install;
-$VERSION = '0.19_97';
+$VERSION = '0.19_98';
 
 die <<END unless defined $INC{'inc/Module/Install.pm'};
 You must invoke Module::Install with:
@@ -21,6 +22,8 @@ use File::Path;
 
 @inc::Module::Install::ISA = 'Module::Install';
 
+#line 124
+
 sub import {
     my $class = $_[0];
     my $self = $class->new(@_[1..$#_]);
@@ -38,6 +41,8 @@ sub import {
     *{caller(0) . "::AUTOLOAD"} = $self->autoload;
 }
 
+#line 147
+
 sub autoload {
     my $self = shift;
     my $caller = caller;
@@ -47,6 +52,8 @@ sub autoload {
         goto &{$self->can('call')} unless uc($1) eq $1;
     };
 }
+
+#line 164
 
 sub new {
     my ($class, %args) = @_;
@@ -70,6 +77,8 @@ sub new {
     bless(\%args, $class);
 }
 
+#line 192
+
 sub call {
     my $self   = shift;
     my $method = shift;
@@ -78,6 +87,8 @@ sub call {
     unshift @_, $obj;
     goto &{$obj->can($method)};
 }
+
+#line 207
 
 sub load {
     my ($self, $method) = @_;
@@ -101,6 +112,8 @@ END
     $obj;
 }
 
+#line 237
+
 sub load_extensions {
     my ($self, $path, $top_obj) = @_;
 
@@ -117,6 +130,8 @@ sub load_extensions {
         push @{$self->{extensions}}, $pkg->new( _top => $top_obj );
     }
 }
+
+#line 261
 
 sub find_extensions {
     my ($self, $path) = @_;
@@ -139,3 +154,4 @@ sub find_extensions {
 
 __END__
 
+#line 550

@@ -1,13 +1,13 @@
+#line 1 "inc/Test.pm - /usr/local/lib/perl5/5.8.0/Test.pm"
+package Test;
 
 require 5.004;
-package Test;
-# Time-stamp: "2002-10-11 17:38:48 MDT"
 
 use strict;
 
 use Carp;
 use vars (qw($VERSION @ISA @EXPORT @EXPORT_OK $ntest $TestLevel), #public-ish
-          qw($TESTOUT $TESTERR %Program_Lines
+          qw($TESTOUT $TESTERR
              $ONFAIL %todo %history $planned @FAILDETAIL) #private-ish
          );
 
@@ -21,7 +21,7 @@ sub _reset_globals {
     $planned    = 0;
 }
 
-$VERSION = '1.23';
+$VERSION = '1.20';
 require Exporter;
 @ISA=('Exporter');
 
@@ -37,6 +37,8 @@ $TESTERR = *STDERR{IO};
 $ENV{REGRESSION_TEST} = $0;
 
 
+#line 117
+
 sub plan {
     croak "Test::plan(%args): odd number of arguments" if @_ & 1;
     croak "Test::plan(): should not be called more than once" if $planned;
@@ -45,8 +47,6 @@ sub plan {
                      # print
 
     _reset_globals();
-
-    _read_program( (caller)[1] );
 
     my $max=0;
     for (my $x=0; $x < @_; $x+=2) {
@@ -67,49 +67,20 @@ sub plan {
 	print $TESTOUT "1..$max\n";
     }
     ++$planned;
-    print $TESTOUT "# Running under perl version $] for $^O",
-      (chr(65) eq 'A') ? "\n" : " in a non-ASCII world\n";
 
-    print $TESTOUT "# Win32::BuildNumber ", &Win32::BuildNumber(), "\n"
-      if defined(&Win32::BuildNumber) and defined &Win32::BuildNumber();
-
-    print $TESTOUT "# MacPerl verison $MacPerl::Version\n"
-      if defined $MacPerl::Version;
-
-    printf $TESTOUT
-      "# Current time local: %s\n# Current time GMT:   %s\n",
-      scalar(localtime($^T)), scalar(gmtime($^T));
-      
-    print $TESTOUT "# Using Test.pm version $VERSION\n";
-
-    # Retval never used:
+    # Never used.
     return undef;
 }
 
-sub _read_program {
-  my($file) = shift;
-  return unless defined $file and length $file
-    and -e $file and -f _ and -r _;
-  open(SOURCEFILE, "<$file") || return;
-  $Program_Lines{$file} = [<SOURCEFILE>];
-  close(SOURCEFILE);
-  
-  foreach my $x (@{$Program_Lines{$file}})
-   { $x =~ tr/[\cm\cj\n\r]//d }
-  
-  unshift @{$Program_Lines{$file}}, '';
-  return 1;
-}
+
+#line 163
 
 sub _to_value {
     my ($v) = @_;
     return (ref $v or '') eq 'CODE' ? $v->() : $v;
 }
 
-# A past maintainer of this module said:
-# <<ok(...)'s special handling of subroutine references is an unfortunate
-#   "feature" that can't be removed due to compatibility.>>
-#
+#line 232
 
 sub ok ($;$$) {
     croak "ok: plan before you test!" if !$planned;
@@ -121,17 +92,12 @@ sub ok ($;$$) {
     my $repetition = ++$history{"$file:$line"};
     my $context = ("$file at line $line".
 		   ($repetition > 1 ? " fail \#$repetition" : ''));
-
-    # Are we comparing two values?
-    my $compare = 0;
-
     my $ok=0;
     my $result = _to_value(shift);
     my ($expected,$diag,$isregex,$regex);
     if (@_ == 0) {
 	$ok = $result;
     } else {
-        $compare = 1;
 	$expected = _to_value(shift);
 	if (!defined $expected) {
 	    $ok = !defined $result;
@@ -171,7 +137,7 @@ sub ok ($;$$) {
             $diag =~ s/\n/\n#/g if defined $diag;
 
 	    $context .= ' *TODO*' if $todo;
-	    if (!$compare) {
+	    if (!defined $expected) {
 		if (!$diag) {
 		    print $TESTERR "# Failed test $ntest in $context\n";
 		} else {
@@ -185,31 +151,15 @@ sub ok ($;$$) {
 		if (defined $regex) {
 		    $expected = 'qr{'.$regex.'}';
 		}
-                elsif (defined $expected) {
+                else {
 		    $expected = "'$expected'";
 		}
-                else {
-                    $expected = '<UNDEF>';
-                }
 		if (!$diag) {
 		    print $TESTERR "# $prefix Expected: $expected\n";
 		} else {
 		    print $TESTERR "# $prefix Expected: $expected ($diag)\n";
 		}
 	    }
-
-            if(defined $Program_Lines{$file}[$line]) {
-                print $TESTERR
-                  "#  $file line $line is: $Program_Lines{$file}[$line]\n"
-                 if
-                  $Program_Lines{$file}[$line] =~ m/[^\s\#\(\)\{\}\[\]\;]/
-                   # Otherwise it's a pretty uninteresting line!
-                ;
-                
-                undef $Program_Lines{$file}[$line];
-                 # So we won't repeat it.
-            }
-
 	    push @FAILDETAIL, $detail;
 	}
     }
@@ -243,10 +193,12 @@ sub skip ($;$$$) {
 #the documented interface as this has been deprecated.
 #WARN
 
-	local($TestLevel) = $TestLevel+1;  #to ignore this stack frame
+	local($TestLevel) = $TestLevel+1;  #ignore this stack frame
         return &ok(@_);
     }
 }
+
+#line 352
 
 END {
     $ONFAIL->(\@FAILDETAIL) if @FAILDETAIL && $ONFAIL;
@@ -255,5 +207,4 @@ END {
 1;
 __END__
 
-# "Your mistake was a hidden intention."
-#  -- /Oblique Strategies/,  Brian Eno and Peter Schmidt
+#line 469

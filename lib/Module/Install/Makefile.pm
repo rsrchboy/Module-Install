@@ -1,5 +1,5 @@
-# $File: //depot/cpan/Module-Install/lib/Module/Install/Makefile.pm $ $Author: autrijus $
-# $Revision: #40 $ $Change: 1481 $ $DateTime: 2003/05/07 10:41:22 $ vim: expandtab shiftwidth=4
+# $File: //depot/cpan/Module-Install/lib/Module/Install/Makefile.pm $ $Author: iain $
+# $Revision: #41 $ $Change: 1502 $ $DateTime: 2003/05/13 01:28:08 $ vim: expandtab shiftwidth=4
 
 package Module::Install::Makefile;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
@@ -42,6 +42,10 @@ sub write {
     if ($] >= 5.005) {
 	$args->{ABSTRACT} = $self->abstract;
 	$args->{AUTHOR} = $self->author;
+    }
+    if ( eval($ExtUtils::MakeMaker::VERSION) >= 6.10 )
+    {
+        $args->{NO_META} = 1;
     }
 
     # merge both kinds of requires into prereq_pm

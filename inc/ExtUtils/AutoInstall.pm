@@ -1,5 +1,6 @@
+#line 1 "inc/ExtUtils/AutoInstall.pm - /usr/local/lib/perl5/site_perl/5.8.0/ExtUtils/AutoInstall.pm"
 # $File: //member/autrijus/ExtUtils-AutoInstall/AutoInstall.pm $ 
-# $Revision: #43 $ $Change: 4934 $ $DateTime: 2003/03/25 16:52:18 $
+# $Revision: #44 $ $Change: 5439 $ $DateTime: 2003/04/22 09:54:35 $
 
 package ExtUtils::AutoInstall;
 $ExtUtils::AutoInstall::VERSION = '0.50';
@@ -8,6 +9,8 @@ use strict;
 
 use Cwd;
 use ExtUtils::MakeMaker ();
+
+#line 264
 
 # special map on pre-defined feature sets
 my %FeatureMap = (
@@ -345,6 +348,8 @@ sub _install_cpan {
     my $installed = 0;
     my %args;
 
+    require CPAN; CPAN::Config->load;
+
     return unless _can_write(MM->catfile($CPAN::Config->{cpan_home}, 'sources'));
 
     # if we're root, set UNINST=1 to avoid trouble unless user asked for it.
@@ -361,8 +366,6 @@ sub _install_cpan {
 	    if $opt =~ /^force$/; # pseudo-option
 	$CPAN::Config->{$opt} = $arg;
     }
-
-    require CPAN; CPAN::Config->load;
 
     while (my ($pkg, $ver) = splice(@modules, 0, 2)) {
 	MY::preinstall($pkg, $ver) or next if defined &MY::preinstall;
@@ -626,3 +629,4 @@ installdeps ::
 
 __END__
 
+#line 910

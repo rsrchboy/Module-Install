@@ -1,3 +1,4 @@
+#line 1 "inc/Module/Install/PAR.pm - lib/Module/Install/PAR.pm"
 # $File: //depot/cpan/Module-Install/lib/Module/Install/PAR.pm $ $Author: autrijus $
 # $Revision: #22 $ $Change: 1481 $ $DateTime: 2003/05/07 10:41:22 $ vim: expandtab shiftwidth=4
 

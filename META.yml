@@ -1,5 +1,5 @@
 name: Module-Install
-version: 0.19_96
+version: 0.19_98
 abstract: Standalone, extensible Perl module installer
 author: Autrijus Tang (autrijus@autrijus.org)
 license: perl
@@ -18,4 +18,4 @@ recommends:
 private:
   directory:
     - inc
-generated_by: Module::Install version 0.19_96
+generated_by: Module::Install version 0.19_97
