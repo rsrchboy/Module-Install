@@ -1,8 +1,8 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install.pm $ $Author: autrijus $
-# $Revision: #52 $ $Change: 1532 $ $DateTime: 2003/05/20 01:27:31 $ vim: expandtab shiftwidth=4
+# $Revision: #54 $ $Change: 1588 $ $DateTime: 2003/06/05 06:34:26 $ vim: expandtab shiftwidth=4
 
 package Module::Install;
-$VERSION = '0.19_99';
+$VERSION = '0.20';
 
 die <<END unless defined $INC{'inc/Module/Install.pm'};
 You must invoke Module::Install with:
@@ -27,11 +27,8 @@ Module::Install - Standalone, extensible Perl module installer
 
 =head1 VERSION
 
-This document describes version 0.19_99 of Module::Install, released
-May 20, 2003.
-
-THIS IS A PRE-ALPHA SNAPSHOT RELEASE.  THE INTERFACE IS SUBJECT TO
-CHANGE, AND IS LIKELY TO BE BUGGY.  USE IT AT YOUR OWN RISK.
+This document describes version 0.20 of Module::Install, released
+June 5, 2003.
 
 =head1 SYNOPSIS
 
@@ -73,13 +70,18 @@ You can also put all setting into F<META.yml>, and use this instead:
 =head1 DESCRIPTION
 
 This module provides a drop-in replacement for B<ExtUtils::MakeMaker>.
+For first-time users, Brian Ingerson's I<Creating Module Distributions
+with Module::Install> in June 2003 issue of The Perl Journal
+(L<http://www.tpj.com/issues/>) provides a gentle introduction to how
+this module works.
+
 If you want to start working with real-world examples right away, check
 out L<Module::Install-Cookbook>.  For some personal opinions behind this
 module's making, see L<Module::Install-Philosophy>.
 
-It is designed to let module authors eliminate all duplicated codes in
-F<Makefile.PL> and F<Build.PL>, by abstracting them into I<extensions>,
-and distribute them under the F<inc/> directory.
+This module is designed to let module authors eliminate all duplicated
+codes in F<Makefile.PL> and F<Build.PL>, by abstracting them into
+I<extensions>, and distribute them under the F<inc/> directory.
 
 To start using it, just replace the C<use ExtUtils::MakeMaker;> line
 from F<Makefile.PL> with C<use inc::Module::Install;>, then run it once:
@@ -476,13 +478,13 @@ Here is a brief overview of the reasons:
     Distributing scripts is easy.
     Include prerequisite modules (even the entire dependency tree).
     Auto-installation of prerequisites.
-    Support for Inline::C.
-    Support for precompiled binaries.
+    Support for Inline-based modules.
+    Support for precompiled PAR binaries.
 
 Besides, if you author more than one CPAN modules, chances are there
-are duplicated in their F<Makefile.PL> or with some other CPAN module
+are duplications in their F<Makefile.PL>, and also with other CPAN module
 you copied the code from.  B<Module::Install> makes it really easy for you
-to abstract away such codes; see next question.
+to abstract away such codes; see the next question.
 
 =head2 How is this different from its predecessor, B<CPAN::MakeMaker>?
 
@@ -492,8 +494,9 @@ their difference is that I<Module::Install is sane>.
 Also, this module is not self-modifying, and offers a clear separation
 between standard, private and administrative extensions.  Therefore
 writing extensions for B<Module::Install> is easier -- instead of
-tweaking your local copy of C<CPAN/MakeMaker.pm>, just make a new
-B<Module::Install::*> module.
+tweaking your local copy of C<CPAN/MakeMaker.pm>, just make your own
+B<Modula::Install::PRIVATE> module, or a new B<Module::Install::*>
+extension.
 
 =head1 SEE ALSO
 

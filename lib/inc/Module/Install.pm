@@ -1,5 +1,7 @@
 # $File: //depot/cpan/Module-Install/lib/inc/Module/Install.pm $ $Author: autrijus $
-# $Revision: #13 $ $Change: 1483 $ $DateTime: 2003/05/08 01:26:46 $ vim: expandtab shiftwidth=4
+# $Revision: #14 $ $Change: 1556 $ $DateTime: 2003/05/26 01:55:20 $ vim: expandtab shiftwidth=4
+
+package inc::Module::Install;
 
 if (-d 'inc/.author') {
     require File::Path;

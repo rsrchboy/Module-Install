@@ -1,18 +1,11 @@
 # $File: //depot/cpan/Module-Install/Makefile.PL $ $Author: autrijus $
-# $Revision: #27 $ $Change: 1401 $ $DateTime: 2003/03/27 08:11:53 $ vim: expandtab shiftwidth=4
+# $Revision: #28 $ $Change: 1557 $ $DateTime: 2003/05/26 02:19:12 $ vim: expandtab shiftwidth=4
 
 use lib 'lib'; # NOTE: Module::Install's Makefile.PL needs this statement
                # to bootstrap itself.  Other module distributions using
                # Module::Install do not need it.
 
 use inc::Module::Install;
-
-print << 'EOF';
-******************************************************************
-THIS IS A PRE-ALPHA SNAPSHOT RELEASE.  THE INTERFACE IS SUBJECT TO
-CHANGE, AND IS LIKELY TO BE BUGGY.  USE IT AT YOUR OWN RISK.
-******************************************************************
-EOF
 
 name            ('Module-Install');
 abstract        ('Standalone, extensible Perl module installer');

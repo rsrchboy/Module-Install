@@ -1,4 +1,65 @@
 ____________________________________________________________________________
+[  1588] By: autrijus                              on 2003/06/05  06:34:26
+        Log: * This be Module::Install 0.20.
+             * add pointer to ingy's TPJ article.
+	   ! README lib/Module/Install-Cookbook.pod
+	   ! lib/Module/Install.pm
+____________________________________________________________________________
+[  1561] By: ingy                                  on 2003/05/28  00:33:11
+        Log: Caused warning on 5.005
+	   ! lib/Module/Install/Makefile.pm
+____________________________________________________________________________
+[  1558] By: autrijus                              on 2003/05/26  22:01:20
+        Log: * oops. back out the article until copyright cleared with
+	       tpj.
+	   - lib/Module/Install-Intro.pod
+____________________________________________________________________________
+[  1557] By: autrijus                              on 2003/05/26  02:19:12
+        Log: * add Ingy's TPJ article as Module::Install-Intro.
+             * ramping up to the 0.20 release.
+	   + lib/Module/Install-Intro.pod
+	   ! Makefile.PL lib/Module/Install.pm
+____________________________________________________________________________
+[  1556] By: autrijus                              on 2003/05/26  01:55:20
+        Log: * added the "package inc::Module::Install;" line at
+             request by Graham Barr, for search.cpan.org.
+	   ! lib/inc/Module/Install.pm
+____________________________________________________________________________
+[  1555] By: autrijus                              on 2003/05/25  11:48:33
+        Log: * close META before zipping; otherwise trips on win32.
+	   ! lib/Module/Install/PAR.pm
+____________________________________________________________________________
+[  1554] By: autrijus                              on 2003/05/25  05:28:16
+        Log: * oops.
+	   ! lib/Module/Install/PAR.pm
+____________________________________________________________________________
+[  1553] By: autrijus                              on 2003/05/25  05:23:26
+        Log: * change magic for modern geckos
+	   ! lib/Module/Install/PAR.pm
+____________________________________________________________________________
+[  1552] By: autrijus                              on 2003/05/25  01:11:03
+        Log: * only expands arrayrefs that occurs as the key, not value,
+	       block.
+	   ! lib/Module/Install/Metadata.pm
+____________________________________________________________________________
+[  1551] By: autrijus                              on 2003/05/25  00:01:02
+        Log: * requires(), build_requires(), recommends() etc can now
+	       take
+             multiple pairs in addition to a single pair.
+	   ! lib/Module/Install/Metadata.pm
+____________________________________________________________________________
+[  1550] By: autrijus                              on 2003/05/24  12:43:10
+        Log: * add standard MANIFEST and META.yml to generated PAR file.
+	   ! lib/Module/Install/PAR.pm
+____________________________________________________________________________
+[  1537] By: iain                                  on 2003/05/20  22:50:53
+        Log: Implemented the &Meta->read mentioned in the main docs.
+	   ! lib/Module/Install/Metadata.pm
+____________________________________________________________________________
+[  1533] By: autrijus                              on 2003/05/20  01:46:16
+        Log: * changes.
+	   ! Changes
+____________________________________________________________________________
 [  1532] By: autrijus                              on 2003/05/20  01:27:31
         Log: * This be 0.19_99.
 	   ! lib/Module/Install.pm

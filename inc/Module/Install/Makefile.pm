@@ -1,6 +1,6 @@
 #line 1 "inc/Module/Install/Makefile.pm - lib/Module/Install/Makefile.pm"
-# $File: //depot/cpan/Module-Install/lib/Module/Install/Makefile.pm $ $Author: autrijus $
-# $Revision: #42 $ $Change: 1516 $ $DateTime: 2003/05/15 11:14:59 $ vim: expandtab shiftwidth=4
+# $File: //depot/cpan/Module-Install/lib/Module/Install/Makefile.pm $ $Author: ingy $
+# $Revision: #43 $ $Change: 1561 $ $DateTime: 2003/05/28 00:33:11 $ vim: expandtab shiftwidth=4
 
 package Module::Install::Makefile;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
@@ -79,7 +79,7 @@ sub fix_up_makefile {
        ? "# Preamble by $top_class $top_version\n" . $self->preamble
        : '';
     my $postamble = "# Postamble by $top_class $top_version\n" . 
-                    $self->postamble;
+                    ($self->postamble || '');
 
     open MAKEFILE, '< Makefile' or die $!;
     my $makefile = do { local $/; <MAKEFILE> };

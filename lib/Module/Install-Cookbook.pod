@@ -1,5 +1,5 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install-Cookbook.pod $ $Author: autrijus $
-# $Revision: #2 $ $Change: 1380 $ $DateTime: 2003/03/22 07:16:08 $ vim: expandtab shiftwidth=4
+# $Revision: #3 $ $Change: 1588 $ $DateTime: 2003/06/05 06:34:26 $ vim: expandtab shiftwidth=4
 
 =head1 NAME
 
@@ -68,7 +68,25 @@ XXX: to be written
 
 =head1 The Main Course
 
-XXX: to be written
+=item Problem
+
+Installing XS extensions from CPAN was difficult.  Some platforms do
+not come with a compiler (Win32, MacOSX...); some headers or libraries
+may be missing.
+
+=item Solution
+
+Just use the C<par_base> and C<fetch_par> functions:
+
+    # same old Makefile.PL, with a few changes
+    use inc::Module::Install;	        # was "use ExtUtils::MakeMaker;"
+    WriteMakefile( ... );		# same as the original
+    check_nmake();			# make sure the user have nmake
+    par_base('AUTRIJUS');		# your CPAN ID or a URL
+    fetch_par() unless can_cc();	# use precompiled PAR only if necessary
+
+Users will not notice anything, except now it works.  Of course, you
+still need to type C<make par> and upload the precompiled package.
 
 =head1 Just Desserts
 

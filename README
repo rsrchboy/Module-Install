@@ -1,12 +1,9 @@
 # $File: //depot/cpan/Module-Install/README $ $Author: autrijus $
-# $Revision: #6 $ $Change: 1401 $ $DateTime: 2003/03/27 08:11:53 $ vim: expandtab shiftwidth=4
+# $Revision: #7 $ $Change: 1588 $ $DateTime: 2003/06/05 06:34:26 $ vim: expandtab shiftwidth=4
 
 This is the README file for Module::Install, a standalone, extensible
 installer for Perl modules.  It is designed to be a drop-in replacement
 for ExtUtils::MakeMaker, and is a descendent of CPAN::MakeMaker.
-
-THIS IS A PRE-ALPHA SNAPSHOT RELEASE.  THE INTERFACE IS SUBJECT TO
-CHANGE, AND IS LIKELY TO BE BUGGY.  USE IT AT YOUR OWN RISK.
 
 Please type "perldoc Module::Install" after installation to see the
 module usage information.

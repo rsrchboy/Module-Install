@@ -1,5 +1,5 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install/Metadata.pm $ $Author: autrijus $
-# $Revision: #17 $ $Change: 1477 $ $DateTime: 2003/05/06 19:58:01 $ vim: expandtab shiftwidth=4
+# $Revision: #20 $ $Change: 1552 $ $DateTime: 2003/05/25 01:11:03 $ vim: expandtab shiftwidth=4
 
 package Module::Install::Metadata;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
@@ -25,18 +25,27 @@ foreach my $key (@scalar_keys) {
 
 foreach my $key (@tuple_keys) {
     *$key = sub {
-        my ($self, $module, $version) = (@_, 0, 0);
-        return $self->{values}{$key} unless $module;
-        my $rv = [$module, $version];
-        push @{$self->{values}{$key}}, $rv;
-        return $rv;
+        my $self = shift;
+        return $self->{values}{$key} unless @_;
+        my @rv;
+        while (@_) {
+            my $module  = shift or last;
+            my $version = shift || 0;
+            my $rv = [$module, $version];
+            push @{$self->{values}{$key}}, $rv;
+            push @rv, $rv;
+        }
+        return @rv;
     };
 }
 
 sub features {
     my $self = shift;
     while (my ($name, $mods) = splice(@_, 0, 2)) {
-        push @{$self->{values}{features}}, ($name => [map { ref($_) ? @$_ : $_ } @$mods] );
+        my $count = 0;
+        push @{$self->{values}{features}}, ($name => [
+            map { (++$count % 2 and ref($_) and ($count += $#$_)) ? @$_ : $_ } @$mods
+        ] );
     }
     return @{$self->{values}{features}};
 }
@@ -59,6 +68,26 @@ sub _dump {
     }
 
     return($dump . "private:\n  directory:\n    - inc\ngenerated_by: $package version $version\n");
+}
+
+sub read {
+    my $self = shift;
+    $self->include( 'YAML' );
+    require YAML;
+    my $data = YAML::LoadFile( 'META.yml' );
+    # Call methods explicitly in case user has already set some values.
+    while ( my ($key, $value) = each %$data ) {
+        next unless $self->can( $key );
+        if (ref $value eq 'HASH') {
+            while (my ($module, $version) = each %$value) {
+                $self->$key( $module => $version );
+            }
+        }
+        else {
+            $self->$key( $value );
+        }
+    }
+    return $self;
 }
 
 sub write {
