@@ -1,4 +1,3 @@
-Build.PL
 Changes
 inc/ExtUtils/AutoInstall.pm
 inc/Module/Install.pm

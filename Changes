@@ -1,4 +1,20 @@
 ____________________________________________________________________________
+[  1777] By: autrijus                              on 2003/10/13  02:25:45
+        Log: * This be 0.25.
+             * add no_index as an alias to private in META.yml.
+             * minor code cleanup.
+	   ! Makefile.PL lib/Module/Install.pm
+	   ! lib/Module/Install/Metadata.pm
+____________________________________________________________________________
+[  1765] By: ingy                                  on 2003/10/04  15:42:05
+        Log: Support for YAML::Parser::Syck
+	   ! lib/Module/Install/Makefile.pm
+____________________________________________________________________________
+[  1726] By: autrijus                              on 2003/09/06  10:21:54
+        Log: * no point in supporting Build.PL now.
+	   - Build.PL
+	   ! MANIFEST Makefile.PL
+____________________________________________________________________________
 [  1709] By: autrijus                              on 2003/09/01  03:13:10
         Log: * This be 0.24.
 	   ! lib/Module/Install.pm

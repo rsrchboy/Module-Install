@@ -1,9 +1,9 @@
-#line 1 "inc/ExtUtils/AutoInstall.pm - /usr/local/lib/perl5/site_perl/5.8.0/ExtUtils/AutoInstall.pm"
-# $File: //member/autrijus/ExtUtils-AutoInstall/AutoInstall.pm $ 
-# $Revision: #46 $ $Change: 5867 $ $DateTime: 2003/05/15 18:26:55 $
+#line 1 "inc/ExtUtils/AutoInstall.pm - /usr/local/lib/perl5/site_perl/5.8.1/ExtUtils/AutoInstall.pm"
+# $File: //member/autrijus/ExtUtils-AutoInstall/lib/ExtUtils/AutoInstall.pm $ 
+# $Revision: #6 $ $Change: 8105 $ $DateTime: 2003/09/13 20:57:40 $
 
 package ExtUtils::AutoInstall;
-$ExtUtils::AutoInstall::VERSION = '0.52';
+$ExtUtils::AutoInstall::VERSION = '0.54';
 
 use strict;
 
@@ -142,7 +142,7 @@ sub import {
 		$DisabledTests{$_} = 1 for map { glob($_) } @skiptests;
 	    }
 	    else {
-		print "failed! (need".($arg ? "s $arg" : 'ed').")\n";
+		print "failed!" . ($arg ? " (needs $arg)" : '') . "\n";
 		push @required, $mod => $arg;
 	    }
 	}
@@ -238,7 +238,7 @@ sub install {
     my %args = @config;
     my %failed;
     local *FAILED;
-    if ($args{do_once} and open(FAILED, '.autoinstall.failed')) {
+    if ($args{do_once} and open(FAILED, '.#autoinstall.failed')) {
 	while (<FAILED>) { chomp; $failed{$_}++ }
 	close FAILED;
 
@@ -263,7 +263,7 @@ sub install {
 	if (defined(_version_check(_load($pkg), $ver))) {
 	    push @installed, $pkg;
 	}
-	elsif ($args{do_once} and open(FAILED, '>> .autoinstall.failed')) {
+	elsif ($args{do_once} and open(FAILED, '>> .#autoinstall.failed')) {
 	    print FAILED "$pkg\n";
 	}
     }

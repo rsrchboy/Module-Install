@@ -1,10 +1,10 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install/Metadata.pm $ $Author: autrijus $
-# $Revision: #25 $ $Change: 1665 $ $DateTime: 2003/08/18 07:52:47 $ vim: expandtab shiftwidth=4
+# $Revision: #26 $ $Change: 1777 $ $DateTime: 2003/10/13 02:25:45 $ vim: expandtab shiftwidth=4
 
 package Module::Install::Metadata;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
 
-$VERSION = '0.01';
+$VERSION = '0.02';
 
 use strict 'vars';
 use vars qw($VERSION);
@@ -72,7 +72,15 @@ sub _dump {
         $dump .= "  $_->[0]: $_->[1]\n" for @{$values{$key}};
     }
 
-    return($dump . "private:\n  directory:\n    - inc\ngenerated_by: $package version $version\n");
+    return($dump . << "META");
+no_index:
+  directory:
+    - inc
+private:
+  directory:
+    - inc
+generated_by: $package version $version
+META
 }
 
 sub read {
@@ -120,6 +128,12 @@ sub version_from {
     my ($self, $version_from) = @_;
     require ExtUtils::MM_Unix;
     $self->version(ExtUtils::MM_Unix->parse_version($version_from));
+}
+
+sub abstract_from {
+    my ($self, $abstract_from) = @_;
+    require ExtUtils::MM_Unix;
+    $self->abstract(ExtUtils::MM_Unix->parse_abstract($abstract_from));
 }
 
 1;

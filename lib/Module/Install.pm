@@ -1,8 +1,8 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install.pm $ $Author: autrijus $
-# $Revision: #58 $ $Change: 1709 $ $DateTime: 2003/09/01 03:13:10 $ vim: expandtab shiftwidth=4
+# $Revision: #59 $ $Change: 1777 $ $DateTime: 2003/10/13 02:25:45 $ vim: expandtab shiftwidth=4
 
 package Module::Install;
-$VERSION = '0.24';
+$VERSION = '0.25';
 
 die <<END unless defined $INC{'inc/Module/Install.pm'};
 Please invoke Module::Install with:
@@ -16,8 +16,8 @@ not:
 END
 
 use strict 'vars';
-use File::Find;
-use File::Path;
+use File::Find ();
+use File::Path ();
 
 @inc::Module::Install::ISA = 'Module::Install';
 
@@ -27,8 +27,8 @@ Module::Install - Standalone, extensible Perl module installer
 
 =head1 VERSION
 
-This document describes version 0.24 of Module::Install, released
-September 1, 2003.
+This document describes version 0.25 of Module::Install, released
+October 13, 2003.
 
 =head1 SYNOPSIS
 
@@ -42,14 +42,14 @@ Standard usage:
 
     use inc::Module::Install;
 
-    name('Your-Module');
-    abstract('Some Abstract here');
-    author('Your Name <email@example.com>');
-    license('perl');
+    name        ('Your-Module');
+    abstract    ('Some Abstract here');
+    author      ('Your Name <email@example.com>');
+    license     ('perl');
 
     include_deps('Test::More', 5.004);
-    requires('Test::More');
-    recommends('Acme::ComeFrom', 0.01);
+    requires    ('Test::More');
+    recommends  ('Acme::ComeFrom', 0.01);
 
     check_nmake();      # check and download nmake.exe for Win32
     &Makefile->write;
@@ -63,7 +63,7 @@ You can also put all setting into F<META.yml>, and use this instead:
 
     use inc::Module::Install;
     &Meta->read;        # parses META.yml
-    &AutoInstall->run;  # auto-install dependencies from CPAN
+    &AutoInstall->run;  # auto-install dependencies from CPAN (optional)
     &Makefile->write;   # generates Makefile
     # &Build->write;    # generates ./Build if desired
 
@@ -126,12 +126,12 @@ B<Module::Install> object; it should usually be left empty.
 =cut
 
 sub import {
-    my $class = $_[0];
-    my $self = $class->new(@_[1..$#_]);
+    my $class = shift;
+    my $self = $class->new(@_);
 
     if (not -f $self->{file}) {
         require "$self->{path}/$self->{dispatch}.pm";
-        mkpath "$self->{prefix}/$self->{author}";
+        File::Path::mkpath("$self->{prefix}/$self->{author}");
         $self->{admin} = 
           "$self->{name}::$self->{dispatch}"->new(_top => $self);
         $self->{admin}->init;
@@ -178,8 +178,9 @@ sub new {
     $class =~ s/^\Q$args{prefix}\E:://;
     $args{name}     ||= $class;
     $args{version}  ||= $class->VERSION;
+
     unless ($args{path}) {
-        $args{path}   = $args{name};
+        $args{path}  = $args{name};
         $args{path}  =~ s!::!/!g;
     }
     $args{file}     ||= "$args{prefix}/$args{path}.pm";
@@ -266,7 +267,7 @@ sub find_extensions {
     my ($self, $path) = @_;
     my @found;
 
-    find(sub {
+    File::Find::find(sub {
         my $file = $File::Find::name;
         return unless $file =~ m!^\Q$path\E/(.+)\.pm\Z!is;
         return if $1 eq $self->{dispatch};

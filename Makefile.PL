@@ -1,5 +1,5 @@
 # $File: //depot/cpan/Module-Install/Makefile.PL $ $Author: autrijus $
-# $Revision: #30 $ $Change: 1692 $ $DateTime: 2003/08/28 10:24:51 $ vim: expandtab shiftwidth=4
+# $Revision: #32 $ $Change: 1777 $ $DateTime: 2003/10/13 02:25:45 $ vim: expandtab shiftwidth=4
 
 use lib 'lib'; # NOTE: Module::Install's Makefile.PL needs this statement
                # to bootstrap itself.  Other module distributions using
@@ -50,5 +50,4 @@ par_base();     # par_base('AUTRIJUS') to enable downloading
 check_nmake();
 
 &Meta->write;
-&Build->write    if lc($0) eq 'build.pl';
-&Makefile->write if lc($0) eq 'makefile.pl';
+&Makefile->write;
