@@ -2,7 +2,7 @@
 # $Revision: #66 $ $Change: 1847 $ $DateTime: 2003/12/31 23:14:54 $ vim: expandtab shiftwidth=4
 
 package Module::Install;
-$VERSION = '0.31';
+$VERSION = '0.32';
 
 die << "." unless $INC{join('/', inc => split(/::/, __PACKAGE__)).'.pm'};
 Please invoke ${\__PACKAGE__} with:
@@ -28,8 +28,8 @@ Module::Install - Standalone, extensible Perl module installer
 
 =head1 VERSION
 
-This document describes version 0.31 of Module::Install, released
-January 1, 2003.
+This document describes version 0.32 of Module::Install, released
+February 26, 2004.
 
 =head1 SYNOPSIS
 
@@ -418,6 +418,8 @@ every non-core modules needed by C<$pkg>.
 Provides C<&Inline-E<gt>write> to replace B<Inline::MakeMaker>'s
 functionality of making (and cleaning after) B<Inline>-based modules.
 
+However, you should invoke this with C<WriteAll( inline => 1 )> instead.
+
 =item Module::Install::MakeMaker
 
 Simple wrapper class for C<ExtUtils::MakeMaker::WriteMakefile>.
@@ -468,9 +470,27 @@ This extension offers C<WriteAll>, which writes F<META.yml> and
 either F<Makefile> or F<Build> depending on how the program was
 invoked.
 
-C<WriteAll> takes two optional named parameters: C<check_nmake>
-(defaults to true) and C<sign> (defaults to false), which, if true,
-invokes functions with the same name.
+C<WriteAll> takes four optional named parameters:
+
+=over 4
+
+=item C<check_nmake> (defaults to true)
+    
+If true, invokes functions with the same name.
+
+=item C<inline> (defaults to false)
+
+If true, invokes C<&Inline->write> instead of C<&Makefile->write>.
+
+=item C<meta> (defaults to true)
+
+If true, writes a C<META.yml> file.
+
+=item C<sign> (defaults to false)
+
+If true, invokes functions with the same name.
+
+=back
 
 =back
 

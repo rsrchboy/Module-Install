@@ -1,9 +1,9 @@
 #line 1 "inc/Module/Install.pm - lib/Module/Install.pm"
 # $File: //depot/cpan/Module-Install/lib/Module/Install.pm $ $Author: autrijus $
-# $Revision: #65 $ $Change: 1837 $ $DateTime: 2003/12/20 16:20:59 $ vim: expandtab shiftwidth=4
+# $Revision: #66 $ $Change: 1847 $ $DateTime: 2003/12/31 23:14:54 $ vim: expandtab shiftwidth=4
 
 package Module::Install;
-$VERSION = '0.31';
+$VERSION = '0.32';
 
 die << "." unless $INC{join('/', inc => split(/::/, __PACKAGE__)).'.pm'};
 Please invoke ${\__PACKAGE__} with:
@@ -168,4 +168,4 @@ sub find_extensions {
 
 __END__
 
-#line 594
+#line 614

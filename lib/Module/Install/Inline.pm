@@ -12,8 +12,9 @@ sub Inline { $_[0] }
 
 sub write {
     my $self = shift;
-    my $name = $self->name
+    my $name = $self->module_name || $self->name
         or die "Please set name() before calling &Inline->write\n";
+    $name =~ s/-/::/g;
     my $object = (split(/::/, $name))[-1] or return;
     my $version = $self->version
         or die "Please set version() or version_from() before calling &Inline->write\n";
@@ -24,7 +25,7 @@ Must be of the form '#.##'. (For instance '1.23')
 END
 
     $self->clean_files('_Inline', "$object.inl");
-    $self->requires('Inline' => 0.44); # XXX: check for existing? yagni?
+    $self->build_requires('Inline' => 0.44); # XXX: check for existing? yagni?
 
     my $class = ref($self);
     my $prefix = $self->_top->{prefix};

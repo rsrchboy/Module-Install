@@ -4,7 +4,7 @@
 package Module::Install::Metadata;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
 
-$VERSION = '0.03';
+$VERSION = '0.04';
 
 use strict 'vars';
 use vars qw($VERSION);
@@ -94,6 +94,12 @@ sub _dump {
         $name;
     } if $values{module_name};
 
+    if ($values{name} =~ /::/) {
+        my $name = $values{name};
+        $name =~ s/::/-/g;
+        die "Error in name(): '$values{name}' should be '$name'!\n";
+    }
+
     my $dump = '';
     foreach my $key (@scalar_keys) {
         $dump .= "$key: $values{$key}\n" if exists $values{$key};
@@ -154,7 +160,7 @@ sub write {
             while (<FH>) {
                 last META_NOT_OURS if /^generated_by: Module::Install\b/;
             }
-            return $self;
+            return $self if -s FH;
         }
     }
 
