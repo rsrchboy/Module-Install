@@ -1,4 +1,15 @@
 ____________________________________________________________________________
+[  2286] By: autrijus                              on 2004/07/01  04:47:26
+        Log: * This be 0.34.
+	   ! lib/inc/Module/Install.pm
+____________________________________________________________________________
+[  2285] By: autrijus                              on 2004/07/01  03:16:20
+        Log: * auto_include() will not include recursive dependencies
+	       now;
+             that functionality is refactored into auto_include_deps().
+	   ! lib/Module/Install.pm
+	   ! lib/Module/Install/Admin/Include.pm
+____________________________________________________________________________
 [  1885] By: autrijus                              on 2004/03/11  05:55:27
         Log: * This be 0.33.
              * abstract_from() was broken; it works now thanks to SHAY.

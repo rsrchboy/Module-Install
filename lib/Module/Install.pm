@@ -1,8 +1,8 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install.pm $ $Author: autrijus $
-# $Revision: #67 $ $Change: 1885 $ $DateTime: 2004/03/11 05:55:27 $ vim: expandtab shiftwidth=4
+# $Revision: #68 $ $Change: 2285 $ $DateTime: 2004/07/01 03:16:20 $ vim: expandtab shiftwidth=4
 
 package Module::Install;
-$VERSION = '0.33';
+$VERSION = '0.34';
 
 die << "." unless $INC{join('/', inc => split(/::/, __PACKAGE__)).'.pm'};
 Please invoke ${\__PACKAGE__} with:
@@ -28,8 +28,8 @@ Module::Install - Standalone, extensible Perl module installer
 
 =head1 VERSION
 
-This document describes version 0.33 of Module::Install, released
-March 11, 2004.
+This document describes version 0.34 of Module::Install, released
+July 1, 2004.
 
 =head1 SYNOPSIS
 
@@ -54,9 +54,11 @@ Standard usage:
     build_requires  ('Test::More');
     recommends      ('Acme::ComeFrom' => 0.01);
 
-    # auto_bundle();      # optional: bundle run-time dependencies
-    # auto_include();     # optional: include build-time dependencies
-    # auto_install();     # optional: auto-install all dependencies from CPAN
+    # -- You'll likely only want one of the below --
+    # auto_bundle();       # bundle run-time dependencies
+    # auto_include();      # include build-time dependencies
+    # auto_include_deps(); # same as above, plus recursive dependencies
+    # auto_install();      # auto-install all dependencies from CPAN
 
     &WriteAll;
 
@@ -408,10 +410,13 @@ Handles fetching files from remote servers via FTP.
 
 Provides the C<include($pkg)> function to include pod-stripped
 package(s) from C<@INC> to F<inc/>, and the C<auto_include()>
-function to include all modules specified in C<build_requires>.
+function to include all modules specified in C<build_requires>,
 
-Also provides the C<include_deps($pkg)> function to include
-every non-core modules needed by C<$pkg>.
+Also provides the C<include_deps($pkg)> function to include every
+non-core modules needed by C<$pkg>, and the C<auto_include_deps()>
+function that does the same thing as C<auto_include()>, plus all
+recursive dependencies that are subsequently required by modules in
+C<build_requires>.
 
 =item Module::Install::Inline
 

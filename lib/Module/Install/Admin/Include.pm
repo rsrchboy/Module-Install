@@ -4,7 +4,7 @@
 package Module::Install::Admin::Include;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
 
-$VERSION = '0.01';
+$VERSION = '0.02';
 
 sub include {
     my ($self, $pattern) = @_;
@@ -25,6 +25,13 @@ sub include_deps {
 }
 
 sub auto_include {
+    my $self = shift;
+    foreach my $module ( map $_->[0], map @$_, grep $_, $self->build_requires ) {
+        $self->include($module);
+    }
+}
+
+sub auto_include_deps {
     my $self = shift;
     foreach my $module ( map $_->[0], map @$_, grep $_, $self->build_requires ) {
         $self->include_deps($module);
