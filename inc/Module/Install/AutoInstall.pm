@@ -25,7 +25,7 @@ AUTO:{my$p='ExtUtils::AutoInstall';my$v=0.49;$p->VERSION||0>=$v
 or+eval"use $p $v;1"or+do{my$e=$ENV{PERL_EXTUTILS_AUTOINSTALL};
 (!defined($e)||$e!~m/--(?:default|skip|testonly)/and-t STDIN or
 eval"use ExtUtils::MakeMaker;WriteMakefile(PREREQ_PM=>{'$p',$v}
-);1"and exit)and print"==> $p $v $@required. Install it from CP".
+);1"and exit)and print"==> $p $v required. Install it from CP".
 "AN? [Y/n] "and<STDIN>!~/^n/i and print"*** Installing $p\n"and
 do{if (eval '$>' and lc(`sudo -V`) =~ /version/){system('sudo',
 $^X,"-MCPANPLUS","-e","CPANPLUS::install $p");eval"use $p $v;1"

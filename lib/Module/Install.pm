@@ -1,8 +1,8 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install.pm $ $Author: autrijus $
-# $Revision: #45 $ $Change: 1401 $ $DateTime: 2003/03/27 08:11:53 $ vim: expandtab shiftwidth=4
+# $Revision: #47 $ $Change: 1476 $ $DateTime: 2003/05/06 19:50:52 $ vim: expandtab shiftwidth=4
 
 package Module::Install;
-$VERSION = '0.19_95';
+$VERSION = '0.19_96';
 
 die <<END unless defined $INC{'inc/Module/Install.pm'};
 You must invoke Module::Install with:
@@ -17,6 +17,7 @@ END
 
 use strict 'vars';
 use File::Find;
+use File::Path;
 
 @inc::Module::Install::ISA = 'Module::Install';
 
@@ -26,8 +27,8 @@ Module::Install - Standalone, extensible Perl module installer
 
 =head1 VERSION
 
-This document describes version 0.19_95 of Module::Install, released
-March 28, 2003.
+This document describes version 0.19_96 of Module::Install, released
+May 7, 2003.
 
 THIS IS A PRE-ALPHA SNAPSHOT RELEASE.  THE INTERFACE IS SUBJECT TO
 CHANGE, AND IS LIKELY TO BE BUGGY.  USE IT AT YOUR OWN RISK.
@@ -125,13 +126,18 @@ sub import {
     my $class = $_[0];
     my $self = $class->new(@_[1..$#_]);
 
-    unless (-f $self->{file}) {
+    if (not -f $self->{file} or
+        -d "$self->{prefix}/$self->{author}"
+       ) {
         require "$self->{path}/$self->{dispatch}.pm";
-        ($self->{admin} ||=
-            "$self->{name}::$self->{dispatch}"->new(_top => $self)
-        )->init;
-        @_ = ($class, _self => $self);
-        goto &{"$self->{name}::import"};
+        if (not defined $self->{admin}) {
+            mkpath "$self->{prefix}/$self->{author}";
+            $self->{admin} = 
+              "$self->{name}::$self->{dispatch}"->new(_top => $self);
+            $self->{admin}->init;
+            @_ = ($class, _self => $self);
+            goto &{"$self->{name}::import"};
+        }
     }
 
     *{caller(0) . "::AUTOLOAD"} = $self->autoload;
@@ -167,6 +173,7 @@ sub new {
 
     $args{dispatch} ||= 'Admin';
     $args{prefix}   ||= 'inc';
+    $args{author}   ||= '.author';
     $args{bundle}   ||= '_bundle';
 
     $class =~ s/^\Q$args{prefix}\E:://;

@@ -26,3 +26,6 @@
     - make upload (add cpan-upload to our recommends()?)
     - make distcheck:
         - verify metadata is current
+
+
+Note: EU::MM 6.06_03+ supports META.yml natively.  Maybe probe for that?

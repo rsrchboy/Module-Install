@@ -1,6 +1,10 @@
-# $File: //depot/cpan/Module-Install/lib/inc/Module/Install.pm $ $Author: autrijus $
-# $Revision: #11 $ $Change: 1359 $ $DateTime: 2003/03/11 01:49:03 $ vim: expandtab shiftwidth=4
+# $File: //depot/cpan/Module-Install/lib/inc/Module/Install.pm $ $Author: ingy $
+# $Revision: #12 $ $Change: 1474 $ $DateTime: 2003/05/05 15:25:47 $ vim: expandtab shiftwidth=4
 
+if (-d 'inc/.author') {
+    use File::Path;
+    rmtree('inc');
+}
 unshift @INC, 'inc';
 require Module::Install;
 

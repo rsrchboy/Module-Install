@@ -1,4 +1,33 @@
 ____________________________________________________________________________
+[  1476] By: autrijus                              on 2003/05/06  19:50:52
+        Log: * 19_96 snapshot.
+	   ! lib/Module/Install.pm
+____________________________________________________________________________
+[  1475] By: autrijus                              on 2003/05/06  19:50:44
+        Log: * WriteMakefile() now also calls &Meta->write since that's 
+             the direction schwern's going, too.
+	   ! lib/Module/Install/MakeMaker.pm
+____________________________________________________________________________
+[  1474] By: ingy                                  on 2003/05/05  15:25:47
+        Log: Module::Install keys off inc/.author/ directory now.
+             Autrijus, Please look this over carefully. Seems to work
+	     ok.
+	   ! lib/Module/Install.pm
+	   ! lib/Module/Install/Admin/Makefile.pm
+	   ! lib/inc/Module/Install.pm
+____________________________________________________________________________
+[  1418] By: autrijus                              on 2003/04/07  08:40:18
+        Log: * fix cases where Win32 has space in $^X.
+	   ! lib/Module/Install/PAR.pm
+____________________________________________________________________________
+[  1405] By: autrijus                              on 2003/03/30  14:11:40
+        Log: * add a mental hint from schwern.
+	   ! ToDo
+____________________________________________________________________________
+[  1402] By: autrijus                              on 2003/03/27  08:15:08
+        Log: * changes.
+	   ! Changes
+____________________________________________________________________________
 [  1401] By: autrijus                              on 2003/03/27  08:11:53
         Log: * the 19_95 development snapshot.
 	   ! Makefile.PL README lib/Module/Install.pm

@@ -1,5 +1,5 @@
 name: Module-Install
-version: 0.20
+version: 0.19_96
 abstract: Standalone, extensible Perl module installer
 author: Autrijus Tang (autrijus@autrijus.org)
 license: perl
@@ -15,4 +15,7 @@ recommends:
   ExtUtils::ParseXS: 0
   YAML: 0.35
   Module::Build: 0
-generated_by: Module::Install version 0.20
+private:
+  directory:
+    - inc
+generated_by: Module::Install version 0.19_96

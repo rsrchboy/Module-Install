@@ -1,5 +1,5 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install/PAR.pm $ $Author: autrijus $
-# $Revision: #20 $ $Change: 1376 $ $DateTime: 2003/03/19 04:49:04 $ vim: expandtab shiftwidth=4
+# $Revision: #21 $ $Change: 1418 $ $DateTime: 2003/04/07 08:40:18 $ vim: expandtab shiftwidth=4
 
 package Module::Install::PAR;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
@@ -33,11 +33,15 @@ sub par_base {
         $self->{file} = $file = "$name-$version-$suffix";
     }
 
+    my $perl = $^X;
+    $perl = Win32::GetShortPathName($perl)
+        if $perl =~ / / and defined &Win32::GetShortPathName;
+
     $self->preamble(<<"END") if $base;
 # --- $class section:
 
 all ::
-\t\@$^X -M$inc_class -e \"extract_par(q($file))\"
+\t\@$perl -M$inc_class -e \"extract_par(q($file))\"
 
 END
 

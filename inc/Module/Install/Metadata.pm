@@ -1,5 +1,5 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install/Metadata.pm $ $Author: autrijus $
-# $Revision: #16 $ $Change: 1375 $ $DateTime: 2003/03/18 12:29:32 $ vim: expandtab shiftwidth=4
+# $Revision: #17 $ $Change: 1477 $ $DateTime: 2003/05/06 19:58:01 $ vim: expandtab shiftwidth=4
 
 package Module::Install::Metadata;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
@@ -58,7 +58,7 @@ sub _dump {
         $dump .= "  $_->[0]: $_->[1]\n" for @{$values{$key}};
     }
 
-    return($dump . "generated_by: $package version $version\n");
+    return($dump . "private:\n  directory:\n    - inc\ngenerated_by: $package version $version\n");
 }
 
 sub write {
