@@ -1,8 +1,8 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install.pm $ $Author: autrijus $
-# $Revision: #68 $ $Change: 2285 $ $DateTime: 2004/07/01 03:16:20 $ vim: expandtab shiftwidth=4
+# $Revision: #69 $ $Change: 2301 $ $DateTime: 2004/07/13 07:16:40 $ vim: expandtab shiftwidth=4
 
 package Module::Install;
-$VERSION = '0.34';
+$VERSION = '0.35';
 
 die << "." unless $INC{join('/', inc => split(/::/, __PACKAGE__)).'.pm'};
 Please invoke ${\__PACKAGE__} with:
@@ -21,6 +21,7 @@ use File::Find ();
 use File::Path ();
 
 @inc::Module::Install::ISA = 'Module::Install';
+*inc::Module::Install::VERSION = *VERSION;
 
 =head1 NAME
 
@@ -28,8 +29,8 @@ Module::Install - Standalone, extensible Perl module installer
 
 =head1 VERSION
 
-This document describes version 0.34 of Module::Install, released
-July 1, 2004.
+This document describes version 0.35 of Module::Install, released
+July 13, 2004.
 
 =head1 SYNOPSIS
 

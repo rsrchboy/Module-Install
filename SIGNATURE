@@ -1,12 +1,12 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.39.
+signed via the Module::Signature module, version 0.41.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
 
     % cpansign -v
 
-It would check each file's integrity, as well as the signature's
+It will check each file's integrity, as well as the signature's
 validity.  If "==> Signature verified OK! <==" is not displayed,
 the distribution may already have been compromised, and you should
 not run its Makefile.PL or Build.PL.
@@ -15,15 +15,15 @@ not run its Makefile.PL or Build.PL.
 Hash: SHA1
 
 SHA1 dbd58f850606f5446018b6034a831b2b135f3a88 Build.PL
-SHA1 d1c503f69d1a0079ad303a4f1b36d5f455d138d1 Changes
+SHA1 9ec6cc767a7b43486bd7e5155f77371e7751c8b7 Changes
 SHA1 19e1ba910828e3ad315b1edb6dc361a6305938d1 MANIFEST
-SHA1 d301f97ed05a88a0dde1d90ec091edd39cd6cbde MANIFEST.SKIP
-SHA1 c4a0b8a265dd4c21a933bda021cf902658860533 META.yml
+SHA1 0e60aa579707733a19ac8856956da0c637d97ed2 MANIFEST.SKIP
+SHA1 1870c2e61f96d07df1e9f95f306812c5b97760e2 META.yml
 SHA1 3cc2a794d123cd0e83245f5d8ab60e941c7d97b8 Makefile.PL
 SHA1 2a90897611004f2f49a40798b2274af1d989e0f4 README
 SHA1 e9cabad66944b665d36e0a7cda0dd7bf1f75cfd9 ToDo
 SHA1 46ff42e7e02b856e15106163cd77b1a55fc08fb9 inc/ExtUtils/AutoInstall.pm
-SHA1 6ae8524a1be447e37544ee4d24b3719b0ff89153 inc/Module/Install.pm
+SHA1 ac0001ac49d8c16ac28e5b54e2791ed254b9d1bc inc/Module/Install.pm
 SHA1 288ad5d1124f02a64583d54e2e287532b81907b9 inc/Module/Install/AutoInstall.pm
 SHA1 ed9d9f60d2c925a7c715e5261cd80a5978c9fc9c inc/Module/Install/Base.pm
 SHA1 239178223883059ec355bec886115848ab699332 inc/Module/Install/Build.pm
@@ -39,7 +39,7 @@ SHA1 6458cec3e5ecc7a7ab12d138e63aea05486c48ad inc/Test/Builder.pm
 SHA1 d609df5fa76b959d08e5d9d0a15fe59c5c2f95e0 inc/Test/More.pm
 SHA1 61ae9682447a3300bf61e36f80df0011f53e1f5a lib/Module/Install-Cookbook.pod
 SHA1 559a427e006e8b62c9627b8c8e39669066fb9b41 lib/Module/Install-Philosophy.pod
-SHA1 68e465225a12956aa4a8e68ffa71fcbf17809404 lib/Module/Install.pm
+SHA1 aee5395979a106ddce511a5314217ef7dfa67b93 lib/Module/Install.pm
 SHA1 88cbe64d234b7c43b578b11bc4ce39e9228f576a lib/Module/Install/Admin.pm
 SHA1 bd41fae896f850b667abc6243091241d9bb323b8 lib/Module/Install/Admin/Bundle.pm
 SHA1 8307db51af9ab267acca6f7c15d21a15133b2fc6 lib/Module/Install/Admin/Find.pm
@@ -67,13 +67,13 @@ SHA1 d5e2af08f6967716d71971126becb10acb17ee4e lib/Module/Install/Run.pm
 SHA1 0082a8daf9dc2a31a1c1f8a719f7fef29df8c939 lib/Module/Install/Scripts.pm
 SHA1 ba8ebea0ff21f47090a9c46946089ea9647c05a9 lib/Module/Install/Win32.pm
 SHA1 87e1d4fa50f1f1ccab659e67a9fdc58173cd6c9c lib/Module/Install/WriteAll.pm
-SHA1 af70ee67dce5a1c6e576b43339c8a07cf17cf212 lib/inc/Module/Install.pm
+SHA1 5be6deda17cd59334644ec6ef6f999d8a03a91e1 lib/inc/Module/Install.pm
 SHA1 284ca43fce9b1643af73a1460aecb4f98639c507 t/0-signature.t
 SHA1 70f5ec238e815a5044c74b7357d411c71b9c8939 t/1-basic.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.2.3 (FreeBSD)
 
-iD8DBQFA4/pStLPdNzw1AaARAi73AJ94RW/otD3h2Al5XE3+vFJd4j5fLwCeMq+i
-nVpUj59l274ijrKOea3hCS4=
-=CtY+
+iD8DBQFA8/CMtLPdNzw1AaARAjC1AJ9URCgP+kpCvMg0zywS6lYiJqGEOwCgupVv
+ePrLeuOKbz7VmY9jpJTma5M=
+=pBRk
 -----END PGP SIGNATURE-----

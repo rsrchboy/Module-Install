@@ -1,5 +1,5 @@
 # $File: //depot/cpan/Module-Install/lib/inc/Module/Install.pm $ $Author: autrijus $
-# $Revision: #16 $ $Change: 2286 $ $DateTime: 2004/07/01 04:47:26 $ vim: expandtab shiftwidth=4
+# $Revision: #17 $ $Change: 2301 $ $DateTime: 2004/07/13 07:16:40 $ vim: expandtab shiftwidth=4
 
 package inc::Module::Install;
 
@@ -10,7 +10,6 @@ if (-d 'inc/.author') {
 
 unshift @INC, 'inc';
 require Module::Install;
-*VERSION = *Module::Install::VERSION;
 
 1;
 

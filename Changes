@@ -1,4 +1,20 @@
 ____________________________________________________________________________
+[  2301] By: autrijus                              on 2004/07/13  07:16:40
+        Log: * This be 0.35.
+             * Jos Boumans reported that "use inc::Module::Install 0.34"
+             was failing because Module::Install does not assign VERSION
+             to inc::Module::Install.
+	   ! lib/Module/Install.pm
+	   ! lib/inc/Module/Install.pm
+____________________________________________________________________________
+[  2288] By: autrijus                              on 2004/07/01  04:49:12
+        Log: * implement auto_include_deps for real.
+	   ! lib/Module/Install/Include.pm
+____________________________________________________________________________
+[  2287] By: autrijus                              on 2004/07/01  04:48:23
+        Log: * oops.
+	   ! Makefile.PL
+____________________________________________________________________________
 [  2286] By: autrijus                              on 2004/07/01  04:47:26
         Log: * This be 0.34.
 	   ! lib/inc/Module/Install.pm
