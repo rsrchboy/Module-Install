@@ -165,8 +165,9 @@ Based on original works by Brian Ingerson E<lt>INGY@cpan.orgE<gt>
 
 =head1 COPYRIGHT
 
-Copyright 2003 by Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>.
-Copyright (c) 2002. Brian Ingerson. All rights reserved.
+Copyright 2002, 2003, 2004 by
+Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>,
+Brian Ingerson E<lt>ingy@cpan.orgE<gt>
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.

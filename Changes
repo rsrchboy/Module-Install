@@ -1,4 +1,42 @@
 ____________________________________________________________________________
+[  1847] By: autrijus                              on 2003/12/31  23:14:54
+        Log: * This be 0.31.
+	   ! README lib/Module/Install-Cookbook.pod
+	   ! lib/Module/Install.pm
+	   ! lib/Module/Install/Admin.pm
+	   ! lib/Module/Install/Admin/Manifest.pm
+	   ! lib/Module/Install/Base.pm
+	   ! lib/Module/Install/Build.pm
+	   ! lib/Module/Install/Bundle.pm
+	   ! lib/Module/Install/Makefile.pm
+	   ! lib/inc/Module/Install.pm
+____________________________________________________________________________
+[  1846] By: autrijus                              on 2003/12/31  22:57:12
+        Log: * allow auto_install() to take -core-specific options like
+             (-default => 0).
+	   ! lib/Module/Install/AutoInstall.pm
+____________________________________________________________________________
+[  1841] By: autrijus                              on 2003/12/28  19:43:56
+        Log: * no longer use inc/SCRIPT but simply modify the
+             scripts to install.
+	   ! lib/Module/Install/Scripts.pm
+____________________________________________________________________________
+[  1840] By: autrijus                              on 2003/12/28  19:42:02
+        Log: * make can_cc to probe the program part of $Config{cc}
+	   ! lib/Module/Install/Can.pm
+____________________________________________________________________________
+[  1837] By: autrijus                              on 2003/12/20  16:20:59
+        Log: * Bundled M::I-using modules (or subdirs) used to break up
+             spectacularly by overriding ::AUTOLOAD and reusing their
+             parents' inc/*.  Now the namespaces are keyed by cwd and
+             more readily unregistered.
+	   ! lib/Module/Install.pm
+____________________________________________________________________________
+[  1830] By: autrijus                              on 2003/12/17  16:20:13
+        Log: * oops. forgot to check in two files. ingy++
+	   + lib/Module/Install/Admin/Bundle.pm
+	   + lib/Module/Install/Admin/Include.pm
+____________________________________________________________________________
 [  1822] By: autrijus                              on 2003/12/14  21:10:21
         Log: * This be 0.29, for real!
 	   ! lib/Module/Install/Admin.pm

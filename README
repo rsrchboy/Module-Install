@@ -1,5 +1,5 @@
 # $File: //depot/cpan/Module-Install/README $ $Author: autrijus $
-# $Revision: #7 $ $Change: 1588 $ $DateTime: 2003/06/05 06:34:26 $ vim: expandtab shiftwidth=4
+# $Revision: #8 $ $Change: 1847 $ $DateTime: 2003/12/31 23:14:54 $ vim: expandtab shiftwidth=4
 
 This is the README file for Module::Install, a standalone, extensible
 installer for Perl modules.  It is designed to be a drop-in replacement
@@ -50,9 +50,8 @@ with 'nmake' in the last three lines.
 
 * Copyright
 
-Copyright 2003 by Autrijus Tang <autrijus@autrijus.org>,
-                  Brian Ingerson <ingy@cpan.org>.
-Copyright 2002 by Brian Ingerson <ingy@cpan.org>.
+Copyright 2002, 2003, 2004 by Autrijus Tang <autrijus@autrijus.org>,
+                              Brian Ingerson <ingy@cpan.org>.
 
 All rights reserved.  You can redistribute and/or modify
 this bundle under the same terms as Perl itself.

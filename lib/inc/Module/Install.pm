@@ -1,5 +1,5 @@
 # $File: //depot/cpan/Module-Install/lib/inc/Module/Install.pm $ $Author: autrijus $
-# $Revision: #14 $ $Change: 1556 $ $DateTime: 2003/05/26 01:55:20 $ vim: expandtab shiftwidth=4
+# $Revision: #15 $ $Change: 1847 $ $DateTime: 2003/12/31 23:14:54 $ vim: expandtab shiftwidth=4
 
 package inc::Module::Install;
 
@@ -52,7 +52,7 @@ Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>
 
 =head1 COPYRIGHT
 
-Copyright 2003 by Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>.
+Copyright 2003, 2004 by Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.

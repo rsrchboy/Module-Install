@@ -1,5 +1,5 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install/Bundle.pm $ $Author: autrijus $
-# $Revision: #6 $ $Change: 1811 $ $DateTime: 2003/12/14 18:52:33 $ vim: expandtab shiftwidth=4
+# $Revision: #7 $ $Change: 1847 $ $DateTime: 2003/12/31 23:14:54 $ vim: expandtab shiftwidth=4
 
 package Module::Install::Bundle;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
@@ -155,19 +155,17 @@ Please report any bugs to (patches welcome):
 
     http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Module-Install
 
+=head1 AUTHORS
+
+Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>
+
+Documentation by Adam Foxson E<lt>afoxson@pobox.comE<gt>
+
 =head1 COPYRIGHT
 
-Copyright 2003 by Autrijus Tang <autrijus@autrijus.org>.
-
-=head1 LICENSE
+Copyright 2003, 2004 by Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>.
 
 This program is free software; you can redistribute it and/or modify it under
 the same terms as Perl itself.
-
-=head1 AUTHORS
-
-Autrijus Tang <autrijus@autrijus.org>
-
-Documentation by Adam Foxson <afoxson@pobox.com>
 
 =cut

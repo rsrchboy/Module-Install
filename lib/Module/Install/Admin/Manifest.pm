@@ -1,5 +1,5 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install/Admin/Manifest.pm $ $Author: autrijus $
-# $Revision: #18 $ $Change: 1780 $ $DateTime: 2003/10/22 17:13:48 $ vim: expandtab shiftwidth=4
+# $Revision: #19 $ $Change: 1847 $ $DateTime: 2003/12/31 23:14:54 $ vim: expandtab shiftwidth=4
 
 package Module::Install::Admin::Manifest;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
@@ -150,8 +150,9 @@ __END__
 
 =head1 COPYRIGHT
 
-Copyright 2003 by Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>
-Copyright 2003 by Brian Ingerson E<lt>ingy@cpan.orgE<gt>
+Copyright 2003, 2004 by
+Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>,
+Brian Ingerson E<lt>ingy@cpan.orgE<gt>
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.

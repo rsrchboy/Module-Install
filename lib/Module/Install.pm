@@ -1,21 +1,22 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install.pm $ $Author: autrijus $
-# $Revision: #64 $ $Change: 1812 $ $DateTime: 2003/12/14 20:24:49 $ vim: expandtab shiftwidth=4
+# $Revision: #66 $ $Change: 1847 $ $DateTime: 2003/12/31 23:14:54 $ vim: expandtab shiftwidth=4
 
 package Module::Install;
-$VERSION = '0.29';
+$VERSION = '0.31';
 
-die <<END unless defined $INC{'inc/Module/Install.pm'};
-Please invoke Module::Install with:
+die << "." unless $INC{join('/', inc => split(/::/, __PACKAGE__)).'.pm'};
+Please invoke ${\__PACKAGE__} with:
 
-    use inc::Module::Install;
+    use inc::${\__PACKAGE__};
 
 not:
 
-    use Module::Install;
+    use ${\__PACKAGE__};
 
-END
+.
 
 use strict 'vars';
+use Cwd ();
 use File::Find ();
 use File::Path ();
 
@@ -27,8 +28,8 @@ Module::Install - Standalone, extensible Perl module installer
 
 =head1 VERSION
 
-This document describes version 0.29 of Module::Install, released
-December 15, 2003.
+This document describes version 0.31 of Module::Install, released
+January 1, 2003.
 
 =head1 SYNOPSIS
 
@@ -141,6 +142,10 @@ sub import {
     }
 
     *{caller(0) . "::AUTOLOAD"} = $self->autoload;
+
+    # Unregister loader and worker packages so subdirs can use them again
+    delete $INC{"$self->{file}"};
+    delete $INC{"$self->{path}.pm"};
 }
 
 =item autoload()
@@ -152,8 +157,16 @@ Returns an AUTOLOAD handler bound to the caller package.
 sub autoload {
     my $self = shift;
     my $caller = caller;
-    sub {
-        ${"$caller\::AUTOLOAD"} =~ /([^:]+)$/ or die "Cannot autoload $caller";
+
+    my $cwd = Cwd::cwd();
+    my $sym = "$caller\::AUTOLOAD";
+
+    $sym->{$cwd} = sub {
+        my $pwd = Cwd::cwd();
+        if (my $code = $sym->{$pwd}) {
+            goto &$code unless $cwd eq $pwd; # delegate back to parent dirs
+        }
+        $$sym =~ /([^:]+)$/ or die "Cannot autoload $caller";
         unshift @_, ($self, $1);
         goto &{$self->can('call')} unless uc($1) eq $1;
     };
@@ -252,7 +265,7 @@ sub load_extensions {
         next if $self->{pathnames}{$pkg};
 
         eval { require $file; 1 } or (warn($@), next);
-        $self->{pathnames}{$pkg} = $INC{$file};
+        $self->{pathnames}{$pkg} = delete $INC{$file};
         push @{$self->{extensions}}, $pkg->new( _top => $top_obj );
     }
 }
@@ -449,6 +462,16 @@ Handles packaging and installation of scripts, instead of modules.
 Functions related for installing modules on Win32, e.g. automatically
 fetching and installing F<nmake.exe> for users that need it.
 
+=item Module::Install::WriteAll
+
+This extension offers C<WriteAll>, which writes F<META.yml> and
+either F<Makefile> or F<Build> depending on how the program was
+invoked.
+
+C<WriteAll> takes two optional named parameters: C<check_nmake>
+(defaults to true) and C<sign> (defaults to false), which, if true,
+invokes functions with the same name.
+
 =back
 
 B<Module::Install> also comes with several administrative extensions:
@@ -534,12 +557,17 @@ L<Module::Install::PAR>,
 L<Module::Install::Run>,
 L<Module::Install::Scripts>,
 L<Module::Install::Win32>
+L<Module::Install::WriteAll>
 
 L<Module::Install::Admin>,
+L<Module::Install::Admin::Bundle>,
 L<Module::Install::Admin::Find>,
+L<Module::Install::Admin::Include>,
+L<Module::Install::Admin::Makefile>,
 L<Module::Install::Admin::Manifest>,
 L<Module::Install::Admin::Metadata>,
 L<Module::Install::Admin::ScanDeps>
+L<Module::Install::Admin::WriteAll>
 
 L<CPAN::MakeMaker>,
 L<Inline::MakeMaker>,
@@ -553,10 +581,9 @@ Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>
 
 =head1 COPYRIGHT
 
-Copyright 2003 by Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>,
+Copyright 2002, 2003, 2004 by
+Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>,
 Brian Ingerson E<lt>INGY@cpan.orgE<gt>.
-
-Copyright 2002 by Brian Ingerson E<lt>INGY@cpan.orgE<gt>.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
