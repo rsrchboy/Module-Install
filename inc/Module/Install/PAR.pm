@@ -1,5 +1,5 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install/PAR.pm $ $Author: autrijus $
-# $Revision: #21 $ $Change: 1418 $ $DateTime: 2003/04/07 08:40:18 $ vim: expandtab shiftwidth=4
+# $Revision: #22 $ $Change: 1481 $ $DateTime: 2003/05/07 10:41:22 $ vim: expandtab shiftwidth=4
 
 package Module::Install::PAR;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
@@ -116,7 +116,7 @@ sub make_par {
         $zip->writeToFileNamed( $file ) == AZ_OK or die $!;
     }
     elsif ($self->can_run('zip')) {
-        mkdir('blib');
+        mkdir('blib', 0777);
         chdir('blib');
         system(qw(zip -r), "../$file", '.') and die $!;
         chdir('..');

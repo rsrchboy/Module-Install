@@ -1,8 +1,8 @@
-# $File: //depot/cpan/Module-Install/lib/Module/Install.pm $ $Author: autrijus $
-# $Revision: #47 $ $Change: 1476 $ $DateTime: 2003/05/06 19:50:52 $ vim: expandtab shiftwidth=4
+# $File: //depot/cpan/Module-Install/lib/Module/Install.pm $ $Author: ingy $
+# $Revision: #48 $ $Change: 1480 $ $DateTime: 2003/05/07 10:39:42 $ vim: expandtab shiftwidth=4
 
 package Module::Install;
-$VERSION = '0.19_96';
+$VERSION = '0.19_97';
 
 die <<END unless defined $INC{'inc/Module/Install.pm'};
 You must invoke Module::Install with:
@@ -25,18 +25,14 @@ sub import {
     my $class = $_[0];
     my $self = $class->new(@_[1..$#_]);
 
-    if (not -f $self->{file} or
-        -d "$self->{prefix}/$self->{author}"
-       ) {
+    if (not -f $self->{file}) {
         require "$self->{path}/$self->{dispatch}.pm";
-        if (not defined $self->{admin}) {
-            mkpath "$self->{prefix}/$self->{author}";
-            $self->{admin} = 
-              "$self->{name}::$self->{dispatch}"->new(_top => $self);
-            $self->{admin}->init;
-            @_ = ($class, _self => $self);
-            goto &{"$self->{name}::import"};
-        }
+        mkpath "$self->{prefix}/$self->{author}";
+        $self->{admin} = 
+          "$self->{name}::$self->{dispatch}"->new(_top => $self);
+        $self->{admin}->init;
+        @_ = ($class, _self => $self);
+        goto &{"$self->{name}::import"};
     }
 
     *{caller(0) . "::AUTOLOAD"} = $self->autoload;

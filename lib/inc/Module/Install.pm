@@ -1,10 +1,11 @@
-# $File: //depot/cpan/Module-Install/lib/inc/Module/Install.pm $ $Author: ingy $
-# $Revision: #12 $ $Change: 1474 $ $DateTime: 2003/05/05 15:25:47 $ vim: expandtab shiftwidth=4
+# $File: //depot/cpan/Module-Install/lib/inc/Module/Install.pm $ $Author: autrijus $
+# $Revision: #13 $ $Change: 1483 $ $DateTime: 2003/05/08 01:26:46 $ vim: expandtab shiftwidth=4
 
 if (-d 'inc/.author') {
-    use File::Path;
-    rmtree('inc');
+    require File::Path;
+    File::Path::rmtree('inc');
 }
+
 unshift @INC, 'inc';
 require Module::Install;
 
@@ -22,9 +23,12 @@ inc::Module::Install - Module::Install loader
 
 =head1 DESCRIPTION
 
-This module simply unshifts C<inc> into C<@INC>, then loads
-B<Module::Install> from there.  Below is an explanation of the reason
-for using a I<loader module>:
+This module first checks whether the F<inc/.author> directory exists,
+and removes the whole F<inc/> directory if it does, so the module author
+always get a fresh F<inc> every time they run F<Makefile.PL>.  Next, it
+unshifts C<inc> into C<@INC>, then loads B<Module::Install> from there.
+
+Below is an explanation of the reason for using a I<loader module>:
 
 The original implementation of B<CPAN::MakeMaker> introduces subtle
 problems for distributions ending with C<CPAN> (e.g. B<CPAN.pm>,

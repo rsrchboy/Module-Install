@@ -1,8 +1,8 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install.pm $ $Author: autrijus $
-# $Revision: #47 $ $Change: 1476 $ $DateTime: 2003/05/06 19:50:52 $ vim: expandtab shiftwidth=4
+# $Revision: #49 $ $Change: 1483 $ $DateTime: 2003/05/08 01:26:46 $ vim: expandtab shiftwidth=4
 
 package Module::Install;
-$VERSION = '0.19_96';
+$VERSION = '0.19_97';
 
 die <<END unless defined $INC{'inc/Module/Install.pm'};
 You must invoke Module::Install with:
@@ -27,8 +27,8 @@ Module::Install - Standalone, extensible Perl module installer
 
 =head1 VERSION
 
-This document describes version 0.19_96 of Module::Install, released
-May 7, 2003.
+This document describes version 0.19_97 of Module::Install, released
+May 8, 2003.
 
 THIS IS A PRE-ALPHA SNAPSHOT RELEASE.  THE INTERFACE IS SUBJECT TO
 CHANGE, AND IS LIKELY TO BE BUGGY.  USE IT AT YOUR OWN RISK.
@@ -126,18 +126,14 @@ sub import {
     my $class = $_[0];
     my $self = $class->new(@_[1..$#_]);
 
-    if (not -f $self->{file} or
-        -d "$self->{prefix}/$self->{author}"
-       ) {
+    if (not -f $self->{file}) {
         require "$self->{path}/$self->{dispatch}.pm";
-        if (not defined $self->{admin}) {
-            mkpath "$self->{prefix}/$self->{author}";
-            $self->{admin} = 
-              "$self->{name}::$self->{dispatch}"->new(_top => $self);
-            $self->{admin}->init;
-            @_ = ($class, _self => $self);
-            goto &{"$self->{name}::import"};
-        }
+        mkpath "$self->{prefix}/$self->{author}";
+        $self->{admin} = 
+          "$self->{name}::$self->{dispatch}"->new(_top => $self);
+        $self->{admin}->init;
+        @_ = ($class, _self => $self);
+        goto &{"$self->{name}::import"};
     }
 
     *{caller(0) . "::AUTOLOAD"} = $self->autoload;
@@ -429,6 +425,10 @@ existing ones to save the user from recompiling.
 Determines if a command is available on the user's machine, and run
 external commands via B<IPC::Run3>.
 
+=item Module::Install::Scripts
+
+Handles packaging and installation of scripts, instead of modules.
+
 =item Module::Install::Win32
 
 Functions related for installing modules on Win32, e.g. automatically
@@ -473,14 +473,11 @@ Here is a brief overview of the reasons:
     Generate stock Makefile.PL for Module::Build users.
     Guaranteed forward-compatibility.
     Automatically updates your MANIFEST.
+    Distributing scripts is easy.
     Include prerequisite modules (even the entire dependency tree).
     Auto-installation of prerequisites.
     Support for Inline::C.
     Support for precompiled binaries.
-
-Following features are planned in the near future:
-
-    Distributing scripts is easy.       # needs Module::Install::Scripts
 
 Besides, if you author more than one CPAN modules, chances are there
 are duplicated in their F<Makefile.PL> or with some other CPAN module
@@ -516,7 +513,9 @@ L<Module::Install::Makefile::CleanFiles>,
 L<Module::Install::Makefile::Name>,
 L<Module::Install::Makefile::Version>,
 L<Module::Install::Metadata>,
+L<Module::Install::PAR>,
 L<Module::Install::Run>,
+L<Module::Install::Scripts>,
 L<Module::Install::Win32>
 
 L<Module::Install::Admin>,
