@@ -1,4 +1,24 @@
 ____________________________________________________________________________
+[  1805] By: autrijus                              on 2003/12/11  18:43:02
+        Log: * Module::Install::Bundle now works, thanks to Adam Foxson!
+	   ! Makefile.PL lib/Module/Install.pm
+	   ! lib/Module/Install/Bundle.pm
+	   ! lib/Module/Install/Makefile.pm
+____________________________________________________________________________
+[  1804] By: autrijus                              on 2003/12/11  16:42:29
+        Log: * unbreak against newer EU::MM.
+	   ! MANIFEST.SKIP
+____________________________________________________________________________
+[  1790] By: autrijus                              on 2003/11/11  01:23:39
+        Log: * let "inc" work with "make test" on 5.6.x too.
+	   ! lib/Module/Install/Makefile.pm
+____________________________________________________________________________
+[  1789] By: autrijus                              on 2003/11/11  01:22:54
+        Log: * mcdavis pointed out that Microsoft now wants
+	       "Nmake15.exe",
+             not "nmake15.exe".
+	   ! lib/Module/Install/Win32.pm
+____________________________________________________________________________
 [  1782] By: autrijus                              on 2003/10/27  19:48:59
         Log: * This be 0.27.
              * make the include'd modules actually work during

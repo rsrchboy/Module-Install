@@ -1,5 +1,5 @@
 name: Module-Install
-version: 0.27
+version: 0.28
 abstract: Standalone, extensible Perl module installer
 author: Autrijus Tang (autrijus@autrijus.org)
 license: perl
@@ -9,6 +9,7 @@ build_requires:
 recommends:
   Module::ScanDeps: 0.28
   Module::CoreList: 0
+  CPANPLUS: 0.04
   PAR::Dist: 0.03
   Archive::Tar: 0.23
   ExtUtils::Install: 0.3
@@ -23,4 +24,4 @@ private:
   directory:
     - example
     - inc
-generated_by: Module::Install version 0.27
+generated_by: Module::Install version 0.28

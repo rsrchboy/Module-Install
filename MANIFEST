@@ -17,6 +17,7 @@ lib/Module/Install-Cookbook.pod
 lib/Module/Install-Philosophy.pod
 lib/Module/Install.pm
 lib/Module/Install/Admin.pm
+lib/Module/Install/Admin/Bundle.pm
 lib/Module/Install/Admin/Find.pm
 lib/Module/Install/Admin/Makefile.pm
 lib/Module/Install/Admin/Manifest.pm

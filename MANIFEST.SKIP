@@ -8,4 +8,5 @@
 ^_build/
 ^blib/
 ^pm_to_blib$
+^blibdirs$
 ^t/Foo
