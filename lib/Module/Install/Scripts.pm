@@ -1,9 +1,6 @@
-# $File: //depot/cpan/Module-Install/lib/Module/Install/Scripts.pm $ $Author: autrijus $
-# $Revision: #7 $ $Change: 1841 $ $DateTime: 2003/12/28 19:43:56 $ vim: expandtab shiftwidth=4
-
 package Module::Install::Scripts;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
-$VERSION = '0.01';
+$VERSION = '0.02';
 use strict;
 use File::Basename ();
 
@@ -28,10 +25,10 @@ sub prompt_script {
 }
 
 sub install_script {
-    my ($self, $script_file) = @_;
+    my $self = shift;
     my $args = $self->makemaker_args;
     my $exe_files = $args->{EXE_FILES} ||= [];
-    push @$exe_files, $script_file;
+    push @$exe_files, @_;
 }
 
 sub _read_script {

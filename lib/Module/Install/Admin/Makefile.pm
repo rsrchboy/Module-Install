@@ -1,6 +1,3 @@
-# $File: //depot/cpan/Module-Install/lib/Module/Install/Admin/Makefile.pm $ $Author: autrijus $
-# $Revision: #9 $ $Change: 1646 $ $DateTime: 2003/07/16 01:05:17 $ vim: expandtab shiftwidth=4
-
 package Module::Install::Admin::Makefile;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
 

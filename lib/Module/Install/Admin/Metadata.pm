@@ -1,6 +1,3 @@
-# $File: //depot/cpan/Module-Install/lib/Module/Install/Admin/Manifest.pm $ $Author: autrijus $
-# $Revision: #5 $ $Change: 1263 $ $DateTime: 2003/03/06 02:37:29 $ vim: expandtab shiftwidth=4
-
 package Module::Install::Admin::Metadata;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
 

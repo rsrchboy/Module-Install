@@ -1,6 +1,3 @@
-# $File: //depot/cpan/Module-Install/lib/Module/Install/Admin/WriteAll.pm $ $Author: autrijus $
-# $Revision: #4 $ $Change: 1821 $ $DateTime: 2003/12/14 21:07:46 $
-
 package Module::Install::Admin::WriteAll;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
 

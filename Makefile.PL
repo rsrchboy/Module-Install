@@ -1,6 +1,3 @@
-# $File: //depot/cpan/Module-Install/Makefile.PL $ $Author: autrijus $
-# $Revision: #37 $ $Change: 2287 $ $DateTime: 2004/07/01 04:48:23 $ vim: expandtab shiftwidth=4
-
 use lib 'lib'; # NOTE: Module::Install's Makefile.PL needs this statement
                # to bootstrap itself.  Other module distributions using
                # Module::Install do not need it.

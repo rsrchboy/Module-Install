@@ -1,6 +1,3 @@
-# $File: //depot/cpan/Module-Install/lib/Module/Install/Admin/Find.pm $ $Author: autrijus $
-# $Revision: #3 $ $Change: 1375 $ $DateTime: 2003/03/18 12:29:32 $ vim: expandtab shiftwidth=4
-
 package Module::Install::Admin::Find;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
 

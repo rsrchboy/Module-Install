@@ -1,6 +1,3 @@
-#!/usr/bin/perl
-# $File: //depot/cpan/Module-Install/t/0-signature.t $ $Author: autrijus $
-# $Revision: #4 $ $Change: 1313 $ $DateTime: 2003/03/08 02:30:22 $ vim: expandtab shiftwidth=4
 
 use strict;
 print "1..1\n";

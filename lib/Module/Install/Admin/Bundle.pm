@@ -1,6 +1,3 @@
-# $File: //member/autrijus/.vimrc $ $Author: autrijus $
-# $Revision: #14 $ $Change: 4137 $ $DateTime: 2003/02/08 11:41:59 $
-
 package Module::Install::Admin::Bundle;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
 

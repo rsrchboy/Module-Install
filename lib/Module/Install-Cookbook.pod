@@ -1,6 +1,3 @@
-# $File: //depot/cpan/Module-Install/lib/Module/Install-Cookbook.pod $ $Author: autrijus $
-# $Revision: #4 $ $Change: 1847 $ $DateTime: 2003/12/31 23:14:54 $ vim: expandtab shiftwidth=4
-
 =head1 NAME
 
 Module::Install-Cookbook - A CornucopiE<aelig> of Module::Install Recipes

@@ -1,6 +1,3 @@
-# $File: //depot/cpan/Module-Install/lib/inc/Module/Install.pm $ $Author: autrijus $
-# $Revision: #17 $ $Change: 2301 $ $DateTime: 2004/07/13 07:16:40 $ vim: expandtab shiftwidth=4
-
 package inc::Module::Install;
 
 if (-d 'inc/.author') {

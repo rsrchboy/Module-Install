@@ -1,6 +1,3 @@
-# $File: //depot/cpan/Module-Install/t/1-basic.t $ $Author: autrijus $
-# $Revision: #2 $ $Change: 1815 $ $DateTime: 2003/12/14 20:41:23 $
-
 use Test;
 use File::Spec;
 

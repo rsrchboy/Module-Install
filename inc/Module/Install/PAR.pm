@@ -1,7 +1,4 @@
 #line 1 "inc/Module/Install/PAR.pm - lib/Module/Install/PAR.pm"
-# $File: //depot/cpan/Module-Install/lib/Module/Install/PAR.pm $ $Author: autrijus $
-# $Revision: #28 $ $Change: 1650 $ $DateTime: 2003/07/29 06:03:27 $ vim: expandtab shiftwidth=4
-
 package Module::Install::PAR;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
 

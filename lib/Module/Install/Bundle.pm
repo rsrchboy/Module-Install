@@ -1,6 +1,3 @@
-# $File: //depot/cpan/Module-Install/lib/Module/Install/Bundle.pm $ $Author: autrijus $
-# $Revision: #7 $ $Change: 1847 $ $DateTime: 2003/12/31 23:14:54 $ vim: expandtab shiftwidth=4
-
 package Module::Install::Bundle;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
 

@@ -1,6 +1,3 @@
-# $File: //depot/cpan/Module-Install/lib/Module/Install/Build.pm $ $Author: ingy $
-# $Revision: #23 $ $Change: 1255 $ $DateTime: 2003/03/05 13:23:32 $ vim: expandtab shiftwidth=4
-
 package Module::Install::Build;
 $VERSION = '0.01';
 use strict;

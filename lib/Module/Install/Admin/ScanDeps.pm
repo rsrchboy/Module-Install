@@ -1,6 +1,3 @@
-# $File: //depot/cpan/Module-Install/lib/Module/Install/Admin/ScanDeps.pm $ $Author: autrijus $
-# $Revision: #16 $ $Change: 1815 $ $DateTime: 2003/12/14 20:41:23 $ vim: expandtab shiftwidth=4
-
 package Module::Install::Admin::ScanDeps;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
 
