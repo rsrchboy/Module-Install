@@ -1,4 +1,15 @@
 ____________________________________________________________________________
+[  1885] By: autrijus                              on 2004/03/11  05:55:27
+        Log: * This be 0.33.
+             * abstract_from() was broken; it works now thanks to SHAY.
+             * WriteAll() now takes (inline => 1) to support
+	       Inline-based
+             modules.
+	   ! Makefile.PL lib/Module/Install.pm
+	   ! lib/Module/Install/Inline.pm
+	   ! lib/Module/Install/Metadata.pm
+	   ! lib/Module/Install/WriteAll.pm
+____________________________________________________________________________
 [  1847] By: autrijus                              on 2003/12/31  23:14:54
         Log: * This be 0.31.
 	   ! README lib/Module/Install-Cookbook.pod

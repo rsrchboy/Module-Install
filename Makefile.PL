@@ -1,5 +1,5 @@
 # $File: //depot/cpan/Module-Install/Makefile.PL $ $Author: autrijus $
-# $Revision: #35 $ $Change: 1811 $ $DateTime: 2003/12/14 18:52:33 $ vim: expandtab shiftwidth=4
+# $Revision: #36 $ $Change: 1885 $ $DateTime: 2004/03/11 05:55:27 $ vim: expandtab shiftwidth=4
 
 use lib 'lib'; # NOTE: Module::Install's Makefile.PL needs this statement
                # to bootstrap itself.  Other module distributions using
@@ -8,8 +8,8 @@ use lib 'lib'; # NOTE: Module::Install's Makefile.PL needs this statement
 use inc::Module::Install;
 
 name            ('Module-Install');
-abstract        ('Standalone, extensible Perl module installer');
 author          ('Autrijus Tang (autrijus@autrijus.org)');
+abstract_from   ('lib/Module/Install.pm');
 version_from    ('lib/Module/Install.pm');
 license         ('perl');
 requires        ('perl' => 5.004);

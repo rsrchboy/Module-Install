@@ -1,9 +1,9 @@
 #line 1 "inc/Module/Install.pm - lib/Module/Install.pm"
 # $File: //depot/cpan/Module-Install/lib/Module/Install.pm $ $Author: autrijus $
-# $Revision: #66 $ $Change: 1847 $ $DateTime: 2003/12/31 23:14:54 $ vim: expandtab shiftwidth=4
+# $Revision: #67 $ $Change: 1885 $ $DateTime: 2004/03/11 05:55:27 $ vim: expandtab shiftwidth=4
 
 package Module::Install;
-$VERSION = '0.32';
+$VERSION = '0.33';
 
 die << "." unless $INC{join('/', inc => split(/::/, __PACKAGE__)).'.pm'};
 Please invoke ${\__PACKAGE__} with:

@@ -1,6 +1,6 @@
 #line 1 "inc/Module/Install/WriteAll.pm - lib/Module/Install/WriteAll.pm"
 # $File: //depot/cpan/Module-Install/lib/Module/Install/WriteAll.pm $ $Author: autrijus $
-# $Revision: #2 $ $Change: 1818 $ $DateTime: 2003/12/14 20:58:38 $ vim: expandtab shiftwidth=4
+# $Revision: #3 $ $Change: 1885 $ $DateTime: 2004/03/11 05:55:27 $ vim: expandtab shiftwidth=4
 
 package Module::Install::WriteAll;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);

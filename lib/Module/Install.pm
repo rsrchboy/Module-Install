@@ -1,8 +1,8 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install.pm $ $Author: autrijus $
-# $Revision: #66 $ $Change: 1847 $ $DateTime: 2003/12/31 23:14:54 $ vim: expandtab shiftwidth=4
+# $Revision: #67 $ $Change: 1885 $ $DateTime: 2004/03/11 05:55:27 $ vim: expandtab shiftwidth=4
 
 package Module::Install;
-$VERSION = '0.32';
+$VERSION = '0.33';
 
 die << "." unless $INC{join('/', inc => split(/::/, __PACKAGE__)).'.pm'};
 Please invoke ${\__PACKAGE__} with:
@@ -28,8 +28,8 @@ Module::Install - Standalone, extensible Perl module installer
 
 =head1 VERSION
 
-This document describes version 0.32 of Module::Install, released
-February 26, 2004.
+This document describes version 0.33 of Module::Install, released
+March 11, 2004.
 
 =head1 SYNOPSIS
 
@@ -480,7 +480,7 @@ If true, invokes functions with the same name.
 
 =item C<inline> (defaults to false)
 
-If true, invokes C<&Inline->write> instead of C<&Makefile->write>.
+If true, invokes C<&Inline-E<gt>write> instead of C<&Makefile-E<gt>write>.
 
 =item C<meta> (defaults to true)
 
