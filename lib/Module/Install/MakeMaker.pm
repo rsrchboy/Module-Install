@@ -1,5 +1,5 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install/MakeMaker.pm $ $Author: autrijus $
-# $Revision: #8 $ $Change: 1475 $ $DateTime: 2003/05/06 19:50:44 $ vim: expandtab shiftwidth=4
+# $Revision: #9 $ $Change: 1531 $ $DateTime: 2003/05/20 01:25:43 $ vim: expandtab shiftwidth=4
 
 package Module::Install::MakeMaker;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
@@ -29,7 +29,7 @@ sub WriteMakefile {
 END {
     if ($makefile) {
         $makefile->write;
-        $Meta->write;
+        $makefile->Meta->write;
     }
 }
 

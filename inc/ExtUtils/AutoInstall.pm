@@ -1,9 +1,9 @@
 #line 1 "inc/ExtUtils/AutoInstall.pm - /usr/local/lib/perl5/site_perl/5.8.0/ExtUtils/AutoInstall.pm"
 # $File: //member/autrijus/ExtUtils-AutoInstall/AutoInstall.pm $ 
-# $Revision: #44 $ $Change: 5439 $ $DateTime: 2003/04/22 09:54:35 $
+# $Revision: #46 $ $Change: 5867 $ $DateTime: 2003/05/15 18:26:55 $
 
 package ExtUtils::AutoInstall;
-$ExtUtils::AutoInstall::VERSION = '0.50';
+$ExtUtils::AutoInstall::VERSION = '0.52';
 
 use strict;
 
@@ -571,7 +571,7 @@ sub _make_args {
     ) if $Config;
 
     $PostambleActions = (
-	$missing ? "\$(PERLRUN) $0 --config=$config --installdeps=$missing"
+	$missing ? "\$(PERL) $0 --config=$config --installdeps=$missing"
 		 : "\@\$(NOOP)"
     );
 

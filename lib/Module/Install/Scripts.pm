@@ -1,5 +1,5 @@
-# $File: //depot/cpan/Module-Install/lib/Module/Install/Scripts.pm $ $Author: ingy $
-# $Revision: #3 $ $Change: 1486 $ $DateTime: 2003/05/08 11:33:37 $ vim: expandtab shiftwidth=4
+# $File: //depot/cpan/Module-Install/lib/Module/Install/Scripts.pm $ $Author: autrijus $
+# $Revision: #5 $ $Change: 1517 $ $DateTime: 2003/05/15 11:41:01 $ vim: expandtab shiftwidth=4
 
 package Module::Install::Scripts;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
@@ -31,7 +31,7 @@ sub prompt_script {
         $prompt .= " ($abstract)" if $abstract;
         $prompt .= '?';
     }
-    return unless $self->prompt($prompt, $default) =~ /^(y|yes)$/i;
+    return unless $self->prompt($prompt, $default) =~ /^[Yy]/;
     $self->install_script($script_file);
 }
 
@@ -43,17 +43,9 @@ sub install_script {
           or die "Can't make directory 'inc/SCRIPTS'";
     }
 
-    if ($script_lines[0] =~ /^#!/) {
-        my $startperl = $Config{startperl};
-        $script_lines[0] =~ s/^#!\S*/$startperl/;
-    }
-    else {
-        push @script_lines, $Config{startperl} . " -w\n";
-    }
-
     my $new_script = 'inc/SCRIPTS/' . basename($script_file);
     open SCRIPT, "> $new_script"
-      or die "Can't open '$new_script' for output\n";
+      or die "Can't open '$new_script' for output: $!\n";
     print SCRIPT $_ for @script_lines;
     close SCRIPT;
     my $args = $self->makemaker_args;
@@ -67,7 +59,7 @@ sub _read_script {
     my ($self, $script_file) = @_;
     local *SCRIPT;
     open SCRIPT, $script_file
-      or die "Can't open '$script_file' for input";
+      or die "Can't open '$script_file' for input: $!\n";
     <SCRIPT>;
 }
 

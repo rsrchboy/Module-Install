@@ -1,4 +1,59 @@
 ____________________________________________________________________________
+[  1532] By: autrijus                              on 2003/05/20  01:27:31
+        Log: * This be 0.19_99.
+	   ! lib/Module/Install.pm
+____________________________________________________________________________
+[  1531] By: autrijus                              on 2003/05/20  01:25:43
+        Log: * our version of WriteMakefile was failing to fine Meta
+	       object.	fixed.
+	   ! lib/Module/Install/MakeMaker.pm
+____________________________________________________________________________
+[  1529] By: ingy                                  on 2003/05/19  21:06:26
+        Log: 'make reset' now just an author side alias for 'make
+	     purge'.
+             Perhaps I should remove altogether.
+	   ! lib/Module/Install/Admin/Makefile.pm
+____________________________________________________________________________
+[  1520] By: ingy                                  on 2003/05/16  14:31:01
+        Log: make reset is really just make realclean. no need to be
+	     different.
+	   ! lib/Module/Install/Admin/Makefile.pm
+____________________________________________________________________________
+[  1517] By: autrijus                              on 2003/05/15  11:41:01
+        Log: * the whole #! business is unneeded since MakeMaker does
+	       that.
+	   ! lib/Module/Install/Scripts.pm
+____________________________________________________________________________
+[  1516] By: autrijus                              on 2003/05/15  11:14:59
+        Log: * avoid warnings.
+	   ! lib/Module/Install/Makefile.pm
+____________________________________________________________________________
+[  1515] By: autrijus                              on 2003/05/15  11:09:47
+        Log: * don't skip other non-pm inc/ stuff when checking
+	       manifest!
+	   ! lib/Module/Install/Admin/Manifest.pm
+____________________________________________________________________________
+[  1514] By: autrijus                              on 2003/05/15  10:02:29
+        Log: * more ->prompt consistency police actions
+             * the hashbang line should be the first not last in
+	       scripts.
+             * also people may not always like -w.
+	   ! lib/Module/Install/Scripts.pm
+____________________________________________________________________________
+[  1513] By: autrijus                              on 2003/05/15  09:51:28
+        Log: * we reall want to rmtree the distdir so that 'make
+	       manifest'
+             won't include clobbered files after an aborted 'make dist'.
+             * fix consistency: ->prompt() should only take one line of
+	       prompt
+             and excepts y/n.
+	   ! lib/Module/Install/Admin/Makefile.pm
+	   ! lib/Module/Install/Admin/Manifest.pm
+____________________________________________________________________________
+[  1511] By: autrijus                              on 2003/05/14  14:21:46
+        Log: * changes.
+	   ! Changes
+____________________________________________________________________________
 [  1510] By: autrijus                              on 2003/05/14  14:19:04
         Log: * 0.19_98.
 	   ! lib/Module/Install.pm

@@ -1,5 +1,5 @@
-# $File: //depot/cpan/Module-Install/lib/Module/Install/Admin/Manifest.pm $ $Author: ingy $
-# $Revision: #15 $ $Change: 1393 $ $DateTime: 2003/03/23 09:19:28 $ vim: expandtab shiftwidth=4
+# $File: //depot/cpan/Module-Install/lib/Module/Install/Admin/Manifest.pm $ $Author: autrijus $
+# $Revision: #17 $ $Change: 1515 $ $DateTime: 2003/05/15 11:09:47 $ vim: expandtab shiftwidth=4
 
 package Module::Install::Admin::Manifest;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
@@ -13,10 +13,10 @@ use File::Spec;
 # XXX I really want this method in Module::Install::Admin::Makefile
 # But you can't call across Admin modules. Autrijus??
 sub dist_preop {
-    my $self = shift;
-    $self->check_manifest or 
-    do {
-        my $answer = $self->prompt(<<END);
+    my ($self, $distdir) = @_;
+    return if $self->check_manifest;
+
+    print << "END";
 
 It appears that your MANIFEST does not contain the same components that
 are currently in the 'inc' directory. 
@@ -26,10 +26,16 @@ Please try running 'make manifest' and then run 'make dist' again.
 Remember to use the MANIFEST.SKIP file to control things that should not
 end up in your MANIFEST. See 'perldoc ExtUtils::Manifest' for details.
 
-Type 'force' if you *really* want to continue making a distribution.
 END
-        exit(1) unless $answer =~ /^force$/i;
-    };
+    return if $self->prompt(
+        'Do you *really* want to continue making a distribution?', 'n'
+    ) =~ /^[Yy]/;
+
+    if (-d $distdir) {
+        require File::Path;
+        File::Path::rmtree($distdir);
+    }
+    exit(1);
 }
 
 # XXX Needs a refactoring.
@@ -61,7 +67,6 @@ sub check_manifest {
 
   ADDLOOP:
     for my $pathname (sort $self->_find_files($prefix)) {
-        next unless $pathname =~ /\w+\.pm$/i;
         $pathname = "$relative_path/$pathname" if length($relative_path);
         $pathname =~ s!//+!/!g;
         next unless -f $pathname;

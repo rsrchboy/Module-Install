@@ -1,6 +1,6 @@
 #line 1 "inc/Module/Install/Makefile.pm - lib/Module/Install/Makefile.pm"
-# $File: //depot/cpan/Module-Install/lib/Module/Install/Makefile.pm $ $Author: iain $
-# $Revision: #41 $ $Change: 1502 $ $DateTime: 2003/05/13 01:28:08 $ vim: expandtab shiftwidth=4
+# $File: //depot/cpan/Module-Install/lib/Module/Install/Makefile.pm $ $Author: autrijus $
+# $Revision: #42 $ $Change: 1516 $ $DateTime: 2003/05/15 11:14:59 $ vim: expandtab shiftwidth=4
 
 package Module::Install::Makefile;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
@@ -72,8 +72,8 @@ sub write {
 
 sub fix_up_makefile {
     my $self = shift;
-    my $top_class = ref($self->_top);
-    my $top_version = $self->_top->VERSION;
+    my $top_class = ref($self->_top) || '';
+    my $top_version = $self->_top->VERSION || '';
 
     my $preamble = $self->preamble 
        ? "# Preamble by $top_class $top_version\n" . $self->preamble
