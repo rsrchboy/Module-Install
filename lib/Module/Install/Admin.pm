@@ -1,5 +1,5 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install/Admin.pm $ $Author: autrijus $
-# $Revision: #39 $ $Change: 1509 $ $DateTime: 2003/05/14 13:54:36 $ vim: expandtab shiftwidth=4
+# $Revision: #40 $ $Change: 1781 $ $DateTime: 2003/10/22 17:14:03 $ vim: expandtab shiftwidth=4
 
 package Module::Install::Admin;
 $VERSION = '0.20';
@@ -202,7 +202,9 @@ sub copy_package {
     return if -f $file; # prevents infinite recursion
 
     $self->copy($pathname => $file);
-    $self->copy_package($_) for @{"$pkg\::ISA"};
+    foreach my $pkg (@{"$pkg\::ISA"}) {
+        $self->copy_package($pkg);
+    }
 }
 
 sub pick {

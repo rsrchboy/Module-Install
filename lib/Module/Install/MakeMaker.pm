@@ -1,5 +1,5 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install/MakeMaker.pm $ $Author: autrijus $
-# $Revision: #10 $ $Change: 1645 $ $DateTime: 2003/07/16 01:05:06 $ vim: expandtab shiftwidth=4
+# $Revision: #11 $ $Change: 1781 $ $DateTime: 2003/10/22 17:14:03 $ vim: expandtab shiftwidth=4
 
 package Module::Install::MakeMaker;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
@@ -26,7 +26,9 @@ sub WriteMakefile {
     }
 
     if (my $prereq = delete($args{PREREQ_PM})) {
-        $self->requires($_ => $prereq->{$_}) for keys %$prereq;
+        while (my($k,$v) = each %$prereq) {
+            $self->requires($k,$v);
+        }
     }
 
     # put the remaining args to makemaker_args

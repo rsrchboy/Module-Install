@@ -1,5 +1,5 @@
-# $File: //depot/cpan/Module-Install/lib/Module/Install/Inline.pm $ $Author: ingy $
-# $Revision: #5 $ $Change: 1377 $ $DateTime: 2003/03/20 15:11:54 $ vim: expandtab shiftwidth=4
+# $File: //depot/cpan/Module-Install/lib/Module/Install/Inline.pm $ $Author: autrijus $
+# $Revision: #6 $ $Change: 1781 $ $DateTime: 2003/10/22 17:14:03 $ vim: expandtab shiftwidth=4
 
 package Module::Install::Inline;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
@@ -24,7 +24,7 @@ Must be of the form '#.##'. (For instance '1.23')
 END
 
     $self->clean_files('_Inline', "$object.inl");
-    $self->requires(Inline => 0.44); # XXX: check for existing? yagni?
+    $self->requires('Inline' => 0.44); # XXX: check for existing? yagni?
 
     my $class = ref($self);
     my $prefix = $self->_top->{prefix};

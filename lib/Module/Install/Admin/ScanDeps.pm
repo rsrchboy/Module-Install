@@ -1,5 +1,5 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install/Admin/ScanDeps.pm $ $Author: autrijus $
-# $Revision: #13 $ $Change: 1669 $ $DateTime: 2003/08/19 20:17:39 $ vim: expandtab shiftwidth=4
+# $Revision: #14 $ $Change: 1781 $ $DateTime: 2003/10/22 17:14:03 $ vim: expandtab shiftwidth=4
 
 package Module::Install::Admin::ScanDeps;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
@@ -56,7 +56,9 @@ sub scan_dependencies {
         }
     }
 
-    defined($result{$_}) or delete $result{$_} for keys %result;
+    while (my($k,$v) = each %result) {
+        delete $result{$k} unless defined $v;
+    }
     return \%result;
 }
 

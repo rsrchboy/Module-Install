@@ -1,5 +1,5 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install/Admin/Manifest.pm $ $Author: autrijus $
-# $Revision: #17 $ $Change: 1515 $ $DateTime: 2003/05/15 11:09:47 $ vim: expandtab shiftwidth=4
+# $Revision: #18 $ $Change: 1780 $ $DateTime: 2003/10/22 17:13:48 $ vim: expandtab shiftwidth=4
 
 package Module::Install::Admin::Manifest;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
@@ -135,7 +135,7 @@ sub _find_files {
         my @files = ();
         local *DIR;
         opendir(DIR, $file) or die "Can't opendir $file";
-        while (my $new_file = readdir(DIR)) {
+        while (defined(my $new_file = readdir(DIR))) {
             next if $new_file =~ /^(\.|\.\.)$/;
             push @files, $self->_find_files($new_file, $file);
         }

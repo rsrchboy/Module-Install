@@ -19,15 +19,14 @@ sub write {
     $args{dist_name} = $self->name || $self->determine_NAME($self->{args});
     $args{license} = $self->license;
     $args{dist_version} = $self->version || $self->determine_VERSION($self->{args});
+    $args{dist_abstract} = $self->abstract;
+    $args{dist_author} = $self->author;
+    $args{sign} = $self->sign;
+    $args{no_index} = $self->no_index;
 
-    if ($] >= 5.005) {
-	$args{ABSTRACT} = $self->abstract;
-	$args{AUTHOR} = $self->author;
-    }
-
-    my $requires = $self->requires;
-    if (defined($requires)) {
-        $args{requires} = { map @$_, @$requires };
+    foreach my $key (qw(build_requires requires recommends conflicts)) {
+        my $val = eval "\$self->$key" or next;
+        $args{$key} = { map @$_, @$val };
     }
 
     %args = map {($_, $args{$_})} grep {defined($args{$_})} keys %args;

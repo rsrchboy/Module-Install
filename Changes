@@ -1,4 +1,39 @@
 ____________________________________________________________________________
+[  1782] By: autrijus                              on 2003/10/27  19:48:59
+        Log: * This be 0.27.
+             * make the include'd modules actually work during
+             "make" and "make test", by adding "inc" to the
+             Makefile targets.
+	   ! lib/Module/Install.pm
+	   ! lib/Module/Install/Makefile.pm
+____________________________________________________________________________
+[  1781] By: autrijus                              on 2003/10/22  17:14:03
+        Log: * Graham's patch for 5.004 backcompat.
+	   ! lib/Module/Install/Admin.pm
+	   ! lib/Module/Install/Admin/ScanDeps.pm
+	   ! lib/Module/Install/Inline.pm
+	   ! lib/Module/Install/MakeMaker.pm
+	   ! lib/Module/Install/Metadata.pm
+	   ! lib/Module/Install/Scripts.pm
+____________________________________________________________________________
+[  1780] By: autrijus                              on 2003/10/22  17:13:48
+        Log: * Graham Barr points out that readdir() can return 0.
+	   ! lib/Module/Install/Admin/Manifest.pm
+____________________________________________________________________________
+[  1779] By: autrijus                              on 2003/10/21  15:54:39
+        Log: * do not sign the distribution if we are not the admin.
+	   ! lib/Module/Install/Makefile.pm
+____________________________________________________________________________
+[  1778] By: autrijus                              on 2003/10/17  17:37:55
+        Log: * This be 0.26.
+             * sign(1) support for automatic digital signing
+             * no_index(directory => 'example') support, for telling
+             PAUSE and search to skip indexing modules
+	   ! Makefile.PL lib/Module/Install.pm
+	   ! lib/Module/Install/Build.pm
+	   ! lib/Module/Install/Makefile.pm
+	   ! lib/Module/Install/Metadata.pm
+____________________________________________________________________________
 [  1777] By: autrijus                              on 2003/10/13  02:25:45
         Log: * This be 0.25.
              * add no_index as an alias to private in META.yml.

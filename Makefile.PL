@@ -1,5 +1,5 @@
 # $File: //depot/cpan/Module-Install/Makefile.PL $ $Author: autrijus $
-# $Revision: #32 $ $Change: 1777 $ $DateTime: 2003/10/13 02:25:45 $ vim: expandtab shiftwidth=4
+# $Revision: #33 $ $Change: 1778 $ $DateTime: 2003/10/17 17:37:55 $ vim: expandtab shiftwidth=4
 
 use lib 'lib'; # NOTE: Module::Install's Makefile.PL needs this statement
                # to bootstrap itself.  Other module distributions using
@@ -14,6 +14,11 @@ version_from    ('lib/Module/Install.pm');
 license         ('perl');
 
 include         ('ExtUtils::AutoInstall');
+include_deps    ('Test::More', 5.004);
+build_requires  ('Test::More', 0);
+no_index        (directory => 'example');
+sign            (1);
+
 features(
     'Include packages with full dependencies' => [
         -default            => 0,
@@ -37,14 +42,6 @@ features(
 );
 
 auto_install_now( -config => { prerequisites_policy => 'follow' } );
-
-# XXX: eventually adopt '**' or '...' ?
-#include         ('Module::Build::*');
-#include         ('Module::Build::*::*');
-#include         ('Module::Build::*::*::*');
-
-include_deps    ('Test::More', 5.004);
-build_requires  ('Test::More', 0);
 
 par_base();     # par_base('AUTRIJUS') to enable downloading
 check_nmake();
