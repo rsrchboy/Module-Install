@@ -1,11 +1,11 @@
 # $File: //depot/cpan/Module-Install/lib/Module/Install.pm $ $Author: autrijus $
-# $Revision: #57 $ $Change: 1666 $ $DateTime: 2003/08/18 08:00:18 $ vim: expandtab shiftwidth=4
+# $Revision: #58 $ $Change: 1709 $ $DateTime: 2003/09/01 03:13:10 $ vim: expandtab shiftwidth=4
 
 package Module::Install;
-$VERSION = '0.23';
+$VERSION = '0.24';
 
 die <<END unless defined $INC{'inc/Module/Install.pm'};
-You must invoke Module::Install with:
+Please invoke Module::Install with:
 
     use inc::Module::Install;
 
@@ -27,8 +27,8 @@ Module::Install - Standalone, extensible Perl module installer
 
 =head1 VERSION
 
-This document describes version 0.23 of Module::Install, released
-August 18, 2003.
+This document describes version 0.24 of Module::Install, released
+September 1, 2003.
 
 =head1 SYNOPSIS
 

@@ -1,4 +1,21 @@
 ____________________________________________________________________________
+[  1709] By: autrijus                              on 2003/09/01  03:13:10
+        Log: * This be 0.24.
+	   ! lib/Module/Install.pm
+____________________________________________________________________________
+[  1692] By: autrijus                              on 2003/08/28  10:24:51
+        Log: * 0.17 is simply too old as it scans in POD sections.
+	   ! Makefile.PL
+____________________________________________________________________________
+[  1669] By: autrijus                              on 2003/08/19  20:17:39
+        Log: * Kingpin <mthurn@carbon> notes that we are using "next"
+             outside a loop block in ScanDeps.
+	   ! lib/Module/Install/Admin/ScanDeps.pm
+____________________________________________________________________________
+[  1667] By: autrijus                              on 2003/08/18  08:18:40
+        Log: * threads.pm and warnings.pm should be exempted too.
+	   ! lib/Module/Install/Admin/ScanDeps.pm
+____________________________________________________________________________
 [  1666] By: autrijus                              on 2003/08/18  08:00:18
         Log: * This be 0.23.
 	   ! lib/Module/Install.pm
