@@ -1,3 +1,14 @@
+[Changes for 0.37 - 2005-08-04]
+
+* Always include ExtUtils::AutoInstall in inc/ if auto_install() is called.
+
+* Fixed a bug where modules having shared libraries would sometimes
+  be included in inc/.
+
+* The needs shared library message will now only be printed if the module
+  version indicates that it would otherwise be included. The module name has
+  also been corrected so that "::" is used everywhere instead of "/".
+
 [Changes for 0.36 - 2004-09-09]
 
 * First version under SVK management.

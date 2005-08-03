@@ -12,3 +12,4 @@
 ^blibdirs$
 ^t/Foo
 ^.*\.tmp$
+\.svn/

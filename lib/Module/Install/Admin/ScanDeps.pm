@@ -37,16 +37,20 @@ Please first specify a required perl version, like this:
         foreach my $key (keys %$deps) {
             if ($deps->{$key}{type} eq 'shared') {
                 foreach my $used_by (@{$deps->{$key}{used_by}}) {
-                    $used_by =~ s!/!::!;
+                    $used_by =~ s!/!::!g;
                     $used_by =~ s!\.pm\Z!!i or next;
                     next if exists $result{$used_by};
                     $result{$used_by} = undef;
-                    print "skipped $used_by (needs shared library)\n";
+                    my $min_version = Module::CoreList->first_release($used_by);
+                    print "skipped $used_by (needs shared library)\n"
+                      unless !$min_version || $min_version <= $perl_version;
                 }
             }
+        }
 
+        foreach my $key (keys %$deps) {
             my $dep_pkg = $key;
-            $dep_pkg =~ s!/!::!;
+            $dep_pkg =~ s!/!::!g;
             $dep_pkg =~ s!\.pm\Z!!i or next;
 
             if (my $min_version = Module::CoreList->first_release($dep_pkg)) {
