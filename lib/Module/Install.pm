@@ -1,5 +1,5 @@
 package Module::Install;
-$VERSION = '0.37';
+$VERSION = '0.38';
 
 die << "." unless $INC{join('/', inc => split(/::/, __PACKAGE__)).'.pm'};
 Please invoke ${\__PACKAGE__} with:
@@ -26,8 +26,8 @@ Module::Install - Standalone, extensible Perl module installer
 
 =head1 VERSION
 
-This document describes version 0.37 of Module::Install, released
-August 4, 2005.
+This document describes version 0.38 of Module::Install, released
+October 24, 2005.
 
 =head1 SYNOPSIS
 
@@ -51,6 +51,7 @@ Standard usage:
     requires        ('Acme::Hello');
     build_requires  ('Test::More');
     recommends      ('Acme::ComeFrom' => 0.01);
+    tests	    ('mytest.pl');
 
     # -- You'll likely only want one of the below --
     # auto_bundle();       # bundle run-time dependencies

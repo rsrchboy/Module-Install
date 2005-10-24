@@ -49,5 +49,7 @@ MANIFEST			This list of files
 MANIFEST.SKIP
 META.yml
 README
+SIGNATURE
 t/1-basic.t
+t/2pod.t
 ToDo

@@ -1,3 +1,13 @@
+[Changes for 0.38 - 2005-10-24]
+
+* Support specifying test files as tests().
+
+* auto_bundle() now works with CPANPLUS 0.5xx versions.
+
+* New directive, auto_bundle_deps(), that bundles dependencies recursively.
+
+* Core modules are no longer subject to autobundling.
+
 [Changes for 0.37 - 2005-08-04]
 
 * Always include ExtUtils::AutoInstall in inc/ if auto_install() is called.

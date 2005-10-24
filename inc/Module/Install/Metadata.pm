@@ -11,7 +11,7 @@ sub Meta { shift }
 
 my @scalar_keys = qw(
     name module_name version abstract author license
-    distribution_type sign perl_version
+    distribution_type sign perl_version tests
 );
 my @tuple_keys  = qw(build_requires requires recommends bundles);
 

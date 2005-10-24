@@ -53,6 +53,7 @@ sub write {
     $args->{NAME} = $self->module_name || $self->name || $self->determine_NAME($args);
     $args->{VERSION} = $self->version || $self->determine_VERSION($args);
     $args->{NAME} =~ s/-/::/g;
+    $args->{test} = {TESTS => $self->tests};
 
     if ($] >= 5.005) {
 	$args->{ABSTRACT} = $self->abstract;
@@ -140,4 +141,4 @@ sub postamble {
 
 __END__
 
-#line 273
+#line 274

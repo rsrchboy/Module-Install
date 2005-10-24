@@ -63,6 +63,19 @@ sub read_bundles {
     return \%map;
 }
 
+
+sub auto_bundle_deps {
+    my $self = shift;
+
+    # Flatten array of arrays into a single array
+    my @core = map @$_, map @$_, grep ref, $self->requires;
+    while (my ($name, $version) = splice(@core, 0, 2)) {
+        next unless $name;
+         $self->bundle_deps($name, $version);
+         $self->bundle($name, $version);
+    }
+}
+
 sub bundle_deps {
     my ($self, $pkg, $version) = @_;
     my $deps = $self->admin->scan_dependencies($pkg) or return;
@@ -143,6 +156,11 @@ also detected and bundled.  To use this function, you need to declare the
 minimum supported perl version first, like this:
 
     requires( perl => 5.005 );
+
+=item * auto_bundle_deps
+
+Same as C<auto_bundle>, except that all dependencies of the bundled
+modules are also detected and bundled. This function has the same constraints as bundle_deps.
 
 =back
 

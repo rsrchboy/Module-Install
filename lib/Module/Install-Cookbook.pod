@@ -65,6 +65,8 @@ XXX: to be written
 
 =head1 The Main Course
 
+=over 4
+
 =item Problem
 
 Installing XS extensions from CPAN was difficult.  Some platforms do
@@ -84,6 +86,8 @@ Just use the C<par_base> and C<fetch_par> functions:
 
 Users will not notice anything, except now it works.  Of course, you
 still need to type C<make par> and upload the precompiled package.
+
+=back
 
 =head1 Just Desserts
 

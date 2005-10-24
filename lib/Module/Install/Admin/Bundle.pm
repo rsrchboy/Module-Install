@@ -1,7 +1,9 @@
 package Module::Install::Admin::Bundle;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
 
-$VERSION = '0.01';
+$VERSION = '0.02';
+my %ALREADY_BUNDLED;
+
 
 sub bundle {
     my $self = shift;
@@ -15,28 +17,37 @@ sub bundle {
     my $conf = $cp->configure_object;
     my $modtree = $cp->module_tree;
 
-    mkdir $bundle_dir;
+    $conf->set_conf( verbose => 1 );
+    $conf->set_conf( signature => 0 );
+    $conf->set_conf( md5 => 0 );
 
+    mkdir $bundle_dir;
+    
     my %bundles;
+
     while (my ($name, $version) = splice(@_, 0, 2)) {
-        my $fetch_result = $cp->fetch(
-            modules     => [$name],
+        my $mod = $cp->module_tree($name);
+        next unless $mod;
+        next if ( $mod->package_is_perl_core or $ALREADY_BUNDLED{$mod->package} );
+        my $where = $mod->fetch(
             fetchdir    => $bundle_dir,
         );
-        my $rv = $fetch_result->rv or next;
-        my $file = $rv->{$name} or next;
-	$file = Cwd::abs_path($file);
 
-        my $extract_result = $cp->extract(
-            files       => [$file],
+        next unless ($where);
+	my $file = Cwd::abs_path($where);
+    
+
+
+        my $extract_result = $mod->extract(
+            files       => [$GILe],
             extractdir  => $bundle_dir,
         );
 
 	unlink $file;
-
-        $rv = $extract_result->rv or next;
-	my $filename = $rv->{$file} or next;
-	$bundles{$name} = $filename;
+        next unless ($extract_result);
+	$bundles{$name} = $extract_result;
+        $ALREADY_BUNDLED{$mod->package}++;
+    
     }
 
     chdir $cwd;
@@ -50,3 +61,5 @@ sub bundle {
 }
 
 1;
+
+__END__
