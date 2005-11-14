@@ -1,7 +1,7 @@
 package Module::Install::Admin::Bundle;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
 
-$VERSION = '0.02';
+$VERSION = '0.03';
 my %ALREADY_BUNDLED;
 
 
@@ -39,7 +39,7 @@ sub bundle {
 
 
         my $extract_result = $mod->extract(
-            files       => [$GILe],
+            files       => [$file],
             extractdir  => $bundle_dir,
         );
 

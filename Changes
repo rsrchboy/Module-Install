@@ -1,3 +1,7 @@
+[Changes for 0.39 - 2005-10-25]
+
+* Fix a trivial typo in ::Bundle.
+
 [Changes for 0.38 - 2005-10-24]
 
 * Support specifying test files as tests().

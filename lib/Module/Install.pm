@@ -1,5 +1,5 @@
 package Module::Install;
-$VERSION = '0.38';
+$VERSION = '0.39';
 
 die << "." unless $INC{join('/', inc => split(/::/, __PACKAGE__)).'.pm'};
 Please invoke ${\__PACKAGE__} with:
@@ -26,8 +26,8 @@ Module::Install - Standalone, extensible Perl module installer
 
 =head1 VERSION
 
-This document describes version 0.38 of Module::Install, released
-October 24, 2005.
+This document describes version 0.39 of Module::Install, released
+October 25, 2005.
 
 =head1 SYNOPSIS
 

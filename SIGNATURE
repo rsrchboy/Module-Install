@@ -1,12 +1,12 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.41.
+signed via the Module::Signature module, version 0.44.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
 
     % cpansign -v
 
-It would check each file's integrity, as well as the signature's
+It will check each file's integrity, as well as the signature's
 validity.  If "==> Signature verified OK! <==" is not displayed,
 the distribution may already have been compromised, and you should
 not run its Makefile.PL or Build.PL.
@@ -14,7 +14,7 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 6928925a197e4e288590ffaa4c56fa7c9b541b09 Changes
+SHA1 3acefe2d03457557610dfdea730118cc9cc0774f Changes
 SHA1 1756bcf7ed9bb3551b2abf4e761f7e5281298ecb MANIFEST
 SHA1 b292912c8da32da89d09e2f04af47c991b5d6d9f MANIFEST.SKIP
 SHA1 94ae71917211115e17a24858a4b2de25d3dce26c META.yml
@@ -37,9 +37,9 @@ SHA1 9d135b52aef905c9b23bb1ead96ca8a48dd6cb82 inc/Test/Builder.pm
 SHA1 0b38d0a7e1db5f84cd3c8b9716cd8c5fc1b35ef2 inc/Test/More.pm
 SHA1 30dddf2b4e9e2203959d4e437ed4830f34d6527c lib/Module/Install-Cookbook.pod
 SHA1 a5cf37c2cc23f233b1be225e7a54160f01c2e339 lib/Module/Install-Philosophy.pod
-SHA1 1629add1fd6fcb9ba0ce77717d6cc3b2b5594636 lib/Module/Install.pm
+SHA1 9b0779013a53946665312765be10685b32eb6d27 lib/Module/Install.pm
 SHA1 c649c81f2ae2fec006aaaab81ec0884fb405a0de lib/Module/Install/Admin.pm
-SHA1 196c4f847f5f135a0eed2668cc10eeb3f4f5773b lib/Module/Install/Admin/Bundle.pm
+SHA1 b2f3053e4375eec5769def0983a2c6e76563e0d0 lib/Module/Install/Admin/Bundle.pm
 SHA1 4c56a004332e0b6988c9598b80cf9a5c334da471 lib/Module/Install/Admin/Find.pm
 SHA1 6ee0a0a2d969287219b69eeb20a8b314b90839cb lib/Module/Install/Admin/Include.pm
 SHA1 99f1a2f84648a827a8a75204ceda00371a72987b lib/Module/Install/Admin/Makefile.pm
@@ -69,9 +69,9 @@ SHA1 bf5a33c7d976eef9474f20566e034b97d0b5b29f lib/inc/Module/Install.pm
 SHA1 d3014329080004c3054aac8835d7a1c53461d82a t/1-basic.t
 SHA1 86d255a7c9f065a13049108362c949b3e35a4c24 t/2pod.t
 -----BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.2 (FreeBSD)
+Version: GnuPG v1.4.2 (GNU/Linux)
 
-iD8DBQFDXQo1tLPdNzw1AaARAqRyAJ9DJ94YTWD7yF4hedcJ3z5/PooehACgkJAT
-mXcJwVdale36nsrrehAsGeQ=
-=hyCM
+iD8DBQFDXmERtLPdNzw1AaARAkM2AKCkgTR4RxoEcJht0+I/rGvWORF0qgCeMPRr
+kzfPzpjDg+3vbMkj8RaApqM=
+=pMsV
 -----END PGP SIGNATURE-----
