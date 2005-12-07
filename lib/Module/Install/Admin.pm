@@ -158,10 +158,9 @@ sub copy {
     print "include $to\n";
 }
 
-sub load {
-    my ($self, $method, $copy) = @_;
-
-    # scan through our target to find
+# scan through our target to find
+sub load_all_extensions {
+    my $self = shift;
     unless ($self->{extensions}) {
         $self->{extensions} = [];
         foreach my $inc (@INC) {
@@ -169,9 +168,14 @@ sub load {
             $self->load_extensions("$inc/$self->{path}", $self->{_top});
         }
     }
+    return @{$self->{extensions}};
+}
+
+sub load {
+    my ($self, $method, $copy) = @_;
 
     my @extobj;
-    foreach my $obj (@{$self->{extensions}}) {
+    foreach my $obj ($self->load_all_extensions) {
         next unless defined &{ref($obj)."::$method"};
         my $is_admin = (ref($obj) =~ /^\Q$self->{name}::$self->{dispatch}::/);
         # Don't ever include admin modules, and vice versa.

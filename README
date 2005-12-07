@@ -15,14 +15,6 @@ Module::Install uses the standard perl module install process:
     make test
     make install
 
-If you have Module::Build installed, a Build.PL is also available:
-
-    cpansign -v         # optional; see SIGNATURE for details
-    perl Build.PL
-    perl Build
-    perl Build test
-    perl Build install
-
 * Notes for Windows users
 
 If you are using Microsoft Windows, you will probably need the 'nmake'
@@ -49,7 +41,8 @@ with 'nmake' in the last three lines.
 
 Copyright 2002, 2003, 2004, 2005 by
     Autrijus Tang <autrijus@autrijus.org>
-    Brian Ingerson <ingy@cpan.org>.
+    Brian Ingerson <ingy@cpan.org>
+    Adam Kennedy <cpan@ali.as>
 
 All rights reserved.  You can redistribute and/or modify
 this bundle under the same terms as Perl itself.

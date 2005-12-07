@@ -1,50 +1,42 @@
+#!perl -w
+
+use strict;
 use lib 'lib'; # NOTE: Module::Install's Makefile.PL needs this statement
                # to bootstrap itself.  Other module distributions using
                # Module::Install do not need it.
-
 use inc::Module::Install;
 
-name            ('Module-Install');
-author          ('Autrijus Tang (autrijus@autrijus.org)');
-abstract_from   ('lib/Module/Install.pm');
-version_from    ('lib/Module/Install.pm');
-license         ('perl');
-requires        ('perl' => 5.004);
-no_index        (directory => 'example');
-sign            (1);
+name        'Module-Install';
+all_from    'lib/Module/Install.pm';
 
-build_requires  ('Test::More');
-include         ('ExtUtils::AutoInstall');
+feature 'Include packages with full dependencies',
+    recommends
+    'Test::Harness'     => 2.03,    # merely a dependency of M::CoreList
+    'Test::More'        => 0,       # ditto
+    'Module::ScanDeps'  => 0.28,
+    'Module::CoreList';
 
-features(
-    'Include packages with full dependencies' => [
-        -default            => 0,
-        'Test::Harness'     => 2.03,    # merely a dependency of M::CoreList
-        'Test::More'        => 0,       # ditto
-        recommends  ('Module::ScanDeps' => 0.28),
-        recommends  ('Module::CoreList'),
-    ],
-    'Bundle other CPAN packages' => [
-        -default            => 0,
-        recommends  ('CPANPLUS' => 0.040),
-    ],
-    'PAR-based binary distributions' => [
-        -default            => 0,
-        recommends  ('PAR::Dist' => 0.03),
-    ],
-    'Module::Build support' => [
-        -default            => 0,
-        'Archive::Tar'      => 0.23,
-        'ExtUtils::Install' => 0.3,
-        'ExtUtils::ParseXS' => 0,
-        'YAML'              => 0.35,
-        recommends  ('Module::Build'),
-    ],
-);
+feature 'Bundle other CPAN packages',
+    recommends
+    'CPANPLUS'          => 0.040;
 
-auto_include_deps();
-auto_install_now( -config => { prerequisites_policy => 'follow' } );
+feature 'PAR-based binary distributions',
+    recommends
+    'PAR::Dist'         => 0.03;
 
-par_base();     # par_base('AUTRIJUS') to enable downloading
+feature 'Module::Build support',
+    'Archive::Tar'      => 0.23,
+    'ExtUtils::Install' => 0.3,
+    'YAML'              => 0.35,
+    'ExtUtils::ParseXS',
+    recommends
+    'Module::Build';
 
-&WriteAll;
+no_index
+    directory => 'example';
+
+auto_install_now
+    prerequisites_policy => 'follow';
+
+sign;
+WriteAll;

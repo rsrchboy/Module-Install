@@ -35,6 +35,7 @@ END
     open MAKEFILE_PL, '> Makefile.PL' or return 0;
     print MAKEFILE_PL <<END;
 use inc::Module::Install;
+license 'perl';
 WriteMakefile;
 END
     close MAKEFILE_PL;
@@ -64,7 +65,7 @@ sub build_dist {
     return 0 unless -d $dist_path;
     my $home = cwd;
     chdir $dist_path or return 0;
-    system($^X, "-Mblib", "Makefile.PL") == 0 or return 0;
+    system($^X, "-Ilib", "-Iblib/lib", "Makefile.PL") == 0 or return 0;
     chdir $home or return 0;
     return 1;
 }

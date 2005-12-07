@@ -1,8 +1,8 @@
 package Module::Install::Admin::Bundle;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
 
-$VERSION = '0.03';
-my %ALREADY_BUNDLED;
+$VERSION = '0.02';
+our %ALREADY_BUNDLED;
 
 
 sub bundle {
@@ -16,10 +16,6 @@ sub bundle {
     my $cp   = CPANPLUS::Backend->new;
     my $conf = $cp->configure_object;
     my $modtree = $cp->module_tree;
-
-    $conf->set_conf( verbose => 1 );
-    $conf->set_conf( signature => 0 );
-    $conf->set_conf( md5 => 0 );
 
     mkdir $bundle_dir;
     
@@ -39,7 +35,7 @@ sub bundle {
 
 
         my $extract_result = $mod->extract(
-            files       => [$file],
+            files       => [$GILe],
             extractdir  => $bundle_dir,
         );
 

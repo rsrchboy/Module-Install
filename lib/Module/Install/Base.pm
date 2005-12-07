@@ -1,5 +1,8 @@
 package Module::Install::Base;
 
+# Suspend handler for "redefined" warnings
+BEGIN { my $w = $SIG{__WARN__}; $SIG{__WARN__} = sub { $w } };
+
 =head1 NAME
 
 Module::Install::Base - Base class for Module::Install extensions
@@ -86,6 +89,9 @@ sub AUTOLOAD {}
 sub DESTROY {}
 
 1;
+
+# Restore warning handler
+BEGIN { $SIG{__WARN__} = $SIG{__WARN__}->() };
 
 __END__
 

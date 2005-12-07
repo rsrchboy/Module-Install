@@ -1,5 +1,5 @@
 Changes
-inc/ExtUtils/AutoInstall.pm
+inc/Module/AutoInstall.pm
 inc/Module/Install.pm
 inc/Module/Install/AutoInstall.pm
 inc/Module/Install/Base.pm
@@ -8,15 +8,13 @@ inc/Module/Install/Fetch.pm
 inc/Module/Install/Include.pm
 inc/Module/Install/Makefile.pm
 inc/Module/Install/Metadata.pm
-inc/Module/Install/PAR.pm
 inc/Module/Install/Win32.pm
 inc/Module/Install/WriteAll.pm
-inc/Test/Builder.pm
-inc/Test/More.pm
 lib/inc/Module/Install.pm
-lib/Module/Install-Cookbook.pod
+lib/Module/AutoInstall.pm
 lib/Module/Install-Philosophy.pod
 lib/Module/Install.pm
+lib/Module/Install.pod
 lib/Module/Install/Admin.pm
 lib/Module/Install/Admin/Bundle.pm
 lib/Module/Install/Admin/Find.pm
@@ -51,5 +49,5 @@ META.yml
 README
 SIGNATURE
 t/1-basic.t
-t/2pod.t
-ToDo
+t/2-pod.t
+t/3-autoinstall.t
