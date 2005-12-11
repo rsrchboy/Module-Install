@@ -6,7 +6,7 @@ Module::Install - Standalone, extensible Perl module installer
 
 =head1 VERSION
 
-This document describes version 0.41 of Module::Install, released
+This document describes version 0.42 of Module::Install, released
 December 11, 2005.
 
 =head1 SYNOPSIS

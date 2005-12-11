@@ -1,3 +1,10 @@
+[Changes for 0.42 - 2005-12-11]
+
+* auto_provides() was broken due to a typo.
+
+* New command install_share() to put a directory's content into the
+  per-distribution auto/ directory.
+
 [Changes for 0.41 - 2005-12-11]
 
 * Only query '$self->tests' if we haven't been given an explicit list

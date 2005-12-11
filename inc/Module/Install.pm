@@ -2,7 +2,7 @@
 package Module::Install;
 use 5.004;
 
-$VERSION = '0.41';
+$VERSION = '0.42';
 
 die << "." unless $INC{join('/', inc => split(/::/, __PACKAGE__)).'.pm'};
 Please invoke ${\__PACKAGE__} with:
@@ -167,9 +167,11 @@ sub load_extensions {
         my ($file, $pkg) = @{$rv};
         next if $self->{pathnames}{$pkg};
 
-        eval { require $file; 1 } or (warn($@), next);
+        local $@;
+        my $new = eval { require $file; $pkg->can('new') };
+        if (!$new) { warn $@ if $@; next; }
         $self->{pathnames}{$pkg} = delete $INC{$file};
-        push @{$self->{extensions}}, $pkg->new( _top => $top_obj );
+        push @{$self->{extensions}}, &{$new}($pkg, _top => $top_obj );
     }
 
     $self->{extensions} ||= [];
