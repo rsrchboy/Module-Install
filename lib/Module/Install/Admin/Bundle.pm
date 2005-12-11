@@ -13,7 +13,13 @@ sub bundle {
     require CPANPLUS::Backend;
 
     my $cwd  = Cwd::getcwd();
-    my $cp   = CPANPLUS::Backend->new;
+    # This code is what we _should_ be doing, but CPANPLUS doesn't
+    # let you have multiple Backends in one program.
+    #my $cp   = CPANPLUS::Backend->new;
+    #
+    # Jos Boumans tells us that this is the best way to do what we want
+    # It still scares me. 
+    my $cp = CPANPLUS::Internals->_retrieve_id( CPANPLUS::Internals->_last_id ); 
     my $conf = $cp->configure_object;
     my $modtree = $cp->module_tree;
 

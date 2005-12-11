@@ -1,5 +1,5 @@
 name: Module-Install
-version: 0.40
+version: 0.41
 abstract: Standalone, extensible Perl module installer
 license: perl
 distribution_type: module
@@ -13,8 +13,93 @@ recommends:
   CPANPLUS: 0.04
   PAR::Dist: 0.03
   Module::Build: 0
+procides:
+  Module::AutoInstall:
+    file: lib/Module/AutoInstall.pm
+    version: 1.00
+  Module::Install:
+    file: lib/Module/Install.pm
+    version: 0.41
+  Module::Install::Admin:
+    file: lib/Module/Install/Admin.pm
+    version: 0.29
+  Module::Install::Admin::Bundle:
+    file: lib/Module/Install/Admin/Bundle.pm
+    version: 0.02
+  Module::Install::Admin::Find:
+    file: lib/Module/Install/Admin/Find.pm
+    version: 0.01
+  Module::Install::Admin::Include:
+    file: lib/Module/Install/Admin/Include.pm
+    version: 0.02
+  Module::Install::Admin::Makefile:
+    file: lib/Module/Install/Admin/Makefile.pm
+    version: 0.01
+  Module::Install::Admin::Manifest:
+    file: lib/Module/Install/Admin/Manifest.pm
+    version: 0.01
+  Module::Install::Admin::Metadata:
+    file: lib/Module/Install/Admin/Metadata.pm
+    version: 0.01
+  Module::Install::Admin::ScanDeps:
+    file: lib/Module/Install/Admin/ScanDeps.pm
+  Module::Install::Admin::WriteAll:
+    file: lib/Module/Install/Admin/WriteAll.pm
+    version: 0.01
+  Module::Install::AutoInstall:
+    file: lib/Module/Install/AutoInstall.pm
+  Module::Install::Base:
+    file: lib/Module/Install/Base.pm
+  Module::Install::Base::FakeAdmin:
+    file: lib/Module/Install/Base.pm
+  Module::Install::Build:
+    file: lib/Module/Install/Build.pm
+    version: 0.01
+  Module::Install::Bundle:
+    file: lib/Module/Install/Bundle.pm
+  Module::Install::Can:
+    file: lib/Module/Install/Can.pm
+    version: 0.01
+  Module::Install::Fetch:
+    file: lib/Module/Install/Fetch.pm
+    version: 0.01
+  Module::Install::Include:
+    file: lib/Module/Install/Include.pm
+  Module::Install::Inline:
+    file: lib/Module/Install/Inline.pm
+    version: 0.01
+  Module::Install::MakeMaker:
+    file: lib/Module/Install/MakeMaker.pm
+    version: 0.01
+  Module::Install::Makefile:
+    file: lib/Module/Install/Makefile.pm
+    version: 0.01
+  Module::Install::Makefile::Name:
+    file: lib/Module/Install/Makefile/Name.pm
+    version: 0.01
+  Module::Install::Makefile::Version:
+    file: lib/Module/Install/Makefile/Version.pm
+    version: 0.01
+  Module::Install::Metadata:
+    file: lib/Module/Install/Metadata.pm
+    version: 0.04
+  Module::Install::PAR:
+    file: lib/Module/Install/PAR.pm
+  Module::Install::Run:
+    file: lib/Module/Install/Run.pm
+    version: 0.01
+  Module::Install::Scripts:
+    file: lib/Module/Install/Scripts.pm
+    version: 0.02
+  Module::Install::Win32:
+    file: lib/Module/Install/Win32.pm
+    version: 0.02
+  Module::Install::WriteAll:
+    file: lib/Module/Install/WriteAll.pm
+  inc::Module::Install:
+    file: lib/inc/Module/Install.pm
 no_index:
   directory:
     - example
     - inc
-generated_by: Module::Install version 0.40
+generated_by: Module::Install version 0.41

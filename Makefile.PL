@@ -38,5 +38,7 @@ no_index
 auto_install_now
     prerequisites_policy => 'follow';
 
+auto_provides;
+
 sign;
 WriteAll;

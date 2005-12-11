@@ -72,6 +72,26 @@ sub all_from {
     $self->license_from($file);
 }
 
+sub provides {
+    my $self     = shift;
+    my $provides = ( $self->{'values'}{'provides'} ||= {} );
+    %$provides = (%$provides, @_) if @_;
+    return $provides;
+}
+
+sub auto_provides {
+    my $self = shift;
+    return $self unless $self->is_admin;
+
+    require Module::Build;
+    my $build = Module::Build->new(
+        dist_name    => $self->{name},
+        dist_version => $self->{version},
+        license      => $self->{license},
+    );
+    $self->provides(%{ $build->find_dist_packages || {} });
+}
+
 sub feature {
     my $self     = shift;
     my $name     = shift;
@@ -161,6 +181,12 @@ sub _dump {
         foreach ( @{ $values{$key} } ) {
             $dump .= "  $_->[0]: $_->[1]\n";
         }
+    }
+
+    if ( my $provides = $values{provides} ) {
+        require YAML;
+        local $YAML::UseHeader = 0;
+        $dump .= YAML::Dump( { procides => $provides } );
     }
 
     if ( my $no_index = $values{no_index} ) {
