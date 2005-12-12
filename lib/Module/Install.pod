@@ -6,8 +6,8 @@ Module::Install - Standalone, extensible Perl module installer
 
 =head1 VERSION
 
-This document describes version 0.42 of Module::Install, released
-December 11, 2005.
+This document describes version 0.43 of Module::Install, released
+December 12, 2005.
 
 =head1 SYNOPSIS
 
@@ -109,21 +109,65 @@ and its creation, see L<Module::Install-Philosophy>.
 The following are the most common commands available for use in an
 installer.
 
-=head1 name
+=head2 name
+
+  name 'My-Module;
 
 The B<name> command is a compulsory (and generally the first) command.
 
 It provides the name of your distribution, which for a module like
 B<Your::Module> would normally be C<Your-Module>.
 
-=head1 all_from
+=head2 all_from
 
-For most simple/standard Perl distributions that feature one dominant
-module/class as the base, you can get the most Do What I Mean functionality
-by using the B<all_from> command, which will try to extract as much
-metadata as possible from the Perl and POD in the module itself.
+  all_from 'lib/My/Module';
 
-=head1 WriteAll
+For most simple or standard Perl distributions that feature one
+dominant module/class as the base, you can get the most Do What I Mean
+functionality by using the B<all_from> command, which will try to
+extract as much metadata as possible from the Perl and POD in the
+module itself.
+
+=head2 abstract
+
+  abstract 'This distribution does something';
+
+All distributions have an abstract, a short description of the entires
+distribution, usually around 30-70 characters long.
+
+The C<abstract> command is used to explicitly set the abstract for the
+distribution, at least as far as the distribution metadata file is
+concerned.
+
+=head2 abstract_from
+
+  abstract_from 'lib/My/Module';
+
+The C<abstract_from> command retrieves the abstract from a particular
+file contained in the distribution package. Most often this is done
+from the main module, where it will read the POD and use whatever
+is in the C<=head1 NAME> section (with module name removed as needed)
+
+=head2 author
+
+  author 'Adam Kennedy <cpan@ali.as>';
+
+The distribution metadata contains information on the author of the
+primary author/maintainer of the distribution, in the form of an
+email address.
+
+The C<author> command is used to explicitly set this value.
+
+=head2 author_from
+
+  author_from 'lib/My/Module';
+
+The C<author_from> command retrievs the author from a particular
+file contained in the distribution package. Most often this is done
+from the main module, where it read the POD and use whatever it
+can find in the C<=head1 AUTHOR> section.
+
+=head2 WriteAll
 
 The C<WriteAll> command is generally the last command; it writes out
 F<META.yml> and F<Makefile> so the user can type C<make install>.

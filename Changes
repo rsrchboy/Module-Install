@@ -1,3 +1,11 @@
+[Changes for 0.43 - 2005-12-12]
+
+* Better documentation to install_share().
+
+* New author_from() command to guess the author name from POD.
+
+* all_from() no longer probes for metadata that has been set before.
+
 [Changes for 0.42 - 2005-12-11]
 
 * auto_provides() was broken due to a typo.

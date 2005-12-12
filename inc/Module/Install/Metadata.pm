@@ -59,8 +59,8 @@ foreach my $key (@tuple_keys) {
 sub all_from {
     my ( $self, $file ) = @_;
 
-    $self->version_from($file);
-    $self->perl_version_from($file);
+    $self->version_from($file)      unless $self->version;
+    $self->perl_version_from($file) unless $self->perl_version;
 
     # The remaining probes read from POD sections; if the file
     # has an accompanying .pod, use that instead
@@ -69,8 +69,9 @@ sub all_from {
         $file = $pod;
     }
 
-    $self->abstract_from($file);
-    $self->license_from($file);
+    $self->author_from($file)   unless $self->author;
+    $self->license_from($file)  unless $self->license;
+    $self->abstract_from($file) unless $self->abstract;
 }
 
 sub provides {
@@ -299,6 +300,27 @@ sub perl_version_from {
     else {
         warn "Cannot determine perl version info from $file\n";
         return;
+    }
+}
+
+sub author_from {
+    my ( $self, $file ) = @_;
+    my $content = $self->_slurp($file);
+    if ($content =~ m/
+        =head \d \s+ (?:authors?)\b \s*
+        ([^\n]*)
+        |
+        =head \d \s+ (?:licen[cs]e|licensing|copyright|legal)\b \s*
+        .*? copyright .*? \d* \s* (?:\bby\b) \s* 
+        ([^\n]*)
+    /ixms) {
+        my $author = $1 || $2;
+        $author =~ s{E<lt>}{<}g;
+        $author =~ s{E<gt>}{>}g;
+        $self->author($author); 
+    }
+    else {
+        warn "Cannot determine author info from $file\n";
     }
 }
 

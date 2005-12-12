@@ -40,6 +40,7 @@ lib/Module/Install/Metadata.pm
 lib/Module/Install/PAR.pm
 lib/Module/Install/Run.pm
 lib/Module/Install/Scripts.pm
+lib/Module/Install/Share.pm
 lib/Module/Install/Win32.pm
 lib/Module/Install/WriteAll.pm
 Makefile.PL
