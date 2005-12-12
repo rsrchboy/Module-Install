@@ -1,5 +1,5 @@
 name: Module-Install
-version: 0.43
+version: 0.44
 abstract: Standalone, extensible Perl module installer
 author: author 'Adam Kennedy <cpan@ali.as>';
 license: perl
@@ -20,13 +20,13 @@ provides:
     version: 1.00
   Module::Install:
     file: lib/Module/Install.pm
-    version: 0.43
+    version: 0.44
   Module::Install::Admin:
     file: lib/Module/Install/Admin.pm
     version: 0.29
   Module::Install::Admin::Bundle:
     file: lib/Module/Install/Admin/Bundle.pm
-    version: 0.02
+    version: 0.04
   Module::Install::Admin::Find:
     file: lib/Module/Install/Admin/Find.pm
     version: 0.01
@@ -58,6 +58,7 @@ provides:
     version: 0.01
   Module::Install::Bundle:
     file: lib/Module/Install/Bundle.pm
+    version: 0.04
   Module::Install::Can:
     file: lib/Module/Install/Can.pm
     version: 0.01
@@ -92,6 +93,9 @@ provides:
   Module::Install::Scripts:
     file: lib/Module/Install/Scripts.pm
     version: 0.02
+  Module::Install::Share:
+    file: lib/Module/Install/Share.pm
+    version: 0.01
   Module::Install::Win32:
     file: lib/Module/Install/Win32.pm
     version: 0.02
@@ -103,4 +107,4 @@ no_index:
   directory:
     - example
     - inc
-generated_by: Module::Install version 0.43
+generated_by: Module::Install version 0.44

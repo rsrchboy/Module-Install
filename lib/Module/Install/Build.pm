@@ -157,14 +157,14 @@ L<Module::Install>, L<CPAN::MakeMaker>, L<CPAN::MakeMaker-Philosophy>
 
 =head1 AUTHORS
 
-Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>
+Audrey Tang E<lt>autrijus@autrijus.orgE<gt>
 
 Based on original works by Brian Ingerson E<lt>INGY@cpan.orgE<gt>
 
 =head1 COPYRIGHT
 
 Copyright 2002, 2003, 2004 by
-Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>,
+Audrey Tang E<lt>autrijus@autrijus.orgE<gt>,
 Brian Ingerson E<lt>ingy@cpan.orgE<gt>
 
 This program is free software; you can redistribute it and/or modify it

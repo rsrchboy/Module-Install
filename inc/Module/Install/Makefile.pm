@@ -85,10 +85,13 @@ sub write {
                  ($self->build_requires, $self->requires) );
 
     # merge both kinds of requires into prereq_pm
-    my $dir = ($args->{DIR} ||= []);
+    my $subdirs = ($args->{DIR} ||= []);
     if ($self->bundles) {
-        push @$dir, map "$_->[1]", @{$self->bundles};
-        delete $prereq->{$_->[0]} for @{$self->bundles};
+        foreach my $bundle (@{ $self->bundles }) {
+            my ($file, $dir) = @$bundle;
+            push @$subdirs, $dir if -d $dir;
+            delete $prereq->{$file};
+        }
     }
 
     if (my $perl_version = $self->perl_version) {
@@ -119,6 +122,7 @@ sub fix_up_makefile {
     my $postamble = "# Postamble by $top_class $top_version\n" . 
                     ($self->postamble || '');
 
+    local *MAKEFILE;
     open MAKEFILE, '< Makefile' or die $!;
     my $makefile = do { local $/; <MAKEFILE> };
     close MAKEFILE;
@@ -153,4 +157,4 @@ sub postamble {
 
 __END__
 
-#line 286
+#line 290

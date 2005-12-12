@@ -1,6 +1,8 @@
 package Module::Install::Bundle;
 use Module::Install::Base; @ISA = qw(Module::Install::Base);
 
+$VERSION = '0.04';
+
 use strict;
 use Cwd ();
 use File::Find ();
@@ -26,9 +28,13 @@ sub bundle {
     $bundle_dir =~ s/\W+/\\W+/g;
 
     while (my ($name, $version) = splice(@_, 0, 2)) {
-        next if eval "use $name $version; 1";
-        my $source = $bundles->{$name} or next;
+        $version ||= 0;
+
+        my $source = $bundles->{$name} or die "Cannot find bundle source for $name";
         my $target = File::Basename::basename($source);
+        $self->bundles($name, $target);
+
+        next if eval "use $name $version; 1";
         mkdir $target or die $! unless -d $target;
 
         # XXX - clean those directories upon "make clean"?
@@ -41,8 +47,6 @@ sub bundle {
             },
             no_chdir => 1,
         }, $source);
-
-        $self->bundles($name, $target);
     }
 
     chdir $cwd;
@@ -72,7 +76,7 @@ sub auto_bundle_deps {
     while (my ($name, $version) = splice(@core, 0, 2)) {
         next unless $name;
          $self->bundle_deps($name, $version);
-         $self->bundle($name, $version);
+         $self->add_bundle($name, $version);
     }
 }
 
@@ -99,16 +103,14 @@ Have your Makefile.PL read as follows:
 
   use inc::Module::Install;
 
-  name("Foo-Bar");
-  version_from("lib/Foo/Bar.pm");
-  abstract("Description of your distribution");
-  author("Your Name <your@email.com>");
-  license("gpl"); # or "perl", etc
-  requires("Baz" => "1.60");
+  name      'Foo-Bar';
+  all_from  'lib/Foo/Bar.pm';
+  requires  'Baz' => '1.60';
 
   # one of either:
-  auto_bundle(); # OR
-  bundle("Baz" => "1.60");
+  bundle    'Baz' => '1.60';
+  # OR:
+  auto_bundle;
 
   &WriteAll;
 
@@ -172,13 +174,13 @@ Please report any bugs to (patches welcome):
 
 =head1 AUTHORS
 
-Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>
+Audrey Tang E<lt>autrijus@autrijus.orgE<gt>
 
 Documentation by Adam Foxson E<lt>afoxson@pobox.comE<gt>
 
 =head1 COPYRIGHT
 
-Copyright 2003, 2004 by Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>.
+Copyright 2003, 2004, 2005 by Audrey Tang E<lt>autrijus@autrijus.orgE<gt>.
 
 This program is free software; you can redistribute it and/or modify it under
 the same terms as Perl itself.

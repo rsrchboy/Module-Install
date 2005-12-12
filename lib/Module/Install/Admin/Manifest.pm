@@ -8,7 +8,7 @@ use Cwd;
 use File::Spec;
 
 # XXX I really want this method in Module::Install::Admin::Makefile
-# But you can't call across Admin modules. Autrijus??
+# But you can't call across Admin modules. Audrey??
 sub dist_preop {
     my ($self, $distdir) = @_;
     return if $self->check_manifest;
@@ -148,7 +148,7 @@ __END__
 =head1 COPYRIGHT
 
 Copyright 2003, 2004 by
-Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>,
+Audrey Tang E<lt>autrijus@autrijus.orgE<gt>,
 Brian Ingerson E<lt>ingy@cpan.orgE<gt>
 
 This program is free software; you can redistribute it and/or modify it

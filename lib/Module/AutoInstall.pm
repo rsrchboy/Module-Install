@@ -935,12 +935,12 @@ L<CPANPLUS>
 
 =head1 AUTHORS
 
-Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>
+Audrey Tang E<lt>autrijus@autrijus.orgE<gt>
 
 =head1 COPYRIGHT
 
 Copyright 2001, 2002, 2003, 2004, 2005
-by Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>.
+by Audrey Tang E<lt>autrijus@autrijus.orgE<gt>.
 
 This program is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself.

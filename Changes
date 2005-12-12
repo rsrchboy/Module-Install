@@ -1,3 +1,15 @@
+[Changes for 0.44 - 2005-12-13]
+
+* Module::Install::Bundle now extract files correctly again;
+  this was a regression since 0.40.
+  Reported by: Randal Schwartz
+
+* Add support to Module::Includes::Bundle so each subdirectory
+  can use Module::Install for bundling. 
+
+* The "bundles:" key in META.yml is now populated even if the
+  bundled modules already exist on the system.
+
 [Changes for 0.43 - 2005-12-12]
 
 * Better documentation to install_share().

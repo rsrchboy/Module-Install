@@ -84,10 +84,13 @@ sub write {
                  ($self->build_requires, $self->requires) );
 
     # merge both kinds of requires into prereq_pm
-    my $dir = ($args->{DIR} ||= []);
+    my $subdirs = ($args->{DIR} ||= []);
     if ($self->bundles) {
-        push @$dir, map "$_->[1]", @{$self->bundles};
-        delete $prereq->{$_->[0]} for @{$self->bundles};
+        foreach my $bundle (@{ $self->bundles }) {
+            my ($file, $dir) = @$bundle;
+            push @$subdirs, $dir if -d $dir;
+            delete $prereq->{$file};
+        }
     }
 
     if (my $perl_version = $self->perl_version) {
@@ -118,6 +121,7 @@ sub fix_up_makefile {
     my $postamble = "# Postamble by $top_class $top_version\n" . 
                     ($self->postamble || '');
 
+    local *MAKEFILE;
     open MAKEFILE, '< Makefile' or die $!;
     my $makefile = do { local $/; <MAKEFILE> };
     close MAKEFILE;
@@ -267,14 +271,14 @@ L<Module::Install>, L<CPAN::MakeMaker>, L<CPAN::MakeMaker-Philosophy>
 
 =head1 AUTHORS
 
-Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>
+Audrey Tang E<lt>autrijus@autrijus.orgE<gt>
 
 Based on original works by Brian Ingerson E<lt>INGY@cpan.orgE<gt>
 
 =head1 COPYRIGHT
 
 Copyright 2002, 2003, 2004 by
-Autrijus Tang E<lt>autrijus@autrijus.orgE<gt>,
+Audrey Tang E<lt>autrijus@autrijus.orgE<gt>,
 Brian Ingerson E<lt>ingy@cpan.orgE<gt>
 
 This program is free software; you can redistribute it and/or modify it
