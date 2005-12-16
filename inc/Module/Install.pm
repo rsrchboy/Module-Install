@@ -2,7 +2,7 @@
 package Module::Install;
 use 5.004;
 
-$VERSION = '0.44';
+$VERSION = '0.45';
 
 die << "." unless $INC{join('/', inc => split(/::/, __PACKAGE__)).'.pm'};
 Please invoke ${\__PACKAGE__} with:

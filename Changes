@@ -1,3 +1,11 @@
+[Changes for 0.45 - 2005-12-16]
+
+* Improved detection for author_from() based on the copyright line
+  in addition to =head1 AUTHORS.
+
+* Bump version of Module::Install::Admin to match Module::Install.
+  Reported by: Sebastian Riedel
+
 [Changes for 0.44 - 2005-12-13]
 
 * Module::Install::Bundle now extract files correctly again;

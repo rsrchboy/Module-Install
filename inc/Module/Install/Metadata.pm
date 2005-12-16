@@ -311,7 +311,7 @@ sub author_from {
         ([^\n]*)
         |
         =head \d \s+ (?:licen[cs]e|licensing|copyright|legal)\b \s*
-        .*? copyright .*? \d* \s* (?:\bby\b) \s* 
+        .*? copyright .*? \d\d\d[\d.]+ \s* (?:\bby\b)? \s*
         ([^\n]*)
     /ixms) {
         my $author = $1 || $2;
