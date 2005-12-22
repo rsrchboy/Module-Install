@@ -62,10 +62,7 @@ sub write {
     $args->{VERSION} = $self->version || $self->determine_VERSION($args);
     $args->{NAME} =~ s/-/::/g;
 
-    # Only call $self->tests if we haven't been given explicit
-    # tests from makemaker_args.
-    $args->{test} ||= {TESTS => $self->tests};
-
+    $args->{test} = {TESTS => $self->tests} if $self->tests;
 
     if ($] >= 5.005) {
 	$args->{ABSTRACT} = $self->abstract;
@@ -157,4 +154,4 @@ sub postamble {
 
 __END__
 
-#line 290
+#line 287

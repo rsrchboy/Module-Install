@@ -1,5 +1,5 @@
 name: Module-Install
-version: 0.45
+version: 0.46
 abstract: Standalone, extensible Perl module installer
 author: author 'Adam Kennedy <cpan@ali.as>';
 license: perl
@@ -20,7 +20,7 @@ provides:
     version: 1.00
   Module::Install:
     file: lib/Module/Install.pm
-    version: 0.45
+    version: 0.46
   Module::Install::Admin:
     file: lib/Module/Install/Admin.pm
     version: 0.45
@@ -107,4 +107,4 @@ no_index:
   directory:
     - example
     - inc
-generated_by: Module::Install version 0.45
+generated_by: Module::Install version 0.46

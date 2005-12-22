@@ -1,3 +1,9 @@
+[Changes for 0.46 - 2005-12-22]
+
+* tests() should always take effect even if auto_install() or
+  makemaker_args() had set it before.
+  Reported by: Jesse Vincent.
+
 [Changes for 0.45 - 2005-12-16]
 
 * Improved detection for author_from() based on the copyright line
