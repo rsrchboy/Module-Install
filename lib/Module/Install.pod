@@ -6,8 +6,8 @@ Module::Install - Standalone, extensible Perl module installer
 
 =head1 VERSION
 
-This document describes version 0.46 of Module::Install, released
-December 22, 2005.
+This document describes version 0.47 of Module::Install, released
+December 25, 2005.
 
 =head1 SYNOPSIS
 
@@ -15,7 +15,7 @@ In your F<Makefile.PL>: (Recommended Usage)
 
     # Load the Module::Install bundled in ./inc/
     use inc::Module::Install;
-    
+
     # Name of your distribution
     name            'Your-Module';
 
@@ -31,12 +31,12 @@ In your F<Makefile.PL>: (Recommended Usage)
 
     # Optional module dependencies
     recommends      'Your::OtherModule' => '0.01';
-    
+
     # Auto-installs all dependencies from CPAN.
     # You want to use this most of the time, especially
     # if you use the 'recommend' or 'feature' commands
     auto_install;
-    
+
     # Generate the Makefile
     WriteAll;
 
@@ -345,7 +345,7 @@ C<WriteAll> takes four optional named parameters:
 =over 4
 
 =item C<check_nmake> (defaults to true)
-    
+
 If true, invokes functions with the same name.
 
 =item C<inline> (defaults to false)
@@ -441,25 +441,29 @@ module found under C<$path> and its subdirectories.
 
 Here is a brief overview of the reasons:
 
-    Does everything ExtUtils::MakeMaker does.
-    
-    Requires no installation for end-users.
-    
-    Generate stock Makefile.PL for Module::Build users.
-    
-    Guaranteed forward-compatibility.
-    
-    Automatically updates your MANIFEST.
-    
-    Distributing scripts is easy.
-    
-    Include prerequisite modules (even the entire dependency tree).
-    
-    Auto-installation of prerequisites.
-    
-    Support for Inline-based modules.
-    
-    Support for precompiled PAR binaries.
+=over 4
+
+=item * Does everything ExtUtils::MakeMaker does.
+
+=item * Requires no installation for end-users.
+
+=item * Generate stock Makefile.PL for Module::Build users.
+
+=item * Guaranteed forward-compatibility.
+
+=item * Automatically updates your MANIFEST.
+
+=item * Distributing scripts is easy.
+
+=item * Include prerequisite modules (even the entire dependency tree).
+
+=item * Auto-installation of prerequisites.
+
+=item * Support for Inline-based modules.
+
+=item * Support for precompiled PAR binaries.
+
+=cut
 
 Besides, if you maintain more than one CPAN modules, chances are there
 are duplications in their F<Makefile.PL>, and also with other CPAN module
@@ -480,48 +484,50 @@ extension.
 
 =head1 SEE ALSO
 
-  L<Module::Install-Philosophy>
-  L<inc::Module::Install>
-  
-  L<Module::Install::AutoInstall>
-  L<Module::Install::Base>
-  L<Module::Install::Bundle>
-  L<Module::Install::Build>
-  L<Module::Install::Directives>
-  L<Module::Install::Fetch>
-  L<Module::Install::Include>
-  L<Module::Install::MakeMaker>
-  L<Module::Install::Makefile>
-  L<Module::Install::Makefile::CleanFiles>
-  L<Module::Install::Makefile::Name>
-  L<Module::Install::Makefile::Version>
-  L<Module::Install::Metadata>
-  L<Module::Install::PAR>
-  L<Module::Install::Run>
-  L<Module::Install::Scripts>
-  L<Module::Install::Win32>
-  L<Module::Install::WriteAll>
-  
-  L<Module::Install::Admin>
-  L<Module::Install::Admin::Bundle>
-  L<Module::Install::Admin::Find>
-  L<Module::Install::Admin::Include>
-  L<Module::Install::Admin::Makefile>
-  L<Module::Install::Admin::Manifest>
-  L<Module::Install::Admin::Metadata>
-  L<Module::Install::Admin::ScanDeps>
-  L<Module::Install::Admin::WriteAll>
-  
-  L<CPAN::MakeMaker>
-  L<Inline::MakeMaker>
-  L<ExtUtils::MakeMaker>
-  L<Module::Build>
+L<Module::Install-Philosophy>
+L<inc::Module::Install>
+
+L<Module::Install::AutoInstall>
+L<Module::Install::Base>
+L<Module::Install::Bundle>
+L<Module::Install::Build>
+L<Module::Install::Directives>
+L<Module::Install::Fetch>
+L<Module::Install::Include>
+L<Module::Install::MakeMaker>
+L<Module::Install::Makefile>
+L<Module::Install::Makefile::CleanFiles>
+L<Module::Install::Makefile::Name>
+L<Module::Install::Makefile::Version>
+L<Module::Install::Metadata>
+L<Module::Install::PAR>
+L<Module::Install::Run>
+L<Module::Install::Scripts>
+L<Module::Install::Win32>
+L<Module::Install::WriteAll>
+
+L<Module::Install::Admin>
+L<Module::Install::Admin::Bundle>
+L<Module::Install::Admin::Find>
+L<Module::Install::Admin::Include>
+L<Module::Install::Admin::Makefile>
+L<Module::Install::Admin::Manifest>
+L<Module::Install::Admin::Metadata>
+L<Module::Install::Admin::ScanDeps>
+L<Module::Install::Admin::WriteAll>
+
+L<CPAN::MakeMaker>
+L<Inline::MakeMaker>
+L<ExtUtils::MakeMaker>
+L<Module::Build>
 
 =head1 AUTHORS
 
 Brian Ingerson E<lt>INGY@cpan.orgE<gt>
 
 Audrey Tang E<lt>autrijus@autrijus.orgE<gt>
+
+Adam Kennedy E<lt>cpan@ali.asE<gt>
 
 =head1 COPYRIGHT
 

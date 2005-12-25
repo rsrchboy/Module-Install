@@ -14,14 +14,14 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 e24032c8875eea27d922204cdbf3ae31357f23f3 Changes
+SHA1 1529edb08cd48172a9c38c15fbddb7db0153e8ee Changes
 SHA1 50b4e6a1b8e17aa292c86543e0fc72d3b46b480e MANIFEST
 SHA1 d8504618f3e772137facea61a59906d77fffc412 MANIFEST.SKIP
-SHA1 b9356bd712cb2c7957af80eec4b4a35084c58744 META.yml
+SHA1 65c9548b58d74cf21b73d1cc435a8048884ddfa5 META.yml
 SHA1 7d1c8ae884f5c37c0b1755cd7dc2a2936ea3d7e0 Makefile.PL
 SHA1 fdbef62afa79c657e86178a9dac5b8c1b5223fc4 README
 SHA1 f684d991457658c39bb159f504fdfde1ab35727a inc/Module/AutoInstall.pm
-SHA1 1b5adb52769b8a6200b9a5c04278a46a9f8052cf inc/Module/Install.pm
+SHA1 11bd97594de63b40194321e9f1b29dd06506d8cb inc/Module/Install.pm
 SHA1 efb445738be8e47593d412d57de91bc6a5a87474 inc/Module/Install/AutoInstall.pm
 SHA1 f723264084fee10219036ce355fe5d778d06c6dc inc/Module/Install/Base.pm
 SHA1 2dba703acae347917bd7fea7ac10487fbda467d8 inc/Module/Install/Can.pm
@@ -33,9 +33,9 @@ SHA1 6dea053579084d1a638ddb3c22e86146d1588b28 inc/Module/Install/Win32.pm
 SHA1 5fa5a44d068cc7f7f4e2f4186192f6aef21735c1 inc/Module/Install/WriteAll.pm
 SHA1 5b7e69ece28acd582c4429e57a6c00ae9cc1bea0 lib/Module/AutoInstall.pm
 SHA1 a5cf37c2cc23f233b1be225e7a54160f01c2e339 lib/Module/Install-Philosophy.pod
-SHA1 4e71df922530ec8a3c68cedc3bee0b25cc443019 lib/Module/Install.pm
-SHA1 1a4445c2519cdcbbcc817a863d3c9e7dd86176d0 lib/Module/Install.pod
-SHA1 aebabbc15483ba205fd12a5633004c53424d1d5c lib/Module/Install/Admin.pm
+SHA1 f5d8ada6d97419ebe769e2fafc14e0a400c97955 lib/Module/Install.pm
+SHA1 377c576b22ace226a298ba013e94709b12c98999 lib/Module/Install.pod
+SHA1 fe3574f3496a301d4c9cae611c230e93dbb21c33 lib/Module/Install/Admin.pm
 SHA1 57b0f1152c5490287f85b52f4f0d5d849332f960 lib/Module/Install/Admin/Bundle.pm
 SHA1 4c56a004332e0b6988c9598b80cf9a5c334da471 lib/Module/Install/Admin/Find.pm
 SHA1 6ee0a0a2d969287219b69eeb20a8b314b90839cb lib/Module/Install/Admin/Include.pm
@@ -70,7 +70,7 @@ SHA1 34873535b662d7b6833adda1e2aea8630b7d3969 t/3-autoinstall.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.2 (FreeBSD)
 
-iD8DBQFDqljwtLPdNzw1AaARAodHAJ9EZYJu3b2Mqqgg5cmm6NN1CYzxAwCgoGHJ
-XrqvGA3S4thwiP2+0IPAiCA=
-=mL3K
+iD8DBQFDriY4tLPdNzw1AaARArUEAKCO6pxk+fqR27OIojqTbYsWDGqpyQCfcIpw
+gurWYo7cZpgMFDimWjr9ZKI=
+=cyHI
 -----END PGP SIGNATURE-----
