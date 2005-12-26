@@ -1,5 +1,5 @@
 package Module::Install::Admin;
-$VERSION = '0.48';
+$VERSION = '0.50';
 @ISA = 'Module::Install';
 
 use strict 'vars';
@@ -128,31 +128,28 @@ sub copy {
 
     chomp $to;
 
-    local (*FROM, *TO, $/);
+    local (*FROM, *TO, $_);
     open FROM, "< $from" or die "Can't open $from for input:\n$!";
-    my $content = <FROM>;
-    close FROM;
-
-    {
-        local $^W;
-        my $line = 1;
-        $content =~ s{(
-            (.*?)
-            ^=(?:head\d|pod|begin|item|over|for|back|end)\b.*?
-            ^=cut[\t ]*
-            (?:[\r\n])*?
-            (\r?\n)?
-        )}{
-            my ($pre, $post) = ($2, $3);
-            "$pre#line " . (
-                $line += ( () = ( $1 =~ /\n/g ) )
-            ) . $post;
-        }mgsex;
-    }
-
     open TO, "> $to" or die "Can't open $to for output:\n$!";
     print TO "#line 1 \"$to - $from\"\n";
-    print TO $content;
+
+    my $content;
+    my $in_pod;
+
+    while (<FROM>) {
+        if (/^=(?:b(?:egin|ack)|head\d|(?:po|en)d|item|(?:ove|fo)r)/) {
+            $in_pod = 1;
+        }
+        elsif (/^=cut\s*\z/ and $in_pod) {
+            $in_pod = 0;
+            print TO "#line $.\n";
+        }
+        elsif (!$in_pod) {
+            print TO $_;
+        }
+    }
+
+    close FROM;
     close TO;
 
     print "include $to\n";

@@ -1,3 +1,18 @@
+[Changes for 0.50 - 2005-12-26]
+
+* Fixed the bug where cpan signing was set forcibly to true instead
+  of defaulting to false.
+  Reported by: Martin Thurn and Randal Schwartz
+
+* Module::Install::Admin's copy() subroutine was using a lot of CPU
+  on inefficient regex matches, where a simple passthrough while()
+  line-processing loop would do.
+
+* The t/ directory is now listed in META.yml's no_index entries by
+  default, along with inc/.
+
+* YAML.pm is now listed as an explicit dependency.
+
 [Changes for 0.48 - 2005-12-26]
 
 * New Module::Install::Compiler extension with commands:

@@ -1,29 +1,24 @@
-name: Module-Install
-version: 0.48
-abstract: Standalone, extensible Perl module installer
-author: author 'Adam Kennedy <cpan@ali.as>';
-license: perl
+abstract: 'Standalone, extensible Perl module installer'
+author: Audrey Tang <autrijus@autrijus.org>
 distribution_type: module
-requires:
-  perl: 5.004
-recommends:
-  Test::Harness: 2.03
-  Test::More: 0
-  Module::ScanDeps: 0.28
-  Module::CoreList: 0
-  CPANPLUS: 0.04
-  PAR::Dist: 0.03
-  Module::Build: 0
+generated_by: Module::Install version 0.50
+license: perl
+name: Module-Install
+no_index:
+  directory:
+    - example
+    - inc
+    - t
 provides:
   Module::AutoInstall:
     file: lib/Module/AutoInstall.pm
     version: 1.00
   Module::Install:
     file: lib/Module/Install.pm
-    version: 0.48
+    version: 0.50
   Module::Install::Admin:
     file: lib/Module/Install/Admin.pm
-    version: 0.48
+    version: 0.50
   Module::Install::Admin::Bundle:
     file: lib/Module/Install/Admin/Bundle.pm
     version: 0.04
@@ -41,7 +36,7 @@ provides:
     version: 0.01
   Module::Install::Admin::Metadata:
     file: lib/Module/Install/Admin/Metadata.pm
-    version: 0.01
+    version: 0.02
   Module::Install::Admin::ScanDeps:
     file: lib/Module/Install/Admin/ScanDeps.pm
   Module::Install::Admin::WriteAll:
@@ -87,7 +82,7 @@ provides:
     version: 0.01
   Module::Install::Metadata:
     file: lib/Module/Install/Metadata.pm
-    version: 0.04
+    version: 0.05
   Module::Install::PAR:
     file: lib/Module/Install/PAR.pm
   Module::Install::Run:
@@ -106,8 +101,15 @@ provides:
     file: lib/Module/Install/WriteAll.pm
   inc::Module::Install:
     file: lib/inc/Module/Install.pm
-no_index:
-  directory:
-    - example
-    - inc
-generated_by: Module::Install version 0.48
+recommends:
+  CPANPLUS: 0.04
+  Module::Build: 0
+  Module::CoreList: 0
+  Module::ScanDeps: 0.28
+  PAR::Dist: 0.03
+  Test::Harness: 2.03
+  Test::More: 0
+requires:
+  YAML: 0.35
+  perl: 5.004
+version: 0.50

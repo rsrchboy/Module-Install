@@ -7,7 +7,9 @@ use lib 'lib'; # NOTE: Module::Install's Makefile.PL needs this statement
 use inc::Module::Install;
 
 name        'Module-Install';
+author      'Audrey Tang <autrijus@autrijus.org>';
 all_from    'lib/Module/Install.pm';
+requires     'YAML' => 0.35;
 
 feature 'Include packages with full dependencies',
     recommends
@@ -27,7 +29,6 @@ feature 'PAR-based binary distributions',
 feature 'Module::Build support',
     'Archive::Tar'      => 0.23,
     'ExtUtils::Install' => 0.3,
-    'YAML'              => 0.35,
     'ExtUtils::ParseXS',
     recommends
     'Module::Build';
