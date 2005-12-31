@@ -49,7 +49,10 @@ The main dispatcher - copy extensions if missing
 
 sub AUTOLOAD {
     my $self = shift;
-    goto &{$self->_top->autoload};
+
+    local $@;
+    my $autoload = eval { $self->_top->autoload } or return;
+    goto &$autoload;
 }
 
 =item _top()

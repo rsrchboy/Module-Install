@@ -6,8 +6,8 @@ Module::Install - Standalone, extensible Perl module installer
 
 =head1 VERSION
 
-This document describes version 0.50 of Module::Install, released
-December 26, 2005.
+This document describes version 0.51 of Module::Install, released
+December 31, 2005.
 
 =head1 SYNOPSIS
 
@@ -15,28 +15,28 @@ In your F<Makefile.PL>: (Recommended Usage)
 
     # Load the Module::Install bundled in ./inc/
     use inc::Module::Install;
-
+    
     # Name of your distribution
     name            'Your-Module';
-
+    
     # Get most of the details from the primary module
+    # (The filename argument below is optional if it is placed
+    # consistently with the "name" above.)
     all_from        'lib/Your/Module.pm';
-
-    # Modules that this distribution depend on
-    requires        'Carp';
-    requires        'File::Spec' => '0.80';
-
-    # Modules needed for building and testing
-    build_requires  'Test::More' => '0.42';
-
-    # Optional module dependencies
+    
+    requires        'Carp'              => 0;
+    requires        'File::Spec'        => '0.80';
+    
+    build_requires  'Test::More'        => '0.42';
+    
     recommends      'Your::OtherModule' => '0.01';
-
-    # Auto-installs all dependencies from CPAN.
-    # You want to use this most of the time, especially
-    # if you use the 'recommend' or 'feature' commands
+    
+    # Do not index our example modules
+    no_index        directory           => 'demos';
+    
+    # Auto-install all dependencies from CPAN
     auto_install;
-
+    
     # Generate the Makefile
     WriteAll;
 
@@ -104,10 +104,12 @@ Module::Install> in June 2003 issue of The Perl Journal
 For a B<lot> more information, and some personal opinions on the module
 and its creation, see L<Module::Install-Philosophy>.
 
-=head1 COMMANDS
+=head1 COMMON COMMANDS
 
-The following are the most common commands available for use in an
-installer.
+The following are the most common commands generally used in installers.
+
+It is far from an exhaustive list, as many of the plugins provide commands
+to work in more details that you would normally need.
 
 =head2 name
 
@@ -120,13 +122,19 @@ B<Your::Module> would normally be C<Your-Module>.
 
 =head2 all_from
 
-  all_from 'lib/My/Module';
+  all_from 'lib/My/Module.pm';
 
 For most simple or standard Perl distributions that feature one
 dominant module/class as the base, you can get the most Do What I Mean
 functionality by using the B<all_from> command, which will try to
 extract as much metadata as possible from the Perl and POD in the
 module itself.
+
+C<all_from> is equivalent to C<abstract_from> + C<author_from> +
+C<version_from> + C<license_from> + C<perl_version_from>.
+
+If any of these values are set already B<before> C<all_from> is used,
+they will kept and B<not> be overwritten.
 
 =head2 abstract
 
@@ -141,12 +149,14 @@ concerned.
 
 =head2 abstract_from
 
-  abstract_from 'lib/My/Module';
+  abstract_from 'lib/My/Module.pm';
 
 The C<abstract_from> command retrieves the abstract from a particular
 file contained in the distribution package. Most often this is done
 from the main module, where it will read the POD and use whatever
 is in the C<=head1 NAME> section (with module name removed as needed)
+
+C<abstract_from> is set as part of C<all_from>.
 
 =head2 author
 
@@ -160,17 +170,159 @@ The C<author> command is used to explicitly set this value.
 
 =head2 author_from
 
-  author_from 'lib/My/Module';
+  author_from 'lib/My/Module.pm';
 
-The C<author_from> command retrievs the author from a particular
+The C<author_from> command retrieves the author from a particular
 file contained in the distribution package. Most often this is done
 from the main module, where it read the POD and use whatever it
 can find in the C<=head1 AUTHOR> section.
 
+=head2 version
+
+  version '0.01';
+
+The C<version> command is used to specify the version of the
+distribution, as distinct from the version of any module within the
+distribution.
+
+Of course, in almost all cases you want it to match the version of the
+primary module within the distribution, which you can do using
+C<version_from>.
+
+=head2 version_from
+
+  version_from 'lib/My/Module.pm';
+
+The C<version_from> command retrieves the distribution version from a
+particular file contained in the distribution package. Most often this is
+done from the main module.
+
+C<version_from> will look for the first time you set C<$VERSION> and use
+the same value, using a method consistent with various other module
+version scanning tools.
+
+=head2 license
+
+  license 'perl';
+  
+The C<license> command specifies the license for the distribution.
+
+Most often this value will be C<'perl'>, meaning I<"the same as for Perl
+itself">. Other allowed values include C<'gpl'>, C<'lgpl'>, C<'bsd'> and
+C<'artistic'>.
+
+This value is always considered a summary, and it is normal for authors
+to include a F<LICENSE> file in the distribution, containing the full
+license for the distribution.
+
+=head2 license_from
+
+  license_from 'lib/My/Module.pm';
+
+The C<license_from> command retrieves the distribution license from a
+particular file contained in the distribution package. Most often this is
+done from the main module.
+
+C<license_from> will look inside the POD within the file for a licensing
+or copyright-related section and scan for a variety of strings that
+identify the general class of license.
+
+At this time it supports only the 5 values mentioned above in the
+C<license> command summary.
+
+=head2 perl_version
+
+  perl_version '5.006';
+
+The C<perl_version> command is used to specify the minimum version of the
+perl interpreter your distribution requires.
+
+=head2 perl_version_from
+
+  perl_version_from 'lib/My/Module.pm'
+
+The C<perl_version_from> command retrieves the minimum F<perl> interpreter
+version from a particular file contained in the distribution package. Most
+often this is done from the main module.
+
+The minimum version is detected by scanning the file for C<use 5.xxx>
+pragma calls in the module file.
+
+=head2 requires
+
+  requires 'List::Util' => 0;
+  requires 'LWP'        => '5.69';
+
+The C<requires> command indicates a normal run-time dependency of your
+distribution on another module. Most distributions will have one or
+more of these commands, indicating which CPAN (or otherwise) modules
+your distribution needs.
+
+A C<requires> dependency can be verbalised as I<"If you wish to install
+and use this distribution, you must first install these modules first">.
+
+Note that the dependency is on a B<module> and not a distribution. This
+is to ensure that you dependency stays correct, even if the module is
+moved or merged into a different distribtion, as is occasionally the
+case.
+
+A dependency on version zero indicates B<any> version of module is
+sufficient. Versions should generally be quoted for clarity.
+
+=head2 build_requires
+
+  build_requires 'Test::More' => '0.47';
+
+The C<build_requires> command indicates a build-time dependency for
+the distribution. The specification format is identical to that of
+the C<requires> command.
+
+The C<build_requires> command is distinct from the C<requires> command
+in that it indicates a module that is need B<only> during the building
+and testing of the distribution (often a period of only a few seconds)
+but will B<not> be needed after the distribution is installed.
+
+The most common case by far is for testing modules to be specified
+this way.
+
+The C<build_requires> command is used to allow the installer some
+flexibility in how it provides the module.
+
+For example, the C<include> command is sometimes used to bundle a
+small testing module into the distribution package itself rather than
+inflict another module installation on the user.
+
+In addition, when building a binary operating system packages (such as
+Debian .deb packages) from a CPAN distribution, the testing is done once
+by the packager, and so the C<build_requires> dependency can be safely
+ignored by the binary package.
+
+=head2 no_index
+
+  no_index directory => 'examples';
+
+Quite often a distrubition will provide example or testing modules
+(.pm files) as well as the actual library modules.
+
+In almost all situations, you do B<not> want these indexed in the master
+Perl packages list, you just want them along for the ride.
+
+The C<no_index> command is used to indicate locations where there might
+be non-library .pm files that the CPAN indexer and websites such as
+L<http://search.cpan.org/> should explicitly ignore.
+
+The most common situation is to ignore example or demo directories,
+but a variety of different situations may require a C<no_index> entry.
+
+The F<inc> and F<t> directories are automatically C<no_index>'ed for
+you and do not require a command.
+
 =head2 WriteAll
 
 The C<WriteAll> command is generally the last command; it writes out
-F<META.yml> and F<Makefile> so the user can type C<make install>.
+F<META.yml> and F<Makefile> (or F<Build>) so the user can run the
+C<make>, C<make test>, C<make install> process. (or the F<Build.PL>
+equivalents).
 
 =head1 EXTENSIONS
 
@@ -178,9 +330,7 @@ All extensions belong to the B<Module::Install::*> namespace, and
 inherit from B<Module::Install::Base>.  There are three categories
 of extensions:
 
-=over 4
-
-=item Standard Extensions
+=head2 Standard Extensions
 
 Methods defined by a standard extension may be called as plain functions
 inside F<Makefile.PL>; a corresponding singleton object will be spawned
@@ -202,7 +352,7 @@ whether you are an author by the existence of the F<inc/.author/>
 directory.  End-users can reinitialize everything and become the author
 by typing C<make realclean> and C<perl Makefile.PL>.
 
-=item Private Extensions
+=head2 Private Extensions
 
 Those extensions take the form of B<Module::Install::PRIVATE> and
 B<Module::Install::PRIVATE::*>.
@@ -218,7 +368,7 @@ start using their functions in F<Makefile.PL>.  Like standard
 extensions, they will never be installed on the end-user's machine,
 and therefore never conflict with other people's private extensions.
 
-=item Administrative Extensions
+=head2 Administrative Extensions
 
 Extensions under the B<Module::Install::Admin::*> namespace are never
 included with the distribution.  Their methods are not directly
@@ -237,108 +387,87 @@ B<AUTOLOAD> functions into administrative extensions (instead of
 standard extensions) should use the B<Module::Install::Admin> module
 directly.  See L<Module::Install::Admin> for details.
 
-=back
-
-B<Module::Install> comes with several standard extensions:
+=head2 Extention List
 
 =over 4
 
 =item Module::Install::AutoInstall
 
 Provides C<auto_install()> to automatically fetch and install
-prerequisites via B<CPANPLUS.pm> or B<CPAN.pm>, specified either by
-the C<features> metadata or by method arguments. 
+prerequisites.
 
 =item Module::Install::Base
 
-The base class of all extensions, providing C<new>, C<initialized>,
-C<admin>, C<load> and the C<AUTOLOAD> dispatcher.
+The base class for all extensions
 
 =item Module::Install::Build
 
-Provides C<&Build-E<gt>write> to generate a B<Module::Build> compliant
-F<Build> file, as well as other B<Module::Build> support functions.
+Provides integration with L<Module::Build> via C<&Build-E<gt>write>.
 
 =item Module::Install::Bundle
 
-Provides C<bundle>, C<bundle_deps> and C<bundle_all>, allowing you
-to bundle a CPAN distribution within your distribution.  When your
-end-users install your distribution, the bundled distribution will be
-installed along with yours, unless a newer version of the bundled
-distribution already exists on their local filesystem.
+Provides the C<bundle> family of commands, allowing you to bundle
+another CPAN distribution within your distribution.
 
 =item Module::Install::Fetch
 
-Handles fetching files from remote servers via FTP and HTTP.
+Handles install-time fetching of files from remote servers via
+FTP and HTTP.
 
 =item Module::Install::Include
 
-Provides the C<include($pkg)> function to include pod-stripped
-package(s) from C<@INC> to F<inc/>, and the C<auto_include()>
-function to include all modules specified in C<build_requires>,
-
-Also provides the C<include_deps($pkg)> function to include every
-non-core modules needed by C<$pkg>, and the C<auto_include_deps()>
-function that does the same thing as C<auto_include()>, plus all
-recursive dependencies that are subsequently required by modules in
-C<build_requires>.
+Provides the C<include> family of commands for embedding modules
+that are only need at build-time in your distribution and won't
+be installed.
 
 =item Module::Install::Inline
 
 Provides C<&Inline-E<gt>write> to replace B<Inline::MakeMaker>'s
-functionality of making (and cleaning after) B<Inline>-based modules.
+functionality for making B<Inline>-based modules (and cleaning up).
 
-However, you should invoke this with C<WriteAll( inline => 1 )> instead.
-
-=item Module::Install::MakeMaker
-
-Simple wrapper class for C<ExtUtils::MakeMaker::WriteMakefile>.
+However, you should invoke this with C<WriteAll( inline => 1 )>.
 
 =item Module::Install::Makefile
 
-Provides C<&Makefile-E<gt>write> to generate a B<ExtUtils::MakeMaker>
-compliant F<Makefile>; preferred over B<Module::Install::MakeMaker>.
-It adds several extra C<make> targets, as well as being more intelligent
-at guessing unspecified arguments.
+Provides C<&Makefile-E<gt>write> to generate a F<Makefile> for you
+distribution.
 
 =item Module::Install::Makefile::Name
 
-Guess the distribution name.
+Guessing the distribution name.
 
 =item Module::Install::Makefile::Version
 
-Guess the distribution version.
+Guessing the distribution version.
 
 =item Module::Install::Metadata
 
-Provides C<&Meta-E<gt>write> to generate a B<YAML>-compliant F<META.yml>
-file, and C<&Meta-E<gt>read> to parse it for C<&Makefile>, C<&Build> and
-C<&AutoInstall> to use.
+Provides C<&Meta-E<gt>write> to generate a F<META.yml> file for your
+distribution.
 
 =item Module::Install::PAR
 
-Makes pre-compiled module binary packages from F<blib>, and download
-existing ones to save the user from recompiling.
+Makes pre-compiled module binary packages from the built F<blib>
+directory, and download existing ones to save recompiling.
 
 =item Module::Install::Run
 
-Determines if a command is available on the user's machine, and run
-external commands via B<IPC::Run3>.
+Determines if commands are available on the user's machine, and runs
+them via B<IPC::Run3>.
 
 =item Module::Install::Scripts
 
-Handles packaging and installation of scripts, instead of modules.
+Handles packaging and installation of scripts to various bin dirs.
 
 =item Module::Install::Win32
 
-Functions related for installing modules on Win32, e.g. automatically
-fetching and installing F<nmake.exe> for users that need it.
+Functions for installing modules on Win32 and finding/installing
+F<nmake.exe> for users that need it.
 
 =item Module::Install::WriteAll
 
-This extension offers C<WriteAll>, which writes F<META.yml> and
-either F<Makefile> or F<Build> depending on the name of the invoked
-program.
+Provides the C<WriteAll>, which writes all the requires files,
+such as F<META.yml> and either F<Makefile> or F<Build>.
 
 C<WriteAll> takes four optional named parameters:
 
@@ -350,7 +479,7 @@ If true, invokes functions with the same name.
 
 =item C<inline> (defaults to false)
 
-If true, invokes C<&Inline-E<gt>write> instead of C<&Makefile-E<gt>write>.
+If true, invokes C<&Inline-E<gt>write> L<Inline> modules.
 
 =item C<meta> (defaults to true)
 
@@ -358,82 +487,34 @@ If true, writes a C<META.yml> file.
 
 =item C<sign> (defaults to false)
 
-If true, invokes functions with the same name.
+If true, invokes C<sign> command to digitally sign erm... something.
 
 =back
-
-=back
-
-B<Module::Install> also comes with several administrative extensions:
-
-=over
 
 =item Module::Install::Admin::Find
 
-Functions for finding extensions, installed packages and files in
-subdirectories.
+Package-time functions for finding extensions, installed packages
+and files in subdirectories.
 
 =item Module::Install::Admin::Manifest
 
-Functions for manipulating and updating the F<MANIFEST> file.
+Package-time functions for manipulating and updating the
+F<MANIFEST> file.
 
 =item Module::Install::Admin::Metadata
 
-Functions for manipulating and updating the F<META.yml> file.
+Package-time functions for manipulating and updating the
+F<META.yml> file.
 
 =item Module::Install::Admin::ScanDeps
 
-Handles scanning for non-core dependencies via B<Module::ScanDeps> and
-B<Module::CoreList>.
+Package-time scanning for non-core dependencies via B<Module::ScanDeps>
+and B<Module::CoreList>.
 
 =back
 
-Please consult their own POD documentations for detailed information.
-
-=head1 METHODS
-
-=over 4
-
-=item import(@args)
-
-If this module was not loaded from F<inc/>, calls the C<init>
-method of B<Module::Install::Admin> to include and reload itself;
-see L<Module::Install::Admin/Bootstrapping> for details.
-
-Otherwise, export a default C<AUTOLOAD> handler to the caller's package.
-
-The C<@args> array is passed to C<new> to intialize the top-level
-B<Module::Install> object; it should usually be left empty.
-
-=item autoload()
-
-Returns an AUTOLOAD handler bound to the caller package.
-
-=back
-
-=item new(%args)
-
-Constructor, taking a hash of named arguments.  Usually you do not want
-change any of them.
-
-=item call($method, @args)
-
-Call an extension method, passing C<@args> to it.
-
-=item load($method)
-
-Include and load an extension object implementing C<$method>.
-
-=item load_extensions($path, $top_obj)
-
-Loads all extensions under C<$path>; for each extension, create a
-singleton object with C<_top> pointing to C<$top_obj>, and populates the
-arrayref C<$self-E<gt>{extensions}> with those objects.
-
-=item load_extensions($path)
-
-Returns an array of C<[ $file_name, $package_name ]> for each extension
-module found under C<$path> and its subdirectories.
+Detailed information is provided for all (some) of the relevant
+modules via their own POD documentation.
 
 =head1 FAQ
 
@@ -443,7 +524,13 @@ Here is a brief overview of the reasons:
 
 =over 4
 
+=item * Extremely easy to beginners to learn
+
 =item * Does everything ExtUtils::MakeMaker does.
+
+=item * Does it with a dramatically simpler syntax.
+
+=item * Automatically scans for metadata for you.
 
 =item * Requires no installation for end-users.
 
@@ -455,71 +542,130 @@ Here is a brief overview of the reasons:
 
 =item * Distributing scripts is easy.
 
-=item * Include prerequisite modules (even the entire dependency tree).
+=item * Include prerequisite modules (less dependencies to install)
 
 =item * Auto-installation of prerequisites.
 
 =item * Support for Inline-based modules.
 
+=item * Support for File::ShareDir shared data files
+
 =item * Support for precompiled PAR binaries.
+
+=item * Deals with Win32 install issues for you.
 
 =cut
 
-Besides, if you maintain more than one CPAN modules, chances are there
-are duplications in their F<Makefile.PL>, and also with other CPAN module
-you copied the code from.  B<Module::Install> makes it really easy for you
-to abstract away such codes; see the next question.
+By greatly shrinking and simplifying the syntax B<Module::Install>
+keeps the amount of work required to maintain your F<Makefile.PL>
+files to an absolute minimum.
 
-=head2 How is this different from its predecessor, B<CPAN::MakeMaker>?
+And if you maintain more than one module than needs to do unusual
+installation tricks, you can create a specific module to abstract
+away this complexity.
 
-According to Brian Ingerson, the author of B<CPAN::MakeMaker>,
-their difference is that I<Module::Install is sane>.
+=head1 COOKBOOK / EXAMPLES
 
-Also, this module is not self-modifying, and offers a clear separation
-between standard, private and administrative extensions.  Therefore
-writing extensions for B<Module::Install> is easier -- instead of
-tweaking your local copy of C<CPAN/MakeMaker.pm>, just make your own
-B<Modula::Install::PRIVATE> module, or a new B<Module::Install::*>
-extension.
+The following are some real-life examples of F<Makefile.PL> files
+using B<Module::Install>.
+
+=head2 Method::Alias
+
+L<Method::Alias> is a trivially-small utility module, with almost the
+smallest possible F<Makefile.PL>.
+
+  use inc::Module::Install;
+  name           'Method-Alias';
+  all_from       'lib/Method/Alias.pm';
+  build_requires 'Test::More' => '0.42';
+
+=head2 File::HomeDir
+
+L<File::HomeDir> locates your home directorie on any platform. It needs
+an installed that can handle different dependencies on different platforms.
+
+  use inc::Module::Install;
+  
+  name           'File-HomeDir';
+  all_from       'lib/File/HomeDir.pm';
+  requires       'File::Spec' => '0.80';
+  build_requires 'Test::More' => '0.47';
+  
+  if ( $MacPerl::Version ) {
+      # Needed on legacy Mac OS 9
+      requires 'Mac::Files' => 0;
+  }
+  if ( $^O eq 'MXWin32' ) {
+      # Needed on Windows platforms
+      requires 'Win32::TieRegistry' => 0;
+  }
+  
+  auto_install;
+  WriteAll;
 
 =head1 SEE ALSO
 
 L<Module::Install-Philosophy>
+
 L<inc::Module::Install>
 
 L<Module::Install::AutoInstall>
+
 L<Module::Install::Base>
+
 L<Module::Install::Bundle>
+
 L<Module::Install::Build>
+
 L<Module::Install::Directives>
+
 L<Module::Install::Fetch>
+
 L<Module::Install::Include>
+
 L<Module::Install::MakeMaker>
+
 L<Module::Install::Makefile>
+
 L<Module::Install::Makefile::CleanFiles>
+
 L<Module::Install::Makefile::Name>
+
 L<Module::Install::Makefile::Version>
+
 L<Module::Install::Metadata>
+
 L<Module::Install::PAR>
+
 L<Module::Install::Run>
+
 L<Module::Install::Scripts>
+
 L<Module::Install::Win32>
+
 L<Module::Install::WriteAll>
 
 L<Module::Install::Admin>
+
 L<Module::Install::Admin::Bundle>
+
 L<Module::Install::Admin::Find>
+
 L<Module::Install::Admin::Include>
+
 L<Module::Install::Admin::Makefile>
+
 L<Module::Install::Admin::Manifest>
+
 L<Module::Install::Admin::Metadata>
+
 L<Module::Install::Admin::ScanDeps>
+
 L<Module::Install::Admin::WriteAll>
 
-L<CPAN::MakeMaker>
-L<Inline::MakeMaker>
-L<ExtUtils::MakeMaker>
-L<Module::Build>
+L<CPAN::MakeMaker>, L<Inline::MakeMaker>
+
+L<ExtUtils::MakeMaker>, L<Module::Build>
 
 =head1 AUTHORS
 
@@ -532,9 +678,9 @@ Adam Kennedy E<lt>cpan@ali.asE<gt>
 =head1 COPYRIGHT
 
 Copyright 2002, 2003, 2004, 2005 by
-    Adam Kennedy E<lt>cpan@ali.asE<gt>
+    Brian Ingerson E<lt>ingy@cpan.orgE<gt>,
     Audrey Tang E<lt>autrijus@autrijus.orgE<gt>,
-    Brian Ingerson E<lt>ingy@cpan.orgE<gt>.
+    Adam Kennedy E<lt>cpan@ali.asE<gt>.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.

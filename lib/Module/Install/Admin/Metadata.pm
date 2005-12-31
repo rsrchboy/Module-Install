@@ -1,9 +1,13 @@
 package Module::Install::Admin::Metadata;
-use Module::Install::Base; @ISA = qw(Module::Install::Base);
-
-$VERSION = '0.02';
 
 use strict;
+use Module::Install::Base;
+
+use vars qw{$VERSION @ISA};
+BEGIN {
+    $VERSION = '0.03';
+    @ISA = 'Module::Install::Base';
+}
 
 sub remove_meta {
     my $self = shift;
@@ -28,7 +32,7 @@ sub remove_meta {
 sub write_meta {
     my $self = shift;
 
-  META_NOT_OURS: {
+    META_NOT_OURS: {
         local *FH;
         if ( open FH, "META.yml" ) {
             while (<FH>) {
@@ -55,26 +59,31 @@ sub dump_meta {
     my %values  = %{ $self->Meta->{'values'} };
 
     delete $values{sign};
-    if ( my $perl_version = delete $values{perl_version} ) {
 
+    if ( my $perl_version = delete $values{perl_version} ) {
         # Always canonical to three-dot version
         $perl_version =~
-          s{^(\d+)\.(\d\d\d)(\d*)}{join('.', $1, int($2), int($3))}e
-          if $perl_version >= 5.006;
-        $values{requires} =
-          [ [ perl => $perl_version ], @{ $values{requires} || [] }, ];
+            s{^(\d+)\.(\d\d\d)(\d*)}{join('.', $1, int($2), int($3))}e
+            if $perl_version >= 5.006;
+        $values{requires} = [
+            [ perl => $perl_version ],
+            @{ $values{requires} || [] },
+        ];
     }
 
-    warn "No license specified, setting license = 'unknown'\n"
-      unless $values{license};
+	# Set a default 'unknown' license
+    unless ( $values{license} ) {
+        warn "No license specified, setting license = 'unknown'\n";
+        $values{license} = 'unknown';
+    }
 
-    $values{license}           ||= 'unknown';
     $values{distribution_type} ||= 'module';
-    $values{name}              ||= do {
-        my $name = $values{module_name};
-        $name =~ s/::/-/g;
-        $name;
-    } if $values{module_name};
+
+	# Guess a name if needed, derived from the module_name
+    if ( $values{module_name} and ! $values{name} ) {
+    	$values{name} = $values{module_name};
+    	$values{name} =~ s/::/-/g;
+    }
 
     if ( $values{name} =~ /::/ ) {
         my $name = $values{name};

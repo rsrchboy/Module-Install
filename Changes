@@ -1,3 +1,20 @@
+[Changes for 0.51 - 2005-12-31]
+
+* An additional 100+ lines of documentations in the Module::Install POD file.
+
+* all_from() with no args now attempts to decude the "from" file
+  from the "name" property.
+
+* On Cygwin, sometimes AUTOLOAD is called with a gensym'ed package
+  that does not define _top.  Try to accomodate for this.
+
+* Do not ever attempt "sudo" without interactive consent from the user;
+  make the _prompt() in Module::AutoInstall default to 'n' if we are
+  not running in an interactive terminal.
+
+* Add lib_paths and lib_links commands to Module::Install::Compiler for
+  setting LIBS flags.
+
 [Changes for 0.50 - 2005-12-26]
 
 * Fixed the bug where cpan signing was set forcibly to true instead
