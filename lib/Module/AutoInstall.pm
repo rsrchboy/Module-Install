@@ -1,5 +1,5 @@
 package Module::AutoInstall;
-$Module::AutoInstall::VERSION = '1.00';
+$Module::AutoInstall::VERSION = '1.01';
 
 use strict;
 use Cwd                 ();
@@ -8,11 +8,6 @@ use ExtUtils::MakeMaker ();
 =head1 NAME
 
 Module::AutoInstall - Automatic install of dependencies via CPAN
-
-=head1 VERSION
-
-This document describes version 0.01 of B<Module::AutoInstall>,
-released September 12, 2005.
 
 =head1 SYNOPSIS
 
@@ -539,12 +534,8 @@ sub _install_cpanplus {
     my $cp   = CPANPLUS::Backend->new;
     my $conf = $cp->configure_object;
 
-    return
-      unless _can_write(
-          $conf->can('conf')
-        ? $conf->get_conf('base')      # 0.05x+
-        : $conf->_get_build('base')    # 0.04x
-      );
+    return unless $conf->can('conf') # 0.05x+ with "sudo" support
+               or _can_write($conf->_get_build('base'));  # 0.04x
 
     # if we're root, set UNINST=1 to avoid trouble unless user asked for it.
     my $makeflags = $conf->get_conf('makeflags') || '';
@@ -618,9 +609,11 @@ sub _install_cpan {
     CPAN::Config->load;
     require Config;
 
-    return
-      unless _can_write( MM->catfile( $CPAN::Config->{cpan_home}, 'sources' ) )
-      and _can_write( $Config::Config{sitelib} );
+    if (CPAN->VERSION < 1.80) {
+        # no "sudo" support, probe for writableness
+        return unless _can_write( MM->catfile( $CPAN::Config->{cpan_home}, 'sources' ) )
+                  and _can_write( $Config::Config{sitelib} );
+    }
 
     # if we're root, set UNINST=1 to avoid trouble unless user asked for it.
     my $makeflags = $CPAN::Config->{make_install_arg} || '';
@@ -940,8 +933,7 @@ Audrey Tang E<lt>autrijus@autrijus.orgE<gt>
 
 =head1 COPYRIGHT
 
-Copyright 2001, 2002, 2003, 2004, 2005
-by Audrey Tang E<lt>autrijus@autrijus.orgE<gt>.
+Copyright 2001, 2002, 2003, 2004, 2005, 2006 by Audrey Tang.
 
 This program is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself.

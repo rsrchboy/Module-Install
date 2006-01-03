@@ -15,14 +15,14 @@ sub find_in_inc {
     my ($self, $pkg) = @_;
 
     unless ($pkg =~ /\.pm$/) {
-	$pkg =~ s!::!/!g;
-	$pkg = "$pkg.pm";
+        $pkg =~ s!::!/!g;
+        $pkg = "$pkg.pm";
     }
 
     my @found;
     foreach my $inc (@INC) {
-	next if $inc eq $self->_top->{prefix} or ref($inc);
-	push @found, "$inc/$pkg" if -f "$inc/$pkg";
+        next if $inc eq $self->_top->{prefix} or ref($inc);
+        push @found, "$inc/$pkg" if -f "$inc/$pkg";
     }
 
     wantarray ? @found : $found[0];
@@ -32,14 +32,14 @@ sub glob_in_inc {
     my ($self, $pkg) = @_;
 
     unless ($pkg =~ /\.pm$/) {
-	$pkg =~ s!::!/!g;
-	$pkg = "$pkg.pm";
+        $pkg =~ s!::!/!g;
+        $pkg = "$pkg.pm";
     }
 
     my @found;
     foreach my $inc (@INC) {
-	next if $inc eq $self->_top->{prefix} or ref($inc);
-	push @found, [ do {
+        next if $inc eq $self->_top->{prefix} or ref($inc);
+        push @found, [ do {
             my $p = $_;
             $p =~ s!^\Q$inc\E/!!;
             $p =~ s!/!::!g;

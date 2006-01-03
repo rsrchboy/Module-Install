@@ -1,7 +1,7 @@
 abstract: 'Standalone, extensible Perl module installer'
 author: Audrey Tang <autrijus@autrijus.org>
 distribution_type: module
-generated_by: Module::Install version 0.51
+generated_by: Module::Install version 0.52
 license: gpl
 name: Module-Install
 no_index:
@@ -12,13 +12,13 @@ no_index:
 provides:
   Module::AutoInstall:
     file: lib/Module/AutoInstall.pm
-    version: 1.00
+    version: 1.01
   Module::Install:
     file: lib/Module/Install.pm
-    version: 0.51
+    version: 0.52
   Module::Install::Admin:
     file: lib/Module/Install/Admin.pm
-    version: 0.51
+    version: 0.52
   Module::Install::Admin::Bundle:
     file: lib/Module/Install/Admin/Bundle.pm
     version: 0.04
@@ -112,4 +112,4 @@ recommends:
 requires:
   YAML: 0.35
   perl: 5.004
-version: 0.51
+version: 0.52

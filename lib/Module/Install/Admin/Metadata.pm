@@ -71,7 +71,7 @@ sub dump_meta {
         ];
     }
 
-	# Set a default 'unknown' license
+        # Set a default 'unknown' license
     unless ( $values{license} ) {
         warn "No license specified, setting license = 'unknown'\n";
         $values{license} = 'unknown';
@@ -79,10 +79,10 @@ sub dump_meta {
 
     $values{distribution_type} ||= 'module';
 
-	# Guess a name if needed, derived from the module_name
+        # Guess a name if needed, derived from the module_name
     if ( $values{module_name} and ! $values{name} ) {
-    	$values{name} = $values{module_name};
-    	$values{name} =~ s/::/-/g;
+        $values{name} = $values{module_name};
+        $values{name} =~ s/::/-/g;
     }
 
     if ( $values{name} =~ /::/ ) {

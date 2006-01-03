@@ -6,8 +6,8 @@ Module::Install - Standalone, extensible Perl module installer
 
 =head1 VERSION
 
-This document describes version 0.51 of Module::Install, released
-December 31, 2005.
+This document describes version 0.52 of Module::Install, released
+January 3, 2006.
 
 =head1 SYNOPSIS
 
@@ -113,7 +113,7 @@ to work in more details that you would normally need.
 
 =head2 name
 
-  name 'My-Module;
+  name 'My-Module';
 
 The B<name> command is a compulsory (and generally the first) command.
 
@@ -677,10 +677,8 @@ Adam Kennedy E<lt>cpan@ali.asE<gt>
 
 =head1 COPYRIGHT
 
-Copyright 2002, 2003, 2004, 2005 by
-    Brian Ingerson E<lt>ingy@cpan.orgE<gt>,
-    Audrey Tang E<lt>autrijus@autrijus.orgE<gt>,
-    Adam Kennedy E<lt>cpan@ali.asE<gt>.
+Copyright 2002, 2003, 2004, 2005, 2006 by
+Brian Ingerson, Audrey Tang, Adam Kennedy.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
