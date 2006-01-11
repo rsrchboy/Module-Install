@@ -60,7 +60,7 @@ if ($^O eq 'cygwin') {
                 ExtUtils::MM_Win32->maybe_command($file);
             }
             else {
-                $self->SUPER::maybe_command($file);
+                ExtUtils::MM_Unix->maybe_command($file);
             }
         }
     }

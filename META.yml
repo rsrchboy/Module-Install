@@ -4,9 +4,9 @@ no_index:
     - example
     - inc
     - t
-generated_by: Module::Install version 0.53
+generated_by: Module::Install version 0.54
 distribution_type: module
-version: 0.53
+version: 0.54
 name: Module-Install
 author: Audrey Tang <autrijus@autrijus.org>
 license: gpl
@@ -53,7 +53,7 @@ provides:
     version: 0.01
     file: lib/Module/Install/Admin/Manifest.pm
   Module::Install::Admin: 
-    version: 0.53
+    version: 0.54
     file: lib/Module/Install/Admin.pm
   Module::Install::Base::FakeAdmin: 
     file: lib/Module/Install/Base.pm
@@ -86,7 +86,7 @@ provides:
     version: 0.02
     file: lib/Module/Install/Scripts.pm
   Module::Install: 
-    version: 0.53
+    version: 0.54
     file: lib/Module/Install.pm
   Module::Install::Win32: 
     version: 0.02

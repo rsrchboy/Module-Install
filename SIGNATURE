@@ -14,17 +14,17 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 797113a145c273190cf949c7d3be10754c124c67 Changes
+SHA1 6b9d56ef93c2445007cda1203bf2eea8865d9ed9 Changes
 SHA1 5a719bc1917e640ab583da941586e210da83a18f MANIFEST
 SHA1 d8504618f3e772137facea61a59906d77fffc412 MANIFEST.SKIP
-SHA1 ea48eef0e24e7c9204bbf3219e0d91043ad2fc8d META.yml
+SHA1 dbb2b2aeea98726403dfbcb4f7aa6a55ed85f997 META.yml
 SHA1 99073b02ba9322ebc63e7665497ff66878d2b7a2 Makefile.PL
 SHA1 d131a0c2e81eeed474b809095878a9aa819badcb README
 SHA1 b0cf6e5a18272351015e6b2bf770a4d3d7b81fe7 inc/Module/AutoInstall.pm
-SHA1 3a6931aea68ecb4f2d0ff2aae129f89422f6cf11 inc/Module/Install.pm
+SHA1 adfed789a44d66f10e610092c8a45d3a308204be inc/Module/Install.pm
 SHA1 efb445738be8e47593d412d57de91bc6a5a87474 inc/Module/Install/AutoInstall.pm
 SHA1 b9f88c65a2a1a2ff53632d2e71ac60e0d52d66f6 inc/Module/Install/Base.pm
-SHA1 361ee8028fd9075ffdd6668d8d744c65f0a38179 inc/Module/Install/Can.pm
+SHA1 f4154feb374971ecdbbc7ab44a55cc9f00057c30 inc/Module/Install/Can.pm
 SHA1 a5389bc01a2c81898654796e0206588229f74b16 inc/Module/Install/Fetch.pm
 SHA1 5f9007e74cb6df03acd616cc2dd350966257162c inc/Module/Install/Include.pm
 SHA1 47a67dc7ff84095409751f3bcf0b9e0ec215f4d6 inc/Module/Install/Makefile.pm
@@ -33,9 +33,9 @@ SHA1 6dea053579084d1a638ddb3c22e86146d1588b28 inc/Module/Install/Win32.pm
 SHA1 afb581b95e7e63ce7618733c2e7284f7e5da9ee7 inc/Module/Install/WriteAll.pm
 SHA1 91f5522687fb8caa3ad2eed15f31a49a7168307b lib/Module/AutoInstall.pm
 SHA1 a5cf37c2cc23f233b1be225e7a54160f01c2e339 lib/Module/Install-Philosophy.pod
-SHA1 c26b2efcdf03cb838733bef3a827b154f6e37976 lib/Module/Install.pm
-SHA1 8f4383bc0e9dca64500c19d0db78e72d97844cf9 lib/Module/Install.pod
-SHA1 bd3467d99c1a7f73bee5819051be068937b54d8e lib/Module/Install/Admin.pm
+SHA1 b309facf7c63b68ffea4ef93096e954ebdca090e lib/Module/Install.pm
+SHA1 d5a8ce89cf2c7380cd6ab87166b0b584e92558a5 lib/Module/Install.pod
+SHA1 cc7f17ece615d8d3d199492c13723f0a8c83edb8 lib/Module/Install/Admin.pm
 SHA1 57b0f1152c5490287f85b52f4f0d5d849332f960 lib/Module/Install/Admin/Bundle.pm
 SHA1 67e24c386c1a964e845ee97540a5ad1f4b38c495 lib/Module/Install/Admin/Find.pm
 SHA1 6ee0a0a2d969287219b69eeb20a8b314b90839cb lib/Module/Install/Admin/Include.pm
@@ -48,7 +48,7 @@ SHA1 5c17235758de252ef7b6f6da246277d1e6321d10 lib/Module/Install/AutoInstall.pm
 SHA1 12ef08d31f6afe4acf46bd627fee0a268b98be7d lib/Module/Install/Base.pm
 SHA1 02c15969f75db48679d55dfd651946164bbcaca6 lib/Module/Install/Build.pm
 SHA1 a2c881c0171c651f545ddfd6eb9070dfa7e92bcc lib/Module/Install/Bundle.pm
-SHA1 3adf1f92949ff3fa5b4cfc2056eeebd0eb2284f1 lib/Module/Install/Can.pm
+SHA1 f7c69f70b118013635c9c2b1d3cd8020baab1703 lib/Module/Install/Can.pm
 SHA1 70e8e0ac8d288daa443eca42149ea8cb1d53f735 lib/Module/Install/Compiler.pm
 SHA1 20ec4c053545daa827987ea0d0153f991e55dbaf lib/Module/Install/Fetch.pm
 SHA1 d51f1c421c7c31098272eaff796ac297ac584cbb lib/Module/Install/Include.pm
@@ -71,7 +71,7 @@ SHA1 34873535b662d7b6833adda1e2aea8630b7d3969 t/3-autoinstall.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.2 (FreeBSD)
 
-iD8DBQFDxHWatLPdNzw1AaARAt7oAJ9bObhRJjnlLcqvMAZ3qN5vVe1L9wCfbMST
-1ziBJ1Lga00kLhRjNiuUfVg=
-=hH6J
+iD8DBQFDxHbotLPdNzw1AaARAh1aAJ49zzcmsNjTWNlsyCC86yzuKDRflwCbB85c
+7XilO/YrRHpQv2TeuMDBegs=
+=S+vb
 -----END PGP SIGNATURE-----
