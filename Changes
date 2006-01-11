@@ -1,3 +1,11 @@
+[Changes for 0.53 - 2006-01-11]
+
+* Fix can_run() on Cygwin for paths beginning with /cygdrive/.
+  Reported by: Mark Staggs
+
+* If YAML::Syck is present on the system, use it instead of YAML.pm
+  to write out META.yml.
+
 [Changes for 0.52 - 2006-01-03]
 
 * Module::AutoInstall - disable "sudo" prompting for CPANPLUS 0.050

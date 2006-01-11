@@ -9,7 +9,9 @@ use inc::Module::Install;
 name        'Module-Install';
 author      'Audrey Tang <autrijus@autrijus.org>';
 all_from    'lib/Module/Install.pm';
-requires     'YAML' => 0.35;
+
+# If we have YAML::Syck here, don't bother installing YAML.
+requires 'YAML' => 0.35 unless can_use('YAML::Syck' => 0.15);
 
 feature 'Include packages with full dependencies',
     recommends
@@ -40,6 +42,9 @@ auto_install_now
     prerequisites_policy => 'follow';
 
 auto_provides;
+
+# Still list it as a mandatory dependency for now
+requires 'YAML' => 0.35;
 
 sign;
 WriteAll;

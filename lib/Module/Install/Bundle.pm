@@ -76,7 +76,7 @@ sub auto_bundle_deps {
     while (my ($name, $version) = splice(@core, 0, 2)) {
         next unless $name;
          $self->bundle_deps($name, $version);
-         $self->add_bundle($name, $version);
+         $self->bundle($name, $version);
     }
 }
 

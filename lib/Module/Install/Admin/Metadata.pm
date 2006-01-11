@@ -107,11 +107,18 @@ sub dump_meta {
     my $no_index = $values{no_index} ||= {};
     push @{ $no_index->{'directory'} ||= [] }, 'inc', 't';
     $dump{no_index} = $no_index;
-
-    require YAML;
-    local $YAML::UseHeader = 0;
     $dump{generated_by} = "$package version $version";
-    return YAML::Dump(\%dump);
+
+    local $@;
+    if (eval { require YAML::Syck }) {
+        local $YAML::Syck::Headless = 1;
+        return YAML::Syck::Dump(\%dump);
+    }
+    else {
+        require YAML;
+        local $YAML::UseHeader = 0;
+        return YAML::Dump(\%dump);
+    }
 }
 
 1;
