@@ -1,5 +1,7 @@
 package Module::Install::Admin::WriteAll;
-use Module::Install::Base; @ISA = qw(Module::Install::Base);
+
+use Module::Install::Base;
+@ISA = qw(Module::Install::Base);
 
 $VERSION = '0.01';
 
@@ -18,7 +20,7 @@ sub WriteAll {
         if ($self->sign and !-e 'MANIFEST.SKIP') {
             local *FH;
             open FH, '>MANIFEST.SKIP' or die $!;
-            print FH << '.';
+            print FH <<'END_MANIFEST_SKIP';
 #defaults
 ^Makefile$
 ^blib/
@@ -26,7 +28,7 @@ sub WriteAll {
 ^blibdirs$
 ^Build$
 ^_build/
-.
+END_MANIFEST_SKIP
             close FH;
             open FH, '>>MANIFEST' or die $!;
             print FH "MANIFEST.SKIP";

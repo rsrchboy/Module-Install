@@ -1,5 +1,7 @@
 package Module::Install::Makefile::Version;
-use Module::Install::Base; @ISA = qw(Module::Install::Base);
+
+use Module::Install::Base;
+@ISA = qw(Module::Install::Base);
 
 $VERSION = '0.01';
 
@@ -10,23 +12,30 @@ sub determine_VERSION {
     my @modules = glob('*.pm');
 
     require File::Find;
-    File::Find::find(sub { push @modules, $File::Find::name =~ /\.pm\z/i }, 'lib');
+    File::Find::find( sub {
+        push @modules, $File::Find::name =~ /\.pm\z/i;
+    }, 'lib' );
 
     if (@modules == 1) {
         eval {
-            $self->version(ExtUtils::MM_Unix->parse_version($modules[0]));
+            $self->version(
+                ExtUtils::MM_Unix->parse_version($modules[0])
+            );
         };
         print STDERR $@ if $@;
-    }
-    elsif (my $file = "lib/" . $self->name . ".pm") {
+
+    } elsif ( my $file = "lib/" . $self->name . ".pm" ) {
         $file =~ s!-!/!g;
-        $self->version(ExtUtils::MM_Unix->parse_version($file)) if -f $file;
+        $self->version(
+            ExtUtils::MM_Unix->parse_version($file)
+        ) if -f $file;
+
     }
 
-    $self->version or die << "END";
+    $self->version or die << "END_MESSAGE";
 Can't determine a VERSION for this distribution.
 Please call the 'version' or 'version_from' function in Makefile.PL.
-END
+END_MESSAGE
 }
 
 1;

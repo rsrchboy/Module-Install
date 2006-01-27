@@ -1,8 +1,11 @@
 package Module::Install::Build;
+
+use Module::Install::Base;
+@ISA = qw(Module::Install::Base);
+
 $VERSION = '0.01';
+
 use strict;
-use vars qw(@ISA);
-use Module::Install::Base; @ISA = qw(Module::Install::Base);
 
 sub Build { $_[0] }
 
@@ -55,7 +58,6 @@ sub ACTION_dist {
 # <DrMath> ingy: then my $build = new MyBuilder( ...parameters... );
 #           $build->write_build_script;
 
-
 1;
 
 __END__
@@ -80,8 +82,8 @@ In your F<Makefile.PL>:
 
 This module is a wrapper around B<Module::Build>.
 
-The C<&Build->write> function will pass on keyword/value pair functions
-to C<Module::Build::create_build_script>.
+The C<&Build-E<gt>write> function will pass on keyword/value pair
+functions to C<Module::Build::create_build_script>.
 
 =head2 VERSION
 

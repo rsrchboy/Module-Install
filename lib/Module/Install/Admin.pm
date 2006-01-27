@@ -1,10 +1,13 @@
 package Module::Install::Admin;
-$VERSION = '0.54';
+
+$VERSION = '0.55';
 @ISA = 'Module::Install';
 
 use strict 'vars';
 use File::Path ();
 use inc::Module::Install ();
+
+=pod
 
 =head1 NAME
 
@@ -272,6 +275,8 @@ sub DESTROY {}
 1;
 
 __END__
+
+=pod
 
 =head1 SEE ALSO
 

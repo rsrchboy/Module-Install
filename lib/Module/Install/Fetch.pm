@@ -1,5 +1,7 @@
 package Module::Install::Fetch;
-use Module::Install::Base; @ISA = qw(Module::Install::Base);
+
+use Module::Install::Base;
+@ISA = qw(Module::Install::Base);
 
 $VERSION = '0.01';
 
@@ -8,7 +10,7 @@ sub get_file {
     my ($scheme, $host, $path, $file) = 
         $args{url} =~ m|^(\w+)://([^/]+)(.+)/(.+)| or return;
 
-    if ($scheme eq 'http' and !eval { require LWP::Simple; 1 }) {
+    if ( $scheme eq 'http' and ! eval { require LWP::Simple; 1 } ) {
         $args{url} = $args{ftp_url}
             or (warn("LWP support unavailable!\n"), return);
         ($scheme, $host, $path, $file) = 

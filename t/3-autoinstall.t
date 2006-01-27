@@ -2,7 +2,6 @@
 
 use strict;
 use Test;
-use Data::Dumper;
 
 BEGIN { plan tests => 6; $^W = 0; };
 
@@ -37,47 +36,48 @@ Module::AutoInstall::_accept_default(0);
 # calls the module.
 ok(eval <<'.', $@);
 use Module::AutoInstall (
-    -version	=> '0.21',	# Module::AutoInstall version
-    -config	=> {
-	make_args	=> '--hello'	# option(s) for CPAN::Config 
+    -version    => '0.21',      # Module::AutoInstall version
+    -config     => {
+        make_args => '--hello'  # option(s) for CPAN::Config 
     },
-    -core	=> [		# core modules
-	Package0	=> '',		# any version would do
+    -core       => [            # core modules
+        Package0  => '',        # any version would do
     ],
-    'Feature1'	=> [
-	# do we want to install this feature by default?
-	-default	=> 0,
-	Package1	=> '0.01',
+    'Feature1'  => [
+        # do we want to install this feature by default?
+        -default  => 0,
+        Package1  => '0.01',
     ],
-    'Feature2'	=> [
-	# associate tests to be disabled along with this
-	-tests		=> [ $0 ],
-	Package2	=> '0.02',
+    'Feature2'  => [
+        # associate tests to be disabled along with this
+        -tests    => [ $0 ],
+        Package2  => '0.02',
     ],
-    'Feature3'	=> {			# hash reference works, too
-	Package3	=> '0.03',
+    'Feature3'  => {            # hash reference works, too
+        Package3  => '0.03',
     },
 ); '';
 .
 
 # simulates a makefile.
 WriteMakefile(
-    AUTHOR		=> 'Joe Hacker (joe@hacker.org)',
-    ABSTRACT		=> 'Perl Interface to Joe Hacker',
-    NAME		=> 'Joe::Hacker',
-    VERSION_FROM	=> 'Hacker.pm',
-    DISTNAME		=> 'Joe-Hacker',
-    EXE_FILES		=> [ qw/foo bar baz/ ],
+    AUTHOR              => 'Zoe Hacker <joe@hacker.org>',
+    ABSTRACT            => 'Perl Interface to Zoe Hacker',
+    NAME                => 'Zoe::Hacker',
+    VERSION_FROM        => 'Hacker.pm',
+    DISTNAME            => 'Zoe-Hacker',
+    EXE_FILES           => [ qw/foo bar baz/ ],
 );
 
 # XXX - test currently disabled in anticipation of a
 #       rewrite using Test::MockObject.
 
-exit;
+__END__
+use Data::Dumper;
 
 $$out =~ s/.*\n//; # strip the version-dependent line.
 
-ok($$out, qr/\Q*** Checking for dependencies...
+ok($$out =~ /\Q*** Checking for dependencies...
 [Core Features]
 - Package0 ...failed! (needed)
 [Feature1]
@@ -95,12 +95,12 @@ $mm_args->{test}{TESTS} = ''; # XXX: workaround false-positive globbing
 ok(
     Data::Dumper::Dumper($mm_args), 
     Data::Dumper::Dumper({
-        ABSTRACT		=> 'Perl Interface to Joe Hacker',
-        test		=>  { 'TESTS' => '' },
-        NAME		=> 'Joe::Hacker',
-        DISTNAME		=> 'Joe-Hacker',
-        AUTHOR		=> 'Joe Hacker (joe@hacker.org)',
-        EXE_FILES		=> [],
-        VERSION_FROM	=> 'Hacker.pm',
+        ABSTRACT        => 'Perl Interface to Zoe Hacker',
+        test            =>  { 'TESTS' => '' },
+        NAME            => 'Zoe::Hacker',
+        DISTNAME        => 'Zoe-Hacker',
+        AUTHOR          => 'Zoe Hacker (joe@hacker.org)',
+        EXE_FILES       => [],
+        VERSION_FROM    => 'Hacker.pm',
     })
 );

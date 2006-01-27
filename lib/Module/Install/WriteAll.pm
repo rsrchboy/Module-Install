@@ -1,5 +1,7 @@
 package Module::Install::WriteAll;
-use Module::Install::Base; @ISA = qw(Module::Install::Base);
+
+use Module::Install::Base;
+@ISA = qw(Module::Install::Base);
 
 sub WriteAll {
     my $self = shift;

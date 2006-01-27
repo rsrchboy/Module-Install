@@ -1,5 +1,7 @@
 package Module::Install::AutoInstall;
-use Module::Install::Base; @ISA = qw(Module::Install::Base);
+
+use Module::Install::Base;
+@ISA = qw{Module::Install::Base};
 
 sub AutoInstall { $_[0] }
 

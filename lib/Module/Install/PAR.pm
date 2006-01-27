@@ -1,5 +1,7 @@
 package Module::Install::PAR;
-use Module::Install::Base; @ISA = qw(Module::Install::Base);
+
+use Module::Install::Base;
+@ISA = qw(Module::Install::Base);
 
 sub par_base {
     my ($self, $base, $file) = @_;

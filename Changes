@@ -1,3 +1,28 @@
+[Changes for 0.55 - 2006-01-27]
+
+* This release only not signed (Released by ADAMK who has no keys)
+
+* Another pass over the POD to clean up and remove mistaked (ADAMK)
+
+* Module::Install::Share installs to blib/lib rather than blib/arch.
+  Most files will be non-arch-specific, and it was causing problems
+  down the road with File::ShareDir.
+  All existing working install_share/File::ShareDir continues to work.
+
+* New command auto_include_dependent_dists() to recursively include dependent
+  CPAN distributions for modules declared with build_requires().
+  This differs from auto_include_deps() because it works with whole
+  distribution source trees, not just single modules.
+
+* Fix POD syntax so t/2-pod.t passes.
+  Contributed by: Ishigaki Kenichi
+
+* Disable 5.005-specific qr// construct in t/3-autoinstall.t so
+  Perl 5.004 can build this module again.
+
+* YAML::Syck 0.27+ is now a preferred dependency over YAML 0.35+ for
+  platforms with a C compiler and without either one available.
+
 [Changes for 0.54 - 2006-01-11]
 
 * Fix can_run() on Cygwin for real.

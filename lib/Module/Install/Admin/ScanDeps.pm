@@ -1,15 +1,17 @@
 package Module::Install::Admin::ScanDeps;
-use Module::Install::Base; @ISA = qw(Module::Install::Base);
+
+use Module::Install::Base;
+@ISA = qw(Module::Install::Base);
 
 sub scan_dependencies {
     my ($self, $pkg, $perl_version) = @_;
 
     return if $pkg eq 'perl';
 
-    $perl_version ||= $self->perl_version or die << '.';
+    $perl_version ||= $self->perl_version or die <<'END_MESSAGE';
 Please first specify a required perl version, like this:
-    requires( perl => '5.004' );
-.
+    requires( perl => '5.005' );
+END_MESSAGE
     $perl_version =~ s{^(\d+)\.(\d+)\.(\d+)}{$1 + $2/1_000 + $3/1_000_000}e;
 
     require Module::ScanDeps;

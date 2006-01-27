@@ -1,5 +1,7 @@
 package Module::Install::Makefile::Name;
-use Module::Install::Base; @ISA = qw(Module::Install::Base);
+
+use Module::Install::Base;
+@ISA = qw(Module::Install::Base);
 
 $VERSION = '0.01';
 
@@ -10,7 +12,9 @@ sub determine_NAME {
     my @modules = glob('*.pm');
 
     require File::Find;
-    File::Find::find(sub { push @modules, $File::Find::name if /\.pm/i }, 'lib');
+    File::Find::find( sub {
+        push @modules, $File::Find::name if /\.pm/i;
+    }, 'lib');
 
     if (@modules == 1) {
         local *MODULE;

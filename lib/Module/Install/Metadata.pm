@@ -1,13 +1,11 @@
 package Module::Install::Metadata;
 
-use strict 'vars';
 use Module::Install::Base;
+@ISA = qw{Module::Install::Base};
 
-use vars qw($VERSION @ISA);
-BEGIN {
-    $VERSION = '0.06';
-    @ISA     = 'Module::Install::Base';
-}
+$VERSION = '0.06';
+
+use strict 'vars';
 
 my @scalar_keys = qw{
     name module_name abstract author version license

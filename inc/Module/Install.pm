@@ -1,4 +1,4 @@
-#line 1 "/home/autrijus/work/modinstall/trunk/inc/Module/Install.pm - lib/Module/Install.pm"
+#line 1 "/home/adam/modinstall/trunk/inc/Module/Install.pm - lib/Module/Install.pm"
 package Module::Install;
 
 use 5.004;
@@ -6,7 +6,7 @@ use strict 'vars';
 use vars qw{$VERSION};
 BEGIN {
     # Don't forget to update Module::Install::Admin too!
-    $VERSION = '0.54';
+    $VERSION = '0.55';
 }
 
 # inc::Module::Install must be loaded first

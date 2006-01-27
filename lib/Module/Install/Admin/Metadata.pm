@@ -1,13 +1,11 @@
 package Module::Install::Admin::Metadata;
 
-use strict;
 use Module::Install::Base;
+@ISA = 'Module::Install::Base';
 
-use vars qw{$VERSION @ISA};
-BEGIN {
-    $VERSION = '0.03';
-    @ISA = 'Module::Install::Base';
-}
+$VERSION = '0.03';
+
+use strict;
 
 sub remove_meta {
     my $self = shift;

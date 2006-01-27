@@ -1,5 +1,7 @@
 package Module::Install::Bundle;
-use Module::Install::Base; @ISA = qw(Module::Install::Base);
+
+use Module::Install::Base;
+@ISA = qw(Module::Install::Base);
 
 $VERSION = '0.04';
 
@@ -93,6 +95,8 @@ sub bundle_deps {
 
 __END__
 
+=pod
+
 =head1 NAME
 
 Module::Install::Bundle - Bundle distributions along with your distribution
@@ -102,24 +106,24 @@ Module::Install::Bundle - Bundle distributions along with your distribution
 Have your Makefile.PL read as follows:
 
   use inc::Module::Install;
-
+  
   name      'Foo-Bar';
   all_from  'lib/Foo/Bar.pm';
   requires  'Baz' => '1.60';
-
+  
   # one of either:
   bundle    'Baz' => '1.60';
   # OR:
   auto_bundle;
-
-  &WriteAll;
+  
+  WriteAll;
 
 =head1 DESCRIPTION
 
 Module::Install::Bundle allows you to bundle a CPAN distribution within your
 distribution. When your end-users install your distribution, the bundled
-distribution will be installed along with yours, unless a newer version of the
-bundled distribution already exists on their local filesystem.
+distribution will be installed along with yours, unless a newer version of
+the bundled distribution already exists on their local filesystem.
 
 While bundling will increase the size of your distribution, it has several
 benefits:
@@ -140,8 +144,8 @@ to be installed will be acquired from CPAN and then installed.
 =item * auto_bundle()
 
 Takes no arguments, will bundle every distribution specified by a C<requires()>.
-When you, as a module author, do a C<perl Makefile.PL> the latest versions of the
-distributions to be bundled will be acquired from CPAN and placed in
+When you, as a module author, do a C<perl Makefile.PL> the latest versions of
+the distributions to be bundled will be acquired from CPAN and placed in
 F<inc/BUNDLES/>.
 
 =item * bundle($name, $version)

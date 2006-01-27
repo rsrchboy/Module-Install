@@ -1,9 +1,12 @@
 package Module::Install::Admin::Bundle;
-use Module::Install::Base; @ISA = qw(Module::Install::Base);
+
+use Module::Install::Base;
+@ISA = qw(Module::Install::Base);
 
 $VERSION = '0.04';
 
 use strict;
+
 sub bundle {
     my $self       = shift;
     my $bundle_dir = $self->_top->{bundle};
@@ -15,7 +18,7 @@ sub bundle {
 
     # This code is what we _should_ be doing, but CPANPLUS doesn't
     # let you have multiple Backends in one program.
-    #my $cp   = CPANPLUS::Backend->new;
+    # my $cp   = CPANPLUS::Backend->new;
     #
     # Jos Boumans tells us that this is the best way to do what we want
     # It still scares me.
@@ -24,9 +27,9 @@ sub bundle {
     my $conf    = $cp->configure_object;
     my $modtree = $cp->module_tree;
 
-    $conf->set_conf( verbose => 1 );
+    $conf->set_conf( verbose   => 1 );
     $conf->set_conf( signature => 0 );
-    $conf->set_conf( md5 => 0 );
+    $conf->set_conf( md5       => 0 );
 
     mkdir $bundle_dir;
 
@@ -35,16 +38,16 @@ sub bundle {
     while ( my ( $name, $version ) = splice( @_, 0, 2 ) ) {
         my $mod = $cp->module_tree($name);
         next unless $mod;
-        next
-          if ( $mod->package_is_perl_core
-            or $self->{already_bundled}{$mod->package} );
-        my $where = $mod->fetch( fetchdir => $bundle_dir, );
+        if ( $mod->package_is_perl_core or $self->{already_bundled}{$mod->package} ) {
+        	next;
+        }
 
+        my $where = $mod->fetch( fetchdir => $bundle_dir, );
         next unless ($where);
         my $file = Cwd::abs_path($where);
 
         my $extract_result = $mod->extract(
-            files      => [$file],
+            files      => [ $file ],
             extractdir => $bundle_dir,
         );
 

@@ -11,29 +11,33 @@ author      'Audrey Tang <autrijus@autrijus.org>';
 all_from    'lib/Module/Install.pm';
 
 # If we have YAML::Syck here, don't bother installing YAML.
-requires 'YAML' => 0.35 unless can_use('YAML::Syck' => 0.15);
+if ( can_cc() ) {
+    requires('YAML::Syck' => 0.27) unless can_use('YAML'       => 0.35);
+} else {
+    requires('YAML'       => 0.35) unless can_use('YAML::Syck' => 0.27);
+}
 
 feature 'Include packages with full dependencies',
     recommends
-    'Test::Harness'     => 2.03,    # merely a dependency of M::CoreList
-    'Test::More'        => 0,       # ditto
-    'Module::ScanDeps'  => 0.28,
-    'Module::CoreList';
+        'Test::Harness'     => 2.03,    # merely a dependency of M::CoreList
+        'Test::More'        => 0,       # ditto
+        'Module::ScanDeps'  => 0.28,
+        'Module::CoreList';
 
 feature 'Bundle other CPAN packages',
     recommends
-    'CPANPLUS'          => 0.040;
+        'CPANPLUS'          => 0.040;
 
 feature 'PAR-based binary distributions',
     recommends
-    'PAR::Dist'         => 0.03;
+        'PAR::Dist'         => 0.03;
 
 feature 'Module::Build support',
     'Archive::Tar'      => 0.23,
     'ExtUtils::Install' => 0.3,
     'ExtUtils::ParseXS',
     recommends
-    'Module::Build';
+        'Module::Build';
 
 no_index
     directory => 'example';
@@ -46,5 +50,5 @@ auto_provides;
 # Still list it as a mandatory dependency for now
 requires 'YAML' => 0.35;
 
-sign;
+# sign;
 WriteAll;

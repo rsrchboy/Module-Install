@@ -1,7 +1,12 @@
 package Module::Install::Base;
 
 # Suspend handler for "redefined" warnings
-BEGIN { my $w = $SIG{__WARN__}; $SIG{__WARN__} = sub { $w } };
+BEGIN {
+	my $w = $SIG{__WARN__};
+	$SIG{__WARN__} = sub { $w };
+}
+
+=pod
 
 =head1 NAME
 
@@ -11,7 +16,8 @@ Module::Install::Base - Base class for Module::Install extensions
 
 In a B<Module::Install> extension:
 
-    use Module::Install::Base; @ISA = qw(Module::Install::Base);
+    use Module::Install::Base;
+    @ISA = qw(Module::Install::Base);
 
 =head1 DESCRIPTION
 
@@ -41,6 +47,8 @@ sub new {
     bless(\%args, $class);
 }
 
+=pod
+
 =item AUTOLOAD
 
 The main dispatcher - copy extensions if missing
@@ -55,6 +63,8 @@ sub AUTOLOAD {
     goto &$autoload;
 }
 
+=pod
+
 =item _top()
 
 Returns the top-level B<Module::Install> object.
@@ -62,6 +72,8 @@ Returns the top-level B<Module::Install> object.
 =cut
 
 sub _top { $_[0]->{_top} }
+
+=pod
 
 =item admin()
 
@@ -73,13 +85,11 @@ with an empty C<AUTOLOAD> method that does nothing at all.
 =cut
 
 sub admin {
-    my $self = shift;
-    $self->_top->{admin} or Module::Install::Base::FakeAdmin->new;
+    $_[0]->_top->{admin} or Module::Install::Base::FakeAdmin->new;
 }
 
 sub is_admin {
-    my $self = shift;
-    $self->admin->VERSION;
+    $_[0]->admin->VERSION;
 }
 
 sub DESTROY {}
@@ -88,15 +98,19 @@ package Module::Install::Base::FakeAdmin;
 
 my $Fake;
 sub new { $Fake ||= bless(\@_, $_[0]) }
+
 sub AUTOLOAD {}
+
 sub DESTROY {}
+
+# Restore warning handler
+BEGIN {
+	$SIG{__WARN__} = $SIG{__WARN__}->();
+}
 
 1;
 
-# Restore warning handler
-BEGIN { $SIG{__WARN__} = $SIG{__WARN__}->() };
-
-__END__
+=pod
 
 =back
 

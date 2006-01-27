@@ -1,6 +1,8 @@
 #line 1 "inc/Module/Install/Win32.pm - lib/Module/Install/Win32.pm"
 package Module::Install::Win32;
-use Module::Install::Base; @ISA = qw(Module::Install::Base);
+
+use Module::Install::Base;
+@ISA = qw(Module::Install::Base);
 
 $VERSION = '0.02';
 
