@@ -6,8 +6,8 @@ Module::Install - Standalone, extensible Perl module installer
 
 =head1 VERSION
 
-This document describes version 0.55 of Module::Install, released
-January 27, 2006.
+This document describes version 0.56 of Module::Install, released
+February 12 2006.
 
 =head1 SYNOPSIS
 
@@ -347,15 +347,24 @@ you and do not require a command.
 To summarise, if you can see it on L<http://search.cpan.org/> and you
 shouldn't be able to, you need a C<no_index> entry.
 
-head2 can_run
+head2 requires_external_bin
 
-  can_run 'cvs';
+  requires_external_bin 'cvs';
 
-As part of its role as the dominant "glue" language, a log of Perl
-modules run commands or programs on the host.
+As part of its role as the dominant "glue" language, a lot of Perl
+modules run commands or programs on the host system.
 
-The C<can_run> command is used to verify that a particular command is
-available on the local host and can be run.
+The C<requires_external_bin> command is used to verify that a particular
+command is available on the host system.
+
+Unlike a missing Perl module, a missing external binary is unresolvable
+at make-time, and so the F<Makefile.PL> run will abort with a "NA"
+(Not Applicable) result.
+
+In future, this command will also add additional information to the
+metadata for the dist, so that auto-packagers for particular operating
+system are more-easily able to auto-discover the appropriate non-Perl
+packages needed as a dependency.
 
 =head2 WriteAll
 
@@ -636,6 +645,7 @@ an installer that can handle different dependencies on different platforms.
       # Needed on legacy Mac OS 9
       requires 'Mac::Files' => 0;
   }
+  
   if ( $^O eq 'MXWin32' ) {
       # Needed on Windows platforms
       requires 'Win32::TieRegistry' => 0;

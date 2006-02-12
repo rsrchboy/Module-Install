@@ -1,3 +1,11 @@
+[Changes for 0.56 - ]
+
+* Added experimental support for requires_external_bin to forcefully
+  require the installation of a script or command.
+
+* Removed a warning in Module::Install::Admin::MetaData when
+  perl_version doesn't have a third part.
+
 [Changes for 0.55 - 2006-01-27]
 
 * This release only not signed (Released by ADAMK who has no keys)

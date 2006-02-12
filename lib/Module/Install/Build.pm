@@ -16,14 +16,14 @@ sub write {
     my %args;
     my $build;
 
-    $args{dist_name} = $self->name || $self->determine_NAME($self->{args});
-    $args{license} = $self->license;
-    $args{test_files} = $self->tests;
-    $args{dist_version} = $self->version || $self->determine_VERSION($self->{args});
+    $args{dist_name}     = $self->name || $self->determine_NAME($self->{args});
+    $args{license}       = $self->license;
+    $args{test_files}    = $self->tests;
+    $args{dist_version}  = $self->version || $self->determine_VERSION($self->{args});
     $args{dist_abstract} = $self->abstract;
-    $args{dist_author} = $self->author;
-    $args{sign} = $self->sign;
-    $args{no_index} = $self->no_index;
+    $args{dist_author}   = $self->author;
+    $args{sign}          = $self->sign;
+    $args{no_index}      = $self->no_index;
 
     foreach my $key (qw(build_requires requires recommends conflicts)) {
         my $val = eval "\$self->$key" or next;

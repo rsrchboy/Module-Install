@@ -3,7 +3,7 @@ package Module::Install::Admin::Metadata;
 use Module::Install::Base;
 @ISA = 'Module::Install::Base';
 
-$VERSION = '0.03';
+$VERSION = '0.04';
 
 use strict;
 
@@ -61,7 +61,7 @@ sub dump_meta {
     if ( my $perl_version = delete $values{perl_version} ) {
         # Always canonical to three-dot version
         $perl_version =~
-            s{^(\d+)\.(\d\d\d)(\d*)}{join('.', $1, int($2), int($3))}e
+            s{^(\d+)\.(\d\d\d)(\d*)}{join('.', $1, int($2||0), int($3||0))}e
             if $perl_version >= 5.006;
         $values{requires} = [
             [ perl => $perl_version ],
