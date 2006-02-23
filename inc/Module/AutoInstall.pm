@@ -6,7 +6,7 @@ use strict;
 use Cwd                 ();
 use ExtUtils::MakeMaker ();
 
-#line 216
+#line 218
 
 # special map on pre-defined feature sets
 my %FeatureMap = (
@@ -88,7 +88,7 @@ sub _prompt {
 # the workhorse
 sub import {
     my $class = shift;
-    my @args = @_ or return;
+    my @args  = @_ or return;
     my $core_all;
 
     print "*** $class version " . $class->VERSION . "\n";
@@ -234,22 +234,25 @@ sub import {
 # CPAN.pm is non-reentrant, so check if we're under it and have no CPANPLUS
 sub _check_lock {
     return unless @Missing;
-    return if _has_cpanplus();
+    _load_cpan();
 
-    require CPAN;
-    CPAN::Config->load;
+    # Find the CPAN lock-file
     my $lock = MM->catfile( $CPAN::Config->{cpan_home}, ".lock" );
+    return unless -f $lock;
 
-    if (    -f $lock
-        and open( LOCK, $lock )
-        and ( $^O eq 'MSWin32' ? _under_cpan() : <LOCK> == getppid() )
-        and ( $CPAN::Config->{prerequisites_policy} || '' ) ne 'ignore' )
-    {
-        print << '.';
+    # Check the lock
+    local *LOCK;
+    return unless open(LOCK, $lock);
+
+    if (
+            ( $^O eq 'MSWin32' ? _under_cpan() : <LOCK> == getppid() )
+        and ( $CPAN::Config->{prerequisites_policy} || '' ) ne 'ignore'
+    ) {
+        print <<'END_MESSAGE';
 
 *** Since we're running under CPAN, I'll just let it take care
     of the dependency's installation later.
-.
+END_MESSAGE
         $UnderCPAN = 1;
     }
 
@@ -294,10 +297,9 @@ sub install {
         @modules = @newmod;
     }
 
-    if ( _has_cpanplus() ) {
+    if ( ! $UnderCPAN and _has_cpanplus() ) {
         _install_cpanplus( \@modules, \@config );
-    }
-    else {
+    } else {
         _install_cpan( \@modules, \@config );
     }
 
@@ -320,7 +322,7 @@ sub install {
 
 sub _install_cpanplus {
     my @modules   = @{ +shift };
-    my @config    = @{ +shift };
+    my @config    = _cpanplus_config( @{ +shift } );
     my $installed = 0;
 
     require CPANPLUS::Backend;
@@ -333,21 +335,22 @@ sub _install_cpanplus {
     # if we're root, set UNINST=1 to avoid trouble unless user asked for it.
     my $makeflags = $conf->get_conf('makeflags') || '';
     if ( UNIVERSAL::isa( $makeflags, 'HASH' ) ) {
-
         # 0.03+ uses a hashref here
         $makeflags->{UNINST} = 1 unless exists $makeflags->{UNINST};
-    }
-    else {
 
+    } else {
         # 0.02 and below uses a scalar
         $makeflags = join( ' ', split( ' ', $makeflags ), 'UNINST=1' )
           if ( $makeflags !~ /\bUNINST\b/ and eval qq{ $> eq '0' } );
+
     }
     $conf->set_conf( makeflags => $makeflags );
     $conf->set_conf( prereqs   => 1 );
 
+    
+
     while ( my ( $key, $val ) = splice( @config, 0, 2 ) ) {
-        eval { $conf->set_conf( $key, $val ) };
+        $conf->set_conf( $key, $val );
     }
 
     my $modtree = $cp->module_tree;
@@ -372,15 +375,13 @@ sub _install_cpanplus {
             if ( $rv and ( $rv->{ $obj->{module} } or $rv->{ok} ) ) {
                 print "*** $pkg successfully installed.\n";
                 $success = 1;
-            }
-            else {
+            } else {
                 print "*** $pkg installation cancelled.\n";
                 $success = 0;
             }
 
             $installed += $success;
-        }
-        else {
+        } else {
             print << ".";
 *** Could not find a version $ver or above for $pkg; skipping.
 .
@@ -392,14 +393,34 @@ sub _install_cpanplus {
     return $installed;
 }
 
+sub _cpanplus_config {
+	my @config = ();
+	while ( @_ ) {
+		my ($key, $value) = (shift(), shift());
+		if ( $key eq 'prerequisites_policy' ) {
+			if ( $value eq 'follow' ) {
+				$value = CPANPLUS::Internals::Constants::PREREQ_INSTALL();
+			} elsif ( $value eq 'ask' ) {
+				$value = CPANPLUS::Internals::Constants::PREREQ_ASK();
+			} elsif ( $value eq 'ignore' ) {
+				$value = CPANPLUS::Internals::Constants::PREREQ_IGNORE();
+			} else {
+				die "*** Cannot convert option $key = '$value' to CPANPLUS version.\n";
+			}
+		} else {
+			die "*** Cannot convert option $key to CPANPLUS version.\n";
+		}
+	}
+	return @config;
+}
+
 sub _install_cpan {
     my @modules   = @{ +shift };
     my @config    = @{ +shift };
     my $installed = 0;
     my %args;
 
-    require CPAN;
-    CPAN::Config->load;
+    _load_cpan();
     require Config;
 
     if (CPAN->VERSION < 1.80) {
@@ -593,6 +614,19 @@ sub _load {
     return eval { require $file; $mod->VERSION } || ( $@ ? undef: 0 );
 }
 
+# Load CPAN.pm and it's configuration
+sub _load_cpan {
+    return if $CPAN::VERSION;
+    require CPAN;
+    if ( $CPAN::HandleConfig::VERSION ) {
+        # Newer versions of CPAN have a HandleConfig module
+        CPAN::HandleConfig->load;
+    } else {
+    	# Older versions had the load method in Config directly
+        CPAN::Config->load;
+    }
+}
+
 # compare two versions, either use Sort::Versions or plain comparison
 sub _version_check {
     my ( $cur, $min ) = @_;
@@ -713,4 +747,4 @@ installdeps ::
 
 __END__
 
-#line 943
+#line 979

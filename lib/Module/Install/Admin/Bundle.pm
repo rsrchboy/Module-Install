@@ -3,7 +3,7 @@ package Module::Install::Admin::Bundle;
 use Module::Install::Base;
 @ISA = qw(Module::Install::Base);
 
-$VERSION = '0.04';
+$VERSION = '0.57';
 
 use strict;
 

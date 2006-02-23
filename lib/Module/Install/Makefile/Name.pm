@@ -3,7 +3,7 @@ package Module::Install::Makefile::Name;
 use Module::Install::Base;
 @ISA = qw(Module::Install::Base);
 
-$VERSION = '0.01';
+$VERSION = '0.57';
 
 use strict;
 
@@ -28,10 +28,10 @@ sub determine_NAME {
 
     return if $self->module_name;
 
-    my $name = MM->guess_name or die <<"END";
+    my $name = MM->guess_name or die <<"END_MESSAGE";
 Can't determine a NAME for this distribution.
 Please use the 'name' function in Makefile.PL.
-END
+END_MESSAGE
 
     $name =~ s/-/::/g;
     $self->module_name($name);

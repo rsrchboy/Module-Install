@@ -4,6 +4,7 @@ use strict;
 use lib 'lib'; # NOTE: Module::Install's Makefile.PL needs this statement
                # to bootstrap itself.  Other module distributions using
                # Module::Install do not need it.
+
 use inc::Module::Install;
 
 name        'Module-Install';

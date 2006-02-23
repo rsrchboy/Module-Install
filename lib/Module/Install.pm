@@ -2,10 +2,16 @@ package Module::Install;
 
 use 5.004;
 use strict 'vars';
+
 use vars qw{$VERSION};
 BEGIN {
-    # Don't forget to update Module::Install::Admin too!
-    $VERSION = '0.56';
+    # All Module::Install core packages now require synchronised versions.
+    # This will be used to ensure we don't accidentally load old or
+    # different versions of modules.
+    # This is not enforced yet, but will be some time in the next few
+    # releases once we can make sure it won't clash with custom
+    # Module::Install extensions.
+    $VERSION = '0.57';
 }
 
 # inc::Module::Install must be loaded first
@@ -23,9 +29,9 @@ END_DIE
 }
 
 use Cwd        ();
-use FindBin;
 use File::Find ();
 use File::Path ();
+use FindBin;
 
 *inc::Module::Install::VERSION = *VERSION;
 @inc::Module::Install::ISA     = 'Module::Install';
@@ -73,11 +79,11 @@ sub import {
 sub preload {
     my ($self) = @_;
 
-        unless ( $self->{extentions} ) {
-                $self->load_extensions(
-                        "$self->{prefix}/$self->{path}", $self
-                        );
-        }
+    unless ( $self->{extensions} ) {
+        $self->load_extensions(
+            "$self->{prefix}/$self->{path}", $self
+        );
+    }
 
     my @exts = @{$self->{extensions}};
     unless ( @exts ) {
@@ -85,18 +91,18 @@ sub preload {
         @exts = $admin->load_all_extensions;
     }
 
-    my %seen_method;
+    my %seen;
     foreach my $obj ( @exts ) {
         while (my ($method, $glob) = each %{ref($obj) . '::'}) {
             next unless defined *{$glob}{CODE};
             next if $method =~ /^_/;
             next if $method eq uc($method);
-            $seen_method{$method}++;
+            $seen{$method}++;
         }
     }
 
     my $caller = $self->_caller;
-    foreach my $name (sort keys %seen_method) {
+    foreach my $name ( sort keys %seen ) {
         *{"${caller}::$name"} = sub {
             ${"${caller}::AUTOLOAD"} = "${caller}::$name";
             goto &{"${caller}::AUTOLOAD"};
@@ -125,7 +131,7 @@ sub new {
     $args{name}     ||= $class;
     $args{version}  ||= $class->VERSION;
 
-    unless ($args{path}) {
+    unless ( $args{path} ) {
         $args{path}  = $args{name};
         $args{path}  =~ s!::!/!g;
     }

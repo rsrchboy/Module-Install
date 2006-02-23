@@ -12,7 +12,6 @@ inc/Module/Install/Win32.pm
 inc/Module/Install/WriteAll.pm
 lib/inc/Module/Install.pm
 lib/Module/AutoInstall.pm
-lib/Module/Install-Philosophy.pod
 lib/Module/Install.pm
 lib/Module/Install.pod
 lib/Module/Install/Admin.pm
@@ -30,6 +29,7 @@ lib/Module/Install/Build.pm
 lib/Module/Install/Bundle.pm
 lib/Module/Install/Can.pm
 lib/Module/Install/Compiler.pm
+lib/Module/Install/Deprecated.pm
 lib/Module/Install/External.pm
 lib/Module/Install/Fetch.pm
 lib/Module/Install/Include.pm
@@ -40,6 +40,7 @@ lib/Module/Install/Makefile/Version.pm
 lib/Module/Install/MakeMaker.pm
 lib/Module/Install/Metadata.pm
 lib/Module/Install/PAR.pm
+lib/Module/Install/Philosophy.pod
 lib/Module/Install/Run.pm
 lib/Module/Install/Scripts.pm
 lib/Module/Install/Share.pm

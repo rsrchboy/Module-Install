@@ -3,7 +3,7 @@ package Module::Install::MakeMaker;
 use Module::Install::Base;
 @ISA = qw(Module::Install::Base);
 
-$VERSION = '0.01';
+$VERSION = '0.57';
 
 use ExtUtils::MakeMaker ();
 

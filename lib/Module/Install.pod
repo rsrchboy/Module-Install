@@ -16,26 +16,21 @@ In your F<Makefile.PL>: (Recommended Usage)
     # Load the Module::Install bundled in ./inc/
     use inc::Module::Install;
     
-    # The name of your distribution
+    # Define metadata
     name            'Your-Module';
-    
-    # Get most of the details from the primary module
     all_from        'lib/Your/Module.pm';
     
+    # Specific dependencies
     requires        'Carp'              => 0;
     requires        'File::Spec'        => '0.80';
-    
     build_requires  'Test::More'        => '0.42';
-    
     recommends      'Your::OtherModule' => '0.01';
-    
-    # Do not index our example modules
+        
     no_index        directory           => 'demos';
     
-    # Auto-install all dependencies from CPAN
-    auto_install;
+    install_script  'bin/myscript';
     
-    # Generate the Makefile
+    auto_install;
     WriteAll;
 
 Quickly upgrade a legacy L<ExtUtil::MakeMaker> installer:
@@ -108,7 +103,7 @@ Module::Install> in June 2003 issue of The Perl Journal
 (L<http://www.tpj.com/issues/>).
 
 For a B<lot> more information, and some personal opinions on the module
-and its creation, see L<Module::Install-Philosophy>.
+and its creation, see L<Module::Install::Philosophy>.
 
 =head1 COMMON COMMANDS
 
@@ -324,6 +319,44 @@ As another example, when building a binary operating system packages
 is done once by the packager, and so the C<build_requires> dependency
 can be safely ignored by the binary package.
 
+=head2 requires_external_bin
+
+  requires_external_bin 'cvs';
+
+As part of its role as the dominant "glue" language, a lot of Perl
+modules run commands or programs on the host system.
+
+The C<requires_external_bin> command is used to verify that a particular
+command is available on the host system.
+
+Unlike a missing Perl module, a missing external binary is unresolvable
+at make-time, and so the F<Makefile.PL> run will abort with a "NA"
+(Not Applicable) result.
+
+In future, this command will also add additional information to the
+metadata for the dist, so that auto-packagers for particular operating
+system are more-easily able to auto-discover the appropriate non-Perl
+packages needed as a dependency.
+
+=head2 install_script
+
+  install_script 'bin/scriptname'
+
+The C<install_script> command provides support for the installation of
+scripts that will become available at the console on both Unix and
+Windows (by wrapping it up as a .bat file).
+
+Note that is it normal to B<not> put a .pl on the end of such scripts,
+so that they feel more natural when being used.
+
+In the example above, the F<bin/scriptname> program could be run after
+the installation just by doing the following.
+
+  > scriptname
+  Running scriptname 0.01...
+  
+  > 
+
 =head2 no_index
 
   no_index directory => 'examples';
@@ -346,25 +379,6 @@ you and do not require a command.
 
 To summarise, if you can see it on L<http://search.cpan.org/> and you
 shouldn't be able to, you need a C<no_index> entry.
-
-head2 requires_external_bin
-
-  requires_external_bin 'cvs';
-
-As part of its role as the dominant "glue" language, a lot of Perl
-modules run commands or programs on the host system.
-
-The C<requires_external_bin> command is used to verify that a particular
-command is available on the host system.
-
-Unlike a missing Perl module, a missing external binary is unresolvable
-at make-time, and so the F<Makefile.PL> run will abort with a "NA"
-(Not Applicable) result.
-
-In future, this command will also add additional information to the
-metadata for the dist, so that auto-packagers for particular operating
-system are more-easily able to auto-discover the appropriate non-Perl
-packages needed as a dependency.
 
 =head2 WriteAll
 
@@ -613,6 +627,10 @@ And if you maintain more than one module than needs to do unusual
 installation tricks, you can create a specific module to abstract
 away this complexity.
 
+=head2 Module::Install isn't at 1.00 yet, is it safe to use yet?
+
+...
+
 =head1 COOKBOOK / EXAMPLES
 
 The following are some real-life examples of F<Makefile.PL> files
@@ -656,7 +674,7 @@ an installer that can handle different dependencies on different platforms.
 
 =head1 SEE ALSO
 
-L<Module::Install-Philosophy>
+L<Module::Install::Philosophy>
 
 L<inc::Module::Install>
 
@@ -668,51 +686,15 @@ L<Module::Install::Bundle>
 
 L<Module::Install::Build>
 
-L<Module::Install::Directives>
-
-L<Module::Install::Fetch>
-
-L<Module::Install::Include>
-
 L<Module::Install::MakeMaker>
 
-L<Module::Install::Makefile>
-
-L<Module::Install::Makefile::CleanFiles>
-
-L<Module::Install::Makefile::Name>
-
-L<Module::Install::Makefile::Version>
-
-L<Module::Install::Metadata>
-
-L<Module::Install::PAR>
-
-L<Module::Install::Run>
-
-L<Module::Install::Scripts>
-
-L<Module::Install::Win32>
-
-L<Module::Install::WriteAll>
+L<Module::Install::Share>
 
 L<Module::Install::Admin>
 
-L<Module::Install::Admin::Bundle>
-
-L<Module::Install::Admin::Find>
-
 L<Module::Install::Admin::Include>
 
-L<Module::Install::Admin::Makefile>
-
 L<Module::Install::Admin::Manifest>
-
-L<Module::Install::Admin::Metadata>
-
-L<Module::Install::Admin::ScanDeps>
-
-L<Module::Install::Admin::WriteAll>
 
 L<CPAN::MakeMaker>, L<Inline::MakeMaker>
 

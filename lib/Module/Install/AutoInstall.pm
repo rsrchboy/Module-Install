@@ -3,6 +3,10 @@ package Module::Install::AutoInstall;
 use Module::Install::Base;
 @ISA = qw{Module::Install::Base};
 
+$VERSION = '0.57';
+
+use strict;
+
 sub AutoInstall { $_[0] }
 
 sub run {

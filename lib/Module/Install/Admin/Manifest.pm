@@ -3,7 +3,7 @@ package Module::Install::Admin::Manifest;
 use Module::Install::Base;
 @ISA = qw(Module::Install::Base);
 
-$VERSION = '0.01';
+$VERSION = '0.57';
 
 use strict;
 use Cwd;
@@ -15,7 +15,7 @@ sub dist_preop {
     my ($self, $distdir) = @_;
     return if $self->check_manifest;
 
-    print << "END";
+    print <<"END_MESSAGE";
 
 It appears that your MANIFEST does not contain the same components that
 are currently in the 'inc' directory. 
@@ -25,7 +25,7 @@ Please try running 'make manifest' and then run 'make dist' again.
 Remember to use the MANIFEST.SKIP file to control things that should not
 end up in your MANIFEST. See 'perldoc ExtUtils::Manifest' for details.
 
-END
+END_MESSAGE
     return if $self->prompt(
         'Do you *really* want to continue making a distribution?', 'n'
     ) =~ /^[Yy]/;

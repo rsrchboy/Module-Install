@@ -1,6 +1,6 @@
 =head1 NAME
 
-Module::Install-Philosophy - The idea behind Module::Install
+Module::Install::Philosophy - The concepts behind Module::Install
 
 =head1 SYNOPSIS
 

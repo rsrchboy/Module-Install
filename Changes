@@ -1,4 +1,59 @@
-[Changes for 0.56 - ]
+[Changes for 0.57 - 2006-02-23]
+
+* Fixed a bug where a misnamed hash key was making the extensions
+  fruitlessly reload (or at least try to reload) every command call.
+
+* Fixed a pod bug for the requires_external_bin head2
+
+* Because external deps will need versioning eventually, we can
+  never provide a hash to requires_external, and so it's really
+  just supurfluous and invites more bugs. Removed.
+
+* Experimentally added support for the META.yaml dynamic_config flag.
+  We don't set ANY default value, because of a lack of clarity. It is 
+  undocumented in the META.yaml spec, but false in Module::Build, which
+  is really really bad, as it leads to falsely assuming dynamic
+  Makefile.PLs are static when no dynamic_config is provided.
+  
+  Personally, I think it should be static_config anyway, and we may well
+  change it to be that anyway.
+
+* Added support for requires_external_cc (requires a C compiler) that will
+  integrate with whatever central method we use later to signal to
+  whatever is calling Makefile.PL that there is a missing external
+  dependency. This will also be called by other methods if there is an
+  implicit dependency.
+
+* Synchronised all the module versions to all be 0.57.
+  This will be used a few versions down the line to add integrity testing
+  of Module::Install's own extension loading process.
+
+* Added a $VERSION and C<use strict> to the extensions that didn't have
+  one or both of the two already.
+
+* Fixed a number of minor bugs discovered after turning on C<use strict>.
+
+* Very carefully beginning to clean up some of the code so it's much more
+  boring (i.e. maintainable).
+
+* Changed recursion to always preference the installer we are currently
+  running under. So use CPAN.pm in CPAN.pm, and CPANPLUS in CPANPLUS.
+  This simplifies anti-dupe recursion algorithms, and dramatically
+  reduces memory use under CPAN.pm.
+
+* Documented the install_script command
+
+* Caught _install_cpanplus happily passing completely illegal CPAN.pm
+  config params to CPANPLUS, and worse, eval-wrapping the set_conf so
+  it could happily ignore errors.
+  Added _cpanplus_config to try and auto-convert CPAN config params to
+  CPANPLUS, and die if we can't. Add more translators as needed.
+
+* Moved the deprecated commands into their own module
+  Module::Install::Deprecated to stop them being included and reduce
+  package bloat.
+
+[Changes for 0.56 - 2006-02-12]
 
 * Added experimental support for requires_external_bin to forcefully
   require the installation of a script or command.

@@ -3,7 +3,7 @@ package Module::Install::Admin::Makefile;
 use Module::Install::Base;
 @ISA = qw(Module::Install::Base);
 
-$VERSION = '0.01';
+$VERSION = '0.57';
 
 use strict 'vars';
 
@@ -11,11 +11,11 @@ use ExtUtils::MakeMaker ();
 
 sub postamble {
     my ($self, $text) = @_;
-    my $class = ref($self);
-    my $top_class = ref($self->_top);
+    my $class       = ref($self);
+    my $top_class   = ref($self->_top);
     my $admin_class = join('::', @{$self->_top}{qw(name dispatch)});
 
-    $self->{postamble} ||= << "END";
+    $self->{postamble} ||= << "END_MAKEFILE";
 # --- $class section:
 
 realclean purge ::
@@ -34,7 +34,8 @@ grok ::
 distsign ::
 \tcpansign -s
 
-END
+END_MAKEFILE
+
     $self->{postamble} .= $text if defined $text;
     $self->{postamble};
 }

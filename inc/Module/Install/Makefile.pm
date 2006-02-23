@@ -1,19 +1,19 @@
 #line 1 "inc/Module/Install/Makefile.pm - lib/Module/Install/Makefile.pm"
 package Module::Install::Makefile;
 
-use Module::Install::Base;
-@ISA = qw(Module::Install::Base);
-
-$VERSION = '0.01';
-
 use strict 'vars';
-use vars '$VERSION';
-
+use Module::Install::Base;
 use ExtUtils::MakeMaker ();
+
+use vars qw{$VERSION @ISA};
+BEGIN {
+	$VERSION = '0.57';
+	@ISA     = qw{Module::Install::Base};
+}
 
 sub Makefile { $_[0] }
 
-sub prompt { 
+sub prompt {
     shift;
     goto &ExtUtils::MakeMaker::prompt;
 }
@@ -25,8 +25,19 @@ sub makemaker_args {
     $args;
 }
 
-sub build_subdirs {
+# For mm args that take multiple space-seperated args,
+# append an argument to the current list.
+sub makemaker_append {
     my $self = shift;
+    my $name = shift;
+    my $args = $self->makemaker_args;
+    $args->{name} = defined $args->{$name}
+    	? join( ' ', $args->{name}, @_ )
+    	: join( ' ', @_ );
+}
+
+sub build_subdirs {
+    my $self    = shift;
     my $subdirs = $self->makemaker_args->{DIR} ||= [];
     for my $subdir (@_) {
         push @$subdirs, $subdir;
@@ -34,17 +45,17 @@ sub build_subdirs {
 }
 
 sub clean_files {
-    my $self = shift;
+    my $self  = shift;
     my $clean = $self->makemaker_args->{clean} ||= {};
     %$clean = (
         %$clean, 
-        FILES => join(" ", grep length, $clean->{FILES}, @_),
+        FILES => join(' ', grep length, $clean->{FILES}, @_),
     );
 }
 
 sub libs {
     my $self = shift;
-    my $libs = ref $_[0] ? shift : [shift];
+    my $libs = ref $_[0] ? shift : [ shift ];
     $self->makemaker_args( LIBS => $libs );
 }
 
@@ -124,7 +135,7 @@ sub fix_up_makefile {
     local *MAKEFILE;
     open MAKEFILE, '< Makefile' or die $!;
     my $makefile = do { local $/; <MAKEFILE> };
-    close MAKEFILE;
+    close MAKEFILE or die $!;
 
     $makefile =~ s/\b(test_harness\(\$\(TEST_VERBOSE\), )/$1'inc', /;
     $makefile =~ s/( -I\$\(INST_ARCHLIB\))/ -Iinc$1/g;
@@ -134,8 +145,10 @@ sub fix_up_makefile {
     $makefile =~ s/^(PERL = .*)/$1 -Iinc/m;
 
     open MAKEFILE, '> Makefile' or die $!;
-    print MAKEFILE "$preamble$makefile$postamble";
-    close MAKEFILE;
+    print MAKEFILE "$preamble$makefile$postamble" or die $!;
+    close MAKEFILE or die $!;
+
+    1;
 }
 
 sub preamble {
@@ -146,7 +159,6 @@ sub preamble {
 
 sub postamble {
     my ($self, $text) = @_;
-
     $self->{postamble} ||= $self->admin->postamble;
     $self->{postamble} .= $text if defined $text;
     $self->{postamble}
@@ -156,4 +168,4 @@ sub postamble {
 
 __END__
 
-#line 288
+#line 295

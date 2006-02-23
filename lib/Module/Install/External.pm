@@ -5,36 +5,34 @@ package Module::Install::External;
 use Module::Install::Base;
 @ISA = qw(Module::Install::Base);
 
-$VERSION = '0.01';
+$VERSION = '0.57';
 
 use strict;
 
-sub requires_external {
-	my ($self, $type, @args) = @_;
+sub requires_external_cc {
+	my $self = shift;
 
-	# Check the dependency type
-	unless ( defined $type and ! ref $type ) {
-		die "Did not provide an external dependency type";
-	}
-	unless ( $type =~ /^\w+$/ ) {
-		die "Invalid external dependency type '$type'";
-	}
-	my $method = 'requires_external_' . $type;
-	unless ( $self->can($method) ) {
-		die "External dependency type '$type' is not implemented (yet)";
+	# We need a C compiler, use the can_cc method for this
+	unless ( $self->can_cc ) {
+		print "Unresolvable missing external dependency.\n";
+		print "This package requires a C compiler.\n";
+		print STDERR "NA: Unable to build distribution on this platform.\n";
+		exit(255);
 	}
 
-	# Hand off to the specific method
-	$self->$method(@args);
+	# Unlike some of the other modules, while we need to specify a
+	# C compiler as a dep, it needs to be a build-time dependency.
+
+	1;
 }
 
 sub requires_external_bin {
 	my ($self, $bin, $version) = @_;
 	if ( $version ) {
-		die "requires_external_bin does not support versions (yet)";
+		die "requires_external_bin does not support versions yet";
 	}
 
-	# Load the can_run package early
+	# Load the package containing can_run early,
 	# to avoid breaking the message below.
 	$self->load('can_run');
 

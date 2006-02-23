@@ -3,7 +3,7 @@ package Module::Install::Inline;
 use Module::Install::Base;
 @ISA = qw(Module::Install::Base);
 
-$VERSION = '0.01';
+$VERSION = '0.57';
 
 use strict;
 
@@ -18,10 +18,10 @@ sub write {
     my $version = $self->version
         or die "Please set version() or version_from() before calling &Inline->write\n";
 
-    $version =~ /^\d\.\d\d$/ or die << "END";
+    $version =~ /^\d\.\d\d$/ or die <<"END_MESSAGE";
 Invalid version '$version' for $name.
 Must be of the form '#.##'. (For instance '1.23')
-END
+END_MESSAGE
 
     $self->clean_files('_Inline', "$object.inl");
     $self->build_requires('Inline' => 0.44); # XXX: check for existing? yagni?

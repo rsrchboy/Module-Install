@@ -1,6 +1,6 @@
 package Module::Install::Admin;
 
-$VERSION = '0.56';
+$VERSION = '0.57';
 @ISA = 'Module::Install';
 
 use strict 'vars';

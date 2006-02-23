@@ -3,7 +3,7 @@ package Module::Install::Fetch;
 use Module::Install::Base;
 @ISA = qw(Module::Install::Base);
 
-$VERSION = '0.01';
+$VERSION = '0.57';
 
 sub get_file {
     my ($self, %args) = @_;
