@@ -3,7 +3,7 @@ package Module::Install::PAR;
 use Module::Install::Base;
 @ISA = qw(Module::Install::Base);
 
-$VERSION = '0.57';
+$VERSION = '0.58';
 
 use strict;
 
@@ -43,7 +43,7 @@ sub par_base {
 # --- $class section:
 
 all ::
-\t\@$perl -M$inc_class -e \"extract_par(q($file))\"
+\t\$(NOECHO) $perl -M$inc_class -e \"extract_par(q($file))\"
 
 END_MAKEFILE
 
@@ -51,10 +51,10 @@ END_MAKEFILE
 # --- $class section:
 
 $file: all test
-\t\@\$(PERL) -M$inc_class -e \"make_par(q($file))\"
+\t\$(NOECHO) \$(PERL) -M$inc_class -e \"make_par(q($file))\"
 
 par :: $file
-\t\@\$(NOOP)
+\t\$(NOECHO) \$(NOOP)
 
 par-upload :: $file
 \tcpan-upload -verbose $file

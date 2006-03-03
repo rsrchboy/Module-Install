@@ -3,7 +3,7 @@ package Module::Install::Admin::Include;
 use Module::Install::Base;
 @ISA = qw(Module::Install::Base);
 
-$VERSION = '0.57';
+$VERSION = '0.58';
 
 sub include {
     my ( $self, $pattern ) = @_;

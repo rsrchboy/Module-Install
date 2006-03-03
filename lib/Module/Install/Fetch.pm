@@ -1,9 +1,13 @@
 package Module::Install::Fetch;
 
+use strict;
 use Module::Install::Base;
-@ISA = qw(Module::Install::Base);
 
-$VERSION = '0.57';
+use vars qw{$VERSION @ISA};
+BEGIN {
+	$VERSION = '0.58';
+	@ISA     = qw{Module::Install::Base};
+}
 
 sub get_file {
     my ($self, %args) = @_;
@@ -54,14 +58,14 @@ sub get_file {
             chdir $dir; return;
         }
 
-        my @dialog = split(/\n/, << ".");
+        my @dialog = split(/\n/, <<"END_FTP");
 open $host
 user anonymous anonymous\@example.com
 cd $path
 binary
 get $file $file
 quit
-.
+END_FTP
         foreach (@dialog) { $fh->print("$_\n") }
         $fh->close;
     } }

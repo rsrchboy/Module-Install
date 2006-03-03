@@ -14,10 +14,13 @@ sub ExtUtils::MakeMaker::WriteMakefile { $mm_args = {@_} }
 sub ExtUtils::MakeMaker::prompt ($;$) { return 'n' }
 
 # tiehandle trick to intercept STDOUT.
-sub PRINT  { my $self = shift; $$self .= join '', @_; }
-sub PRINTF { my $self = shift; $$self .= sprintf(shift, @_); }
+sub PRINT     { my $self = shift; $$self .= join '', @_; }
+sub PRINTF    { my $self = shift; $$self .= sprintf(shift, @_); }
 sub TIEHANDLE { my $self = ''; return bless \$self, shift; }
-sub READ {} sub READLINE {} sub GETC {} sub FILENO {}
+sub READ      {}
+sub READLINE  {}
+sub GETC      {}
+sub FILENO    {}
 
 require Symbol;
 my $fh  = Symbol::gensym;

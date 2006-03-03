@@ -51,6 +51,7 @@ MANIFEST			This list of files
 MANIFEST.SKIP
 META.yml
 README
-t/1-basic.t
-t/2-pod.t
-t/3-autoinstall.t
+t/01_compile.t
+t/02_basic.t
+t/03_audotinstall.t
+t/99_pod.t

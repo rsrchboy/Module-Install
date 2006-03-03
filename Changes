@@ -1,3 +1,24 @@
+[Changes for 0.58 - 2006-03-04]
+
+* Made Module::AutoInstall generally aware of AUTOMATED_TESTING
+
+* Added compatibility with 5.9.3 proxy constants
+
+* Resolved #11169: problems on VMS.
+  This doesn't mean there won't be problems on VMS though,
+  as this path is oldish and their may be more problems.
+
+* Added AUTOMATED_TESTING support to prompt() to force the
+  selection of the default (via PERL_MM_USE_DEFAULT) when it
+  is enabled.
+
+* Added infinite loop protection to prompt() just in case automated
+  and/or shortcutted responses to prompts go badly and leave us
+  looping over the same question.
+
+* Fixed #17961 Use of uninitialized value in array dereference at
+  Module/Install/Metadata.pm line 163. (TELS)
+  
 [Changes for 0.57 - 2006-02-23]
 
 * Fixed a bug where a misnamed hash key was making the extensions

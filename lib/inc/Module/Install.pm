@@ -1,6 +1,17 @@
 package inc::Module::Install;
 
-if (-d 'inc/.author') {
+use strict;
+
+use vars qw{$VERSION @ISA};
+BEGIN {
+	$VERSION = '0.58';
+
+	# Pass ->import to Module::Install
+	@ISA     = qw{Module::Install};
+}
+
+my $author = $^O eq 'VMS' ? './inc/_author' : './inc/.author';
+if ( -d $author ) {
     require File::Path;
     File::Path::rmtree('inc');
 }
@@ -8,9 +19,16 @@ if (-d 'inc/.author') {
 unshift @INC, 'inc';
 require Module::Install;
 
+# Check the versions match
+unless ( $Module::Install::VERSION and $Module::Install::VERSION eq $VERSION ) {
+	die "inc::Module::Install $VERSION loaded Module::Install $Module::Install::VERSION. Version mismatch";
+}
+
 1;
 
 __END__
+
+=pod
 
 =head1 NAME
 
@@ -40,7 +58,7 @@ F<./inc/> is a normal practice, and there is little chance that a
 CPAN distribution will be called C<Something::inc>, so it's much safer
 to use.
 
-Also, it allows for other helper modules like B<ExtUtils::AutoInstall>
+Also, it allows for other helper modules like B<Module::AutoInstall>
 to reside also in F<inc/>, and to make use of them.
 
 =head1 AUTHORS

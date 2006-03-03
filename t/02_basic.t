@@ -22,26 +22,26 @@ sub create_dist {
     return 0 if -d $dist_path;
     my $home = cwd;
     mkdir($dist_path, 0777) or return 0;
-    chdir $dist_path or return 0;
+    chdir $dist_path        or return 0;
 
     open MANIFEST, '> MANIFEST' or return 0;
-    print MANIFEST <<END;
+    print MANIFEST <<"END_MANIFEST";
 MANIFEST
 Makefile.PL
 $dist.pm
-END
+END_MANIFEST
     close MANIFEST;
 
     open MAKEFILE_PL, '> Makefile.PL' or return 0;
-    print MAKEFILE_PL <<END;
+    print MAKEFILE_PL <<"END_MAKEFILE_PL";
 use inc::Module::Install;
 license 'perl';
 WriteMakefile;
-END
+END_MAKEFILE_PL
     close MAKEFILE_PL;
 
     open MODULE, "> $dist.pm" or return 0;
-    print MODULE <<END;
+    print MODULE <<"END_PERL_MODULE";
 package $dist;
 \$VERSION = '3.21';
 use strict;
@@ -53,7 +53,7 @@ __END__
 $dist - A test module
 
 =cut
-END
+END_PERL_MODULE
     close MODULE;
     chdir $home or return 0;
     return 1;
@@ -69,7 +69,7 @@ sub build_dist {
     chdir $home or return 0;
     return 1;
 }
-    
+
 sub kill_dist {
     my ($self, $dist) = @_;
     my $dist_path = File::Spec->catdir('t', $dist);

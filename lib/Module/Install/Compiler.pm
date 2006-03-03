@@ -6,7 +6,7 @@ use File::Basename ();
 
 use vars qw{$VERSION @ISA};
 BEGIN {
-	$VERSION = '0.57';
+	$VERSION = '0.58';
 	@ISA     = qw{Module::Install::Base};
 }
 

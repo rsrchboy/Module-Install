@@ -1,27 +1,39 @@
 #!perl -w
 
 use strict;
-use lib 'lib'; # NOTE: Module::Install's Makefile.PL needs this statement
-               # to bootstrap itself.  Other module distributions using
-               # Module::Install do not need it.
 
+# NOTE: Module::Install's Makefile.PL needs this statement to bootstrap
+# itself. Other module distributions using Module::Install do not need it.
+# It causes inc::Module::Install to load from the (unique to this
+# distribution) file ./lib/inc/Module/Install.pm instead of the system
+# inc::Module::Install or the bundled inc/Module::Install.
+use lib 'lib';
 use inc::Module::Install;
 
 name        'Module-Install';
 author      'Audrey Tang <autrijus@autrijus.org>';
 all_from    'lib/Module/Install.pm';
 
-# If we have YAML::Syck here, don't bother installing YAML.
+# Should be a "requires", but we should solve the
+# "auto-include File::Spec if version < 5.005" problem first.
+build_requires 'File::Spec'    => 0;
+
+# We are going to move to Test::More shortly
+build_requires 'Test::Harness' => '2.03';
+build_requires 'Test::More'    => '0.42';
+
+# Make sure we have at least one YAML parser
 if ( can_cc() ) {
-    requires('YAML::Syck' => 0.27) unless can_use('YAML'       => 0.35);
+	requires('YAML::Syck' => '0.27') unless can_use('YAML'       => 0.35);
 } else {
-    requires('YAML'       => 0.35) unless can_use('YAML::Syck' => 0.27);
+	requires('YAML'       => '0.35') unless can_use('YAML::Syck' => 0.27);
 }
+
+### TEMPORARY - Still list it as a mandatory dependency for now
+requires 'YAML' => 0.35;
 
 feature 'Include packages with full dependencies',
     recommends
-        'Test::Harness'     => 2.03,    # merely a dependency of M::CoreList
-        'Test::More'        => 0,       # ditto
         'Module::ScanDeps'  => 0.28,
         'Module::CoreList';
 
@@ -48,8 +60,7 @@ auto_install_now
 
 auto_provides;
 
-# Still list it as a mandatory dependency for now
-requires 'YAML' => 0.35;
-
+# Disabled until someone who can sign is doing the releasing
 # sign;
+
 WriteAll;

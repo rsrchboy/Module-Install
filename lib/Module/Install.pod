@@ -4,11 +4,6 @@
 
 Module::Install - Standalone, extensible Perl module installer
 
-=head1 VERSION
-
-This document describes version 0.56 of Module::Install, released
-February 12 2006.
-
 =head1 SYNOPSIS
 
 In your F<Makefile.PL>: (Recommended Usage)
@@ -25,7 +20,7 @@ In your F<Makefile.PL>: (Recommended Usage)
     requires        'File::Spec'        => '0.80';
     build_requires  'Test::More'        => '0.42';
     recommends      'Your::OtherModule' => '0.01';
-        
+    
     no_index        directory           => 'demos';
     
     install_script  'bin/myscript';
