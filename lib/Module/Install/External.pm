@@ -5,7 +5,7 @@ package Module::Install::External;
 use Module::Install::Base;
 @ISA = qw(Module::Install::Base);
 
-$VERSION = '0.58';
+$VERSION = '0.59';
 
 use strict;
 

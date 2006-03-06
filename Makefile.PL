@@ -61,6 +61,6 @@ auto_install_now
 auto_provides;
 
 # Disabled until someone who can sign is doing the releasing
-# sign;
+sign;
 
 WriteAll;

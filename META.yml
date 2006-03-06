@@ -1,132 +1,131 @@
-
+abstract: Standalone, extensible Perl module installer
+author: Audrey Tang <autrijus@autrijus.org>
+build_requires: 
+  File::Spec: 0
+  Test::Harness: 2.03
+  Test::More: 0.42
+distribution_type: module
+generated_by: Module::Install version 0.59
+license: perl
+name: Module-Install
 no_index: 
   directory: 
     - example
     - inc
     - t
-generated_by: Module::Install version 0.58
-distribution_type: module
-version: 0.58
-name: Module-Install
-author: Audrey Tang <autrijus@autrijus.org>
-license: perl
-build_requires: 
-  Test::More: 0.42
-  Test::Harness: 2.03
-  File::Spec: 0
 provides: 
-  Module::Install::Fetch: 
-    version: 0.58
-    file: lib/Module/Install/Fetch.pm
-  Module::Install::Deprecated: 
-    version: 0.58
-    file: lib/Module/Install/Deprecated.pm
-  Module::Install::Bundle: 
-    version: 0.58
-    file: lib/Module/Install/Bundle.pm
-  Module::Install::Admin::Bundle: 
-    version: 0.58
-    file: lib/Module/Install/Admin/Bundle.pm
-  Module::Install::MakeMaker: 
-    version: 0.58
-    file: lib/Module/Install/MakeMaker.pm
-  Module::Install::Inline: 
-    version: 0.58
-    file: lib/Module/Install/Inline.pm
-  Module::Install::External: 
-    version: 0.58
-    file: lib/Module/Install/External.pm
-  Module::Install::PAR: 
-    version: 0.58
-    file: lib/Module/Install/PAR.pm
-  Module::Install::Include: 
-    version: 0.58
-    file: lib/Module/Install/Include.pm
-  Module::Install::Build: 
-    version: 0.58
-    file: lib/Module/Install/Build.pm
-  Module::Install::Admin::ScanDeps: 
-    version: 0.58
-    file: lib/Module/Install/Admin/ScanDeps.pm
-  Module::Install::Admin::Manifest: 
-    version: 0.58
-    file: lib/Module/Install/Admin/Manifest.pm
-  Module::Install::Admin: 
-    version: 0.58
-    file: lib/Module/Install/Admin.pm
-  Module::Install::Base::FakeAdmin: 
-    version: 0.58
-    file: lib/Module/Install/Base.pm
-  Module::Install::Metadata: 
-    version: 0.58
-    file: lib/Module/Install/Metadata.pm
-  Module::Install::Makefile: 
-    version: 0.58
-    file: lib/Module/Install/Makefile.pm
-  inc::Module::Install: 
-    version: 0.58
-    file: lib/inc/Module/Install.pm
-  Module::Install::Admin::WriteAll: 
-    version: 0.58
-    file: lib/Module/Install/Admin/WriteAll.pm
-  Module::Install::Base: 
-    version: 0.58
-    file: lib/Module/Install/Base.pm
-  Module::Install::Admin::Find: 
-    version: 0.58
-    file: lib/Module/Install/Admin/Find.pm
-  Module::Install::Makefile::Version: 
-    version: 0.58
-    file: lib/Module/Install/Makefile/Version.pm
-  Module::Install: 
-    version: 0.58
-    file: lib/Module/Install.pm
-  Module::Install::Win32: 
-    version: 0.58
-    file: lib/Module/Install/Win32.pm
-  Module::Install::Admin::Makefile: 
-    version: 0.58
-    file: lib/Module/Install/Admin/Makefile.pm
-  Module::Install::Admin::Metadata: 
-    version: 0.58
-    file: lib/Module/Install/Admin/Metadata.pm
-  Module::Install::Makefile::Name: 
-    version: 0.58
-    file: lib/Module/Install/Makefile/Name.pm
   Module::AutoInstall: 
-    version: 1.02
     file: lib/Module/AutoInstall.pm
-  Module::Install::Can: 
-    version: 0.58
-    file: lib/Module/Install/Can.pm
-  Module::Install::AutoInstall: 
-    version: 0.58
-    file: lib/Module/Install/AutoInstall.pm
-  Module::Install::Run: 
-    version: 0.58
-    file: lib/Module/Install/Run.pm
+    version: 1.02
+  Module::Install: 
+    file: lib/Module/Install.pm
+    version: 0.59
+  Module::Install::Admin: 
+    file: lib/Module/Install/Admin.pm
+    version: 0.59
+  Module::Install::Admin::Bundle: 
+    file: lib/Module/Install/Admin/Bundle.pm
+    version: 0.59
+  Module::Install::Admin::Find: 
+    file: lib/Module/Install/Admin/Find.pm
+    version: 0.59
   Module::Install::Admin::Include: 
-    version: 0.58
     file: lib/Module/Install/Admin/Include.pm
-  Module::Install::Scripts: 
-    version: 0.58
-    file: lib/Module/Install/Scripts.pm
-  Module::Install::WriteAll: 
-    version: 0.58
-    file: lib/Module/Install/WriteAll.pm
+    version: 0.59
+  Module::Install::Admin::Makefile: 
+    file: lib/Module/Install/Admin/Makefile.pm
+    version: 0.59
+  Module::Install::Admin::Manifest: 
+    file: lib/Module/Install/Admin/Manifest.pm
+    version: 0.59
+  Module::Install::Admin::Metadata: 
+    file: lib/Module/Install/Admin/Metadata.pm
+    version: 0.59
+  Module::Install::Admin::ScanDeps: 
+    file: lib/Module/Install/Admin/ScanDeps.pm
+    version: 0.59
+  Module::Install::Admin::WriteAll: 
+    file: lib/Module/Install/Admin/WriteAll.pm
+    version: 0.59
+  Module::Install::AutoInstall: 
+    file: lib/Module/Install/AutoInstall.pm
+    version: 0.59
+  Module::Install::Base: 
+    file: lib/Module/Install/Base.pm
+    version: 0.59
+  Module::Install::Base::FakeAdmin: 
+    file: lib/Module/Install/Base.pm
+    version: 0.59
+  Module::Install::Build: 
+    file: lib/Module/Install/Build.pm
+    version: 0.59
+  Module::Install::Bundle: 
+    file: lib/Module/Install/Bundle.pm
+    version: 0.59
+  Module::Install::Can: 
+    file: lib/Module/Install/Can.pm
+    version: 0.59
   Module::Install::Compiler: 
-    version: 0.58
     file: lib/Module/Install/Compiler.pm
+    version: 0.59
+  Module::Install::Deprecated: 
+    file: lib/Module/Install/Deprecated.pm
+    version: 0.59
+  Module::Install::External: 
+    file: lib/Module/Install/External.pm
+    version: 0.59
+  Module::Install::Fetch: 
+    file: lib/Module/Install/Fetch.pm
+    version: 0.59
+  Module::Install::Include: 
+    file: lib/Module/Install/Include.pm
+    version: 0.59
+  Module::Install::Inline: 
+    file: lib/Module/Install/Inline.pm
+    version: 0.59
+  Module::Install::MakeMaker: 
+    file: lib/Module/Install/MakeMaker.pm
+    version: 0.59
+  Module::Install::Makefile: 
+    file: lib/Module/Install/Makefile.pm
+    version: 0.59
+  Module::Install::Makefile::Name: 
+    file: lib/Module/Install/Makefile/Name.pm
+    version: 0.59
+  Module::Install::Makefile::Version: 
+    file: lib/Module/Install/Makefile/Version.pm
+    version: 0.59
+  Module::Install::Metadata: 
+    file: lib/Module/Install/Metadata.pm
+    version: 0.59
+  Module::Install::PAR: 
+    file: lib/Module/Install/PAR.pm
+    version: 0.59
+  Module::Install::Run: 
+    file: lib/Module/Install/Run.pm
+    version: 0.59
+  Module::Install::Scripts: 
+    file: lib/Module/Install/Scripts.pm
+    version: 0.59
   Module::Install::Share: 
-    version: 0.58
     file: lib/Module/Install/Share.pm
-requires: 
-  perl: 5.004
-  YAML: 0.35
+    version: 0.59
+  Module::Install::Win32: 
+    file: lib/Module/Install/Win32.pm
+    version: 0.59
+  Module::Install::WriteAll: 
+    file: lib/Module/Install/WriteAll.pm
+    version: 0.59
+  inc::Module::Install: 
+    file: lib/inc/Module/Install.pm
+    version: 0.59
 recommends: 
-  PAR::Dist: 0.03
-  Module::ScanDeps: 0.28
+  CPANPLUS: 0.04
   Module::Build: 0
   Module::CoreList: 0
-  CPANPLUS: 0.04
-abstract: Standalone, extensible Perl module installer
+  Module::ScanDeps: 0.28
+  PAR::Dist: 0.03
+requires: 
+  YAML: 0.35
+  perl: 5.004
+version: 0.59

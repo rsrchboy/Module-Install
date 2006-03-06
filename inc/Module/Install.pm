@@ -1,4 +1,4 @@
-#line 1 "/home/adam/modinstall/trunk/Module-Install/inc/Module/Install.pm - lib/Module/Install.pm"
+#line 1 "/home/autrijus/work/modinstall/trunk/Module-Install/inc/Module/Install.pm - lib/Module/Install.pm"
 package Module::Install;
 
 use 5.004;
@@ -12,7 +12,7 @@ BEGIN {
     # This is not enforced yet, but will be some time in the next few
     # releases once we can make sure it won't clash with custom
     # Module::Install extensions.
-    $VERSION = '0.58';
+    $VERSION = '0.59';
 }
 
 # inc::Module::Install must be loaded first
@@ -34,6 +34,9 @@ use Cwd        ();
 use File::Find ();
 use File::Path ();
 use FindBin;
+
+*inc::Module::Install::VERSION = *VERSION;
+@inc::Module::Install::ISA     = __PACKAGE__;
 
 sub autoload {
     my $self = shift;
@@ -133,15 +136,14 @@ sub new {
     }
     $args{file}     ||= "$args{base}/$args{prefix}/$args{path}.pm";
 
-    bless(\%args, $class);
+    bless \%args, $class;
 }
 
 sub call {
-    my $self   = shift;
-    my $method = shift;
-    my $obj    = $self->load($method) or return;
-    unshift @_, $obj;
-    goto &{$obj->can($method)};
+	my ($self, $method) = @_;
+	my $obj = $self->load($method) or return;
+        splice(@_, 0, 2, $obj);
+	goto &{$obj->can($method)};
 }
 
 sub load {

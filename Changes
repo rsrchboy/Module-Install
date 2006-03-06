@@ -1,3 +1,9 @@
+[Changes for 0.59 - 2006-03-07]
+
+* Resolved #18020: 0.58 was broken; inc::Module::Install's @ISA
+  and $VERSION needs to be set by Module::Install on its behalf.
+  (TELS)
+
 [Changes for 0.58 - 2006-03-04]
 
 * Made Module::AutoInstall generally aware of AUTOMATED_TESTING

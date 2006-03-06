@@ -1,11 +1,12 @@
 package Module::Install::Share;
 
-use Module::Install::Base;
-@ISA = qw(Module::Install::Base);
-
-$VERSION = '0.58';
+BEGIN {
+	$VERSION = '0.59';
+	@ISA     = qw{Module::Install::Base};
+}
 
 use strict;
+use Module::Install::Base;
 
 sub install_share {
     my ($self, $dir) = @_;
@@ -31,7 +32,7 @@ __END__
 
 =head1 NAME
 
-Module::Install::Share - Install non-code files for use during runtime
+Module::Install::Share - Install non-code files for use during run-time
 
 =head1 SYNOPSIS
 
@@ -58,8 +59,32 @@ on disk.
 To locate the files after installation so they can be used inside your
 module, see this extension's companion module L<File::ShareDir>.
 
+=head1 TO DO
+
+Currently C<install_share> installs not only the files you want, but
+if called by the author will also copy F<.svn> and other source-control
+directories, and other junk.
+
+Enhance this to copy only files under F<share> that are in the
+F<MANIFEST>, or possibly those not in F<MANIFEST.SKIP>.
+
+=head1 AUTHORS
+
+Audrey Tang E<lt>autrijus@autrijus.orgE<gt>
+
+Adam Kennedy E<lt>cpan@ali.asE<gt>
+
 =head1 SEE ALSO
 
 L<Module::Install>, L<File::ShareDir>
+
+=head1 COPYRIGHT
+
+Copyright 2006 Audrey Tang, Adam Kennedy. All rights reserved.
+
+This program is free software; you can redistribute it and/or modify it
+under the same terms as Perl itself.
+
+See L<http://www.perl.com/perl/misc/Artistic.html>
 
 =cut
