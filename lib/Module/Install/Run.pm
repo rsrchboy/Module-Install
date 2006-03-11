@@ -3,7 +3,7 @@ package Module::Install::Run;
 use Module::Install::Base;
 @ISA = qw(Module::Install::Base);
 
-$VERSION = '0.59';
+$VERSION = '0.60';
 
 # eventually move the ipc::run / open3 stuff here.
 

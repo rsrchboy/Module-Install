@@ -1,3 +1,16 @@
+[Changes for 0.60 - 2006-03-11]
+
+* Cleaned up the 0.59 fix a bit and added a bunch of comments explaining
+  the bootup mechanism. A misunderstanding of this on my part led to
+  the 0.58 bug. Sorry folks (ADAMK)
+
+* Resolved #18040: bundled Module::Install leaks private information
+  Debugging information in Module::Install::Admin was leaking potentially
+  sensitive information. Removed just the files, left the lines (TELS)
+
+* Fixed a smaller part of the problem with 0.58 that still hurts people if
+  that are an installer AND an author as well. (Reported by dha)
+
 [Changes for 0.59 - 2006-03-07]
 
 * Resolved #18020: 0.58 was broken; inc::Module::Install's @ISA

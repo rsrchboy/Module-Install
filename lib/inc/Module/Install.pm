@@ -1,14 +1,16 @@
 package inc::Module::Install;
 
+# This module ONLY loads if the user has manually install their own
+# installation of Module::Install, and are some form of MI author.
+#
+# It runs from the installed location, and is never bundled
+# along with the other bundled modules.
+#
+# So because the version of this differs from the version that will
+# be bundled almost every time, it doesn't have it's own version and
+# isn't part of the synchronisation-checking.
+
 use strict;
-
-use vars qw{$VERSION @ISA};
-BEGIN {
-	$VERSION = '0.59';
-
-	# Pass ->import to Module::Install
-	@ISA     = qw{Module::Install};
-}
 
 my $author = $^O eq 'VMS' ? './inc/_author' : './inc/.author';
 if ( -d $author ) {
@@ -18,11 +20,6 @@ if ( -d $author ) {
 
 unshift @INC, 'inc';
 require Module::Install;
-
-# Check the versions match
-unless ( $Module::Install::VERSION and $Module::Install::VERSION eq $VERSION ) {
-	die "inc::Module::Install $VERSION loaded Module::Install $Module::Install::VERSION. Version mismatch";
-}
 
 1;
 

@@ -1,4 +1,4 @@
-#line 1 "inc/Module/Install/Makefile.pm - lib/Module/Install/Makefile.pm"
+#line 1
 package Module::Install::Makefile;
 
 use strict 'vars';
@@ -7,7 +7,7 @@ use ExtUtils::MakeMaker ();
 
 use vars qw{$VERSION @ISA};
 BEGIN {
-	$VERSION = '0.59';
+	$VERSION = '0.60';
 	@ISA     = qw{Module::Install::Base};
 }
 

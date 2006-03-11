@@ -1,7 +1,7 @@
-#line 1 "inc/Module/Install/Base.pm - lib/Module/Install/Base.pm"
+#line 1
 package Module::Install::Base;
 
-$VERSION = '0.59';
+$VERSION = '0.60';
 
 # Suspend handler for "redefined" warnings
 BEGIN {

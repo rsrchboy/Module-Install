@@ -1,10 +1,10 @@
-#line 1 "inc/Module/Install/Metadata.pm - lib/Module/Install/Metadata.pm"
+#line 1
 package Module::Install::Metadata;
 
 use Module::Install::Base;
 @ISA = qw{Module::Install::Base};
 
-$VERSION = '0.59';
+$VERSION = '0.60';
 
 use strict 'vars';
 

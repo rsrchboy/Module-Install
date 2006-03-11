@@ -1,11 +1,13 @@
 package Module::Install::Admin::Bundle;
 
-use Module::Install::Base;
-@ISA = qw(Module::Install::Base);
-
-$VERSION = '0.59';
-
 use strict;
+use Module::Install::Base;
+
+use vars qw{$VERSION @ISA};
+BEGIN {
+	$VERSION = '0.60';
+	@ISA     = qw{Module::Install::Base};
+}
 
 sub bundle {
     my $self       = shift;

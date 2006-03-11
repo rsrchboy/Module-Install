@@ -1,11 +1,14 @@
 package Module::Install::Admin;
 
-$VERSION = '0.59';
-@ISA = 'Module::Install';
-
 use strict 'vars';
 use File::Path ();
 use inc::Module::Install ();
+
+use vars qw{$VERSION @ISA};
+BEGIN {
+	$VERSION = '0.60';
+	@ISA     = qw{Module::Install};
+}
 
 =pod
 
@@ -133,8 +136,8 @@ sub copy {
 
     local (*FROM, *TO, $_);
     open FROM, "< $from" or die "Can't open $from for input:\n$!";
-    open TO, "> $to" or die "Can't open $to for output:\n$!";
-    print TO "#line 1 \"$to - $from\"\n";
+    open TO,   "> $to"   or die "Can't open $to for output:\n$!";
+    print TO "#line 1\n";
 
     my $content;
     my $in_pod;

@@ -6,7 +6,7 @@ use File::Basename ();
 
 use vars qw{$VERSION @ISA};
 BEGIN {
-	$VERSION = '0.59';
+	$VERSION = '0.60';
 	@ISA     = qw{Module::Install::Base};
 }
 
@@ -54,7 +54,7 @@ __END__
 
 =head1 NAME
 
-Module::Install::Compiler - Module::Install commands for interacting with the C compiler
+Module::Install::Compiler - Commands for interacting with the C compiler
 
 =head1 SYNOPSIS
 
@@ -74,24 +74,32 @@ C and XS modules.
 
 To be completed
 
+=head1 TO DO
+
+The current implementation is relatively fragile and minimalistic.
+
+It only handles some very basic wrapper around L<ExtUtils::MakeMaker>.
+
+It is currently undergoing extensive refactoring to provide a more
+generic compiler flag generation capability. This may take some time,
+and if anyone who maintains a Perl module that makes use of the compiler
+would like to help out, your assistance would be greatly appreciated.
+
 =head1 SEE ALSO
 
 L<Module::Install>, L<ExtUtils::MakeMaker>
 
 =head1 AUTHORS
 
-Audrey Tang E<lt>autrijus@autrijus.orgE<gt>
+Refactored by Adam Kennedy E<lt>adamk@cpan.orgE<gt>
+
+Mostly by Audrey Tang E<lt>autrijus@autrijus.orgE<gt>
 
 Based on original works by Brian Ingerson E<lt>ingy@cpan.orgE<gt>
 
-Documentated and refactored by Adam Kennedy E<lt>adamk@cpan.orgE<gt>
-
 =head1 COPYRIGHT
 
-Copyright 2002, 2003, 2004, 2006 by
-Audrey Tang E<lt>autrijus@autrijus.orgE<gt>,
-Brian Ingerson E<lt>ingy@cpan.orgE<gt>,
-Adam Kennedy E<lt>adamk@cpan.orgE<gt>
+Copyright 2002, 2003, 2004, 2006 by Adam Kennedy, Audrey Tang, Brian Ingerson.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.

@@ -1,4 +1,4 @@
-#line 1 "inc/Module/Install/Fetch.pm - lib/Module/Install/Fetch.pm"
+#line 1
 package Module::Install::Fetch;
 
 use strict;
@@ -6,7 +6,7 @@ use Module::Install::Base;
 
 use vars qw{$VERSION @ISA};
 BEGIN {
-	$VERSION = '0.59';
+	$VERSION = '0.60';
 	@ISA     = qw{Module::Install::Base};
 }
 

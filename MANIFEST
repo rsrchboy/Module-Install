@@ -55,4 +55,3 @@ t/01_compile.t
 t/02_basic.t
 t/03_audotinstall.t
 t/99_pod.t
-SIGNATURE                                Public-key signature (added by MakeMaker)

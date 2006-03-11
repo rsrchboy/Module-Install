@@ -1,4 +1,4 @@
-#line 1 "inc/Module/AutoInstall.pm - lib/Module/AutoInstall.pm"
+#line 1
 package Module::AutoInstall;
 
 use strict;

@@ -1,10 +1,10 @@
-#line 1 "inc/Module/Install/WriteAll.pm - lib/Module/Install/WriteAll.pm"
+#line 1
 package Module::Install::WriteAll;
 
 use Module::Install::Base;
 @ISA = qw(Module::Install::Base);
 
-$VERSION = '0.59';
+$VERSION = '0.60';
 
 use strict;
 
