@@ -1,7 +1,7 @@
 package Module::Install::Share;
 
 BEGIN {
-	$VERSION = '0.60';
+	$VERSION = '0.61';
 	@ISA     = qw{Module::Install::Base};
 }
 

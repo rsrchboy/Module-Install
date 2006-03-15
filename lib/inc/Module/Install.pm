@@ -11,6 +11,15 @@ package inc::Module::Install;
 # isn't part of the synchronisation-checking.
 
 use strict;
+use vars qw{$VERSION};
+BEGIN {
+	# While this version will be overwritten when Module::Install
+	# loads, it remains so Module::Install itself can detect which
+	# version an author currently has installed.
+	# This allows it to implement any back-compatibility features
+	# it may want or need to.
+	$VERSION = '0.61';	
+}
 
 my $author = $^O eq 'VMS' ? './inc/_author' : './inc/.author';
 if ( -d $author ) {

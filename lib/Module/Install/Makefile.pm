@@ -6,7 +6,7 @@ use ExtUtils::MakeMaker ();
 
 use vars qw{$VERSION @ISA};
 BEGIN {
-	$VERSION = '0.60';
+	$VERSION = '0.61';
 	@ISA     = qw{Module::Install::Base};
 }
 
@@ -64,6 +64,15 @@ sub clean_files {
     %$clean = (
         %$clean, 
         FILES => join(' ', grep length, $clean->{FILES}, @_),
+    );
+}
+
+sub realclean_files {
+    my $self  = shift;
+    my $realclean = $self->makemaker_args->{realclean} ||= {};
+    %$realclean = (
+        %$realclean, 
+        FILES => join(' ', grep length, $realclean->{FILES}, @_),
     );
 }
 
@@ -131,7 +140,7 @@ sub write {
     }
 
     my $mm = ExtUtils::MakeMaker::WriteMakefile(%args);
-    $self->fix_up_makefile($mm->{FIRST_MAKEFILE});
+    $self->fix_up_makefile($mm->{FIRST_MAKEFILE} || 'Makefile');
 }
 
 sub fix_up_makefile {
@@ -157,6 +166,9 @@ sub fix_up_makefile {
     $makefile =~ s/( "-I\$\(INST_LIB\)")/ "-Iinc"$1/g;
     $makefile =~ s/^(FULLPERL = .*)/$1 "-Iinc"/m;
     $makefile =~ s/^(PERL = .*)/$1 "-Iinc"/m;
+
+    # XXX - This is currently unused; not sure if it breaks other MM-users
+    # $makefile =~ s/^pm_to_blib\s+:\s+/pm_to_blib :: /mg;
 
     open  MAKEFILE, "> $makefile_name" or die "fix_up_makefile: Couldn't open $makefile_name: $!";
     print MAKEFILE  "$preamble$makefile$postamble" or die $!;

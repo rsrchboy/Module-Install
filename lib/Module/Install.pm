@@ -27,7 +27,7 @@ BEGIN {
     # This is not enforced yet, but will be some time in the next few
     # releases once we can make sure it won't clash with custom
     # Module::Install extensions.
-    $VERSION = '0.60';
+    $VERSION = '0.61';
 }
 
 # Whether or not inc::Module::Install is actually loaded, the
@@ -195,7 +195,6 @@ sub load_extensions {
         unshift @INC, $self->{prefix};
     }
 
-    local @INC = ($path, @INC);
     foreach my $rv ( $self->find_extensions($path) ) {
         my ($file, $pkg) = @{$rv};
         next if $self->{pathnames}{$pkg};

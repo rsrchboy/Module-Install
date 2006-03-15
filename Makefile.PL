@@ -37,10 +37,6 @@ feature 'Include packages with full dependencies',
         'Module::ScanDeps'  => 0.28,
         'Module::CoreList';
 
-feature 'Bundle other CPAN packages',
-    recommends
-        'CPANPLUS'          => 0.040;
-
 feature 'PAR-based binary distributions',
     recommends
         'PAR::Dist'         => 0.03;

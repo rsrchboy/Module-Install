@@ -1,3 +1,20 @@
+[Changes for 0.61 - 2006-03-15]
+
+* ActivePerl::Config on case-insensitive filesystems interacts
+  erroneously with Module::Install's (outdated) @INC hack, so remove it.
+  (Patch from Gisle Aas)
+
+* Improve compatibility with ExtUtils::MakeMaker 5.x by not relying
+  on FIRST_MAKEFILE being set in the MM instance.
+
+* Remove optional dependency on CPANPLUS. (INGY)
+
+* Add "realclean_files" command to add files to be cleaned on
+  "make realclean", instead of "make clean". (INGY)
+
+* Add $VERSION back to inc::Module::Install so we can implement
+  workarounds and back-compatibility code later on. (ADAMK)
+
 [Changes for 0.60 - 2006-03-11]
 
 * Cleaned up the 0.59 fix a bit and added a bunch of comments explaining
