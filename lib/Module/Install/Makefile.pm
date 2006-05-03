@@ -4,9 +4,10 @@ use strict 'vars';
 use Module::Install::Base;
 use ExtUtils::MakeMaker ();
 
-use vars qw{$VERSION @ISA};
+use vars qw{$VERSION $ISCORE @ISA};
 BEGIN {
-	$VERSION = '0.61';
+	$VERSION = '0.62';
+	$ISCORE  = 1;
 	@ISA     = qw{Module::Install::Base};
 }
 
@@ -166,6 +167,15 @@ sub fix_up_makefile {
     $makefile =~ s/( "-I\$\(INST_LIB\)")/ "-Iinc"$1/g;
     $makefile =~ s/^(FULLPERL = .*)/$1 "-Iinc"/m;
     $makefile =~ s/^(PERL = .*)/$1 "-Iinc"/m;
+
+    # Module::Install will never be used to build the Core Perl
+    # Sometimes PERL_LIB and PERL_ARCHLIB get written anyway, which breaks
+    # PREFIX/PERL5LIB, and thus, install_share. Blank them if they exist
+    $makefile =~ s/^PERL_LIB = .+/PERL_LIB =/m;
+    #$makefile =~ s/^PERL_ARCHLIB = .+/PERL_ARCHLIB =/m;
+
+    # Perl 5.005 mentions PERL_LIB explicitly, so we have to remove that as well.
+    $makefile =~ s/("?)-I\$\(PERL_LIB\)\1//g;
 
     # XXX - This is currently unused; not sure if it breaks other MM-users
     # $makefile =~ s/^pm_to_blib\s+:\s+/pm_to_blib :: /mg;

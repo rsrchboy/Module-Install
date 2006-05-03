@@ -1,3 +1,37 @@
+[Changes for 0.62 - 2006-05-03]
+
+* Various small back-compatibility bugs squashed, since we advertise
+  that a M:I installer should run back to 5.004 (AUDREYT)
+
+* Allow non-admin installs to do so without the need for YAML.pm (AUDREYT)
+
+* Adding an initial implementation of Module::Install::With, containing
+  code to detect the existance of other members of the Perl toolchain,
+  and how we are related to them in any given install run.
+  Initial experimental implementation of CPAN.pm and CPANPLUS detection,
+  based on code extracted from Module::AutoInstall, and other code
+  recommended by the relevant authors.
+  Leaving the new commands undocumented for now, and recommend NOT making
+  general use of them until tested. (ADAMK)
+
+* In order to implement any form of version locking, which need to know
+  which extensions are in the core (and thus version-locked) and which
+  are custom extensions with legally out-of-sync versions.
+  Added $ISCORE = 1 global to every potentially-bundled core extention,
+  for when we start to do version locking. (ADAMK)
+
+* The install_share Makefile fragment fails on older ExtUtils::Install
+  versions. When we install_share, add an explicit EU::MakeMaker dependency.
+  Would have done on just ExtUtils::Install, but it isn't
+  PREFIX/PERL5LIB-safe. (ADAMK)
+
+* Some/many versions of MakeMaker incorrectly set PERL_LIB and PERL_ARCHLIB,
+  which is only supposed to be used for building the core Perl. Since we'll
+  never be doing that, make the Makefile munger blank them if they exist.
+  This lets PREFIX + PERL5LIB for installing private modules work again.
+  (except not PERL_ARCHLIB for now, it's not getting in the way, and for
+  some reason it's used for something else) (ADAMK)
+
 [Changes for 0.61 - 2006-03-15]
 
 * ActivePerl::Config on case-insensitive filesystems interacts

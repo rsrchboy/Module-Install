@@ -20,7 +20,7 @@ BEGIN {
 
 use vars qw{$VERSION};
 BEGIN {
-	$VERSION = '0.61';
+	$VERSION = '0.62';
 }
 
 use Test::More tests =>4;

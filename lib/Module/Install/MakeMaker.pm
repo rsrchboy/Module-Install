@@ -1,11 +1,15 @@
 package Module::Install::MakeMaker;
 
+use strict;
 use Module::Install::Base;
-@ISA = qw(Module::Install::Base);
-
-$VERSION = '0.61';
-
 use ExtUtils::MakeMaker ();
+
+use vars qw{$VERSION $ISCORE @ISA};
+BEGIN {
+	$VERSION = '0.62';
+	$ISCORE  = 1;
+	@ISA     = qw{Module::Install::Base};
+}
 
 my $makefile;
 sub WriteMakefile {
@@ -35,7 +39,7 @@ sub WriteMakefile {
 }
 
 END {
-    if ($makefile) {
+    if ( $makefile ) {
         $makefile->write;
         $makefile->Meta->write;
     }

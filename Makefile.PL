@@ -23,14 +23,15 @@ build_requires 'Test::Harness' => '2.03';
 build_requires 'Test::More'    => '0.42';
 
 # Make sure we have at least one YAML parser
-if ( can_cc() ) {
-	requires('YAML::Syck' => '0.27') unless can_use('YAML'       => 0.35);
-} else {
-	requires('YAML'       => '0.35') unless can_use('YAML::Syck' => 0.27);
+if ( is_admin() ) {
+    # This is for META.yml
+    requires 'YAML' => 0.35;
 }
-
-### TEMPORARY - Still list it as a mandatory dependency for now
-requires 'YAML' => 0.35;
+elsif ( can_cc() ) {
+    requires('YAML::Syck' => '0.27') unless can_use('YAML'       => 0.35);
+} else {
+    requires('YAML'       => '0.35') unless can_use('YAML::Syck' => 0.27);
+}
 
 feature 'Include packages with full dependencies',
     recommends
@@ -51,9 +52,8 @@ feature 'Module::Build support',
 no_index
     directory => 'example';
 
-auto_install_now
+auto_install
     prerequisites_policy => 'follow';
-
 auto_provides;
 
 # Disabled until someone who can sign is doing the releasing

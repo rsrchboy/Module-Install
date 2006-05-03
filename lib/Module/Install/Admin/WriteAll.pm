@@ -3,7 +3,7 @@ package Module::Install::Admin::WriteAll;
 use Module::Install::Base;
 @ISA = qw(Module::Install::Base);
 
-$VERSION = '0.61';
+$VERSION = '0.62';
 
 sub WriteAll {
     my ($self, %args) = @_;
