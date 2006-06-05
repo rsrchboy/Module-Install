@@ -1,6 +1,10 @@
-#!perl -w
-
 use strict;
+
+# Warnings need to be enabled this way, because Makefile.PL is not
+# a script, so we shouldn't be using a hashbang.
+BEGIN {
+	$^W = 1;
+}
 
 # NOTE: Module::Install's Makefile.PL needs this statement to bootstrap
 # itself. Other module distributions using Module::Install do not need it.

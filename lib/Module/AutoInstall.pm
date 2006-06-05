@@ -638,7 +638,9 @@ sub _version_check {
 
     # check for version numbers that are not in decimal format
     if ( ref($cur) or ref($min) or $cur =~ /v|\..*\./ or $min =~ /v|\..*\./ ) {
-        if ( $version::VERSION or defined( _load('version') ) ) {
+        if ( ( $version::VERSION or defined( _load('version') )) and
+             version->can('new') 
+            ) {
 
             # use version.pm if it is installed.
             return (

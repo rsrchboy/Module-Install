@@ -355,6 +355,7 @@ the installation just by doing the following.
 =head2 no_index
 
   no_index directory => 'examples';
+  no_index package   => 'DB';
 
 Quite often a distrubition will provide example or testing modules
 (.pm files) as well as the actual library modules.
@@ -362,12 +363,19 @@ Quite often a distrubition will provide example or testing modules
 In almost all situations, you do B<not> want these indexed in the master
 Perl packages list, you just want them along for the ride.
 
-The C<no_index> command is used to indicate locations where there might
-be non-library .pm files that the CPAN indexer and websites such as
-L<http://search.cpan.org/> should explicitly ignore.
+The C<no_index> command is used to indicate locations or modules where
+there might be non-library .pm files that the CPAN indexer and websites
+such as L<http://search.cpan.org/> should explicitly ignore.
 
 The most common situation is to ignore example or demo directories,
 but a variety of different situations may require a C<no_index> entry.
+
+Another common use for C<no_index> is to prevent the PAUSE indexer
+complaining when your module makes changes inside a "package DB" block.
+This is used to interact with the debugger in some specific ways.
+
+See the F<META.yml> documentation for more details on what C<no_index>
+values are allowed.
 
 The F<inc> and F<t> directories are automatically C<no_index>'ed for
 you and do not require a command.

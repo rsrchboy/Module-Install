@@ -1,3 +1,13 @@
+[Changes for 0.63 - ...]
+
+* make gets confused if the Makefile.PL time is in the future, but there
+  is no universal fix for this. As an initial solution, catch the error
+  situation and die with an error to the user. (ADAMK)
+
+* Adding additional notes on no_index package (ADAMK)
+
+* Removing hashbang from Makefile.PL and using a $^W = 1 instead (ADAMK)
+
 [Changes for 0.62 - 2006-05-03]
 
 * Various small back-compatibility bugs squashed, since we advertise
