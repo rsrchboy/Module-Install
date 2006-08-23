@@ -1,6 +1,16 @@
-[Changes for 0.63 - ...]
+[Changes for 0.64 - 2006-08-24]
 
-* make gets confused if the Makefile.PL time is in the future, but there
+* auto_install() will no longer invoke CPAN.pm or CPANPLUS
+  recursively when running under CPANPLUS (i.e., when 
+  $ENV{PERL5_CPANPLUS_IS_RUNNING} is set to a true value.)
+
+* auto_install() would not follow prerequisites of requires() when
+  the module is installed from the command line and only CPAN.pm is
+  installed. [rt.cpan.org 21139] (MSCHWERN)
+
+[Changes for 0.63 - 2006-06-05]
+
+* "make" gets confused if the Makefile.PL time is in the future, but there
   is no universal fix for this. As an initial solution, catch the error
   situation and die with an error to the user. (ADAMK)
 

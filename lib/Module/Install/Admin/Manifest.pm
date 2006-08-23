@@ -3,7 +3,7 @@ package Module::Install::Admin::Manifest;
 use Module::Install::Base;
 @ISA = qw(Module::Install::Base);
 
-$VERSION = '0.63';
+$VERSION = '0.64';
 
 use strict;
 use Cwd;
