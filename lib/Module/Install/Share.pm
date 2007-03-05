@@ -5,7 +5,7 @@ use Module::Install::Base;
 
 use vars qw{$VERSION $ISCORE @ISA};
 BEGIN {
-	$VERSION = '0.64';
+	$VERSION = '0.65';
 	$ISCORE  = 1;
 	@ISA     = qw{Module::Install::Base};
 }
@@ -21,7 +21,7 @@ sub install_share {
 	$self->postamble(<<"END_MAKEFILE");
 config ::
 \t\$(NOECHO) \$(MOD_INSTALL) \\
-\t\t\"$dir\" \$(INST_AUTODIR)
+\t\t"$dir" \$(INST_AUTODIR)
 
 END_MAKEFILE
 

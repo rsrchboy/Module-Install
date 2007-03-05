@@ -3,7 +3,7 @@ package Module::Install::Admin::Metadata;
 use Module::Install::Base;
 @ISA = 'Module::Install::Base';
 
-$VERSION = '0.64';
+$VERSION = '0.65';
 
 use strict;
 
@@ -107,14 +107,25 @@ sub dump_meta {
     $dump{no_index} = $no_index;
     $dump{generated_by} = "$package version $version";
 
+    # Add mention of the META spec
+    $dump{"meta-spec"} = {
+        version => 1.3,
+        url => 'http://module-build.sourceforge.net/META-spec-v1.3.html',
+    };
+
     local $@;
     if (eval { require YAML::Syck }) {
-        local $YAML::Syck::Headless = 1;
+# Why no header? It is required by the spec!
+#        local $YAML::Syck::Headless = 1;
         return YAML::Syck::Dump(\%dump);
+    }
+    elsif (eval { require YAML::Tiny }) {
+        return YAML::Tiny::Dump(\%dump);
     }
     else {
         require YAML;
-        local $YAML::UseHeader = 0;
+# Why no header? It is required by the spec!
+#        local $YAML::UseHeader = 0;
         return YAML::Dump(\%dump);
     }
 }

@@ -216,8 +216,8 @@ version scanning tools.
 The C<license> command specifies the license for the distribution.
 
 Most often this value will be C<'perl'>, meaning I<"the same as for Perl
-itself">. Other allowed values include C<'gpl'>, C<'lgpl'>, C<'bsd'> and
-C<'artistic'>.
+itself">. Other allowed values include C<'gpl'>, C<'lgpl'>, C<'bsd'>,
+C<'MIT'>, and C<'artistic'>.
 
 This value is always considered a summary, and it is normal for authors
 to include a F<LICENSE> file in the distribution, containing the full
@@ -239,7 +239,7 @@ C<license_from> will look inside the POD within the indicated file for
 a licensing or copyright-related section and scan for a variety of
 strings that identify the general class of license.
 
-At this time it supports only the 5 values mentioned above in the
+At this time it supports only the 6 values mentioned above in the
 C<license> command summary.
 
 =head2 perl_version

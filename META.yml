@@ -1,3 +1,4 @@
+--- 
 abstract: Standalone, extensible Perl module installer
 author: Audrey Tang <autrijus@autrijus.org>
 build_requires: 
@@ -5,128 +6,26 @@ build_requires:
   Test::Harness: 2.03
   Test::More: 0.42
 distribution_type: module
-generated_by: Module::Install version 0.64
+generated_by: Module::Install version 0.65
+installdirs: site
 license: perl
+meta-spec: 
+  url: http://module-build.sourceforge.net/META-spec-v1.3.html
+  version: 1.3
 name: Module-Install
 no_index: 
   directory: 
     - example
     - inc
     - t
-provides: 
-  Module::AutoInstall: 
-    file: lib/Module/AutoInstall.pm
-    version: 1.03
-  Module::Install: 
-    file: lib/Module/Install.pm
-    version: 0.64
-  Module::Install::Admin: 
-    file: lib/Module/Install/Admin.pm
-    version: 0.64
-  Module::Install::Admin::Bundle: 
-    file: lib/Module/Install/Admin/Bundle.pm
-    version: 0.64
-  Module::Install::Admin::Find: 
-    file: lib/Module/Install/Admin/Find.pm
-    version: 0.64
-  Module::Install::Admin::Include: 
-    file: lib/Module/Install/Admin/Include.pm
-    version: 0.64
-  Module::Install::Admin::Makefile: 
-    file: lib/Module/Install/Admin/Makefile.pm
-    version: 0.64
-  Module::Install::Admin::Manifest: 
-    file: lib/Module/Install/Admin/Manifest.pm
-    version: 0.64
-  Module::Install::Admin::Metadata: 
-    file: lib/Module/Install/Admin/Metadata.pm
-    version: 0.64
-  Module::Install::Admin::ScanDeps: 
-    file: lib/Module/Install/Admin/ScanDeps.pm
-    version: 0.64
-  Module::Install::Admin::WriteAll: 
-    file: lib/Module/Install/Admin/WriteAll.pm
-    version: 0.64
-  Module::Install::AutoInstall: 
-    file: lib/Module/Install/AutoInstall.pm
-    version: 0.64
-  Module::Install::Base: 
-    file: lib/Module/Install/Base.pm
-    version: 0.64
-  Module::Install::Base::FakeAdmin: 
-    file: lib/Module/Install/Base.pm
-  Module::Install::Build: 
-    file: lib/Module/Install/Build.pm
-    version: 0.64
-  Module::Install::Bundle: 
-    file: lib/Module/Install/Bundle.pm
-    version: 0.64
-  Module::Install::Can: 
-    file: lib/Module/Install/Can.pm
-    version: 0.64
-  Module::Install::Compiler: 
-    file: lib/Module/Install/Compiler.pm
-    version: 0.64
-  Module::Install::Deprecated: 
-    file: lib/Module/Install/Deprecated.pm
-    version: 0.64
-  Module::Install::External: 
-    file: lib/Module/Install/External.pm
-    version: 0.64
-  Module::Install::Fetch: 
-    file: lib/Module/Install/Fetch.pm
-    version: 0.64
-  Module::Install::Include: 
-    file: lib/Module/Install/Include.pm
-    version: 0.64
-  Module::Install::Inline: 
-    file: lib/Module/Install/Inline.pm
-    version: 0.64
-  Module::Install::MakeMaker: 
-    file: lib/Module/Install/MakeMaker.pm
-    version: 0.64
-  Module::Install::Makefile: 
-    file: lib/Module/Install/Makefile.pm
-    version: 0.64
-  Module::Install::Makefile::Name: 
-    file: lib/Module/Install/Makefile/Name.pm
-    version: 0.64
-  Module::Install::Makefile::Version: 
-    file: lib/Module/Install/Makefile/Version.pm
-    version: 0.64
-  Module::Install::Metadata: 
-    file: lib/Module/Install/Metadata.pm
-    version: 0.64
-  Module::Install::PAR: 
-    file: lib/Module/Install/PAR.pm
-    version: 0.64
-  Module::Install::Run: 
-    file: lib/Module/Install/Run.pm
-    version: 0.64
-  Module::Install::Scripts: 
-    file: lib/Module/Install/Scripts.pm
-    version: 0.64
-  Module::Install::Share: 
-    file: lib/Module/Install/Share.pm
-    version: 0.64
-  Module::Install::Win32: 
-    file: lib/Module/Install/Win32.pm
-    version: 0.64
-  Module::Install::With: 
-    file: lib/Module/Install/With.pm
-    version: 0.64
-  Module::Install::WriteAll: 
-    file: lib/Module/Install/WriteAll.pm
-    version: 0.64
-  inc::Module::Install: 
-    file: lib/inc/Module/Install.pm
-    version: 0.64
-recommends: 
+requires: 
+  Archive::Tar: 0.23
+  ExtUtils::Install: 0.3
+  ExtUtils::ParseXS: 0
   Module::Build: 0
   Module::CoreList: 0
   Module::ScanDeps: 0.28
   PAR::Dist: 0.03
-requires: 
-  YAML: 0.35
+  YAML::Tiny: 1.03
   perl: 5.004
-version: 0.64
+version: 0.65

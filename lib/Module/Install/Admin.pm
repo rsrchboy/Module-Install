@@ -6,7 +6,7 @@ use inc::Module::Install ();
 
 use vars qw{$VERSION @ISA};
 BEGIN {
-	$VERSION = '0.64';
+	$VERSION = '0.65';
 	@ISA     = qw{Module::Install};
 }
 
@@ -27,7 +27,7 @@ In a B<Module::Install> extension module:
 
 As an one-liner:
 
-    % perl -MModule::Install::Admin -e'&some_method(@args);'
+    % perl "-MModule::Install::Admin" -e'&some_method(@args);'
 
 The two snippets above are really shorthands for
 
