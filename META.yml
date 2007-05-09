@@ -1,24 +1,24 @@
---- 
-abstract: Standalone, extensible Perl module installer
-author: Audrey Tang <autrijus@autrijus.org>
-build_requires: 
+---
+abstract: 'Standalone, extensible Perl module installer'
+author: 'Audrey Tang <autrijus@autrijus.org>'
+build_requires:
   File::Spec: 0
   Test::Harness: 2.03
   Test::More: 0.42
 distribution_type: module
-generated_by: Module::Install version 0.66_02
+generated_by: 'Module::Install version 0.67'
 installdirs: site
 license: perl
-meta-spec: 
+meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.3.html
   version: 1.3
 name: Module-Install
-no_index: 
-  directory: 
+no_index:
+  directory:
     - example
     - inc
     - t
-requires: 
+requires:
   Archive::Tar: 0.23
   ExtUtils::Install: 0.3
   ExtUtils::ParseXS: 0
@@ -28,5 +28,5 @@ requires:
   PAR::Dist: 0.03
   YAML::Tiny: 1.03
   perl: 5.004
-tests: t/*.t t/recursive/*.t
-version: 0.66_02
+tests: 't/*.t t/recursive/*.t'
+version: 0.67
