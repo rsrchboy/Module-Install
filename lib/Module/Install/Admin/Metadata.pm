@@ -3,7 +3,7 @@ package Module::Install::Admin::Metadata;
 use Module::Install::Base;
 @ISA = 'Module::Install::Base';
 
-$VERSION = '0.67';
+$VERSION = '0.68';
 
 use strict;
 
@@ -101,6 +101,8 @@ sub dump_meta {
     if ( my $provides = $values{provides} ) {
         $dump{provides} = $provides;
     }
+
+   $dump{author} &&= [ $dump{author} ];
 
     my $no_index = $values{no_index} ||= {};
     push @{ $no_index->{'directory'} ||= [] }, 'inc', 't';

@@ -10,7 +10,7 @@ use ExtUtils::MakeMaker ();
 
 use vars qw{$VERSION $ISCORE @ISA};
 BEGIN {
-	$VERSION = '0.67';
+	$VERSION = '0.68';
 	$ISCORE  = 1;
 	@ISA     = qw{Module::Install::Base};
 }
@@ -139,7 +139,7 @@ functions redestributed to different domain-specific extensions.
 
 Audrey Tang E<lt>autrijus@autrijus.orgE<gt>
 
-Adam Kennedy E<lt>cpan@ali.asE<gt>
+Adam Kennedy E<lt>adamk@cpan.orgE<gt>
 
 =head1 SEE ALSO
 
@@ -147,7 +147,7 @@ L<Module::Install>, L<Class::Inspector>
 
 =head1 COPYRIGHT
 
-Copyright 2006 Audrey Tang, Adam Kennedy. All rights reserved.
+Copyright 2006 Audrey Tang, Adam Kennedy.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
