@@ -13,7 +13,7 @@ use File::Spec ();
 
 use vars qw{$VERSION $ISCORE @ISA};
 BEGIN {
-	$VERSION = '0.68';
+	$VERSION = '0.69';
 	$ISCORE  = 1;
 	@ISA     = qw{Module::Install::Base};
 }
@@ -129,21 +129,6 @@ sub cpanplus_legacy {
 # Are we targeting ExtUtils::MakeMaker (running as Makefile.PL)
 sub eumm {
 	!! ($0 =~ /Makefile.PL$/i);
-}
-
-# Are we targeting Module::Build (running as Build.PL)
-sub mb {
-	!! ($0 =~ /Build.PL$/i);
-}
-
-# Indicates the use of an ExtUtils::MakeMaker-only feature
-sub no_mb {
-	my $self = shift;
-	return 1 unless $self->mb;
-
-	# This installer is being run via a Build.PL but uses
-	# a feature that does not support Module::Build.
-	die "Build.PL tried to use a feature unsupported by Module::Build";
 }
 
 

@@ -9,6 +9,7 @@ Module::Install - Standalone, extensible Perl module installer
 In your F<Makefile.PL>: (Recommended Usage)
 
     # Load the Module::Install bundled in ./inc/
+    use strict;
     use inc::Module::Install;
     
     # Define metadata
@@ -23,9 +24,8 @@ In your F<Makefile.PL>: (Recommended Usage)
     
     no_index        'directory'         => 'demos';
     
-    install_script  'bin/myscript';
+    install_script  'script/myscript';
     
-    auto_install;
     WriteAll;
 
 Quickly upgrade a legacy L<ExtUtil::MakeMaker> installer:
@@ -34,19 +34,12 @@ Quickly upgrade a legacy L<ExtUtil::MakeMaker> installer:
     use inc::Module::Install;
     WriteMakefile( ... );
 
-A dummy F<Build.PL> so we can work with L<Module::Build> as well:
-
-    # Dear Distribution Packager. This use of require is intentional. 
-    # Module::Install detects Build.PL usage and acts accordingly.
-    require 'Makefile.PL';
-
 =head1 DESCRIPTION
 
 B<Module::Install> is a package for writing installers for CPAN (or
 CPAN-like) distributions that are clean, simple, minimalist, act in a
-strictly correct manner with B<both> the L<ExtUtils::MakeMaker> and
-L<Module::Build> build systems, and will run on any Perl installation
-version 5.004 or newer.
+strictly correct manner with L<ExtUtils::MakeMaker>, and will run on
+any Perl installation version 5.004 or newer.
 
 The intent is to make it as easy as possible for CPAN authors (and
 especially for first-time CPAN authors) to have installers that follow
@@ -462,6 +455,13 @@ directly.  See L<Module::Install::Admin> for details.
 Provides C<auto_install()> to automatically fetch and install
 prerequisites.
 
+The use of C<auto_install> is B<strongly> discouraged in any distribution
+to be uploaded to the CPAN, as the use of it violates the normal CPAN
+toolchain model.
+
+Support may be dropped at a future time, with some alternative process
+providing the equivalent functionality.
+
 =item Module::Install::Base
 
 The base class for all extensions
@@ -543,6 +543,8 @@ C<WriteAll> takes four optional named parameters:
 
 If true, invokes functions with the same name.
 
+I<The use of this param is no longer recommended.>
+
 =item C<inline> (defaults to false)
 
 If true, invokes C<&Inline-E<gt>write> L<Inline> modules.
@@ -599,8 +601,6 @@ Here is a brief overview of the reasons:
 =item * Automatically scans for metadata for you.
 
 =item * Requires no installation for end-users.
-
-=item * Generates a stock Build.PL for Module::Build users.
 
 =item * Guaranteed forward-compatibility.
 
@@ -701,7 +701,7 @@ L<Module::Install::Admin::Manifest>
 
 L<CPAN::MakeMaker>, L<Inline::MakeMaker>
 
-L<ExtUtils::MakeMaker>, L<Module::Build>
+L<ExtUtils::MakeMaker>
 
 =head1 AUTHORS
 

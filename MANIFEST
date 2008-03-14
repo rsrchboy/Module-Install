@@ -20,9 +20,7 @@ lib/Module/Install/Admin/Manifest.pm
 lib/Module/Install/Admin/Metadata.pm
 lib/Module/Install/Admin/ScanDeps.pm
 lib/Module/Install/Admin/WriteAll.pm
-lib/Module/Install/AutoInstall.pm
 lib/Module/Install/Base.pm
-lib/Module/Install/Build.pm
 lib/Module/Install/Bundle.pm
 lib/Module/Install/Can.pm
 lib/Module/Install/Compiler.pm
@@ -51,7 +49,8 @@ META.yml
 README
 t/01_compile.t
 t/02_basic.t
-t/03_audotinstall.t
+t/03_autoinstall.t
+t/97_meta.t
 t/98_pod.t
 t/99_pmv.t
 t/recursive/test.t

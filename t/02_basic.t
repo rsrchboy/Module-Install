@@ -1,15 +1,20 @@
-use Test;
+#!/usr/bin/perl
+
+BEGIN {
+	$|  = 1;
+	$^W = 1;
+}
+
+use Test::More tests => 4;
 use File::Spec;
 
-plan(tests => 4);
-
-ok(TestHelper->create_dist('Foo'));
-ok(TestHelper->build_dist('Foo'));
-ok(-f File::Spec->catfile(qw(t Foo inc Module Install.pm)));
-ok(TestHelper->kill_dist('Foo'));
+ok( TestHelper->create_dist('Foo') );
+ok( TestHelper->build_dist('Foo') );
+ok( -f File::Spec->catfile(qw(t Foo inc Module Install.pm)) );
+ok( TestHelper->kill_dist('Foo') );
 
 package TestHelper;
-BEGIN {$^W = 1};
+
 use strict;
 use File::Spec;
 use File::Path;
@@ -47,7 +52,9 @@ package $dist;
 use strict;
 
 1;
+
 __END__
+
 =head1 NAME
 
 $dist - A test module
@@ -65,16 +72,15 @@ sub build_dist {
     return 0 unless -d $dist_path;
     my $home = cwd;
     chdir $dist_path or return 0;
-    system($^X, "-Ilib", "-Iblib/lib", "Makefile.PL") == 0 or return 0;
+    system($^X, "-I../../lib", "-I../../blib/lib", "Makefile.PL") == 0 or return 0;
     chdir $home or return 0;
     return 1;
 }
 
 sub kill_dist {
-    my ($self, $dist) = @_;
-    my $dist_path = File::Spec->catdir('t', $dist);
-    File::Path::rmtree($dist_path) or return 0;
-    return 1; 
+    File::Path::rmtree(
+        File::Spec->catdir('t', $_[1])
+    ) ? 1 : 0;
 }
 
 1;

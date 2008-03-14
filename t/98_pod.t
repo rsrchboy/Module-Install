@@ -1,25 +1,31 @@
 #!/usr/bin/perl
 
+# Test that the syntax of our POD documentation is valid
+
 use strict;
 BEGIN {
 	$|  = 1;
 	$^W = 1;
 }
-use Test::More;
 
-# Skip if doing a regular install
-unless ( $ENV{AUTOMATED_TESTING} ) {
+my $MODULE = 'Test::Pod 1.00';
+
+# Don't run tests for installs
+use Test::More;
+unless ( $ENV{AUTOMATED_TESTING} or $ENV{RELEASE_TESTING} ) {
 	plan( skip_all => "Author tests not required for installation" );
 }
 
-# Load the testing modules if we can
-eval "use Test::Pod 1.00";
+# Load the testing module
+eval "use $MODULE";
 if ( $@ ) {
-	plan( skip_all => "Test::Pod not available for testing" );
+	$ENV{RELEASE_TESTING}
+	? die( "Failed to load required release-testing module $MODULE" )
+	: plan( skip_all => "$MODULE not available for testing" );
 }
 
 all_pod_files_ok();
-exit(0);
+
 
 
 
@@ -64,4 +70,3 @@ SCOPE: {
 #####################################################################
 # END BLACK MAGIC
 #####################################################################
-

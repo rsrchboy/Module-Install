@@ -6,24 +6,25 @@ use ExtUtils::MakeMaker ();
 
 use vars qw{$VERSION $ISCORE @ISA};
 BEGIN {
-	$VERSION = '0.68';
+	$VERSION = '0.69';
 	$ISCORE  = 1;
 	@ISA     = qw{Module::Install::Base};
 }
 
 my $makefile;
+
 sub WriteMakefile {
     my ($self, %args) = @_;
     $makefile = $self->load('Makefile');
 
     # mapping between MakeMaker and META.yml keys
     $args{MODULE_NAME} = $args{NAME};
-    unless ($args{NAME} = $args{DISTNAME} or !$args{MODULE_NAME}) {
+    unless ( $args{NAME} = $args{DISTNAME} or ! $args{MODULE_NAME} ) {
         $args{NAME} = $args{MODULE_NAME};
         $args{NAME} =~ s/::/-/g;
     }
 
-    foreach my $key (qw(name module_name version version_from abstract author installdirs)) {
+    foreach my $key ( qw{name module_name version version_from abstract author installdirs} ) {
         my $value = delete($args{uc($key)}) or next;
         $self->$key($value);
     }

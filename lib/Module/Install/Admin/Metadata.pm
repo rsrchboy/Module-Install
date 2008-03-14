@@ -1,135 +1,143 @@
 package Module::Install::Admin::Metadata;
 
-use Module::Install::Base;
-@ISA = 'Module::Install::Base';
-
-$VERSION = '0.68';
-
 use strict;
+use Module::Install::Base;
+
+use vars qw{$VERSION @ISA};
+BEGIN {
+	$VERSION = '0.69';
+	@ISA     = 'Module::Install::Base';
+}
 
 sub remove_meta {
-    my $self = shift;
-    my $package = ref($self->_top);
-    my $version = $self->_top->VERSION;
+	my $self = shift;
+	my $pkg  = ref($self->_top);
+	my $ver  = $self->_top->VERSION;
 
-    return unless -f 'META.yml';
-    open META, 'META.yml'
-      or die "Can't open META.yml for output:\n$!";
-    my $meta = do {local $/; <META>};
-    close META;
-    return unless $meta =~ /^generated_by: $package version $version/m;
-    unless (-w 'META.yml') {
-        warn "Can't remove META.yml file. Not writable.\n";
-        return;
-    }
-    warn "Removing auto-generated META.yml\n";
-    unlink 'META.yml'
-      or die "Couldn't unlink META.yml:\n$!";
+	return unless -f 'META.yml';
+	open META, 'META.yml'
+		or die "Can't open META.yml for output:\n$!";
+	my $meta = do {local $/; <META>};
+	close META;
+	return unless $meta =~ /^generated_by: $pkg version $ver/m;
+	unless (-w 'META.yml') {
+		warn "Can't remove META.yml file. Not writable.\n";
+		return;
+	}
+	warn "Removing auto-generated META.yml\n";
+	unless ( unlink 'META.yml' ) {
+		die "Couldn't unlink META.yml:\n$!";
+	}
+	return;
 }
 
 sub write_meta {
-    my $self = shift;
+	my $self = shift;
 
-    META_NOT_OURS: {
-        local *FH;
-        if ( open FH, "META.yml" ) {
-            while (<FH>) {
-                last META_NOT_OURS if /^generated_by: Module::Install\b/;
-            }
-            return if -s FH;
-        }
-    }
+	META_NOT_OURS: {
+		local *FH;
+		if ( open FH, "META.yml" ) {
+			while (<FH>) {
+				last META_NOT_OURS if /^generated_by: Module::Install\b/;
+			}
+			return if -s FH;
+		}
+	}
 
-    print "Writing META.yml\n";
+	print "Writing META.yml\n";
 
-    local *META;
-    open META, "> META.yml" or warn "Cannot write to META.yml: $!";
-    print META $self->dump_meta;
-    close META;
+	local *META;
+	open META, "> META.yml" or warn "Cannot write to META.yml: $!";
+	print META $self->dump_meta;
+	close META;
 
-    return;
+	return;
 }
 
 sub dump_meta {
-    my $self    = shift;
-    my $package = ref( $self->_top );
-    my $version = $self->_top->VERSION;
-    my %values  = %{ $self->Meta->{'values'} };
+	my $self = shift;
+	my $pkg  = ref( $self->_top );
+	my $ver  = $self->_top->VERSION;
+	my $val  = $self->Meta->{'values'};
 
-    delete $values{sign};
+	delete $val->{sign};
 
-    if ( my $perl_version = delete $values{perl_version} ) {
-        # Always canonical to three-dot version
-        $perl_version =~
-            s{^(\d+)\.(\d\d\d)(\d*)}{join('.', $1, int($2||0), int($3||0))}e
-            if $perl_version >= 5.006;
-        $values{requires} = [
-            [ perl => $perl_version ],
-            @{ $values{requires} || [] },
-        ];
-    }
+	if ( my $perl_version = delete $val->{perl_version} ) {
+		# Always canonical to three-dot version
+		if ( $perl_version >= 5.006 ) {
+			$perl_version =~ s{^(\d+)\.(\d\d\d)(\d*)}{join('.', $1, int($2||0), int($3||0))}e
+		}
+		$val->{requires} = [
+			[ perl => $perl_version ],
+			@{ $val->{requires} || [] },
+		];
+	}
 
-        # Set a default 'unknown' license
-    unless ( $values{license} ) {
-        warn "No license specified, setting license = 'unknown'\n";
-        $values{license} = 'unknown';
-    }
+	# Set a default 'unknown' license
+	unless ( $val->{license} ) {
+		warn "No license specified, setting license = 'unknown'\n";
+		$val->{license} = 'unknown';
+	}
 
-    $values{distribution_type} ||= 'module';
+	# Most distributions are modules
+	$val->{distribution_type} ||= 'module';
 
-        # Guess a name if needed, derived from the module_name
-    if ( $values{module_name} and ! $values{name} ) {
-        $values{name} = $values{module_name};
-        $values{name} =~ s/::/-/g;
-    }
+	# Check and derive names
+	if ( $val->{name} =~ /::/ ) {
+		my $name = $val->{name};
+		$name =~ s/::/-/g;
+		die "Error in name(): '$val->{name}' should be '$name'!\n";
+	}
+	if ( $val->{module_name} and ! $val->{name} ) {
+		$val->{name} = $val->{module_name};
+		$val->{name} =~ s/::/-/g;
+	}
 
-    if ( $values{name} =~ /::/ ) {
-        my $name = $values{name};
-        $name =~ s/::/-/g;
-        die "Error in name(): '$values{name}' should be '$name'!\n";
-    }
+	# Apply default no_index entries
+	$val->{no_index} ||= {};
+	$val->{no_index}->{directory} ||= [];
+	foreach my $dir ( qw{ share inc t } ) {
+		next unless -d $dir;
+		push @{ $val->{no_index}->{directory} }, $dir;
+	}
 
-    my %dump;
-    foreach my $key ($self->Meta_ScalarKeys) {
-        $dump{$key} = $values{$key} if exists $values{$key};
-    }
-    foreach my $key ($self->Meta_TupleKeys) {
-        next unless exists $values{$key};
-        $dump{$key} = { map { @$_ } @{ $values{$key} } };
-    }
+	# Generate the structure we'll be dumping
+	my $meta = {};
+	foreach my $key ($self->Meta_ScalarKeys) {
+		$meta->{$key} = $val->{$key} if exists $val->{$key};
+	}
+	foreach my $key ($self->Meta_TupleKeys) {
+		next unless exists $val->{$key};
+		$meta->{$key} = { map { @$_ } @{ $val->{$key} } };
+	}
+	$meta->{provides}     = $val->{provides} if $val->{provides};
+	$meta->{author}       &&= [ $meta->{author} ];
+	$meta->{no_index}     = $val->{no_index};
+	$meta->{generated_by} = "$pkg version $ver";
+	$meta->{'meta-spec'}  = {
+		version => 1.3,
+		url     => 'http://module-build.sourceforge.net/META-spec-v1.3.html',
+	};
 
-    if ( my $provides = $values{provides} ) {
-        $dump{provides} = $provides;
-    }
+	# Dump the data structure
+	local $@;
+	if ( eval { require YAML::Syck } ) {
+		# Why no header? It is required by the spec!
+		# local $YAML::Syck::Headless = 1;
+		return YAML::Syck::Dump($meta);
 
-   $dump{author} &&= [ $dump{author} ];
+	} elsif ( eval { require YAML::Tiny } ) {
+		return YAML::Tiny::Dump($meta);
 
-    my $no_index = $values{no_index} ||= {};
-    push @{ $no_index->{'directory'} ||= [] }, 'inc', 't';
-    $dump{no_index} = $no_index;
-    $dump{generated_by} = "$package version $version";
+	} else {
+		require YAML;
+		# Why no header? It is required by the spec!
+		# local $YAML::UseHeader = 0;
+		return YAML::Dump($meta);
 
-    # Add mention of the META spec
-    $dump{"meta-spec"} = {
-        version => 1.3,
-        url => 'http://module-build.sourceforge.net/META-spec-v1.3.html',
-    };
+	}
 
-    local $@;
-    if (eval { require YAML::Syck }) {
-# Why no header? It is required by the spec!
-#        local $YAML::Syck::Headless = 1;
-        return YAML::Syck::Dump(\%dump);
-    }
-    elsif (eval { require YAML::Tiny }) {
-        return YAML::Tiny::Dump(\%dump);
-    }
-    else {
-        require YAML;
-# Why no header? It is required by the spec!
-#        local $YAML::UseHeader = 0;
-        return YAML::Dump(\%dump);
-    }
+	return;
 }
 
 1;

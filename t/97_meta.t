@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-# Test that our declared minimum Perl version matches our syntax
+# Test that our META.yml file matches the current specification.
 
 use strict;
 BEGIN {
@@ -8,7 +8,7 @@ BEGIN {
 	$^W = 1;
 }
 
-my $MODULE = 'Test::MinimumVersion 0.007';
+my $MODULE = 'Test::CPAN::Meta 0.07';
 
 # Don't run tests for installs
 use Test::More;
@@ -24,4 +24,4 @@ if ( $@ ) {
 	: plan( skip_all => "$MODULE not available for testing" );
 }
 
-all_minimum_version_from_metayml_ok();
+meta_yaml_ok();

@@ -1,4 +1,29 @@
-[Changes for 0.68 - Ricardo SIGNES]
+Changes for Perl extension Module-Install
+
+0.69 Sat 15 Mar 2008 - Adam Kennedy
+
+* Removing auto_install support (ADAMK)
+
+* Removing Build.PL support (ADAMK)
+
+* Enabling configure_requires support (ADAMK)
+
+* Automatically set a configure_requires for the version of
+  ExtUtils::MakeMaker that the author is running.
+
+* Refactoring a number of modules for reduced size (ADAMK)
+
+* Add 'share' to the list of directories automatically no_index'ed (ADAMK)
+
+* license_from correctly marks "GNU lesser public license" as lgpl,
+  not gpl [rt.cpan.org 24635] (AVAR)
+
+* set author mode ($Module::Install::AUTHOR) when first creating
+  ./inc (RJBS)
+
+* Don't write perl into PREREQ_PM when using perl_version (ADAMK)
+
+[Changes for 0.68 - Ricardo Signes]
 
 * The author entry in META.yml is now a sequence, as required
 
