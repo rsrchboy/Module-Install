@@ -20,6 +20,7 @@ lib/Module/Install/Admin/Manifest.pm
 lib/Module/Install/Admin/Metadata.pm
 lib/Module/Install/Admin/ScanDeps.pm
 lib/Module/Install/Admin/WriteAll.pm
+lib/Module/Install/AutoInstall.pm
 lib/Module/Install/Base.pm
 lib/Module/Install/Bundle.pm
 lib/Module/Install/Can.pm
