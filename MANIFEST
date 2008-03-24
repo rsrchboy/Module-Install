@@ -31,8 +31,6 @@ lib/Module/Install/Fetch.pm
 lib/Module/Install/Include.pm
 lib/Module/Install/Inline.pm
 lib/Module/Install/Makefile.pm
-lib/Module/Install/Makefile/Name.pm
-lib/Module/Install/Makefile/Version.pm
 lib/Module/Install/MakeMaker.pm
 lib/Module/Install/Metadata.pm
 lib/Module/Install/PAR.pm
@@ -51,8 +49,9 @@ README
 t/01_compile.t
 t/02_basic.t
 t/03_autoinstall.t
+t/04_version.t
 t/97_meta.t
 t/98_pod.t
 t/99_pmv.t
+t/lib/Test.pm
 t/recursive/test.t
-ToDo
