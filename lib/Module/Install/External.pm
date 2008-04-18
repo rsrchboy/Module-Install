@@ -7,7 +7,7 @@ use Module::Install::Base;
 
 use vars qw{$VERSION $ISCORE @ISA};
 BEGIN {
-	$VERSION = '0.71';
+	$VERSION = '0.72';
 	$ISCORE  = 1;
 	@ISA     = qw{Module::Install::Base};
 }
@@ -20,7 +20,7 @@ sub requires_external_cc {
 		print "Unresolvable missing external dependency.\n";
 		print "This package requires a C compiler.\n";
 		print STDERR "NA: Unable to build distribution on this platform.\n";
-		exit(255);
+		exit(0);
 	}
 
 	# Unlike some of the other modules, while we need to specify a
@@ -49,7 +49,7 @@ sub requires_external_bin {
 		print "Unresolvable missing external dependency.\n";
 		print "Please install '$bin' seperately and try again.\n";
 		print STDERR "NA: Unable to build distribution on this platform.\n";
-		exit(255);
+		exit(0);
 	}
 
 	# Once we have some way to specify external deps, do it here.
