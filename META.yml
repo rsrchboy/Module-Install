@@ -4,11 +4,11 @@ author:
   - 'Adam Kennedy <adamk@cpan.org>'
 build_requires:
   File::Remove: 1.40
-  File::Spec: 0
+  File::Spec: 0.80
   Test::Harness: 2.03
   Test::More: 0.42
 distribution_type: module
-generated_by: 'Module::Install version 0.72'
+generated_by: 'Module::Install version 0.73'
 installdirs: site
 license: perl
 meta-spec:
@@ -20,14 +20,14 @@ no_index:
     - inc
     - t
 requires:
-  Archive::Tar: 0.23
-  ExtUtils::Install: 0.3
-  ExtUtils::ParseXS: 0
-  Module::Build: 0
-  Module::CoreList: 0
-  Module::ScanDeps: 0.28
-  PAR::Dist: 0.03
-  YAML::Tiny: 1.26
+  Archive::Tar: 1.38
+  ExtUtils::Install: 1.50
+  ExtUtils::ParseXS: 2.19
+  Module::Build: 0.2808
+  Module::CoreList: 2.15
+  Module::ScanDeps: 0.83
+  PAR::Dist: 0.29
+  YAML::Tiny: 1.30
   perl: 5.004
 tests: 't/*.t t/recursive/*.t'
-version: 0.72
+version: 0.73
