@@ -8,7 +8,7 @@ build_requires:
   Test::Harness: 2.03
   Test::More: 0.42
 distribution_type: module
-generated_by: 'Module::Install version 0.73'
+generated_by: 'Module::Install version 0.74'
 installdirs: site
 license: perl
 meta-spec:
@@ -27,7 +27,7 @@ requires:
   Module::CoreList: 2.15
   Module::ScanDeps: 0.83
   PAR::Dist: 0.29
-  YAML::Tiny: 1.30
+  YAML::Tiny: 1.31
   perl: 5.004
 tests: 't/*.t t/recursive/*.t'
-version: 0.73
+version: 0.74
