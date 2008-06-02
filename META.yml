@@ -8,8 +8,7 @@ build_requires:
   Test::Harness: 2.03
   Test::More: 0.42
 distribution_type: module
-generated_by: 'Module::Install version 0.74'
-installdirs: site
+generated_by: 'Module::Install version 0.75'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.3.html
@@ -29,5 +28,6 @@ requires:
   PAR::Dist: 0.29
   YAML::Tiny: 1.31
   perl: 5.004
-tests: 't/*.t t/recursive/*.t'
-version: 0.74
+resources:
+  repository: http://svn.ali.as/cpan/trunk/Module-Install
+version: 0.75
