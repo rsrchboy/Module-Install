@@ -1,5 +1,27 @@
 Changes for Perl extension Module-Install
 
+0.76 Thu 17 Jul 2008
+	- ExtUtils::MakeMaker no longer complains when its version
+	  contains an underscore. (PJF, RT #35800)
+	- Documentation patches to Module::Install::Admin and
+	  Module::Install::Base. (Adriano Ferreira, RT #27696)
+	- Corrected broken internal link in Module/Install.pod. (PJF)
+	- The 'examples' directory will no longer be included
+	  twice in META.yml/no_index/directory. (PJF)
+	- Move to the new 1.4 version of the META.yml specification (ADAMK)
+	- Automatically provide resources:license for
+	  license('perl') (ADAMK)
+	- Implemented the bugtracker_from command (ADAMK)
+	- Added bugtracker_from to the all_from command
+	  (Although we don't warn if not provided) (ADAMK)
+	- Shifting minimum perl version for Module::Install to 5.005
+	  (Anything older should use ExtUtils::MakeMaker) (ADAMK)
+	- perl_version errors if it gets a value less that 5.005 (ADAMK)
+	- Created the new install_share implementation (ADAMK)
+	- Added the ppport function for adding ppport.h (ADAMK)
+	- Bumped File::Remove from test_requires to requires (ADAMK)
+	- Added dependency on Devel::PPPort for ppport (ADAMK)
+
 0.75 Mon  2 Jun 2008 - Adam Kennedy
 	- Documenting the smaller post Module::Build core package
 	  Module::Install::With and removed experimental warning (ADAMK)

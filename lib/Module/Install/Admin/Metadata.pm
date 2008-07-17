@@ -6,7 +6,7 @@ use Module::Install::Base;
 
 use vars qw{$VERSION @ISA};
 BEGIN {
-	$VERSION = '0.75';
+	$VERSION = '0.76';
 	@ISA     = 'Module::Install::Base';
 }
 
@@ -101,13 +101,16 @@ sub dump_meta {
 	# Apply default no_index entries
 	$val->{no_index}              ||= {};
 	$val->{no_index}->{directory} ||= [];
-	foreach my $dir ( qw{ share inc t examples examples demo } ) {
+	foreach my $dir ( qw{ share inc t examples demo } ) {
 		next unless -d $dir;
 		push @{ $val->{no_index}->{directory} }, $dir;
 	}
 
 	# Generate the structure we'll be dumping
-	my $meta = {};
+	my $meta = {
+		resources => {},
+		license   => $val->{license},
+	};
 	foreach my $key ( $self->Meta_ScalarKeys ) {
 		next if $key eq 'installdirs';
 		next if $key eq 'tests';
@@ -122,9 +125,12 @@ sub dump_meta {
 	$meta->{no_index}     = $val->{no_index};
 	$meta->{generated_by} = "$pkg version $ver";
 	$meta->{'meta-spec'}  = {
-		version => 1.3,
-		url     => 'http://module-build.sourceforge.net/META-spec-v1.3.html',
+		version => 1.4,
+		url     => 'http://module-build.sourceforge.net/META-spec-v1.4.html',
 	};
+	unless ( scalar keys %{$meta->{resources}} ) {
+		delete $meta->{resources};
+	}
 
 	YAML::Tiny::Dump($meta);
 }

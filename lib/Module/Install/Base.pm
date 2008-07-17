@@ -1,6 +1,6 @@
 package Module::Install::Base;
 
-$VERSION = '0.75';
+$VERSION = '0.76';
 
 # Suspend handler for "redefined" warnings
 BEGIN {
@@ -91,6 +91,14 @@ with an empty C<AUTOLOAD> method that does nothing at all.
 sub admin {
     $_[0]->_top->{admin} or Module::Install::Base::FakeAdmin->new;
 }
+
+=item is_admin()
+
+Tells whether this is the first run of the installer (on
+author's side). That is when there was no F<inc/> at
+program start. True if that's the case. False, otherwise.
+
+=cut 
 
 sub is_admin {
     $_[0]->admin->VERSION;

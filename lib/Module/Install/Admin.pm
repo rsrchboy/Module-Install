@@ -6,7 +6,7 @@ use inc::Module::Install ();
 
 use vars qw{$VERSION @ISA};
 BEGIN {
-	$VERSION = '0.75';
+	$VERSION = '0.76';
 	@ISA     = qw{Module::Install};
 }
 
@@ -46,7 +46,7 @@ F<inc/> directory, nor are any of the B<Module::Install::Admin::*>
 extensions.
 
 For normal usage of B<Module::Install>, please see L<Module::Install>
-and L<Module::Install-Cookbook> instead.
+and L<Module::Install/"COOKBOOK / EXAMPLES"> instead.
 
 =head2 Bootstrapping
 

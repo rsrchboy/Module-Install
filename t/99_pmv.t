@@ -8,7 +8,7 @@ BEGIN {
 	$^W = 1;
 }
 
-my $MODULE = 'Test::MinimumVersion 0.007';
+my $MODULE = 'Test::MinimumVersion 0.008';
 
 # Don't run tests for installs
 use Test::More;
