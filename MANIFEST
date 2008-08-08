@@ -56,6 +56,7 @@ t/03_autoinstall.t
 t/04_version.t
 t/05_share.t
 t/06_ppport.t
+t/07_perl_version.t
 t/97_meta.t
 t/98_pod.t
 t/99_pmv.t

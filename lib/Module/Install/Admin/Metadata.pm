@@ -6,7 +6,7 @@ use Module::Install::Base;
 
 use vars qw{$VERSION @ISA};
 BEGIN {
-	$VERSION = '0.76';
+	$VERSION = '0.77';
 	@ISA     = 'Module::Install::Base';
 }
 
@@ -130,6 +130,11 @@ sub dump_meta {
 	};
 	unless ( scalar keys %{$meta->{resources}} ) {
 		delete $meta->{resources};
+	}
+
+	# Support version.pm versions
+	if ( UNIVERSAL::isa($meta->{version}, 'version') ) {
+		$meta->{version} = $meta->{version}->numify;
 	}
 
 	YAML::Tiny::Dump($meta);

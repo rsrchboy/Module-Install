@@ -5,7 +5,7 @@ use Module::Install::Base;
 
 use vars qw{$VERSION @ISA};
 BEGIN {
-	$VERSION = '0.76';
+	$VERSION = '0.77';
 	@ISA     = qw{Module::Install::Base};
 }
 
@@ -61,7 +61,7 @@ sub check_manifest {
 		$path =~ s/\s.*//;
 		$path =~ s/^\.[\\\/]//;
 		$path =~ s/[\\\/]/\//g;
-		next unless $path =~ m!^\Q$prefix\E!i;
+		next unless $path =~ m/^\Q$prefix\E\b/i;
 		$manifest{$path} = \$manifest->[$i];
 	}
 
