@@ -4,11 +4,11 @@ author:
   - 'Adam Kennedy <adamk@cpan.org>'
 build_requires:
   ExtUtils::MakeMaker: 6.11
-  File::Spec: 0.80
-  Test::Harness: 2.03
-  Test::More: 0.42
+  File::Spec: 3.2701
+  Test::Harness: 3.13
+  Test::More: 0.86
 distribution_type: module
-generated_by: 'Module::Install version 0.77'
+generated_by: 'Module::Install version 0.78'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -16,23 +16,22 @@ meta-spec:
 name: Module-Install
 no_index:
   directory:
-    - share
-    - share
     - inc
+    - share
     - t
 requires:
-  Archive::Tar: 1.38
-  Devel::PPPort: 0
-  ExtUtils::Install: 1.50
+  Archive::Tar: 1.44
+  Devel::PPPort: 3.16
+  ExtUtils::Install: 1.52
   ExtUtils::ParseXS: 2.19
-  File::Remove: 1.40
-  Module::Build: 0.2808
-  Module::CoreList: 2.13
-  Module::ScanDeps: 0.83
+  File::Remove: 1.42
+  Module::Build: 0.2804
+  Module::CoreList: 2.17
+  Module::ScanDeps: 0.89
   PAR::Dist: 0.29
-  YAML::Tiny: 1.31
+  YAML::Tiny: 1.36
   perl: 5.005
 resources:
   license: http://dev.perl.org/licenses/
   repository: http://svn.ali.as/cpan/trunk/Module-Install
-version: 0.77
+version: 0.78

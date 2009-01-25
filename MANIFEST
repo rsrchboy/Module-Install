@@ -29,6 +29,7 @@ lib/Module/Install/Bundle.pm
 lib/Module/Install/Can.pm
 lib/Module/Install/Compiler.pm
 lib/Module/Install/Deprecated.pm
+lib/Module/Install/DSL.pm
 lib/Module/Install/External.pm
 lib/Module/Install/Fetch.pm
 lib/Module/Install/Include.pm
@@ -39,6 +40,7 @@ lib/Module/Install/Metadata.pm
 lib/Module/Install/PAR.pm
 lib/Module/Install/Philosophy.pod
 lib/Module/Install/Run.pm
+lib/Module/Install/Scripts.pm
 lib/Module/Install/Share.pm
 lib/Module/Install/Win32.pm
 lib/Module/Install/With.pm
@@ -57,8 +59,14 @@ t/04_version.t
 t/05_share.t
 t/06_ppport.t
 t/07_perl_version.t
+t/08_dsl.t
+t/10_test.t
 t/97_meta.t
 t/98_pod.t
 t/99_pmv.t
 t/lib/Test.pm
 t/recursive/test.t
+test/A/eg/sample
+test/A/lib/A.pm
+test/A/Makefile.PL
+test/A/t/01_compile.t

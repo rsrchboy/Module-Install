@@ -6,7 +6,7 @@ use inc::Module::Install ();
 
 use vars qw{$VERSION @ISA};
 BEGIN {
-	$VERSION = '0.77';
+	$VERSION = '0.78';
 	@ISA     = qw{Module::Install};
 }
 
@@ -167,7 +167,7 @@ sub load_all_extensions {
     unless ($self->{extensions}) {
         $self->{extensions} = [];
         foreach my $inc (@INC) {
-            next if $inc eq $self->{prefix} or ref($inc);
+            next if ref($inc) or $inc eq $self->{prefix};
             $self->load_extensions("$inc/$self->{path}", $self->{_top});
         }
     }
