@@ -8,7 +8,7 @@ build_requires:
   Test::Harness: 3.13
   Test::More: 0.86
 distribution_type: module
-generated_by: 'Module::Install version 0.79'
+generated_by: 'Module::Install version 0.80'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -34,4 +34,4 @@ requires:
 resources:
   license: http://dev.perl.org/licenses/
   repository: http://svn.ali.as/cpan/trunk/Module-Install
-version: 0.79
+version: 0.80
