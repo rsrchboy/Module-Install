@@ -5,19 +5,19 @@ SYNOPSIS
     In your Makefile.PL: (Recommended Usage)
 
       use inc::Module::Install;
-  
-      # Define metadata
+      
+  # Define metadata
       name           'Your-Module';
       all_from       'lib/Your/Module.pm';
-  
-      # Specific dependencies
+      
+  # Specific dependencies
       requires       'File::Spec'  => '0.80';
       test_requires  'Test::More'  => '0.42';
       recommends     'Text::CSV_XS'=> '0.50';
       no_index       'directory'   => 'demos';
       install_script 'myscript';
-  
-      WriteAll;
+      
+  WriteAll;
 
     Quickly upgrade a legacy ExtUtil::MakeMaker installer:
 
@@ -348,8 +348,8 @@ COMMON COMMANDS
 
       > scriptname
       Running scriptname 0.01...
-  
-      > 
+      
+  >
 
     By convention, scripts should be placed in a /script directory within
     your distribution. To support less typing, if a script is located in the
@@ -577,20 +577,33 @@ FAQ
   What are the benefits of using Module::Install?
     Here is a brief overview of the reasons:
 
-    * Extremely easy for beginners to learn
-    * Does everything ExtUtils::MakeMaker does.
-    * Does it with a dramatically simpler syntax.
-    * Automatically scans for metadata for you.
-    * Requires no installation for end-users.
-    * Guaranteed forward-compatibility.
-    * Automatically updates your MANIFEST.
-    * Distributing scripts is easy.
-    * Include prerequisite modules (less dependencies to install)
-    * Auto-installation of prerequisites.
-    * Support for Inline-based modules.
-    * Support for File::ShareDir shared data files
-    * Support for precompiled PAR binaries.
-    * Deals with Win32 install issues for you.
+    *   Extremely easy for beginners to learn
+
+    *   Does everything ExtUtils::MakeMaker does.
+
+    *   Does it with a dramatically simpler syntax.
+
+    *   Automatically scans for metadata for you.
+
+    *   Requires no installation for end-users.
+
+    *   Guaranteed forward-compatibility.
+
+    *   Automatically updates your MANIFEST.
+
+    *   Distributing scripts is easy.
+
+    *   Include prerequisite modules (less dependencies to install)
+
+    *   Auto-installation of prerequisites.
+
+    *   Support for Inline-based modules.
+
+    *   Support for File::ShareDir shared data files
+
+    *   Support for precompiled PAR binaries.
+
+    *   Deals with Win32 install issues for you.
 
     By greatly shrinking and simplifying the syntax, Module::Install keeps
     the amount of work required to maintain your Makefile.PL files to an
@@ -618,8 +631,8 @@ COOKBOOK / EXAMPLES
     smallest possible Makefile.PL.
 
       use inc::Module::Install;
-  
-      name          'Method-Alias';
+      
+  name          'Method-Alias';
       all_from      'lib/Method/Alias.pm';
       test_requires 'Test::More' => '0.42';
 
@@ -628,23 +641,23 @@ COOKBOOK / EXAMPLES
     installer that can handle different dependencies on different platforms.
 
       use inc::Module::Install;
-  
-      name          'File-HomeDir';
+      
+  name          'File-HomeDir';
       all_from      'lib/File/HomeDir.pm';
       requires      'File::Spec' => '0.80';
       test_requires 'Test::More' => '0.47';
-  
-      if ( $MacPerl::Version ) {
+      
+  if ( $MacPerl::Version ) {
           # Needed on legacy Mac OS 9
           requires 'Mac::Files' => 0;
       }
-  
-      if ( $^O eq 'MXWin32' ) {
+      
+  if ( $^O eq 'MXWin32' ) {
           # Needed on Windows platforms
           requires 'Win32::TieRegistry' => 0;
       }
-  
-      WriteAll;
+      
+  WriteAll;
 
 TO DO
     Implement Module::Install::Compiled and Module::Install::Admin::Compiled

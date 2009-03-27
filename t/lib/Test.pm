@@ -1,14 +1,14 @@
 package t::lib::Test;
 
 use strict;
-use File::Spec;
-use File::Remove 'remove';
+use File::Spec   ();
+use File::Remove ();
 use Cwd;
 use Config;
 
 use vars qw{$VERSION @ISA @EXPORT};
 BEGIN {
-	$VERSION = '0.80';
+	$VERSION = '0.81';
 	@ISA     = 'Exporter';
 	@EXPORT  = qw{
 		create_dist
@@ -29,7 +29,7 @@ sub create_dist {
 	my $dist_lib  = File::Spec->catdir('t', $dist, 'lib');
 	mkdir($dist_path, 0777) or return 0;
 	mkdir($dist_lib,  0777) or return 0;
-	chdir $dist_path        or return 0;
+	chdir($dist_path      ) or return 0;
 
 	# Write the MANIFEST
 	open( MANIFEST, '>MANIFEST' ) or return 0;
@@ -43,11 +43,13 @@ END_MANIFEST
 	# Write the configure script
 	open MAKEFILE_PL, '>Makefile.PL' or return 0;
 	print MAKEFILE_PL $opt->{'Makefile.PL'} || <<"END_MAKEFILE_PL";
-use inc::Module::Install;
-name    '$dist';
-license 'perl';
+use inc::Module::Install 0.81;
+name          '$dist';
+license       'perl';
+requires_from 'lib/$dist.pm';
+requires      'File::Spec' => '0.79';
+mymeta;
 WriteAll;
-WriteMyMeta;
 END_MAKEFILE_PL
 	close MAKEFILE_PL;
 
@@ -55,8 +57,11 @@ END_MAKEFILE_PL
 	open MODULE, ">lib/$dist.pm" or return 0;
 	print MODULE $opt->{"lib/$dist.pm"} || <<"END_MODULE";
 package $dist;
+
 \$VERSION = '3.21';
+
 use strict;
+use File::Spec 0.80;
 
 1;
 
@@ -89,7 +94,7 @@ sub kill_dist {
 	my $dist = shift;
 	my $dir = File::Spec->catdir('t', $dist);
 	return 1 unless -d $dir;
-	remove( \1, $dir );
+	File::Remove::remove( \1, $dir );
 	return -d $dir ? 0 : 1;
 }
 
