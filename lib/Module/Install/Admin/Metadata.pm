@@ -6,14 +6,13 @@ use Module::Install::Base;
 
 use vars qw{$VERSION @ISA};
 BEGIN {
-	$VERSION = '0.81';
+	$VERSION = '0.82';
 	@ISA     = 'Module::Install::Base';
 }
 
 sub read_meta {
 	# Admin time means no eval is needed
 	require YAML::Tiny;
-
 	my $self = shift;
 	my @docs = YAML::Tiny::LoadFile('META.yml');
 	return $docs[0];
@@ -144,6 +143,14 @@ sub dump_meta {
 		next unless exists $val->{$key};
 		$meta->{$key} = { map { @$_ } @{ $val->{$key} } };
 	}
+
+	if ( $self->_cmp( $meta->{configure_requires}->{'ExtUtils::MakeMaker'}, '6.36' ) > 0 ) {
+		# Starting from this version ExtUtils::MakeMaker requires perl 5.6
+	        unless ( $perl_version or $perl_version && $self->perl_version($perl_version) < 5.006 ) {
+	                $meta->{requires}->{perl} = '5.006';
+	        }
+	}
+
 	$meta->{provides}     = $val->{provides} if $val->{provides};
 	$meta->{author}     &&= [ $meta->{author} ];
 	$meta->{no_index}     = $val->{no_index};
