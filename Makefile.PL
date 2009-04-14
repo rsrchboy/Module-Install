@@ -20,6 +20,7 @@ name          'Module-Install';
 author        'Adam Kennedy <adamk@cpan.org>';
 perl_version  '5.005';
 all_from      'lib/Module/Install.pm';
+requires      'File::Spec'        => '3.2701';
 requires      'Devel::PPPort'     => '3.16';
 requires      'File::Remove'      => '1.42';
 requires      'YAML::Tiny'        => '1.36';
@@ -33,10 +34,6 @@ requires      'Module::Build'     => '0.2804';
 test_requires 'Test::Harness'     => '3.13';
 test_requires 'Test::More'        => '0.86';
 
-# Should be a "requires", but we have to solve the
-# "auto-include File::Spec if version < 5.005" problem first.
-test_requires 'File::Spec'        => '3.2701';
-
 # We have to keep some files out of t to avoid them
 # being included in t/A.
 no_index( directory => 'test' );
@@ -49,7 +46,7 @@ clean_files( qw{
 } );
 
 # Test configure_requires support (also needed by WriteMyMeta)
-configure_requires 'YAML::Tiny'   => '1.33';
+configure_requires 'YAML::Tiny' => '1.33';
 
 # Makes the recursive test script run
 # (to test recursive test support)

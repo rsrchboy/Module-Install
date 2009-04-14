@@ -4,14 +4,13 @@ author:
   - 'Adam Kennedy <adamk@cpan.org>'
 build_requires:
   ExtUtils::MakeMaker: 6.42
-  File::Spec: 3.2701
   Test::Harness: 3.13
   Test::More: 0.86
 configure_requires:
   ExtUtils::MakeMaker: 6.42
   YAML::Tiny: 1.33
 distribution_type: module
-generated_by: 'Module::Install version 0.82'
+generated_by: 'Module::Install version 0.84'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -29,6 +28,7 @@ requires:
   ExtUtils::Install: 1.52
   ExtUtils::ParseXS: 2.19
   File::Remove: 1.42
+  File::Spec: 3.2701
   Module::Build: 0.2804
   Module::CoreList: 2.17
   Module::ScanDeps: 0.89
@@ -39,4 +39,4 @@ resources:
   ChangeLog: http://fisheye2.atlassian.com/changelog/cpan/trunk/Module-Install
   license: http://dev.perl.org/licenses/
   repository: http://svn.ali.as/cpan/trunk/Module-Install
-version: 0.82
+version: 0.84
