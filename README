@@ -386,7 +386,7 @@ COMMON COMMANDS
     See the META.yml documentation for more details on what "no_index"
     values are allowed.
 
-    The inc, t and share (if install_share is used) directories are
+    The inc, t and share (if "install_share" is used) directories are
     automatically "no_index"'ed for you if found and do not require an
     explicit command.
 
@@ -394,12 +394,12 @@ COMMON COMMANDS
     shouldn't be able to, you need a "no_index" entry to remove it.
 
   installdirs, install_as_*
-      installdirs 'site';   # the default
+      installdirs 'site'; # the default
 
-      install_as_core;      # alias for installdirs 'perl'
-      install_as_cpan;      # alias for installdirs 'site'
-      install_as_site;      # alias for installdirs 'site'
-      install_as_vendor;    # alias for installdirs 'vendor'
+      install_as_core;    # alias for installdirs 'perl'
+      install_as_cpan;    # alias for installdirs 'site'
+      install_as_site;    # alias for installdirs 'site'
+      install_as_vendor;  # alias for installdirs 'vendor'
 
     The "installdirs" and "install_as" commands specify the location where
     the module should be installed; this is the equivalent to
@@ -473,105 +473,100 @@ EXTENSIONS
     extensions) should use the Module::Install::Admin module directly. See
     Module::Install::Admin for details.
 
-  Extention List
-    Module::Install::AutoInstall
-        Provides "auto_install()" to automatically fetch and install
-        prerequisites.
-
-        The use of "auto_install" is strongly discouraged in any
-        distribution to be uploaded to the CPAN, as the use of it violates
-        the normal CPAN client to toolchain communication protocol.
-
-        Support may be dropped at a future time, with some alternative
-        process providing the equivalent functionality.
-
-    Module::Install::Base
-        The base class for all extensions
-
-    Module::Install::Build
-        Provides integration with Module::Build via "&Build->write".
-
-    Module::Install::Bundle
-        Provides the "bundle" family of commands, allowing you to bundle
-        another CPAN distribution within your distribution.
-
-    Module::Install::Fetch
-        Handles install-time fetching of files from remote servers via FTP
-        and HTTP.
-
-    Module::Install::Include
-        Provides the "include" family of commands for embedding modules that
-        are only need at build-time in your distribution and won't be
-        installed.
-
-    Module::Install::Inline
-        Provides "&Inline->write" to replace Inline::MakeMaker's
-        functionality for making Inline-based modules (and cleaning up).
-
-        However, you should invoke this with "WriteAll( inline =" 1 )>.
-
-    Module::Install::Makefile
-        Provides "&Makefile->write" to generate a Makefile for you
-        distribution.
-
-    Module::Install::Metadata
-        Provides "&Meta->write" to generate a META.yml file for your
-        distribution.
-
-    Module::Install::PAR
-        Makes pre-compiled module binary packages from the built blib
-        directory, and download existing ones to save recompiling.
-
-    Module::Install::Run
-        Determines if commands are available on the user's machine, and runs
-        them via IPC::Run3.
-
-    Module::Install::Scripts
-        Handles packaging and installation of scripts to various bin dirs.
-
-    Module::Install::Win32
-        Functions for installing modules on Win32 and finding/installing
-        nmake.exe for users that need it.
-
-    Module::Install::WriteAll
-        Provides the "WriteAll", which writes all the requires files, such
-        as META.yml and either Makefile or Build.
-
-        "WriteAll" takes four optional named parameters:
-
-        "check_nmake" (defaults to true)
-            If true, invokes functions with the same name.
-
-            *The use of this param is no longer recommended.*
-
-        "inline" (defaults to false)
-            If true, invokes "&Inline->write" Inline modules.
-
-        "meta" (defaults to true)
-            If true, writes a "META.yml" file.
-
-        "sign" (defaults to false)
-            If true, invokes "sign" command to digitally sign erm...
-            something.
-
-    Module::Install::Admin::Find
-        Package-time functions for finding extensions, installed packages
-        and files in subdirectories.
-
-    Module::Install::Admin::Manifest
-        Package-time functions for manipulating and updating the MANIFEST
-        file.
-
-    Module::Install::Admin::Metadata
-        Package-time functions for manipulating and updating the META.yml
-        file.
-
-    Module::Install::Admin::ScanDeps
-        Package-time scanning for non-core dependencies via Module::ScanDeps
-        and Module::CoreList.
-
+EXTENSIONS
     Detailed information is provided for all (some) of the relevant modules
     via their own POD documentation.
+
+  Module::Install::AutoInstall
+    Provides "auto_install()" to automatically fetch and install
+    prerequisites.
+
+    The use of "auto_install" is strongly discouraged in any distribution to
+    be uploaded to the CPAN, as the use of it violates the normal CPAN
+    client to toolchain communication protocol.
+
+    Support may be dropped at a future time, with some alternative process
+    providing the equivalent functionality.
+
+  Module::Install::Base
+    The base class for all extensions
+
+  Module::Install::Build
+    Provides integration with Module::Build via "&Build->write".
+
+  Module::Install::Bundle
+    Provides the "bundle" family of commands, allowing you to bundle another
+    CPAN distribution within your distribution.
+
+  Module::Install::Fetch
+    Handles install-time fetching of files from remote servers via FTP and
+    HTTP.
+
+  Module::Install::Include
+    Provides the "include" family of commands for embedding modules that are
+    only need at build-time in your distribution and won't be installed.
+
+  Module::Install::Inline
+    Provides "&Inline->write" to replace Inline::MakeMaker's functionality
+    for making Inline-based modules (and cleaning up).
+
+    However, you should invoke this with "WriteAll( inline =" 1 )>.
+
+  Module::Install::Makefile
+    Provides "&Makefile->write" to generate a Makefile for you distribution.
+
+  Module::Install::Metadata
+    Provides "&Meta->write" to generate a META.yml file for your
+    distribution.
+
+  Module::Install::PAR
+    Makes pre-compiled module binary packages from the built blib directory,
+    and download existing ones to save recompiling.
+
+  Module::Install::Run
+    Determines if commands are available on the user's machine, and runs
+    them via IPC::Run3.
+
+  Module::Install::Scripts
+    Handles packaging and installation of scripts to various bin dirs.
+
+  Module::Install::Win32
+    Functions for installing modules on Win32 and finding/installing
+    nmake.exe for users that need it.
+
+  Module::Install::WriteAll
+    Provides the "WriteAll", which writes all the requires files, such as
+    META.yml and either Makefile or Build.
+
+    "WriteAll" takes four optional named parameters:
+
+    "check_nmake" (defaults to true)
+        If true, invokes functions with the same name.
+
+        *The use of this param is no longer recommended.*
+
+    "inline" (defaults to false)
+        If true, invokes "&Inline->write" Inline modules.
+
+    "meta" (defaults to true)
+        If true, writes a "META.yml" file.
+
+    "sign" (defaults to false)
+        If true, invokes "sign" command to digitally sign erm... something.
+
+  Module::Install::Admin::Find
+    Package-time functions for finding extensions, installed packages and
+    files in subdirectories.
+
+  Module::Install::Admin::Manifest
+    Package-time functions for manipulating and updating the MANIFEST file.
+
+  Module::Install::Admin::Metadata
+    Package-time functions for manipulating and updating the META.yml file.
+
+  Module::Install::Admin::ScanDeps
+    Package-time scanning for non-core dependencies via Module::ScanDeps and
+    Module::CoreList.
 
 FAQ
   What are the benefits of using Module::Install?
@@ -617,7 +612,7 @@ FAQ
     As long as you are going to periodically do incremental releases to get
     any bug fixes and new functionality, yes.
 
-    You should also strongly avoid the use of auto_install.
+    You should also strongly avoid the use of "auto_install".
 
     If you don't plan to do incremental releases, it might be a good idea to
     continue to wait for a while.
@@ -720,7 +715,7 @@ AUTHORS
     Brian Ingerson <ingy@cpan.org>
 
 COPYRIGHT
-    Copyright 2002 - 2009 by Brian Ingerson, Audrey Tang and Adam Kennedy.
+    Copyright 2002 - 2009 Brian Ingerson, Audrey Tang and Adam Kennedy.
 
     This program is free software; you can redistribute it and/or modify it
     under the same terms as Perl itself.

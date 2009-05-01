@@ -3,17 +3,18 @@
 # Compile testing for Module::Install
 
 use strict;
-use vars qw{$VERSION};
 BEGIN {
 	$|       = 1;
 	$^W      = 1;
-	$VERSION = '0.85';
 }
 
 use Test::More tests => 68;
 
 # Check their perl version
 ok( $] >= 5.005, "Your perl is new enough" );
+
+# Load the test class
+use_ok( 't::lib::Test' );
 
 my @classes = qw{
 	Module::Install::Base
@@ -56,8 +57,10 @@ foreach my $class ( @classes ) {
 	eval "require $class;";
 	ok( ! $@, "$class loads ok" );
 	no strict 'refs';
-	is( ${"${class}::VERSION"}, $VERSION, "$class \$VERSION matches" );
+	is(
+		${"${class}::VERSION"},
+		$t::lib::Test::VERSION,
+		"$class \$VERSION matches"
+	);
 }
 
-# Load the test class
-use_ok( 't::lib::Test' );
