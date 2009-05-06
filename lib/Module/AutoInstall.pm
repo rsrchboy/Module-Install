@@ -17,7 +17,9 @@ my %FeatureMap = (
 
 # various lexical flags
 my ( @Missing, @Existing,  %DisabledTests, $UnderCPAN,     $HasCPANPLUS );
-my ( $Config,  $CheckOnly, $SkipInstall,   $AcceptDefault, $TestOnly );
+my (
+    $Config, $CheckOnly, $SkipInstall, $AcceptDefault, $TestOnly, $AllDeps
+);
 my ( $PostambleActions, $PostambleUsed );
 
 # See if it's a testing or non-interactive session
@@ -71,6 +73,9 @@ sub _init {
         }
         elsif ( $arg =~ /^--test(?:only)?$/ ) {
             $TestOnly = 1;
+        }
+        elsif ( $arg =~ /^--all(?:deps)?$/ ) {
+            $AllDeps = 1;
         }
     }
 }
@@ -191,6 +196,7 @@ sub import {
             and (
                 $CheckOnly
                 or ($mandatory and $UnderCPAN)
+                or $AllDeps
                 or _prompt(
                     qq{==> Auto-install the }
                       . ( @required / 2 )
@@ -253,14 +259,15 @@ END_MESSAGE
 sub _check_lock {
     return unless @Missing or @_;
 
+    my $cpan_env = $ENV{PERL5_CPAN_IS_RUNNING};
+
     if ($ENV{PERL5_CPANPLUS_IS_RUNNING}) {
-        my $thing = $ENV{PERL5_CPAN_IS_RUNNING} ? 'CPAN' : 'CPANPLUS';
-        return _running_under($thing);
+        return _running_under($cpan_env ? 'CPAN' : 'CPANPLUS');
     }
 
     require CPAN;
 
-    if ($CPAN::VERSION > '1.89' && $ENV{PERL5_CPAN_IS_RUNNING}) {
+    if ($CPAN::VERSION > '1.89' && $cpan_env) {
         return _running_under('CPAN');
     }
 
@@ -989,8 +996,16 @@ This may cause inconsistent behaviours in pathetic situations.
 
 B<Module::AutoInstall> uses a single environment variable,
 C<PERL_AUTOINSTALL>.  It is taken as the command line argument
-passed to F<Makefile.PL>; you could set it to either C<--defaultdeps> or
-C<--skipdeps> to avoid interactive behaviour.
+passed to F<Makefile.PL>; you could set it to C<--alldeps>, C<--defaultdeps>
+or C<--skipdeps> to avoid all interactive behaviour.
+
+C<--alldeps> will install all features, while
+C<--defaultdeps> will only install features for which the default answer is
+'y'.
+
+C<--skipdeps> will refrain from loading L<CPAN> and not install anything, unless
+you're running under L<CPAN> or L<CPANPLUS>, in which case required dependencies
+will be installed.
 
 It also read from the C<PERL_EXTUTILS_AUTOINSTALL> environment variable if
 C<PERL_AUTOINSTALL> is not defined.
@@ -1007,6 +1022,14 @@ L<CPANPLUS>
 Audrey Tang E<lt>autrijus@autrijus.orgE<gt>
 
 Adam Kennedy E<lt>adamk@cpan.orgE<gt>
+
+Matt S Trout E<lt>mst@shadowcat.co.uE<gt>
+
+=head1 IF THIS BREAKS
+
+Report a ticket to bugs-Module-Install <at> rt.cpan.org and cc Matt
+- I appear to have volunteered as primary maintainer for this stuff so
+if you run into any problems please tell me
 
 =head1 COPYRIGHT
 
