@@ -27,7 +27,7 @@ BEGIN {
 	# This is not enforced yet, but will be some time in the next few
 	# releases once we can make sure it won't clash with custom
 	# Module::Install extensions.
-	$VERSION = '0.87';
+	$VERSION = '0.88';
 
 	# Storage for the pseudo-singleton
 	$MAIN    = undef;
@@ -352,7 +352,7 @@ sub _read {
 	if ( $] >= 5.006 ) {
 		open( FH, '<', $_[0] ) or die "open($_[0]): $!";
 	} else {
-		open( FH, "< $_[0]"  ) or die "open($_[0]): $!";	
+		open( FH, "< $_[0]"  ) or die "open($_[0]): $!";
 	}
 	my $string = do { local $/; <FH> };
 	close FH or die "close($_[0]): $!";
@@ -383,7 +383,7 @@ sub _write {
 	if ( $] >= 5.006 ) {
 		open( FH, '>', $_[0] ) or die "open($_[0]): $!";
 	} else {
-		open( FH, "> $_[0]"  ) or die "open($_[0]): $!";	
+		open( FH, "> $_[0]"  ) or die "open($_[0]): $!";
 	}
 	foreach ( 1 .. $#_ ) {
 		print FH $_[$_] or die "print($_[0]): $!";
