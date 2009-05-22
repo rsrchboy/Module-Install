@@ -54,7 +54,7 @@ ppport.h
 README
 share/dist_file.txt
 t/01_compile.t
-t/02_basic.t
+t/02_mymeta.t
 t/03_autoinstall.t
 t/04_version.t
 t/05_share.t
