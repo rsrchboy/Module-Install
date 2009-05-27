@@ -10,7 +10,7 @@ configure_requires:
   ExtUtils::MakeMaker: 6.42
   YAML::Tiny: 1.33
 distribution_type: module
-generated_by: 'Module::Install version 0.90'
+generated_by: 'Module::Install version 0.91'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -34,10 +34,11 @@ requires:
   Module::CoreList: 2.17
   Module::ScanDeps: 0.89
   PAR::Dist: 0.29
+  Parse::CPAN::Meta: 1.39
   YAML::Tiny: 1.38
   perl: 5.005
 resources:
   ChangeLog: http://fisheye2.atlassian.com/changelog/cpan/trunk/Module-Install
   license: http://dev.perl.org/licenses/
   repository: http://svn.ali.as/cpan/trunk/Module-Install
-version: 0.90
+version: 0.91
